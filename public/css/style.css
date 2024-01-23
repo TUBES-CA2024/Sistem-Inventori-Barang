@@ -537,8 +537,3 @@ i {
   flex-direction: column;
   gap: 20px;
 }
-
-.body-beranda input,
-.body-beranda select {
-  padding: 15px;
-}

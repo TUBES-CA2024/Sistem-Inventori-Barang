@@ -197,14 +197,24 @@
                         <?php } ?>
                         </select>
                     </div>
+                    <div class="status_pinjam">
+                      <label for="status_pinjam">Status pinjam</label>
+                      <br>
+                      <select name="status_pinjam" id="status_pinjam">
+                        <option value="bisa">Bisa</option>
+                        <option value="tidak bisa">Tidak bisa</option>
+                      </select>
+                    </div>
                   </div>
                   <div class="input-kanan">
                     <div class="deskripsi">
                       <label for="deskripsi">Deskripsi</label>
+                      <br>
                       <input type="text" name="deskripsi" id="deskripsi">
                     </div>
                     <div class="tgl_pengadaan">
                       <label for="tgl_pengadaan">Tgl pengadaan</label>
+                      <br>
                       <input type="date" name="tgl_pengadaan" id="tgl_pengadaaan" required>
                     </div>
                     <div class="kondisi_barang">
