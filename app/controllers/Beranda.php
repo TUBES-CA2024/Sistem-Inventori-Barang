@@ -16,5 +16,4 @@ class Beranda extends Controller {
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }
-    
 }
