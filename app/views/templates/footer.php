@@ -27,6 +27,11 @@
           $("#modalTambah").modal("hide");
         });
       });
+
+      function uppercaseInput() {
+      var inputElement = document.getElementById('kode_sub');
+      inputElement.value = inputElement.value.toUpperCase();
+    }
     </script>
 </body>
 </html>

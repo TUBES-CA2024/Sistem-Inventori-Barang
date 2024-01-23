@@ -124,7 +124,7 @@
           </table>
           <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true" >
             <div class="modal-dialog" role="document" >
-              <div class="modal-content">
+              <div class="modal-content" style="width: 900px; height:600px">
                 <div class="modal-header">
                   <h5 class="modal-title" id="modalTambahLabel">Tambah barang</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -139,19 +139,17 @@
                       </label>
                       <input type="text" name="jenis_barang" id="jenis_barang">
                     </div>
-                    <div class="deskripsi">
-                      <label for="deskripsi">Deskripsi</label>
-                      <input type="text" name="deskripsi" id="deskripsi">
+                    <div class="kode_sub">
+                      <label for="kode_sub">Kode sub</label>
+                      <br>
+                      <input type="text" name="kode_sub" id="kode_sub" maxlength="3" required oninput="uppercaseInput()">
                     </div>
                     <div class="jumlah">
                       <label for="jumlah">jumlah</label>
                       <br>
-                      <input type="number" name="jumlah" id="jumlah">
+                      <input type="number" name="jumlah" id="jumlah" required>
                     </div>
-                    <div class="tgl_pengadaan">
-                      <label for="tgl_pengadaan">Tgl pengadaan</label>
-                      <input type="date" name="tgl_pengadaan" id="tgl_pengadaaan">
-                    </div>
+                    
                     <div class="status">
                       <label for="status">Status</label>
                       <br>
@@ -162,19 +160,24 @@
                         </select>
                     </div>
                   </div>
-                  <div class="input-kanan">
+                  <div class="input-tengah" style="display: flex; flex-direction: column; gap: 20px;">
                     <div class="merek">
                       <label for="merek">Merek</label>
                       <br>
                       <input type="text" name="merek" id="merek">
                     </div>
-                    <div class="kondisi_barang">
-                      <label for="kondisi_barang">Kondisi barang</label>
-                      <br>
-                      <select name="kondisi_barang" id="kondisi_barang">
-                      <?php foreach ($data['kondisiBarang'] as $option) { ?>
-                        <option value="<?php echo $option['id_kondisi_barang']; ?>"><?php echo $option['kondisi_barang']; ?></option>
-                        <?php } ?>
+                    <div class="grup_sub">
+                        <label for="grub_sub">Grub sub</label>
+                        <br>
+                        <select name="grub_sub" id="gruub_sub">
+                            <option value="C">C</option>
+                            <option value="S">S</option>
+                            <option value="J">J</option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                            <option value="T">T</option>
+                            <option value="K">K</option>
+                            <option value="U">U</option>
                         </select>
                     </div>
                     <div class="satuan">
@@ -186,6 +189,37 @@
                         <?php } ?>
                         </select>
                     </div>
+                    <div class="lokasi_penyimpanan">
+                      <label for="lokasi_penyimpanan">Lokasi penyimpanan</label>
+                      <select name="lokasi_penyimpanan" id="lokasi_penyimpanan">
+                      <?php foreach ($data['lokasiPenyimpanan'] as $option) { ?>
+                        <option value="<?php echo $option['id_lokasi_penyimpanan']; ?>"><?php echo $option['nama_lokasi_penyimpanan']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="input-kanan">
+                    <div class="deskripsi">
+                      <label for="deskripsi">Deskripsi</label>
+                      <input type="text" name="deskripsi" id="deskripsi">
+                    </div>
+                    <div class="tgl_pengadaan">
+                      <label for="tgl_pengadaan">Tgl pengadaan</label>
+                      <input type="date" name="tgl_pengadaan" id="tgl_pengadaaan" required>
+                    </div>
+                    <div class="kondisi_barang">
+                      <label for="kondisi_barang">Kondisi barang</label>
+                      <br>
+                      <select name="kondisi_barang" id="kondisi_barang">
+                      <?php foreach ($data['kondisiBarang'] as $option) { ?>
+                        <option value="<?php echo $option['id_kondisi_barang']; ?>"><?php echo $option['kondisi_barang']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="detail_penyimpanan">
+                      <label for="detail_penyimpanan">Detail penyimpanan</label>
+                      <input type="text" name="detail_penyimpanan" id="detail_penyimpanan">
+                    </div>
                     <div class="keterangan_label">
                       <label for="keterangan_label">Keterangan label</label>
                       <br>
@@ -193,14 +227,6 @@
                         <option value="sudah">Sudah</option>
                         <option value="belum">Belum</option>
                       </select>
-                    </div>
-                    <div class="lokasi_penyimpanan">
-                      <label for="lokasi_penyimpanan">Lokasi penyimpanan</label>
-                      <input type="text" name="lokasi_penyimpanan" id="lokasi_penyimpanan">
-                    </div>
-                    <div class="detail_penyimpanan">
-                      <label for="detail_penyimpanan">Detail penyimpanan</label>
-                      <input type="text" name="detail_penyimpanan" id="detail_penyimpanan">
                     </div>
                     <div class="modal-footer">
                       <button type="submit" id="kirim">Kirim</button>

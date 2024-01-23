@@ -532,12 +532,13 @@ i {
   font-size: 14px;
 }
 .modal-body .input-kiri,
-.input-kanan {
+.modal-body .input-kanan {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.modal-dialog .modal-content {
-  width: 650px;
+.body-beranda input,
+.body-beranda select {
+  padding: 15px;
 }

@@ -24,6 +24,12 @@ class Tambah_barang_model{
         $this->db->query($query);
         return $this->db->resultSet();
     }
+
+    public function getLokasiPenyimpanan() {
+        $query = "SELECT * FROM mst_lokasi_penyimpanan ORDER BY nama_lokasi_penyimpanan";
+        $this->db->query($query);
+        return $this->db->resultSet();
+    }
     
     
 }
