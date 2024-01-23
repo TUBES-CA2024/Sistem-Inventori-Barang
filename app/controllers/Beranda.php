@@ -16,4 +16,12 @@ class Beranda extends Controller {
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }
-}
+
+    public function tambahBarang(){
+        if($this->model('Tambah_barang_model')->postDataBarang($_POST) > 0){
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }
+        
+    }
+}   

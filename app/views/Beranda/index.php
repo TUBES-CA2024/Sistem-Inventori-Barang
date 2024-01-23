@@ -5,9 +5,9 @@
             <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo" />
           </div>
           <div class="data-profil">
-            <img src="<?=BASEURL;?>img/Ellipse 26.png" alt="profile" />
+            <img src="<?=BASEURL;?>img/PersonCircle.png" alt="profile" style="width: 80px; height:80px" />
             <div class="detail-data-profil">
-              <p id="nama">Naufal Abiyyu</p>
+              <p id="nama">Profile</p>
               <p id="role">User</p>
             </div>
           </div>
@@ -98,33 +98,12 @@
                 <td>Mark</td>
                 <td>Otto</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr>
             </tbody>
           </table>
+          <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">
           <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true" >
             <div class="modal-dialog" role="document" >
-              <div class="modal-content" style="width: 900px; height:600px">
+              <div class="modal-content" style="width: 900px; height:650px">
                 <div class="modal-header">
                   <h5 class="modal-title" id="modalTambahLabel">Tambah barang</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -133,43 +112,53 @@
                 </div>
                 <div class="modal-body">
                   <div class="input-kiri">
-                    <div class="jenis-barang">
-                      <label for="jenis_barang">
+                    <div class="sub_barang">
+                      <label for="sub_barang">
                         Jenis barang
                       </label>
-                      <input type="text" name="jenis_barang" id="jenis_barang">
+                      <input type="text" name="sub_barang" id="sub_barang">
                     </div>
                     <div class="kode_sub">
-                      <label for="kode_sub">Kode sub</label>
-                      <br>
-                      <input type="text" name="kode_sub" id="kode_sub" maxlength="3" required oninput="uppercaseInput()">
+                          <label for="kode_sub">Kode sub</label>
+                          <br>
+                          <input type="text" name="kode_sub" id="kode_sub" maxlength="3" required oninput="uppercaseInput()">
                     </div>
+
                     <div class="jumlah">
                       <label for="jumlah">jumlah</label>
                       <br>
-                      <input type="number" name="jumlah" id="jumlah" required>
+                      <input type="number" name="jumlah" id="jumlah" required min="0">
                     </div>
-                    
-                    <div class="status">
-                      <label for="status">Status</label>
+                    <div class="barang_ke">
+                      <label for="barang_ke">Barang ke-</label>
                       <br>
-                      <select name="status" id="status">
-                      <?php foreach ($data['status'] as $option) { ?>
-                        <option value="<?php echo $option['id_status']; ?>"><?php echo $option['status']; ?></option>
+                      <input type="number" name="barang_ke" id="barang_ke" required min="0">
+                    </div>
+                    <div class="kondisi_barang">
+                      <label for="kondisi_barang">Kondisi barang</label>
+                      <br>
+                      <select name="kondisi_barang" id="kondisi_barang" required>
+                      <?php foreach ($data['kondisiBarang'] as $option) { ?>
+                        <option value="<?php echo $option['id_kondisi_barang']; ?>"><?php echo $option['kondisi_barang']; ?></option>
                         <?php } ?>
                         </select>
+                    </div>
+                    <div class="tgl_pengadaan_barang">
+                      <label for="tgl_pengadaan_barang">Tgl pengadaan</label>
+                      <br>
+                      <input type="date" name="tgl_pengadaan_barang" id="tgl_pengadaan_barang" required>
                     </div>
                   </div>
                   <div class="input-tengah" style="display: flex; flex-direction: column; gap: 20px;">
                     <div class="merek">
-                      <label for="merek">Merek</label>
+                      <label for="nama_merek_barang">Merek</label>
                       <br>
-                      <input type="text" name="merek" id="merek">
+                      <input type="text" name="nama_merek_barang" id="nama_merek_barang">
                     </div>
                     <div class="grup_sub">
-                        <label for="grub_sub">Grub sub</label>
+                        <label for="grup_sub">Grup sub</label>
                         <br>
-                        <select name="grub_sub" id="gruub_sub">
+                        <select name="grup_sub" id="grup_sub">
                             <option value="C">C</option>
                             <option value="S">S</option>
                             <option value="J">J</option>
@@ -183,7 +172,7 @@
                     <div class="satuan">
                       <label for="satuan">Satuan</label>
                       <br>
-                      <select name="satuan" id="satuan">
+                      <select name="satuan" id="satuan" required>
                       <?php foreach ($data['satuan'] as $option) { ?>
                         <option value="<?php echo $option['id_satuan']; ?>"><?php echo $option['nama_satuan']; ?></option>
                         <?php } ?>
@@ -191,11 +180,48 @@
                     </div>
                     <div class="lokasi_penyimpanan">
                       <label for="lokasi_penyimpanan">Lokasi penyimpanan</label>
-                      <select name="lokasi_penyimpanan" id="lokasi_penyimpanan">
+                      <select name="lokasi_penyimpanan" id="lokasi_penyimpanan" required>
                       <?php foreach ($data['lokasiPenyimpanan'] as $option) { ?>
                         <option value="<?php echo $option['id_lokasi_penyimpanan']; ?>"><?php echo $option['nama_lokasi_penyimpanan']; ?></option>
                         <?php } ?>
                         </select>
+                    </div>
+                    <div class="status">
+                      <label for="status">Status</label>
+                      <br>
+                      <select name="status" id="status">
+                      <?php foreach ($data['status'] as $option) { ?>
+                        <option value="<?php echo $option['id_status']; ?>"><?php echo $option['status']; ?></option>
+                        <?php } ?>
+                        </select>
+                    </div>
+                    <div class="keterangan_label">
+                      <label for="keterangan_label">Keterangan label</label>
+                      <br>
+                      <select name="keterangan_label" id="keterangan_label" required>
+                        <option value="sudah">Sudah</option>
+                        <option value="belum">Belum</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="input-kanan">
+                    <div class="deskripsi">
+                      <label for="deskripsi_barang">Deskripsi barang</label>
+                      <br>
+                      <input type="text" name="deskripsi_barang" id="deskripsi_barang">
+                    </div>
+                    <div class="kode_merek">
+                      <label for="kode_merek_barang">Kode merek</label>
+                      <input type="text" name="kode_merek_barang" id="kode_merek_barang" maxlength="3" minlength="3" >
+                    </div>
+                    <div class="total_barang">
+                      <label for="total_barang">Total Barang</label>
+                      <br>
+                      <input type="number" name="total_barang" id="total_barang" min="0" required>
+                    </div>
+                    <div class="deskripsi_detail_lokasi">
+                      <label for="deskripsi_detail_lokasi">Detail penyimpanan</label>
+                      <input type="text" name="deskripsi_detail_lokasi" id="deskripsi_detail_lokasi">
                     </div>
                     <div class="status_pinjam">
                       <label for="status_pinjam">Status pinjam</label>
@@ -205,43 +231,12 @@
                         <option value="tidak bisa">Tidak bisa</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="input-kanan">
-                    <div class="deskripsi">
-                      <label for="deskripsi">Deskripsi</label>
-                      <br>
-                      <input type="text" name="deskripsi" id="deskripsi">
-                    </div>
-                    <div class="tgl_pengadaan">
-                      <label for="tgl_pengadaan">Tgl pengadaan</label>
-                      <br>
-                      <input type="date" name="tgl_pengadaan" id="tgl_pengadaaan" required>
-                    </div>
-                    <div class="kondisi_barang">
-                      <label for="kondisi_barang">Kondisi barang</label>
-                      <br>
-                      <select name="kondisi_barang" id="kondisi_barang">
-                      <?php foreach ($data['kondisiBarang'] as $option) { ?>
-                        <option value="<?php echo $option['id_kondisi_barang']; ?>"><?php echo $option['kondisi_barang']; ?></option>
-                        <?php } ?>
-                        </select>
-                    </div>
-                    <div class="detail_penyimpanan">
-                      <label for="detail_penyimpanan">Detail penyimpanan</label>
-                      <input type="text" name="detail_penyimpanan" id="detail_penyimpanan">
-                    </div>
-                    <div class="keterangan_label">
-                      <label for="keterangan_label">Keterangan label</label>
-                      <br>
-                      <select name="keterangan_label" id="keterangan_label">
-                        <option value="sudah">Sudah</option>
-                        <option value="belum">Belum</option>
-                      </select>
-                    </div>
+                    
                     <div class="modal-footer">
                       <button type="submit" id="kirim">Kirim</button>
                     </div>
                   </div>
               </div>
-      </div>
+              </form>
+          </div>
     </div>

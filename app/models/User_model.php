@@ -75,7 +75,7 @@ class User_model{
         // Jika tidak ada user atau password tidak cocok, kembalikan NULL
         return NULL;
     }
-    
+
 
     }
     
