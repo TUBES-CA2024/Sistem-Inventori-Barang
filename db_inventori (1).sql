@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jan 2024 pada 18.17
+-- Waktu pembuatan: 23 Jan 2024 pada 14.41
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -174,10 +174,11 @@ CREATE TABLE `trx_barang` (
   `id_satuan` int(11) NOT NULL,
   `deskripsi_barang` text DEFAULT NULL,
   `tgl_pengadaan_barang` date NOT NULL,
+  `kode_barang` varchar(26) NOT NULL,
   `keterangan_label` enum('Sudah','Belum') DEFAULT NULL,
   `id_lokasi_penyimpanan` int(11) NOT NULL,
   `deskripsi_detail_lokasi` text DEFAULT NULL,
-  `id_status` int(11) NOT NULL
+  `status_peminjaman` enum('Bisa','Tidak Bisa') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -214,8 +215,8 @@ INSERT INTO `trx_data_user` (`id_data_user`, `id_user`, `foto`, `nama_user`, `un
 CREATE TABLE `trx_jenis_barang` (
   `id_jenis_barang` int(11) NOT NULL,
   `sub_barang` varchar(50) DEFAULT NULL,
-  `kode_sub` varchar(3) DEFAULT NULL,
   `grup_sub` char(1) DEFAULT NULL,
+  `kode_sub` varchar(3) DEFAULT NULL,
   `id_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -319,8 +320,7 @@ ALTER TABLE `trx_barang`
   ADD KEY `id_merek_barang` (`id_merek_barang`),
   ADD KEY `id_kondisi_barang` (`id_kondisi_barang`),
   ADD KEY `id_satuan` (`id_satuan`),
-  ADD KEY `id_lokasi_penyimpanan` (`id_lokasi_penyimpanan`),
-  ADD KEY `id_status` (`id_status`);
+  ADD KEY `id_lokasi_penyimpanan` (`id_lokasi_penyimpanan`);
 
 --
 -- Indeks untuk tabel `trx_data_user`
@@ -372,7 +372,7 @@ ALTER TABLE `mst_kondisi_barang`
 -- AUTO_INCREMENT untuk tabel `mst_lokasi_penyimpanan`
 --
 ALTER TABLE `mst_lokasi_penyimpanan`
-  MODIFY `id_lokasi_penyimpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id_lokasi_penyimpanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `mst_merek_barang`
@@ -402,7 +402,7 @@ ALTER TABLE `mst_status`
 -- AUTO_INCREMENT untuk tabel `trx_barang`
 --
 ALTER TABLE `trx_barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `trx_data_user`
@@ -434,8 +434,7 @@ ALTER TABLE `trx_barang`
   ADD CONSTRAINT `trx_barang_ibfk_2` FOREIGN KEY (`id_merek_barang`) REFERENCES `mst_merek_barang` (`id_merek_barang`),
   ADD CONSTRAINT `trx_barang_ibfk_3` FOREIGN KEY (`id_kondisi_barang`) REFERENCES `mst_kondisi_barang` (`id_kondisi_barang`),
   ADD CONSTRAINT `trx_barang_ibfk_4` FOREIGN KEY (`id_satuan`) REFERENCES `mst_satuan` (`id_satuan`),
-  ADD CONSTRAINT `trx_barang_ibfk_5` FOREIGN KEY (`id_lokasi_penyimpanan`) REFERENCES `mst_lokasi_penyimpanan` (`id_lokasi_penyimpanan`),
-  ADD CONSTRAINT `trx_barang_ibfk_6` FOREIGN KEY (`id_status`) REFERENCES `mst_status` (`id_status`);
+  ADD CONSTRAINT `trx_barang_ibfk_5` FOREIGN KEY (`id_lokasi_penyimpanan`) REFERENCES `mst_lokasi_penyimpanan` (`id_lokasi_penyimpanan`);
 
 --
 -- Ketidakleluasaan untuk tabel `trx_data_user`

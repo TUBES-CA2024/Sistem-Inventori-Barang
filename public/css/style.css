@@ -80,7 +80,7 @@
   flex-direction: column;
 }
 
-.body-login input {
+input {
   background-color: rgba(202, 214, 255, 0.4);
   border: none;
   height: 47px;
@@ -95,7 +95,7 @@ input::placeholder {
   font-size: 13px;
 }
 
-.body-login label {
+label {
   font-size: 15px;
   color: #0c1740;
   font-weight: 500;
@@ -178,7 +178,7 @@ input::placeholder {
 
 .form-daftar-kiri {
   width: 30%;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 .form {
   display: flex;
@@ -224,16 +224,16 @@ input::placeholder {
   width: 340px;
 }
 
-.body-register label {
+/* .body-register label {
   font-size: 15px;
   color: #0c1740;
   font-weight: 500;
-}
+} */
 
 .form-daftar-kanan {
   display: flex;
   flex-direction: column;
-  margin-top: 190px;
+  margin-top: 170px;
   gap: 20px;
 }
 
@@ -317,8 +317,7 @@ input[type="radio"] {
 }
 
 .body-beranda .side-bar {
-  width: 25%;
-  border: 1px solid;
+  width: 20%;
 }
 
 .profil .logo {
@@ -455,7 +454,7 @@ i {
 .content {
   padding: 15px;
   height: 100%;
-  width: 75%;
+  width: 80%;
 }
 
 .content-beranda {
@@ -463,6 +462,7 @@ i {
   width: 100%;
   height: 100%;
   border-radius: 15px;
+  padding: 25px;
 }
 
 #title {
@@ -518,6 +518,7 @@ i {
   background-color: rgba(202, 214, 255, 0.4);
   opacity: 0.5;
   border: none;
+  padding-left: 15px;
 }
 
 .modal-body {
@@ -527,10 +528,10 @@ i {
   margin-bottom: 10px;
   gap: 50px;
 }
-.modal-body label {
+/* .modal-body label {
   font-weight: 500;
   font-size: 14px;
-}
+} */
 .modal-body .input-kiri,
 .modal-body .input-kanan {
   display: flex;

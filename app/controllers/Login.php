@@ -2,6 +2,14 @@
 
 class Login extends Controller {
     public function index(){
+        session_start();
+        
+        // Cek apakah pengguna sudah login, jika ya, redirect ke halaman Beranda
+        if (isset($_SESSION['email'])) {
+            header("Location:" . BASEURL . "/Beranda");
+            exit;
+        }
+
         $data['judul'] = 'Login';
         $this->view('templates/header', $data);
         $this->view('Login/index');
@@ -18,10 +26,10 @@ class Login extends Controller {
         if ($data['login'] == NULL) {
             echo "<script>alert('email dan password tidak terdaftar');window.location='" . BASEURL . "/';</script>";
             exit;
-        }else{
-            $_SESSION['nama'] = $data['login']['nama'];
+        } else {
+            // Perbaikan: $_SESSION['email'] harus diisi dengan $email, bukan $data['email']['password']
+            $_SESSION['email'] = $email;
             header("Location:" . BASEURL . "/Beranda");
         }
     }
-
 }

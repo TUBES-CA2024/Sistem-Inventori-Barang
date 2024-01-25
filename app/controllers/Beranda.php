@@ -10,6 +10,7 @@ class Beranda extends Controller {
         $data['satuan'] = $TambahBarangModel->getSatuan();
         $data['status'] = $TambahBarangModel->getStatus();
         $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
+        $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);

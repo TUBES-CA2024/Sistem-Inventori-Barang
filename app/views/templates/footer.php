@@ -32,6 +32,18 @@
       var inputElement = document.getElementById('kode_sub');
       inputElement.value = inputElement.value.toUpperCase();
     }
+
+
+    function validateNumberInput(input) {
+    // Menghapus karakter selain angka
+    input.value = input.value.replace(/\D/g, '');
+
+    // Memastikan panjang tidak melebihi 12 digit
+    if (input.value.length > 12) {
+        input.value = input.value.slice(0, 12);
+    }
+  }
+
     </script>
 </body>
 </html>

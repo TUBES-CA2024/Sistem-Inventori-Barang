@@ -64,31 +64,50 @@
         </div>
       </div>
       <div class="content">
-        <div class="content-beranda">
-          <h3 id="title">Beranda</h3>
+        <div class="content-beranda" style="overflow: auto;">
+          <h3 id="title" >Beranda</h3>
           <div class="btn-fitur">
             <button data-toggle="modal" data-target="#modalTambah">
               <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
             </button>
             <div class="search"></div>
           </div>
-          <table class="table table-hover">
+          <table class="table table-hover table-sm" >
             <thead>
               <tr>
-                <th scope="col">No.</th>
-                <th scope="col">Kode barang</th>
-                <th scope="col">Jenis barang</th>
-                <th scope="col">Merek</th>
-                <th scope="col">Deskripsi barang</th>
-                <th scope="col">Jumlah</th>
-                <th scope="col">Satuan</th>
-                <th scope="col">Status</th>
-                <th scope="col">Aksi</th>
+                <th scope="col" class="px-2">No.</th>
+                <th scope="col" class="px-2">Kode barang</th>
+                <th scope="col" class="px-2">Jenis barang</th>
+                <th scope="col" class="px-2">Merek</th>
+                <th scope="col" class="px-2">Deskripsi barang</th>
+                <th scope="col" class="px-2">Jumlah</th>
+                <th scope="col" class="px-2">Satuan</th>
+                <th scope="col" class="px-2">Status pinjam</th>
+                <th scope="col" class="px-2">Aksi</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
+            <?php $i = 1; ?>
+            <?php foreach ($data['dataTampilBarang'] as $row): ?>
+            <tr>
+                <th scope="row" class="px-2"><?= $i++; ?></th>
+                <td class="px-2"><?= $row['kode_barang']; ?></td>
+                <td class="px-2"><?= $row['sub_barang']; ?></td>
+                <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
+                <td class="px-2"><?= $row['deskripsi_barang']; ?></td>
+                <td class="px-2"><?= $row['jumlah_barang']; ?></td>
+                <td class="px-2"><?= $row['nama_satuan']; ?></td>
+                <td class="px-2"><?= $row['status_peminjaman']; ?></td>
+                <td class="px-2" style="display: flex; gap: 10px;">
+                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-circle-info" style="color: #2f4eca;"></i></button>
+                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-pen-to-square" style="color: #30cc30;"></i></button>
+                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-trash-can" style="color: #cc3030;"></i></button>
+                </td>
+
+            </tr>
+        <?php endforeach; ?>
+              <!-- <tr>
+                <td scope="row">1</td>
                 <td>Mark</td>
                 <td>Otto</td>
                 <td>@mdo</td>
@@ -97,7 +116,7 @@
                 <td>@mdo</td>
                 <td>Mark</td>
                 <td>Otto</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
           <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">

@@ -20,6 +20,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="<?=BASEURL; ?>css/style.css">  
+
 </head>
 <body>
     

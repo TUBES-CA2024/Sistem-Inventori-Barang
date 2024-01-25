@@ -51,11 +51,44 @@ class Tambah_barang_model{
     $this->db->execute();
     
     $idJenisBarang = $this->db->lastInsertId();
+    
+    function angkaRomawi($number)
+{
+    $romans = [
+        'M'  => 1000,
+        'CM' => 900,
+        'D'  => 500,
+        'CD' => 400,
+        'C'  => 100,
+        'XC' => 90,
+        'L'  => 50,
+        'XL' => 40,
+        'X'  => 10,
+        'IX' => 9,
+        'V'  => 5,
+        'IV' => 4,
+        'I'  => 1
+    ];
 
+    $result = '';
+
+    foreach ($romans as $roman => $value) {
+        $matches = intval($number / $value);
+        $result .= str_repeat($roman, $matches);
+        $number %= $value;
+    }
+
+    return $result;
+}
+
+
+    $month = date('m', strtotime($data['tgl_pengadaan_barang']));
+     $romanMonth = angkaRomawi($month);
+    
     // Insert data into trx_barang
-    $kode_barang = date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . date('m', strtotime($data['tgl_pengadaan_barang'])) . '/' . $data['grup_sub'] . '/' . $data['kode_sub'] . '/' . $data['kode_merek_barang'] . '/' . $data['barang_ke'] . '/' . $data['total_barang'];
-    $queryBarang = "INSERT INTO trx_barang (id_jenis_barang, id_merek_barang, id_kondisi_barang, id_satuan, jumlah_barang, deskripsi_barang, tgl_pengadaan_barang, kode_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, status_peminjaman) 
-        VALUES (:id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :id_satuan, :jumlah_barang, :deskripsi_barang, :tgl_pengadaan_barang, :kode_barang, :keterangan_label, :lokasi_penyimpanan, :deskripsi_detail_lokasi, :status_peminjaman)";
+    $kode_barang = date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' . $data['grup_sub'] . '/' . $data['kode_sub'] . '/' . $data['kode_merek_barang'] . '/' . $data['barang_ke'] . '/' . $data['total_barang'];
+    $queryBarang = "INSERT INTO trx_barang (id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, kode_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, status_peminjaman) 
+        VALUES (:id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :kode_barang, :keterangan_label, :lokasi_penyimpanan, :deskripsi_detail_lokasi, :status_peminjaman)";
     $this->db->query($queryBarang);
     $this->db->bind('id_jenis_barang', $idJenisBarang);
     $this->db->bind('id_merek_barang', $idMerekBarang);
@@ -66,7 +99,7 @@ class Tambah_barang_model{
     $this->db->bind('tgl_pengadaan_barang', $data['tgl_pengadaan_barang']);
     $this->db->bind('kode_barang', $kode_barang);
     $this->db->bind('keterangan_label', $data['keterangan_label']);
-    $this->db->bind('id_lokasi_penyimpanan', $data['lokasi_penyimpanan']);
+    $this->db->bind('lokasi_penyimpanan', $data['lokasi_penyimpanan']);
     $this->db->bind('deskripsi_detail_lokasi', $data['deskripsi_detail_lokasi']);
     $this->db->bind('status_peminjaman', $data['status_pinjam']);
     $this->db->execute();
@@ -74,7 +107,17 @@ class Tambah_barang_model{
     return $this->db->rowCount();
 }
 
-    
-    
+public function getDataBarang() {
+    $tampilView = "SELECT * FROM tampil_data_barang;";
+    $this->db->query($tampilView);
+
+    // Simpan hasil query dalam array
+    return $this->db->resultSet();
+
+    // Kembalikan hasil dalam bentuk array
+}
+
+
+
     
 }
