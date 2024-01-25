@@ -20,9 +20,29 @@ class Beranda extends Controller {
 
     public function tambahBarang(){
         if($this->model('Tambah_barang_model')->postDataBarang($_POST) > 0){
+            Flasher::setFlash('Barang', 'berhasil', ' ditambahkan', 'success');
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }else{
+            Flasher::setFlash('Barang', 'gagal', ' ditambahkan', 'danger');
             header('Location: '. BASEURL . 'Beranda');
             exit;
         }
-        
     }
+
+    public function detail($id_barang) {
+        $data['judul'] = 'Beranda';
+        
+        // Mengambil data kondisi barang dari model
+        $TambahBarangModel = $this->model('Tambah_barang_model');
+        $data['dataTampilBarang'] = $TambahBarangModel->getDetailDataBarang($id_barang);
+
+
+        // Memanggil view transaksi barang
+        $this->view('templates/header', $data);
+        $this->view('Beranda/detail', $data);
+        $this->view('templates/footer');
+    }
+
+
 }   

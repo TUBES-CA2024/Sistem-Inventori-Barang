@@ -13,6 +13,9 @@
         </div>
       </div>
       <div class="form-daftar-kiri">
+        <div class="flash" style="width: 80%;">
+            <?php Flasher::flash();?>
+          </div>
         <div class="header">
           <h2>Daftar</h2>
         </div>

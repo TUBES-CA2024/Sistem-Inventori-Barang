@@ -64,8 +64,11 @@
         </div>
       </div>
       <div class="content">
-        <div class="content-beranda" style="overflow: auto;">
+        <div class="content-beranda" style="overflow-y: auto;">
           <h3 id="title" >Beranda</h3>
+          <div class="flash" style="width: 40%; margin-left:15px;">
+            <?php Flasher::flash();?>
+          </div>
           <div class="btn-fitur">
             <button data-toggle="modal" data-target="#modalTambah">
               <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
@@ -79,7 +82,6 @@
                 <th scope="col" class="px-2">Kode barang</th>
                 <th scope="col" class="px-2">Jenis barang</th>
                 <th scope="col" class="px-2">Merek</th>
-                <th scope="col" class="px-2">Deskripsi barang</th>
                 <th scope="col" class="px-2">Jumlah</th>
                 <th scope="col" class="px-2">Satuan</th>
                 <th scope="col" class="px-2">Status pinjam</th>
@@ -94,35 +96,28 @@
                 <td class="px-2"><?= $row['kode_barang']; ?></td>
                 <td class="px-2"><?= $row['sub_barang']; ?></td>
                 <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
-                <td class="px-2"><?= $row['deskripsi_barang']; ?></td>
                 <td class="px-2"><?= $row['jumlah_barang']; ?></td>
                 <td class="px-2"><?= $row['nama_satuan']; ?></td>
                 <td class="px-2"><?= $row['status_peminjaman']; ?></td>
-                <td class="px-2" style="display: flex; gap: 10px;">
-                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-circle-info" style="color: #2f4eca;"></i></button>
-                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-pen-to-square" style="color: #30cc30;"></i></button>
-                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-trash-can" style="color: #cc3030;"></i></button>
+                <td class="px-2" style="display: flex;">
+                <!-- Button Detail -->
+               <a href="<?= BASEURL; ?>/Beranda/detail/<?=$row['id_barang'];?>"class="btn d-flex align-items-center justify-content-center" 
+               >
+               <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
+                 </a>
+                 
+                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i></button>
+                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i></button>
                 </td>
 
             </tr>
         <?php endforeach; ?>
-              <!-- <tr>
-                <td scope="row">1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>Mark</td>
-                <td>Otto</td>
-              </tr> -->
             </tbody>
           </table>
-          <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">
+          <form action="<?=BASEURL?>Beranda/tambahBarang" method="post" >
           <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" aria-labelledby="modalTambahLabel" aria-hidden="true" >
             <div class="modal-dialog" role="document" >
-              <div class="modal-content" style="width: 900px; height:650px">
+              <div class="modal-content" style="width: 900px; padding: 15px;height:650px">
                 <div class="modal-header">
                   <h5 class="modal-title" id="modalTambahLabel">Tambah barang</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">

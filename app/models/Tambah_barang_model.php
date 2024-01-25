@@ -108,14 +108,21 @@ class Tambah_barang_model{
 }
 
 public function getDataBarang() {
-    $tampilView = "SELECT * FROM tampil_data_barang;";
+    $tampilView = "SELECT * FROM detail_barang;";
     $this->db->query($tampilView);
 
-    // Simpan hasil query dalam array
     return $this->db->resultSet();
 
-    // Kembalikan hasil dalam bentuk array
 }
+
+public function getDetailDataBarang($id_barang){
+    $this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
+    $this->db->bind("id_barang", $id_barang);
+ 
+    return $this->db->single(); // Pastikan ini mengembalikan array dengan kunci "detail_barang"
+}
+
+
 
 
 
