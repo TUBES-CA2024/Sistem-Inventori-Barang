@@ -44,5 +44,17 @@ class Beranda extends Controller {
         $this->view('templates/footer');
     }
 
+    public function hapus($id_barang){
+        if($this->model('Tambah_barang_model')->hapusDataBarang($id_barang) > 0){
+            Flasher::setFlash('Barang', 'berhasil', ' dihapus', 'success');
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }else{
+            Flasher::setFlash('Barang', 'gagal', ' dihapus', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }
+    }
+
 
 }   

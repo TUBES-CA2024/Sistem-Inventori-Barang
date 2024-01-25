@@ -122,6 +122,13 @@ public function getDetailDataBarang($id_barang){
     return $this->db->single(); // Pastikan ini mengembalikan array dengan kunci "detail_barang"
 }
 
+public function hapusDataBarang($id_barang){
+    $this->db->query("CALL HapusDataBarang(:id_barang)");
+    $this->db->bind(":id_barang", $id_barang);
+
+    $this->db->execute();
+    return $this->db->resultSet();
+}
 
 
 

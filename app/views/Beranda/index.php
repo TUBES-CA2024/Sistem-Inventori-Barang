@@ -101,13 +101,17 @@
                 <td class="px-2"><?= $row['status_peminjaman']; ?></td>
                 <td class="px-2" style="display: flex;">
                 <!-- Button Detail -->
+                <a href="<?= BASEURL; ?>/Beranda/hapus/<?=$row['id_barang'];?>"class="btn d-flex align-items-center justify-content-center" 
+                onclick="return confirm('yakin');"
+              >
+              <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                </a>
                <a href="<?= BASEURL; ?>/Beranda/detail/<?=$row['id_barang'];?>"class="btn d-flex align-items-center justify-content-center" 
                >
                <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                  </a>
                  
                   <button style="background-color: transparent; border:none;"><i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i></button>
-                  <button style="background-color: transparent; border:none;"><i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i></button>
                 </td>
 
             </tr>
