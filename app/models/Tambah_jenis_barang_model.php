@@ -15,7 +15,7 @@ class Tambah_jenis_barang_model{
     $this->db->query($queryJenisBarang);
     $this->db->bind('sub_barang', $data['sub_barang']);
     $this->db->bind('grup_sub', $data['grup_sub']);
-    $this->db->bind('id', $data['id']);
+    $this->db->bind('kode_sub', $data['kode_sub']);
     $this->db->execute();
    
 
@@ -64,5 +64,15 @@ public function hapusJenisBarang($id_jenis_barang){
        
     
         return $this->db->rowCount();
+    }
+
+    public function cariDataJenisBarang(){
+        $keyword = $_POST['keyword'];
+        $query= "SELECT * FROM mst_jenis_barang WHERE sub_barang LIKE :keyword";
+
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultSet();
+
     }
 }

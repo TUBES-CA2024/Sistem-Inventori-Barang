@@ -55,6 +55,20 @@ class jenisBarang extends Controller {
             exit;
         }
     }
+
+    public function cari(){
+        $data['judul'] = 'Jenis Barang';
+        
+        // Mengambil data kondisi barang dari model
+        $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
+
+        $data['dataTampilJenisBarang']= $TambahJenisBarangModel->cariDataJenisBarang();
+
+        // Memanggil view transaksi barang
+        $this->view('templates/header', $data);
+        $this->view('Jenis_barang/index', $data);
+        $this->view('templates/footer');
+    }
    
 }
 

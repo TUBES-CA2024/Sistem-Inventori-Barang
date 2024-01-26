@@ -54,11 +54,20 @@
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
-            <div class="btn-fitur">
+            <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <button data-toggle="modal" class="btn-tambah" data-target="#modalTambah">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
                 </button>
-                <div class="search"></div>
+                <div class="search" style="width:350px">
+                    <form action="<?=BASEURL;?>JenisBarang/cari" method="post">
+                    <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <button class="btn btn-outline-secondary mt-2" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+  </div>
+  <input  type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword" style="height: 45px;" autocomplete="off">
+</div>
+                    </form>
+                </div>
             </div>
             <table class="table table-hover table-sm">
                 <thead>
