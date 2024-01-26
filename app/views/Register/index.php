@@ -41,7 +41,7 @@
               placeholder="Masukkan nips/nidn anda"
               maxlength="12"
               minlength="10"
-              oninput="validateNumberInput(this)"
+              oninput="validasiInput(this)"
               />
             </div>
           <div class="email">

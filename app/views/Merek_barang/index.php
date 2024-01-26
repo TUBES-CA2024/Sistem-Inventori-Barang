@@ -50,16 +50,16 @@
     </div>
     <div class="content">
         <div class="content-beranda" style="overflow-y: auto;">
-            <h3 id="title">Jenis Barang</h3>
+            <h3 id="title">Merek Barang</h3>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <button data-toggle="modal" class="btn-tambah" data-target="#modalTambah">
+                <button data-toggle="modal" class="btn-tambah-merek" data-target="#modalTambah">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
                 </button>
                 <div class="search" style="width:350px">
-                    <form action="<?=BASEURL;?>JenisBarang/cari" method="post">
+                    <form action="<?=BASEURL;?>MerekBarang/cari" method="post">
                     <div class="input-group mb-3">
   <div class="input-group-prepend">
     <button class="btn btn-outline-secondary mt-2" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
@@ -73,32 +73,30 @@
                 <thead>
                     <tr>
                         <th scope="col" class="px-2">No.</th>
-                        <th scope="col" class="px-2">Sub barang</th>
-                        <th scope="col" class="px-2">Grup sub</th>
-                        <th scope="col" class="px-2">Kode sub</th>
+                        <th scope="col" class="px-2">Merek barang</th>
+                        <th scope="col" class="px-2">Kode merek</th>
                         <th scope="col" class="px-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($data['dataTampilJenisBarang'] as $row): ?>
+                    <?php foreach ($data['dataTampilMerekBarang'] as $row): ?>
                     <tr>
                         <th scope="row" class="px-2"><?= $i++; ?></th>
-                        <td class="px-2"><?= $row['sub_barang']; ?></td>
-                        <td class="px-2"><?= $row['grup_sub']; ?></td>
-                        <td class="px-2"><?= $row['kode_sub']; ?></td>
+                        <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="px-2"><?= $row['kode_merek_barang']; ?></td>
                         <td class="px-2" style="display: flex;">
                             <!-- hapus -->
-                            <a href="<?= BASEURL; ?>JenisBarang/hapus/<?=$row['id_jenis_barang'];?>"
+                            <a href="<?= BASEURL; ?>MerekBarang/hapus/<?=$row['id_merek_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center"
                                 onclick="return confirm('yakin');">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
                             <!-- ubah -->
-                            <a href="<?= BASEURL; ?>/JenisBarang/ubah/<?=$row['id_jenis_barang'];?>"
-                                class="btn d-flex align-items-center justify-content-center tampilJenisBarangUbah" data-toggle="modal"
+                            <a href="<?= BASEURL; ?>/MerekBarang/ubah/<?=$row['id_merek_barang'];?>"
+                                class="btn d-flex align-items-center justify-content-center tampilMerekBarangUbah" data-toggle="modal"
                                 data-target="#modalTambah"
-                                data-id="<?=$row['id_jenis_barang'];?>">
+                                data-id="<?=$row['id_merek_barang'];?>">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
                     </tr>
@@ -109,39 +107,24 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="height: 550px; border-radius:15px">
                         <div class="modal-header">
-                            <h5 class="modal-title">Tambah Jenis Barang</h5>
+                            <h5 class="modal-title title-merek">Tambah Merek Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                                <form action="<?=BASEURL?>JenisBarang/tambahJenisBarang" method="post">
-                                <input type="hidden" name="id_jenis_barang" id="id_jenis_barang">
-                                    <div class="sub_barang">
-                                        <label for="sub_barang">Sub barang</label>
+                        <div class="modal-body body-merek">
+                                <form action="<?=BASEURL?>MerekBarang/tambahMerekBarang" method="post">
+                                <input type="hidden" name="id_merek_barang" id="id_merek_barang">
+                                    <div class="nama_merek_barang">
+                                        <label for="nama_merek_barang">Merek barang</label>
                                         <br>
-                                        <input type="text" name="sub_barang" id="sub_barang" style="width: 250px;" required>
+                                        <input type="text" name="nama_merek_barang" id="nama_merek_barang" style="width: 250px;" required>
                                     </div>
                                     <br>
-                                    <div class="grup_sub">
-                                        <label for="grup_sub">Grup sub</label>
+                                    <div class="kode_merek_barang">
+                                        <label for="kode_merek_barang">Kode merek</label>
                                         <br>
-                                        <select name="grup_sub" id="grup_sub" style="width: 250px;">
-                                            <option value="C">C</option>
-                                            <option value="S">S</option>
-                                            <option value="J">J</option>
-                                            <option value="F">F</option>
-                                            <option value="M">M</option>
-                                            <option value="T">T</option>
-                                            <option value="K">K</option>
-                                            <option value="U">U</option>
-                                        </select>
-                                    </div>
-                                    <br>
-                                    <div class="kode_sub">
-                                        <label for="kode_sub">Kode sub</label>
-                                        <br>
-                                        <input type="text" name="kode_sub" id="kode_sub" style="width: 250px;" required>
+                                        <input type="text" name="kode_merek_barang" id="kode_merek_barang" minlength="3" maxlength="3" required  oninput="validasiInput(this)" placeholder="cth: 00x">
                                     </div>
                                     <br>
                                     <br>

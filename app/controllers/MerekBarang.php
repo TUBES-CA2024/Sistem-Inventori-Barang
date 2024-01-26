@@ -17,12 +17,16 @@ class merekBarang extends Controller {
     }
 
     public function tambahMerekBarang(){
-        if($this->model('Merek_barang_model')->postDataMerekBarang($_POST) > 0){
-            Flasher::setFlash('Merek Barang', 'berhasil', ' ditambahkan', 'success');
-            header('Location: '. BASEURL . 'MerekBarang');
-            exit;
-        }else{
-            Flasher::setFlash('Merek Barang', 'gagal', ' ditambahkan', 'danger');
+        $cekMerek = $this->model('Merek_barang_model')->cekDataMerekBarang($_POST);
+        if(!$cekMerek){
+            if($this->model('Merek_barang_model')->postDataMerekBarang($_POST) > 0){
+                Flasher::setFlash('Merek Barang', 'berhasil', ' ditambahkan', 'success');
+                header('Location: '. BASEURL . 'MerekBarang');
+                exit;
+            }
+        }
+        else {
+            Flasher::setFlash('Merek Barang', 'gagal', ' ditambahkan </br>Merek barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'MerekBarang');
             exit;
         }
@@ -45,12 +49,16 @@ class merekBarang extends Controller {
     }
 
     public function ubahMerekBarang(){
-        if($this->model('Merek_barang_model')->ubahMerekBarang($_POST) > 0){
-            Flasher::setFlash('Merek Barang', 'berhasil', ' diUbah', 'success');
-            header('Location: '. BASEURL . 'MerekBarang');
-            exit;
-        }else{
-            Flasher::setFlash('Merek Barang', 'gagal', ' diUbah', 'danger');
+        $cekMerek = $this->model('Merek_barang_model')->cekDataMerekBarang($_POST);
+        if(!$cekMerek){
+            if($this->model('Merek_barang_model')->ubahMerekBarang($_POST) > 0){
+                Flasher::setFlash('Merek Barang', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'MerekBarang');
+                exit;
+            }
+        }
+        else {
+            Flasher::setFlash('Merek Barang', 'gagal', ' diUbah </br>Merek barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'MerekBarang');
             exit;
         }

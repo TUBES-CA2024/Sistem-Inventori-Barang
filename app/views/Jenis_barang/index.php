@@ -141,7 +141,7 @@
                                     <div class="kode_sub">
                                         <label for="kode_sub">Kode sub</label>
                                         <br>
-                                        <input type="text" name="kode_sub" id="kode_sub" style="width: 250px;" required>
+                                        <input type="text" name="kode_sub" id="kode_sub" style="width: 250px;" required oninput="uppercaseInput(this)" maxlength="3">
                                     </div>
                                     <br>
                                     <br>

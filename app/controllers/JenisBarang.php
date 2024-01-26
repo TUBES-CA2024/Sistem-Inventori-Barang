@@ -17,12 +17,16 @@ class jenisBarang extends Controller {
     }
 
     public function tambahJenisBarang(){
-        if($this->model('Tambah_jenis_barang_model')->postDataJenisBarang($_POST) > 0){
-            Flasher::setFlash('Jenis Barang', 'berhasil', ' ditambahkan', 'success');
-            header('Location: '. BASEURL . 'JenisBarang');
-            exit;
-        }else{
-            Flasher::setFlash('Jenis Barang', 'gagal', ' ditambahkan', 'danger');
+        $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
+        if(!$cekJenis){
+            if($this->model('Tambah_jenis_barang_model')->postDataJenisBarang($_POST) > 0){
+                Flasher::setFlash('Jenis Barang', 'berhasil', ' diTambahkan', 'success');
+                header('Location: '. BASEURL . 'JenisBarang');
+                exit;
+            }
+        }
+        else {
+            Flasher::setFlash('Jenis Barang', 'gagal', ' diTambahkan </br>Jenis barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'JenisBarang');
             exit;
         }
@@ -45,12 +49,16 @@ class jenisBarang extends Controller {
     }
 
     public function ubahJenisBarang(){
-        if($this->model('Tambah_jenis_barang_model')->ubahJenisBarang($_POST) > 0){
-            Flasher::setFlash('Jenis Barang', 'berhasil', ' diUbah', 'success');
-            header('Location: '. BASEURL . 'JenisBarang');
-            exit;
-        }else{
-            Flasher::setFlash('Jenis Barang', 'gagal', ' diUbah', 'danger');
+        $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
+        if(!$cekJenis){
+            if($this->model('Tambah_jenis_barang_model')->ubahJenisBarang($_POST) > 0){
+                Flasher::setFlash('Jenis Barang', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'JenisBarang');
+                exit;
+            }
+        }
+        else {
+            Flasher::setFlash('Jenis Barang', 'gagal', ' diUbah </br>Jenis barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'JenisBarang');
             exit;
         }
