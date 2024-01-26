@@ -6,9 +6,14 @@ class Beranda extends Controller {
         $data['judul'] = 'Beranda';
         
         // Mengambil data kondisi barang dari model
-        // $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
-
-        // $data['dataTampilJenisBarang']= $TambahJenisBarangModel->getDataJenisBarang();
+        $TambahBarangModel = $this->model('Beranda_model');
+        $data['kondisiBarang'] = $TambahBarangModel->getKondisiBarang();
+        $data['satuan'] = $TambahBarangModel->getSatuan();
+        $data['status'] = $TambahBarangModel->getStatus();
+        $data['sub_barang'] = $TambahBarangModel->getSubBarang();
+        $data['nama_merek_barang'] = $TambahBarangModel->getMerekBarang();
+        $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
+        $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
@@ -16,65 +21,65 @@ class Beranda extends Controller {
         $this->view('templates/footer');
     }
 
-    public function tambahJenisBarang(){
-        $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
-        if(!$cekJenis){
-            if($this->model('Tambah_jenis_barang_model')->postDataJenisBarang($_POST) > 0){
-                Flasher::setFlash('Jenis Barang', 'berhasil', ' diTambahkan', 'success');
-                header('Location: '. BASEURL . 'JenisBarang');
+    public function tambahBarang(){
+        $cekBarang = $this->model('Beranda_model')->cekDataBarang($_POST);
+        if(!$cekBarang){
+            if($this->model('Beranda_model')->postDataBarang($_POST) > 0){
+                Flasher::setFlash('Barang', 'berhasil', ' diTambahkan', 'success');
+                header('Location: '. BASEURL . 'Beranda');
                 exit;
             }
         }
         else {
-            Flasher::setFlash('Jenis Barang', 'gagal', ' diTambahkan </br>Jenis barang sudah ada', 'danger');
-            header('Location: '. BASEURL . 'JenisBarang');
+            Flasher::setFlash('Barang', 'gagal', ' diTambahkan </br>barang sudah ada', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
             exit;
         }
     }
 
-    public function hapus($id_jenis_barang){
-        if($this->model('Tambah_jenis_barang_model')->hapusJenisBarang($id_jenis_barang) > 0){
-            Flasher::setFlash('Jenis Barang', 'berhasil', ' dihapus', 'success');
-            header('Location: '. BASEURL . 'JenisBarang');
+    public function hapus($id_barang){
+        if($this->model('Beranda_model')->hapusBarang($id_barang) > 0){
+            Flasher::setFlash('Barang', 'berhasil', ' dihapus', 'success');
+            header('Location: '. BASEURL . 'Beranda');
             exit;
         }else{
-            Flasher::setFlash('Jenis Barang', 'gagal', ' dihapus', 'danger');
-            header('Location: '. BASEURL . 'JenisBarang');
+            Flasher::setFlash('Barang', 'gagal', ' dihapus', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
             exit;
         }
     }
 
     public function getUbah(){
-       echo json_encode( $this->model('Tambah_jenis_barang_model')->getUbah($_POST['id_jenis_barang']));
+       echo json_encode( $this->model('Tambah_barang_model')->getUbah($_POST['id_barang']));
     }
 
-    public function ubahJenisBarang(){
-        $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
-        if(!$cekJenis){
-            if($this->model('Tambah_jenis_barang_model')->ubahJenisBarang($_POST) > 0){
-                Flasher::setFlash('Jenis Barang', 'berhasil', ' diUbah', 'success');
-                header('Location: '. BASEURL . 'JenisBarang');
+    public function ubahBarang(){
+        $cek = $this->model('Beranda_model')->cekDataBarang($_POST);
+        if(!$cek){
+            if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
+                Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'Beranda');
                 exit;
             }
         }
         else {
-            Flasher::setFlash('Jenis Barang', 'gagal', ' diUbah </br>Jenis barang sudah ada', 'danger');
-            header('Location: '. BASEURL . 'JenisBarang');
+            Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
             exit;
         }
     }
 
     public function cari(){
-        $data['judul'] = 'Jenis Barang';
+        $data['judul'] = ' Beranda';
         
         // Mengambil data kondisi barang dari model
-        $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
+        $TambahBarangModel = $this->model('Beranda_model');
 
-        $data['dataTampilJenisBarang']= $TambahJenisBarangModel->cariDataJenisBarang();
+        $data['dataTampilBarang']= $TambahBarangModel->cariDataBarang();
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
-        $this->view('Jenis_barang/index', $data);
+        $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }
    
