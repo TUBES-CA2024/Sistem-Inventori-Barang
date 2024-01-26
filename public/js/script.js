@@ -1,16 +1,3 @@
-$(document).ready(function () {
-  // Tangani klik tombol Simpan di dalam modal
-  $("#kirim").click(function () {
-    // Lakukan operasi penyimpanan data atau tindakan lainnya
-
-    // Setelah operasi berhasil, perbarui tabel
-    updateTableData();
-
-    // Tutup modal
-    $("#modalTambah").modal("hide");
-  });
-});
-
 function uppercaseInput() {
   var inputElement = document.getElementById("kode_sub");
   inputElement.value = inputElement.value.toUpperCase();
@@ -39,7 +26,6 @@ $(function () {
         $("#grup_sub").val(data.grup_sub);
         $("#kode_sub").val(data.kode_sub);
         $("#id_jenis_barang").val(data.id_jenis_barang);
-
       },
     });
   });
