@@ -224,12 +224,6 @@ label {
   width: 340px;
 }
 
-/* .body-register label {
-  font-size: 15px;
-  color: #0c1740;
-  font-weight: 500;
-} */
-
 .form-daftar-kanan {
   display: flex;
   flex-direction: column;
@@ -388,43 +382,21 @@ ul {
   gap: 30px;
 }
 
-ul .beranda {
-  width: 100%;
-}
-
-ul .beranda button {
-  padding-left: 20px;
-  border-radius: 8px;
-  background-color: #cad6ff;
-  width: 100%;
-  height: 47px;
-  border-radius: 8px;
-  border: none;
-  display: flex;
-  gap: 25px;
-  align-items: center;
-}
-
 ul .beranda button:hover,
-.peminjaman button:hover,
-.riwayat-peminjaman button:hover,
-.validasi-peminjaman button:hover,
+.tambah-jenis-barang button:hover,
+.tambah-merek-barang button:hover,
 .kelola-akun button:hover,
-.keluar button:hover {
+.keluar button:hover,
+.fa-solid:hover {
   opacity: 0.9;
   cursor: pointer;
-}
-
-ul .beranda button {
+  background-color: #cad6ff;
   color: #0c1740;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
 }
 
-.menu ul .peminjaman button,
-.riwayat-peminjaman button,
-.validasi-peminjaman button,
+ul .beranda button,
+.tambah-jenis-barang button,
+.tambah-merek-barang button,
 .kelola-akun button,
 .keluar button {
   display: flex;
@@ -435,7 +407,11 @@ ul .beranda button {
   font-weight: 500;
   font-size: 15px;
   padding-left: 20px;
-  gap: 25px;
+  align-items: center;
+  border-radius: 8px;
+  width: 100%;
+  height: 47px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -521,21 +497,13 @@ i {
   padding-left: 15px;
 }
 
-.modal-body {
-  display: flex;
-  height: 600px;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  gap: 50px;
-}
-/* .modal-body label {
+.modal-body label {
   font-weight: 500;
   font-size: 14px;
-} */
+}
 .modal-body .input-kiri,
 .modal-body .input-kanan {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-

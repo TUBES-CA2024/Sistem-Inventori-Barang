@@ -1,14 +1,7 @@
 <?php
 
 class Login extends Controller {
-    public function index(){
-        session_start();
-        
-        // Cek apakah pengguna sudah login, jika ya, redirect ke halaman Beranda
-        if (isset($_SESSION['email'])) {
-            header("Location:" . BASEURL . "/Beranda");
-            exit;
-        }
+    public function index(){   
 
         $data['judul'] = 'Login';
         $this->view('templates/header', $data);
@@ -29,7 +22,7 @@ class Login extends Controller {
         } else {
             // Perbaikan: $_SESSION['email'] harus diisi dengan $email, bukan $data['email']['password']
             $_SESSION['email'] = $email;
-            header("Location:" . BASEURL . "/Beranda");
+            header("Location:" . BASEURL . "JenisBarang");
         }
     }
 }

@@ -1,8 +1,8 @@
-<form action="<?= BASEURL ?>;/Login/login" method="post">
+<form action="<?= BASEURL;?>/Login/login" method="post">
 <div class="body-login">
 <div class="figure">
     <div class="logo">
-    <img src="<?=BASEURL ?>img/logo bg hitam.svg" alt="logo">
+    <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo">
     </div>
     <div class="content-figure">
     <img id="login-figure" src="<?=BASEURL ?>img/login figure.svg" alt="figure">
