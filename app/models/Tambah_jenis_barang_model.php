@@ -11,11 +11,13 @@ class Tambah_jenis_barang_model{
 {
 
     // Insert data into mst_jenis_barang
-    $queryJenisBarang = "INSERT INTO mst_jenis_barang (sub_barang, grup_sub, kode_sub) VALUES (:sub_barang, :grup_sub, :kode_sub)";
+    $queryJenisBarang = "INSERT INTO mst_jenis_barang (sub_barang, grup_sub, kode_sub, kode_jenis_barang) VALUES (:sub_barang, :grup_sub, :kode_sub, :kode_jenis_barang)";
     $this->db->query($queryJenisBarang);
     $this->db->bind('sub_barang', $data['sub_barang']);
     $this->db->bind('grup_sub', $data['grup_sub']);
     $this->db->bind('kode_sub', $data['kode_sub']);
+    $kodeJenisBarang = $data['grup_sub'] . '/' . $data['kode_sub'];
+    $this->db->bind('kode_jenis_barang', $kodeJenisBarang);
     $this->db->execute();
    
 
@@ -70,12 +72,13 @@ public function hapusJenisBarang($id_jenis_barang){
     {
     
         // Insert data into mst_jenis_barang
-        $queryJenisBarang = "UPDATE mst_jenis_barang SET sub_barang = :sub_barang, grup_sub= :grup_sub, kode_sub=:kode_sub WHERE id_jenis_barang = :id_jenis_barang";
+        $queryJenisBarang = "UPDATE mst_jenis_barang SET sub_barang = :sub_barang, grup_sub= :grup_sub, kode_sub=:kode_sub, kode_jenis_barang = :kode_jenis_barang WHERE id_jenis_barang = :id_jenis_barang";
         $this->db->query($queryJenisBarang);
         $this->db->bind('sub_barang', $data['sub_barang']);
         $this->db->bind('grup_sub', $data['grup_sub']);
         $this->db->bind('kode_sub', $data['kode_sub']);
-        $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
+        $kodeJenisBarang = $data['grup_sub'] . '/' . $data['kode_sub'];
+        $this->db->bind('kode_jenis_barang', $kodeJenisBarang);        $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
 
         $this->db->execute();
        

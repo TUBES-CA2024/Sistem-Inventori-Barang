@@ -50,7 +50,7 @@
     </div>
     <div class="content">
         <div class="content-beranda" style="overflow-y: auto;">
-            <h3 id="title">Jenis Barang</h3>
+            <h3 id="title">Beranda</h3>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
@@ -73,31 +73,34 @@
                 <thead>
                     <tr>
                         <th scope="col" class="px-2">No.</th>
+                        <th scope="col" class="px-2">Kode barang</th>
                         <th scope="col" class="px-2">Sub barang</th>
-                        <th scope="col" class="px-2">Grup sub</th>
-                        <th scope="col" class="px-2">Kode sub</th>
-                        <th scope="col" class="px-2">Kode jenis barang</th>
+                        <th scope="col" class="px-2">Merek barang</th>
+                        <th scope="col" class="px-2">Kondisi barang</th>
+                        <th scope="col" class="px-2">Status peminjaman</th>
                         <th scope="col" class="px-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($data['dataTampilJenisBarang'] as $row): ?>
+                    <?php foreach ($data['dataTampilMerekBarang'] as $row): ?>
                     <tr>
                         <th scope="row" class="px-2"><?= $i++; ?></th>
+                        <td class="px-2"><?= $row['kode_barang']; ?></td>
                         <td class="px-2"><?= $row['sub_barang']; ?></td>
-                        <td class="px-2"><?= $row['grup_sub']; ?></td>
-                        <td class="px-2"><?= $row['kode_sub']; ?></td>
-                        <td class="px-2"><?= $row['kode_jenis_barang']; ?></td>
+                        <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="px-2"><?= $row['kondisi_barang']; ?></td>
+                        <td class="px-2"><?= $row['status_peminjaman']; ?></td>
+                        <!-- aksi -->
                         <td class="px-2" style="display: flex;">
                             <!-- hapus -->
-                            <a href="<?= BASEURL; ?>JenisBarang/hapus/<?=$row['id_jenis_barang'];?>"
+                            <a href="<?= BASEURL; ?>Beranda/hapus/<?=$row['id_jenis_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center"
                                 onclick="return confirm('yakin');">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
                             <!-- ubah -->
-                            <a href="<?= BASEURL; ?>/JenisBarang/ubah/<?=$row['id_jenis_barang'];?>"
+                            <a href="<?= BASEURL; ?>Beranda/ubah/<?=$row['id_jenis_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center tampilJenisBarangUbah" data-toggle="modal"
                                 data-target="#modalTambah"
                                 data-id="<?=$row['id_jenis_barang'];?>">
@@ -111,18 +114,22 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="height: 550px; border-radius:15px">
                         <div class="modal-header">
-                            <h5 class="modal-title">Tambah Jenis Barang</h5>
+                            <h5 class="modal-title">Tambah Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                                <form action="<?=BASEURL?>JenisBarang/tambahJenisBarang" method="post">
-                                <input type="hidden" name="id_jenis_barang" id="id_jenis_barang">
+                                <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">
+                                <input type="hidden" name="id_barang" id="id_barang">
                                     <div class="sub_barang">
                                         <label for="sub_barang">Sub barang</label>
                                         <br>
-                                        <input type="text" name="sub_barang" id="sub_barang" style="width: 250px;" required>
+                                        <select name="sub_barang" id="sub_barang">
+                                        <?php foreach ($data['sub_barang'] as $option) { ?>
+                                            <option value=""></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
                                     <br>
                                     <div class="grup_sub">
