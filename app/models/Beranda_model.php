@@ -47,6 +47,7 @@ class Beranda_model{
  
     
     // Insert data into mst_jenis_barang
+
     $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
     $this->db->query($joinKodeJenisBarang);
     $kodeJenisBarang = $this->db->single();
@@ -166,6 +167,12 @@ public function getDataBarang() {
 //        return $this->db->single()['COUNT(*)'];
 // }
 
+public function getDetailDataBarang($id_barang){
+        $this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
+        $this->db->bind("id_barang", $id_barang);
+     
+        return $this->db->single(); // Pastikan ini mengembalikan array dengan kunci "detail_barang"
+    }
 
 public function hapusBarang($id_barang){
     $this->db->query("DELETE FROM trx_barang WHERE id_barang = :id_barang;");
@@ -187,15 +194,15 @@ public function hapusBarang($id_barang){
 
     public function ubahBarang($data)
     {
-        $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
+        $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang";
     $this->db->query($joinKodeJenisBarang);
-    $kodeJenisBarang = $this->db->single();
+    $kodeJenisBarang = $this->db->execute();
     $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
 
     
-    $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE mst_merek_barang.id_merek_barang = trx_barang.id_merek_barang";
+    $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang";
     $this->db->query($joinKodeMerekBarang);
-    $kodeMerekBarang = $this->db->single();
+    $kodeMerekBarang = $this->db->execute();
     $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
         
         $queryBarang = "UPDATE trx_barang SET

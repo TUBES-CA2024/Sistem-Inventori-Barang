@@ -108,6 +108,11 @@
                                 data-toggle="modal" data-target="#modalTambah" data-id="<?=$row['id_barang'];?>">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
+                            <!-- detail -->
+              <a href="<?= BASEURL; ?>/Beranda/detail/<?=$row['id_barang'];?>"
+                class="btn d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
+              </a>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -177,7 +182,7 @@
                                         <div class="barang_ke">
                                             <label for="barang_ke">Barang ke-</label>
                                             <br>
-                                            <input type="number" name="barang_ke" id="barang_ke" style="width: 250px;"
+                                            <input type="number" name="barang_ke" id="barangke" style="width: 250px;"
                                                 min="0" required>
                                         </div>
                                         <br>

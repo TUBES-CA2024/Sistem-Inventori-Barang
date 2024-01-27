@@ -8,7 +8,7 @@
 - saya memilih untuk membuat sistem ini untuk mempermudah pendataan barang yang sebagaimana kita ketahui dalam pendataan barang
   yang saat ini dilakukan masih menggunakan spreadsheet dan orang yang ingin meminjam barang di Lab tidak mengetahui apakah barang yang ingin dia pinjam tersedia atau tidak.
 - tujuan sistem ini mempermudah pendataan dan pemantauan persediaan stok barang di Lab.
-- Teknologi yang digunakan : Bootstrap dan Fontawesome
+- Teknologi yang digunakan : Bootstrap, Jquery, ajax, Fontawesome
 
 ### Fitur MVP Aplikasi
 

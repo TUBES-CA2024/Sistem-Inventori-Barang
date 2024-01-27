@@ -21,6 +21,20 @@ class Beranda extends Controller {
         $this->view('templates/footer');
     }
 
+    public function detail($id_barang) {
+        $data['judul'] = 'Beranda';
+        
+        // Mengambil data kondisi barang dari model
+        $TambahBarangModel = $this->model('Beranda_model');
+        $data['dataTampilBarang'] = $TambahBarangModel->getDetailDataBarang($id_barang);
+
+
+        // Memanggil view transaksi barang
+        $this->view('templates/header', $data);
+        $this->view('Beranda/detail', $data);
+        $this->view('templates/footer');
+    }
+
     public function tambahBarang(){
         if($this->model('Beranda_model')->postDataBarang($_POST) > 0){
                 Flasher::setFlash('Barang', 'berhasil', ' diTambahkan', 'success');
@@ -57,13 +71,11 @@ class Beranda extends Controller {
                 Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
                 header('Location: '. BASEURL . 'Beranda');
                 exit;
-            }
-        
-        else {
+            } else {
             Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'Beranda');
             exit;
-        }
+           }
     }
 
     public function cari(){
@@ -81,4 +93,3 @@ class Beranda extends Controller {
     }
    
 }
-
