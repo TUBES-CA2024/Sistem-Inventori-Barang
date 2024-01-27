@@ -22,14 +22,12 @@ class Beranda extends Controller {
     }
 
     public function tambahBarang(){
-        $cekBarang = $this->model('Beranda_model')->cekDataBarang($_POST);
-        if(!$cekBarang){
-            if($this->model('Beranda_model')->postDataBarang($_POST) > 0){
+        if($this->model('Beranda_model')->postDataBarang($_POST) > 0){
                 Flasher::setFlash('Barang', 'berhasil', ' diTambahkan', 'success');
                 header('Location: '. BASEURL . 'Beranda');
                 exit;
             }
-        }
+        
         else {
             Flasher::setFlash('Barang', 'gagal', ' diTambahkan </br>barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'Beranda');
