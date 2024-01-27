@@ -47,8 +47,6 @@ class Beranda_model{
  
     
     // Insert data into mst_jenis_barang
-    
-
     $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
     $this->db->query($joinKodeJenisBarang);
     $kodeJenisBarang = $this->db->single();
@@ -81,7 +79,7 @@ class Beranda_model{
     $this->db->bind('deskripsi_detail_lokasi', $data['deskripsi_detail_lokasi']);
     $this->db->bind('id_status', $data['status']);
     $this->db->bind('status_peminjaman', $data['status_pinjam']);
-    
+
         function angkaRomawi($number)
 {
     $romans = [
@@ -115,7 +113,7 @@ class Beranda_model{
 $month = date('m', strtotime($data['tgl_pengadaan_barang']));
 $romanMonth = angkaRomawi($month);
 
-$kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang-ke'] . '/' . $data['total_barang'];
+$kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
 
     $this->db->bind('kode_barang', $kodeBarang);
     $this->db->execute();
@@ -127,26 +125,46 @@ $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $roma
 
 
 public function getDataBarang() {
-    $tampilView = "SELECT * FROM trx_barang;";
+    $tampilView = "SELECT trx_barang.id_barang,
+    trx_barang.kode_barang,
+    mst_jenis_barang.sub_barang,
+    mst_merek_barang.nama_merek_barang,
+    mst_kondisi_barang.kondisi_barang,
+    trx_barang.jumlah_barang,
+    mst_satuan.nama_satuan,
+    trx_barang.deskripsi_barang,
+    trx_barang.tgl_pengadaan_barang,
+    trx_barang.keterangan_label,
+    mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
+    trx_barang.deskripsi_detail_lokasi,
+    mst_status.status,
+    trx_barang.status_peminjaman
+    FROM trx_barang 
+    JOIN mst_status ON trx_barang.id_status = mst_status.id_status
+    JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
+    JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
+    JOIN mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
+    JOIN mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
+    JOIN mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan;";
     $this->db->query($tampilView);
 
     return $this->db->resultSet();
 
 }
 
-public function cekDataBarang($data){
-       // Insert data into mst_jenis_barang
-       $queryCekBarang = "SELECT COUNT(*) FROM trx_barang WHERE kode_barang = :kode_barang AND id_barang != :id_barang";
+// public function cekDataBarang($data){
+//        // Insert data into mst_jenis_barang
+//        $queryCekBarang = "SELECT COUNT(*) FROM trx_barang WHERE kode_barang = :kode_barang AND id_barang != :id_barang";
 
-       $kodeBarang = $this->postDataBarang($data);
+//        $kodeBarang = $this->postDataBarang($data);
 
-        $this->db->query($queryCekBarang);
-        $this->db->bind('kode_barang', $kodeBarang);
-        $this->db->bind('id_barang', $data['id_barang']);
-        $this->db->execute();
+//         $this->db->query($queryCekBarang);
+//         $this->db->bind('kode_barang', $kodeBarang);
+//         $this->db->bind('id_barang', $data['id_barang']);
+//         $this->db->execute();
 
-       return $this->db->single()['COUNT(*)'];
-}
+//        return $this->db->single()['COUNT(*)'];
+// }
 
 
 public function hapusBarang($id_barang){
@@ -169,23 +187,25 @@ public function hapusBarang($id_barang){
 
     public function ubahBarang($data)
     {
-        $joinKodeJenisBarang = "SELECT mst_jenis_barang.kode_jenis_barang FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang";
-        $this->db->query($joinKodeJenisBarang);
-        $this->db->execute();
+        $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
+    $this->db->query($joinKodeJenisBarang);
+    $kodeJenisBarang = $this->db->single();
+    $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
+
     
-        $kodeJenisBarang = $this->db->resultSet();
-    
-        $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang";
-        $this->db->query($joinKodeMerekBarang);
-        $this->db->execute();
-        $kodeMerekBarang = $this->db->resultSet();
+    $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE mst_merek_barang.id_merek_barang = trx_barang.id_merek_barang";
+    $this->db->query($joinKodeMerekBarang);
+    $kodeMerekBarang = $this->db->single();
+    $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
         
         $queryBarang = "UPDATE trx_barang SET
-        id_jenis_barang = :id_jenis_barang, id_merek_barang = :id_merek_barang, id_kondis_barang = :id_kondis_barang, jumlah_barang = :jumlah_barang, id_satuan = :id_satuan, deskripsi_barang = :deskripsi_barang, tgl_pengadaan_barang = :tgl_pengadaan_barang, keterangan_label = :keterangan_label, id_lokasi_penyimpanan = :id_lokasi_penyimpanan, deskripsi_detail_lokasi = :deskripsi_detail_lokasi, id_status = :id_status, status_peminjaman = :status_peminjaman WHERE id_barang = :id_barang";
+        id_jenis_barang = :id_jenis_barang, id_merek_barang = :id_merek_barang, id_kondisi_barang = :id_kondisi_barang, jumlah_barang = :jumlah_barang, id_satuan = :id_satuan, deskripsi_barang = :deskripsi_barang, tgl_pengadaan_barang = :tgl_pengadaan_barang, keterangan_label = :keterangan_label, id_lokasi_penyimpanan = :id_lokasi_penyimpanan, deskripsi_detail_lokasi = :deskripsi_detail_lokasi, id_status = :id_status, status_peminjaman = :status_peminjaman, 
+        kode_barang = :kode_barang WHERE id_barang = :id_barang";
+
 
 $this->db->query($queryBarang);
-$this->db->bind('id_jenis_barang', $data['sub_barang']);
 
+$this->db->bind('id_jenis_barang', $data['sub_barang']);
 $this->db->bind('id_merek_barang', $data['nama_merek_barang']);
 $this->db->bind('id_kondisi_barang', $data['kondisi_barang']);
 $this->db->bind('jumlah_barang', $data['jumlah_barang']);
@@ -198,11 +218,49 @@ $this->db->bind('deskripsi_detail_lokasi', $data['deskripsi_detail_lokasi']);
 $this->db->bind('id_status', $data['status']);
 $this->db->bind('status_peminjaman', $data['status_pinjam']);
 
-$this->db->execute();
+    function Romawi($number)
+{
+$romans = [
+    'M'  => 1000,
+    'CM' => 900,
+    'D'  => 500,
+    'CD' => 400,
+    'C'  => 100,
+    'XC' => 90,
+    'L'  => 50,
+    'XL' => 40,
+    'X'  => 10,
+    'IX' => 9,
+    'V'  => 5,
+    'IV' => 4,
+    'I'  => 1
+];
 
+$result = '';
+
+foreach ($romans as $roman => $value) {
+    $matches = intval($number / $value);
+    $result .= str_repeat($roman, $matches);
+    $number %= $value;
+}
+
+ 
+
+return $result;
+}
+$month = date('m', strtotime($data['tgl_pengadaan_barang']));
+$romanMonth = Romawi($month);
+
+$kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
+
+$this->db->bind('kode_barang', $kodeBarang);
+$this->db->bind('id_barang', $data['id_barang']);
+$this->db->execute();
+ 
 
 return $this->db->rowCount();
-    }
+}
+
     public function cariDataBarang(){
         $keyword = $_POST['keyword'];
         $query= "SELECT * FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang LIKE :keyword";

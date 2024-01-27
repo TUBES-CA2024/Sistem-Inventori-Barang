@@ -48,18 +48,17 @@ class Beranda extends Controller {
     }
 
     public function getUbah(){
-       echo json_encode( $this->model('Tambah_barang_model')->getUbah($_POST['id_barang']));
+       echo json_encode( $this->model('Beranda_model')->getUbah($_POST['id_barang']));
     }
 
     public function ubahBarang(){
-        $cek = $this->model('Beranda_model')->cekDataBarang($_POST);
-        if(!$cek){
-            if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
+      
+         if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
                 Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
                 header('Location: '. BASEURL . 'Beranda');
                 exit;
             }
-        }
+        
         else {
             Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'Beranda');

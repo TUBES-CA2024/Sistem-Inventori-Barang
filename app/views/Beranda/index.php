@@ -55,7 +55,7 @@
                 <?php Flasher::flash();?>
             </div>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <button data-toggle="modal" class="btn-tambah" data-target="#modalTambah">
+                <button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
                 </button>
                 <div class="search" style="width:350px">
@@ -103,7 +103,7 @@
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
                             <!-- ubah -->
-                            <a href="<?= BASEURL; ?>Beranda/ubah/<?=$row['id_barang'];?>"
+                            <a href="<?= BASEURL; ?>Beranda/getUbah/<?=$row['id_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
                                 data-toggle="modal" data-target="#modalTambah" data-id="<?=$row['id_barang'];?>">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
@@ -116,12 +116,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="height: 100%;width:900px; border-radius:15px">
                         <div class="modal-header">
-                            <h5 class="modal-title">Tambah Barang</h5>
+                            <h5 class="modal-title" id="title-barang">Tambah Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body body-barang">
                             <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">
                                 <input type="hidden" name="id_barang" id="id_barang">
                                 <div style="display: flex; width:100%; gap:20%;">
@@ -174,10 +174,10 @@
                                             </select>
                                         </div>
                                         <br>
-                                        <div class="barang-ke">
-                                            <label for="barang-ke">Barang ke-</label>
+                                        <div class="barang_ke">
+                                            <label for="barang_ke">Barang ke-</label>
                                             <br>
-                                            <input type="number" name="barang-ke" id="barang-ke" style="width: 250px;"
+                                            <input type="number" name="barang_ke" id="barang_ke" style="width: 250px;"
                                                 min="0" required>
                                         </div>
                                         <br>
