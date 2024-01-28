@@ -126,27 +126,28 @@ $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $roma
 
 
 public function getDataBarang() {
-    $tampilView = "SELECT trx_barang.id_barang,
-    trx_barang.kode_barang,
-    mst_jenis_barang.sub_barang,
-    mst_merek_barang.nama_merek_barang,
-    mst_kondisi_barang.kondisi_barang,
-    trx_barang.jumlah_barang,
-    mst_satuan.nama_satuan,
-    trx_barang.deskripsi_barang,
-    trx_barang.tgl_pengadaan_barang,
-    trx_barang.keterangan_label,
-    mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
-    trx_barang.deskripsi_detail_lokasi,
-    mst_status.status,
-    trx_barang.status_peminjaman
-    FROM trx_barang 
-    JOIN mst_status ON trx_barang.id_status = mst_status.id_status
-    JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
-    JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
-    JOIN mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
-    JOIN mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
-    JOIN mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan;";
+    $tampilView = "SELECT * FROM detail_barang";
+    // $tampilView = "SELECT trx_barang.id_barang,
+    // trx_barang.kode_barang,
+    // mst_jenis_barang.sub_barang,
+    // mst_merek_barang.nama_merek_barang,
+    // mst_kondisi_barang.kondisi_barang,
+    // trx_barang.jumlah_barang,
+    // mst_satuan.nama_satuan,
+    // trx_barang.deskripsi_barang,
+    // trx_barang.tgl_pengadaan_barang,
+    // trx_barang.keterangan_label,
+    // mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
+    // trx_barang.deskripsi_detail_lokasi,
+    // mst_status.status,
+    // trx_barang.status_peminjaman
+    // FROM trx_barang 
+    // JOIN mst_status ON trx_barang.id_status = mst_status.id_status
+    // JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
+    // JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
+    // JOIN mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
+    // JOIN mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
+    // JOIN mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan;";
     $this->db->query($tampilView);
 
     return $this->db->resultSet();
@@ -194,16 +195,32 @@ public function hapusBarang($id_barang){
 
     public function ubahBarang($data)
     {
-        $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang";
-    $this->db->query($joinKodeJenisBarang);
-    $kodeJenisBarang = $this->db->execute();
-    $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
+        try {
+        
+            $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE  trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang ;";
 
+        $this->db->query($joinKodeJenisBarang);
+
+        $kodeJenisBarang = $this->db->single();
+        $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        
+        
+        try {
+            $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang;";
+
+        $this->db->query($joinKodeMerekBarang);
+
+        $kodeMerekBarang = $this->db->single();
+        $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+        
     
-    $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang";
-    $this->db->query($joinKodeMerekBarang);
-    $kodeMerekBarang = $this->db->execute();
-    $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
+        
         
         $queryBarang = "UPDATE trx_barang SET
         id_jenis_barang = :id_jenis_barang, id_merek_barang = :id_merek_barang, id_kondisi_barang = :id_kondisi_barang, jumlah_barang = :jumlah_barang, id_satuan = :id_satuan, deskripsi_barang = :deskripsi_barang, tgl_pengadaan_barang = :tgl_pengadaan_barang, keterangan_label = :keterangan_label, id_lokasi_penyimpanan = :id_lokasi_penyimpanan, deskripsi_detail_lokasi = :deskripsi_detail_lokasi, id_status = :id_status, status_peminjaman = :status_peminjaman, 
@@ -277,4 +294,14 @@ return $this->db->rowCount();
         return $this->db->resultSet();
 
     }
+
+
+
 }
+
+
+
+
+
+
+

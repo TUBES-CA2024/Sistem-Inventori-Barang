@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Jan 2024 pada 14.41
+-- Waktu pembuatan: 27 Jan 2024 pada 15.57
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -20,6 +20,63 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_inventori`
 --
+
+DELIMITER $$
+--
+-- Prosedur
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectDataBarang` (IN `idBarang` INT)   BEGIN
+        SELECT mst_jenis_barang.sub_barang, mst_merek_barang.nama_merek_barang
+        FROM trx_barang
+        INNER JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
+        INNER JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
+        WHERE trx_barang.id_barang = idBarang;
+    END$$
+
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in struktur untuk tampilan `detail_barang`
+-- (Lihat di bawah untuk tampilan aktual)
+--
+CREATE TABLE `detail_barang` (
+`id_barang` int(11)
+,`sub_barang` varchar(50)
+,`nama_merek_barang` varchar(50)
+,`kondisi_barang` varchar(30)
+,`jumlah_barang` int(3)
+,`nama_satuan` varchar(30)
+,`deskripsi_barang` text
+,`tgl_pengadaan_barang` date
+,`kode_barang` varchar(26)
+,`keterangan_label` enum('Sudah','Belum')
+,`nama_lokasi_penyimpanan` varchar(50)
+,`deskripsi_detail_lokasi` text
+,`status_peminjaman` enum('Bisa','Tidak Bisa')
+);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mst_jenis_barang`
+--
+
+CREATE TABLE `mst_jenis_barang` (
+  `id_jenis_barang` int(11) NOT NULL,
+  `sub_barang` varchar(50) DEFAULT NULL,
+  `grup_sub` char(1) DEFAULT NULL,
+  `kode_sub` varchar(3) DEFAULT NULL,
+  `kode_jenis_barang` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `mst_jenis_barang`
+--
+
+INSERT INTO `mst_jenis_barang` (`id_jenis_barang`, `sub_barang`, `grup_sub`, `kode_sub`, `kode_jenis_barang`) VALUES
+(30, 'monitor', 'S', 'MON', 'S/MON');
 
 -- --------------------------------------------------------
 
@@ -89,6 +146,21 @@ CREATE TABLE `mst_merek_barang` (
   `nama_merek_barang` varchar(50) DEFAULT NULL,
   `kode_merek_barang` char(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `mst_merek_barang`
+--
+
+INSERT INTO `mst_merek_barang` (`id_merek_barang`, `nama_merek_barang`, `kode_merek_barang`) VALUES
+(34, 'hp', '011'),
+(37, 'samsung', '001'),
+(38, 'xiaomi', '003'),
+(39, 'NoBrand', '000'),
+(40, 'intel', '004'),
+(41, 'ryzen', '006'),
+(42, 'logitech', '008'),
+(43, 'gree', '009'),
+(44, 'fantech', '002');
 
 -- --------------------------------------------------------
 
@@ -167,19 +239,27 @@ INSERT INTO `mst_status` (`id_status`, `status`) VALUES
 
 CREATE TABLE `trx_barang` (
   `id_barang` int(11) NOT NULL,
-  `id_jenis_barang` int(11) NOT NULL,
-  `id_merek_barang` int(11) NOT NULL,
-  `id_kondisi_barang` int(11) NOT NULL,
+  `id_jenis_barang` int(11) DEFAULT NULL,
+  `id_merek_barang` int(11) DEFAULT NULL,
+  `id_kondisi_barang` int(11) DEFAULT NULL,
   `jumlah_barang` int(3) NOT NULL,
-  `id_satuan` int(11) NOT NULL,
+  `id_satuan` int(11) DEFAULT NULL,
   `deskripsi_barang` text DEFAULT NULL,
   `tgl_pengadaan_barang` date NOT NULL,
-  `kode_barang` varchar(26) NOT NULL,
-  `keterangan_label` enum('Sudah','Belum') DEFAULT NULL,
-  `id_lokasi_penyimpanan` int(11) NOT NULL,
+  `keterangan_label` enum('Sudah','Belum') NOT NULL,
+  `id_lokasi_penyimpanan` int(11) DEFAULT NULL,
   `deskripsi_detail_lokasi` text DEFAULT NULL,
-  `status_peminjaman` enum('Bisa','Tidak Bisa') NOT NULL
+  `id_status` int(11) DEFAULT NULL,
+  `status_peminjaman` enum('Bisa','Tidak Bisa') NOT NULL,
+  `kode_barang` varchar(26) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `trx_barang`
+--
+
+INSERT INTO `trx_barang` (`id_barang`, `id_jenis_barang`, `id_merek_barang`, `id_kondisi_barang`, `jumlah_barang`, `id_satuan`, `deskripsi_barang`, `tgl_pengadaan_barang`, `keterangan_label`, `id_lokasi_penyimpanan`, `deskripsi_detail_lokasi`, `id_status`, `status_peminjaman`, `kode_barang`) VALUES
+(74, 30, 42, 1, 1, 7, 'jelle', '2021-06-08', 'Sudah', 5, '', 5, 'Bisa', '2021/VI/C/MON/003/1/1');
 
 -- --------------------------------------------------------
 
@@ -209,51 +289,6 @@ INSERT INTO `trx_data_user` (`id_data_user`, `id_user`, `foto`, `nama_user`, `un
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `trx_jenis_barang`
---
-
-CREATE TABLE `trx_jenis_barang` (
-  `id_jenis_barang` int(11) NOT NULL,
-  `sub_barang` varchar(50) DEFAULT NULL,
-  `grup_sub` char(1) DEFAULT NULL,
-  `kode_sub` varchar(3) DEFAULT NULL,
-  `id_status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `trx_peminjaman`
---
-
-CREATE TABLE `trx_peminjaman` (
-  `id_peminjaman` int(11) NOT NULL,
-  `id_data_user` int(11) NOT NULL,
-  `judul_kegiatan` varchar(100) NOT NULL,
-  `tgl_pengajuan` date NOT NULL,
-  `tgl_awal_peminjaman` date NOT NULL,
-  `tgl_akhir_peminjaman` date NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `deskripsi` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `trx_pengembalian`
---
-
-CREATE TABLE `trx_pengembalian` (
-  `id_pengembalian` int(11) NOT NULL,
-  `id_peminjaman` int(11) NOT NULL,
-  `tgl_pengembalian` date NOT NULL,
-  `bukti_pengembalian` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Struktur dari tabel `trx_user`
 --
 
@@ -271,9 +306,25 @@ CREATE TABLE `trx_user` (
 INSERT INTO `trx_user` (`id_user`, `email`, `password`, `id_role`) VALUES
 (1, 'furqonfatahillah999@gmail.com', '$2y$10$7.P8D0rif.uiIgxoOvgm4Ol7WkyUdrjcca64h.fexoZKil8/1I.ji', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `detail_barang`
+--
+DROP TABLE IF EXISTS `detail_barang`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `detail_barang`  AS SELECT `trx_barang`.`id_barang` AS `id_barang`, `mst_jenis_barang`.`sub_barang` AS `sub_barang`, `mst_merek_barang`.`nama_merek_barang` AS `nama_merek_barang`, `mst_kondisi_barang`.`kondisi_barang` AS `kondisi_barang`, `trx_barang`.`jumlah_barang` AS `jumlah_barang`, `mst_satuan`.`nama_satuan` AS `nama_satuan`, `trx_barang`.`deskripsi_barang` AS `deskripsi_barang`, `trx_barang`.`tgl_pengadaan_barang` AS `tgl_pengadaan_barang`, `trx_barang`.`kode_barang` AS `kode_barang`, `trx_barang`.`keterangan_label` AS `keterangan_label`, `mst_lokasi_penyimpanan`.`nama_lokasi_penyimpanan` AS `nama_lokasi_penyimpanan`, `trx_barang`.`deskripsi_detail_lokasi` AS `deskripsi_detail_lokasi`, `trx_barang`.`status_peminjaman` AS `status_peminjaman` FROM (((((`trx_barang` join `mst_jenis_barang` on(`trx_barang`.`id_jenis_barang` = `mst_jenis_barang`.`id_jenis_barang`)) join `mst_merek_barang` on(`trx_barang`.`id_merek_barang` = `mst_merek_barang`.`id_merek_barang`)) join `mst_satuan` on(`trx_barang`.`id_satuan` = `mst_satuan`.`id_satuan`)) join `mst_kondisi_barang` on(`trx_barang`.`id_kondisi_barang` = `mst_kondisi_barang`.`id_kondisi_barang`)) join `mst_lokasi_penyimpanan` on(`trx_barang`.`id_lokasi_penyimpanan` = `mst_lokasi_penyimpanan`.`id_lokasi_penyimpanan`)) ;
+
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `mst_jenis_barang`
+--
+ALTER TABLE `mst_jenis_barang`
+  ADD PRIMARY KEY (`id_jenis_barang`),
+  ADD UNIQUE KEY `kode_sub` (`kode_sub`);
 
 --
 -- Indeks untuk tabel `mst_kondisi_barang`
@@ -291,7 +342,9 @@ ALTER TABLE `mst_lokasi_penyimpanan`
 -- Indeks untuk tabel `mst_merek_barang`
 --
 ALTER TABLE `mst_merek_barang`
-  ADD PRIMARY KEY (`id_merek_barang`);
+  ADD PRIMARY KEY (`id_merek_barang`),
+  ADD UNIQUE KEY `kode_merek_barang` (`kode_merek_barang`),
+  ADD UNIQUE KEY `nama_merek_barang` (`nama_merek_barang`);
 
 --
 -- Indeks untuk tabel `mst_role`
@@ -320,7 +373,8 @@ ALTER TABLE `trx_barang`
   ADD KEY `id_merek_barang` (`id_merek_barang`),
   ADD KEY `id_kondisi_barang` (`id_kondisi_barang`),
   ADD KEY `id_satuan` (`id_satuan`),
-  ADD KEY `id_lokasi_penyimpanan` (`id_lokasi_penyimpanan`);
+  ADD KEY `id_lokasi_penyimpanan` (`id_lokasi_penyimpanan`),
+  ADD KEY `id_status` (`id_status`);
 
 --
 -- Indeks untuk tabel `trx_data_user`
@@ -328,28 +382,6 @@ ALTER TABLE `trx_barang`
 ALTER TABLE `trx_data_user`
   ADD PRIMARY KEY (`id_data_user`),
   ADD KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `trx_jenis_barang`
---
-ALTER TABLE `trx_jenis_barang`
-  ADD PRIMARY KEY (`id_jenis_barang`),
-  ADD KEY `id_status` (`id_status`);
-
---
--- Indeks untuk tabel `trx_peminjaman`
---
-ALTER TABLE `trx_peminjaman`
-  ADD PRIMARY KEY (`id_peminjaman`),
-  ADD KEY `id_data_user` (`id_data_user`),
-  ADD KEY `id_barang` (`id_barang`);
-
---
--- Indeks untuk tabel `trx_pengembalian`
---
-ALTER TABLE `trx_pengembalian`
-  ADD PRIMARY KEY (`id_pengembalian`),
-  ADD KEY `id_peminjaman` (`id_peminjaman`);
 
 --
 -- Indeks untuk tabel `trx_user`
@@ -361,6 +393,12 @@ ALTER TABLE `trx_user`
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
+
+--
+-- AUTO_INCREMENT untuk tabel `mst_jenis_barang`
+--
+ALTER TABLE `mst_jenis_barang`
+  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT untuk tabel `mst_kondisi_barang`
@@ -378,7 +416,7 @@ ALTER TABLE `mst_lokasi_penyimpanan`
 -- AUTO_INCREMENT untuk tabel `mst_merek_barang`
 --
 ALTER TABLE `mst_merek_barang`
-  MODIFY `id_merek_barang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_merek_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `mst_role`
@@ -402,19 +440,13 @@ ALTER TABLE `mst_status`
 -- AUTO_INCREMENT untuk tabel `trx_barang`
 --
 ALTER TABLE `trx_barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT untuk tabel `trx_data_user`
 --
 ALTER TABLE `trx_data_user`
   MODIFY `id_data_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `trx_jenis_barang`
---
-ALTER TABLE `trx_jenis_barang`
-  MODIFY `id_jenis_barang` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `trx_user`
@@ -430,36 +462,18 @@ ALTER TABLE `trx_user`
 -- Ketidakleluasaan untuk tabel `trx_barang`
 --
 ALTER TABLE `trx_barang`
-  ADD CONSTRAINT `trx_barang_ibfk_1` FOREIGN KEY (`id_jenis_barang`) REFERENCES `trx_jenis_barang` (`id_jenis_barang`),
+  ADD CONSTRAINT `trx_barang_ibfk_1` FOREIGN KEY (`id_jenis_barang`) REFERENCES `mst_jenis_barang` (`id_jenis_barang`),
   ADD CONSTRAINT `trx_barang_ibfk_2` FOREIGN KEY (`id_merek_barang`) REFERENCES `mst_merek_barang` (`id_merek_barang`),
   ADD CONSTRAINT `trx_barang_ibfk_3` FOREIGN KEY (`id_kondisi_barang`) REFERENCES `mst_kondisi_barang` (`id_kondisi_barang`),
   ADD CONSTRAINT `trx_barang_ibfk_4` FOREIGN KEY (`id_satuan`) REFERENCES `mst_satuan` (`id_satuan`),
-  ADD CONSTRAINT `trx_barang_ibfk_5` FOREIGN KEY (`id_lokasi_penyimpanan`) REFERENCES `mst_lokasi_penyimpanan` (`id_lokasi_penyimpanan`);
+  ADD CONSTRAINT `trx_barang_ibfk_5` FOREIGN KEY (`id_lokasi_penyimpanan`) REFERENCES `mst_lokasi_penyimpanan` (`id_lokasi_penyimpanan`),
+  ADD CONSTRAINT `trx_barang_ibfk_6` FOREIGN KEY (`id_status`) REFERENCES `mst_status` (`id_status`);
 
 --
 -- Ketidakleluasaan untuk tabel `trx_data_user`
 --
 ALTER TABLE `trx_data_user`
   ADD CONSTRAINT `trx_data_user_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `trx_user` (`id_user`);
-
---
--- Ketidakleluasaan untuk tabel `trx_jenis_barang`
---
-ALTER TABLE `trx_jenis_barang`
-  ADD CONSTRAINT `trx_jenis_barang_ibfk_1` FOREIGN KEY (`id_status`) REFERENCES `mst_status` (`id_status`);
-
---
--- Ketidakleluasaan untuk tabel `trx_peminjaman`
---
-ALTER TABLE `trx_peminjaman`
-  ADD CONSTRAINT `trx_peminjaman_ibfk_1` FOREIGN KEY (`id_data_user`) REFERENCES `trx_data_user` (`id_data_user`),
-  ADD CONSTRAINT `trx_peminjaman_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `trx_barang` (`id_barang`);
-
---
--- Ketidakleluasaan untuk tabel `trx_pengembalian`
---
-ALTER TABLE `trx_pengembalian`
-  ADD CONSTRAINT `trx_pengembalian_ibfk_1` FOREIGN KEY (`id_peminjaman`) REFERENCES `trx_peminjaman` (`id_peminjaman`);
 
 --
 -- Ketidakleluasaan untuk tabel `trx_user`

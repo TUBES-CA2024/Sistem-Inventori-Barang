@@ -62,7 +62,7 @@
                     <form action="<?=BASEURL;?>MerekBarang/cari" method="post">
                     <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <button class="btn btn-outline-secondary mt-2" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+    <button class="btn btn-outline-secondary" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
   </div>
   <input  type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword" style="height: 45px;" autocomplete="off">
 </div>

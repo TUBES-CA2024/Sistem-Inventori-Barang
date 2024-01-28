@@ -66,16 +66,19 @@ class Beranda extends Controller {
     }
 
     public function ubahBarang(){
-      
-         if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
+        // $this->model('Beranda_model')->ubahBarang($_POST);
+       
+            if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
                 Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
                 header('Location: '. BASEURL . 'Beranda');
                 exit;
-            } else {
-            Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
-            header('Location: '. BASEURL . 'Beranda');
-            exit;
-           }
+            }
+            else {
+                Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
+                header('Location: '. BASEURL . 'Beranda');
+                exit;
+               }
+             
     }
 
     public function cari(){

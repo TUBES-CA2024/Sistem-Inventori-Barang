@@ -91,7 +91,7 @@ $(function () {
       method: "post",
       dataType: "json",
       success: function (data) {
-        $("#sub_barang").val(data.id_jenis_barang);
+        $("#id_jenis_barang").val(data.sub_barang);
         $("#nama_merek_barang").val(data.id_merek_barang);
         $("#id_kondisi_barang").val(data.kondisi_barang);
         $("#jumlah_barang").val(data.jumlah_barang);
