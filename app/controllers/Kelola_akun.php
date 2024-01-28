@@ -1,0 +1,63 @@
+<?php
+
+class kelola_akun extends Controller {
+    
+    public function index() {
+        $data['judul'] = 'Kelola Akun';
+        
+        // Mengambil data kondisi barang dari model
+        $userModel = $this->model('User_model');
+
+        $data['dataTampilUser']= $userModel->tampilUser();
+
+        // Memanggil view transaksi barang
+        $this->view('templates/header', $data);
+        $this->view('Kelola_akun/index', $data);
+        $this->view('templates/footer');
+    }
+
+
+    public function hapus($id_user){
+        if($this->model('User_model')->hapusUser($id_user) > 0){
+            Flasher::setFlash('User', 'berhasil', ' dihapus', 'success');
+            header('Location: '. BASEURL . 'Kelola_akun');
+            exit;
+        }else{
+            Flasher::setFlash('User', 'gagal', ' dihapus', 'danger');
+            header('Location: '. BASEURL . 'Kelola_akun');
+            exit;
+        }
+    }
+
+    public function getUbah(){
+       echo json_encode( $this->model('User_model')->getUbah($_POST['id_user']));
+    }
+
+    public function ubahUser(){
+            if($this->model('User_model')->ubahMerekBarang($_POST) > 0){
+                Flasher::setFlash('Data User', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'Kelola_akun');
+                exit;
+            } else {
+            Flasher::setFlash('User_model', 'gagal', ' diUbah', 'danger');
+            header('Location: '. BASEURL . 'Kelola_akun');
+            exit;
+        }
+    }
+
+    public function cari(){
+        $data['judul'] = 'Data User';
+        
+        // Mengambil data kondisi barang dari model
+        $tampilUser = $this->model('User_model');
+
+        $data['tampilDataUser']= $tampilUser->cariUser();
+
+        // Memanggil view transaksi barang
+        $this->view('templates/header', $data);
+        $this->view('Kelola_akun/index', $data);
+        $this->view('templates/footer');
+    }
+   
+}
+

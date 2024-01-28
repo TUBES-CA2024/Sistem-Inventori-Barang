@@ -22,7 +22,7 @@ class Login extends Controller {
         } else {
             // Perbaikan: $_SESSION['email'] harus diisi dengan $email, bukan $data['email']['password']
             $_SESSION['email'] = $email;
-            header("Location:" . BASEURL . "JenisBarang");
+            header("Location:" . BASEURL . "Beranda");
         }
     }
 }

@@ -126,7 +126,8 @@ $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $roma
 
 
 public function getDataBarang() {
-    $tampilView = "SELECT * FROM detail_barang";
+
+    $tampilView = "CALL tampil_data_barang;";
     // $tampilView = "SELECT trx_barang.id_barang,
     // trx_barang.kode_barang,
     // mst_jenis_barang.sub_barang,
@@ -154,19 +155,7 @@ public function getDataBarang() {
 
 }
 
-// public function cekDataBarang($data){
-//        // Insert data into mst_jenis_barang
-//        $queryCekBarang = "SELECT COUNT(*) FROM trx_barang WHERE kode_barang = :kode_barang AND id_barang != :id_barang";
 
-//        $kodeBarang = $this->postDataBarang($data);
-
-//         $this->db->query($queryCekBarang);
-//         $this->db->bind('kode_barang', $kodeBarang);
-//         $this->db->bind('id_barang', $data['id_barang']);
-//         $this->db->execute();
-
-//        return $this->db->single()['COUNT(*)'];
-// }
 
 public function getDetailDataBarang($id_barang){
         $this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
@@ -227,51 +216,50 @@ public function hapusBarang($id_barang){
         kode_barang = :kode_barang WHERE id_barang = :id_barang";
 
 
-$this->db->query($queryBarang);
+        $this->db->query($queryBarang);
 
-$this->db->bind('id_jenis_barang', $data['sub_barang']);
-$this->db->bind('id_merek_barang', $data['nama_merek_barang']);
-$this->db->bind('id_kondisi_barang', $data['kondisi_barang']);
-$this->db->bind('jumlah_barang', $data['jumlah_barang']);
-$this->db->bind('id_satuan', $data['satuan']);
-$this->db->bind('deskripsi_barang', $data['deskripsi_barang']);
-$this->db->bind('tgl_pengadaan_barang', $data['tgl_pengadaan_barang']);
-$this->db->bind('keterangan_label', $data['keterangan_label']);
-$this->db->bind('id_lokasi_penyimpanan', $data['lokasi_penyimpanan']);
-$this->db->bind('deskripsi_detail_lokasi', $data['deskripsi_detail_lokasi']);
-$this->db->bind('id_status', $data['status']);
-$this->db->bind('status_peminjaman', $data['status_pinjam']);
+        $this->db->bind('id_jenis_barang', $data['sub_barang']);
+        $this->db->bind('id_merek_barang', $data['nama_merek_barang']);
+        $this->db->bind('id_kondisi_barang', $data['kondisi_barang']);
+        $this->db->bind('jumlah_barang', $data['jumlah_barang']);
+        $this->db->bind('id_satuan', $data['satuan']);
+        $this->db->bind('deskripsi_barang', $data['deskripsi_barang']);
+        $this->db->bind('tgl_pengadaan_barang', $data['tgl_pengadaan_barang']);
+        $this->db->bind('keterangan_label', $data['keterangan_label']);
+        $this->db->bind('id_lokasi_penyimpanan', $data['lokasi_penyimpanan']);
+        $this->db->bind('deskripsi_detail_lokasi', $data['deskripsi_detail_lokasi']);
+        $this->db->bind('id_status', $data['status']);
+        $this->db->bind('status_peminjaman', $data['status_pinjam']);
 
-    function Romawi($number)
-{
-$romans = [
-    'M'  => 1000,
-    'CM' => 900,
-    'D'  => 500,
-    'CD' => 400,
-    'C'  => 100,
-    'XC' => 90,
-    'L'  => 50,
-    'XL' => 40,
-    'X'  => 10,
-    'IX' => 9,
-    'V'  => 5,
-    'IV' => 4,
-    'I'  => 1
-];
+    function Romawi($number){
+        $romans = [
+            'M'  => 1000,
+            'CM' => 900,
+            'D'  => 500,
+            'CD' => 400,
+            'C'  => 100,
+            'XC' => 90,
+            'L'  => 50,
+            'XL' => 40,
+            'X'  => 10,
+            'IX' => 9,
+            'V'  => 5,
+            'IV' => 4,
+            'I'  => 1
+        ];
 
-$result = '';
+        $result = '';
 
-foreach ($romans as $roman => $value) {
-    $matches = intval($number / $value);
-    $result .= str_repeat($roman, $matches);
-    $number %= $value;
-}
+        foreach ($romans as $roman => $value) {
+            $matches = intval($number / $value);
+            $result .= str_repeat($roman, $matches);
+            $number %= $value;
+        }
 
- 
+        
 
-return $result;
-}
+        return $result;
+        }
 $month = date('m', strtotime($data['tgl_pengadaan_barang']));
 $romanMonth = Romawi($month);
 

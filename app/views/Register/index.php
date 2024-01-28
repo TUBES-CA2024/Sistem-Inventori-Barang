@@ -32,18 +32,6 @@
                 required
                 />
             </div>
-            <div class="nips-nidn">
-                <label for="nips_nidn_user">NIPS/NIDN</label>
-                <input
-              type="text"
-              id="nips_nidn_user"
-              name="nips_nidn_user"
-              placeholder="Masukkan nips/nidn anda"
-              maxlength="12"
-              minlength="10"
-              oninput="validasiInput(this)"
-              />
-            </div>
           <div class="email">
             <label for="email">Email</label>
             <input
@@ -110,17 +98,6 @@
             />
             <label for="jenis_kelamin">perempuan</label>
           </div>
-        </div>
-        <div class="unit">
-          <label for="unit_user">Unit</label>
-          <input
-            type="text"
-            name="unit_user"
-            id="unit_user"
-            placeholder="Masukkan unit anda"
-            maxlength="50"
-            required
-          />
         </div>
         <div class="no_hp">
           <label for="no_hp_user">No. Hp</label>

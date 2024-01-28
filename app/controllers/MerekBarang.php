@@ -38,7 +38,7 @@ class merekBarang extends Controller {
             header('Location: '. BASEURL . 'MerekBarang');
             exit;
         }else{
-            Flasher::setFlash('Jenis Barang', 'gagal', ' dihapus', 'danger');
+            Flasher::setFlash('Merek Barang', 'gagal', ' dihapus', 'danger');
             header('Location: '. BASEURL . 'MerekBarang');
             exit;
         }
