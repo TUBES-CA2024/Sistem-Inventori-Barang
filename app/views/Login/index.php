@@ -22,9 +22,6 @@
         <div class="kata-sandi">
             <label for="kata-sandi">Kata sandi</label>
             <input type="password" name="kata-sandi" placeholder="Masukkan kata sandi anda">
-            <div class="lupa-kata-sandi">
-                <a href="#">Lupa kata sandi?</a>
-            </div>
         </div>
       </div>
     <br>

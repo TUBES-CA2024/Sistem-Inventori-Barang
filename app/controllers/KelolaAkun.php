@@ -1,6 +1,6 @@
 <?php
 
-class kelola_akun extends Controller {
+class KelolaAkun extends Controller {
     
     public function index() {
         $data['judul'] = 'Kelola Akun';

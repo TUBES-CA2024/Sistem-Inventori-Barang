@@ -36,7 +36,7 @@ class User_model
             move_uploaded_file($uploadedFile, $newFileName);
 
             // Perhatikan bahwa parameter 'foto' harus ada di VALUES, meskipun nilainya NULL
-            $queryData = "INSERT INTO mst_data_user (id_user, foto, nama_user, no_hp_user, jenis_kelamin, alamat) VALUES (:id_user, :foto, :nama_user, :no_hp_user, :jenis_kelamin, :alamat)";
+            $queryData = "INSERT INTO trx_data_user (id_user, foto, nama_user, no_hp_user, jenis_kelamin, alamat) VALUES (:id_user, :foto, :nama_user, :no_hp_user, :jenis_kelamin, :alamat)";
             $this->db->query($queryData);
             $this->db->bind('id_user', $idUser);
             $this->db->bind('foto', $newFileName);
@@ -68,14 +68,14 @@ class User_model
     }
 
     public function tampilUser(){
-        $tampilView = "SELECT trx_user.email, mst_data_user.foto, mst_data_user.nama_user, mst_data_user.no_hp_user, mst_data_user.jenis_kelamin, mst_data_user.alamat, mst_role.role FROM trx_user JOIN mst_data_user ON trx_user.id_user = mst_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role;";
+        $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role;";
 
         $this->db->query($tampilView);
         return $this->db->resultSet();
     }
 
     public function hapusUser($id_user){
-        $this->db->query("DELETE FROM mst_data_user WHERE id_user = :id_user;");
+        $this->db->query("DELETE FROM trx_data_user WHERE id_user = :id_user;");
         $this->db->bind("id_user", $id_user);
         $this->db->execute();
         $this->db->query("DELETE FROM trx_user WHERE id_user = :id_user;");
@@ -86,7 +86,7 @@ class User_model
     }
 
     public function getUbah($id_user) {
-        $tampilView = "SELECT trx_user.email, mst_data_user.foto, mst_data_user.nama_user, mst_data_user.no_hp_user, mst_data_user.jenis_kelamin, mst_data_user.alamat, mst_role.role FROM trx_user JOIN mst_data_user ON trx_user.id_user = mst_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE id_user = :id_user;";
+        $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE id_user = :id_user;";
         $this->db->query($tampilView);
         $this->db->bind("id_user", $id_user);
 
@@ -96,7 +96,7 @@ class User_model
 
     public function updateuser($data){
          // Insert data into mst_jenis_barang
-         $queryUpdate = "UPDATE mst_data_user SET foto = :foto, nama_user=:nama_user, no_hp_user = :no_hp_user, jenis_kelamin=:jenis_kelamin, alamat = :alamat  WHERE id_user = :id_user";
+         $queryUpdate = "UPDATE trx_data_user SET foto = :foto, nama_user=:nama_user, no_hp_user = :no_hp_user, jenis_kelamin=:jenis_kelamin, alamat = :alamat  WHERE id_user = :id_user";
          $this->db->query($queryUpdate);
          $this->db->bind('foto', $data['foto']);
          $this->db->bind('nama_user', $data['nama_user']);

@@ -34,7 +34,7 @@
                     </button>
                 </li>
                 <li class="kelola-akun">
-                    <button href="#">
+                    <button onclick="location.href='<?=BASEURL;?>KelolaAkun'" >
                         <i class="fa-solid fa-users-gear" style="color: #ffffff"></i>
                         Kelola akun
                     </button>
