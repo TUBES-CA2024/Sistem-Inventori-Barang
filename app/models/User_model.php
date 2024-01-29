@@ -103,6 +103,7 @@ class User_model
          $this->db->bind('no_hp_user', $data['no_hp_user']);
          $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
          $this->db->bind('alamat', $data['alamat']);
+         $this->db->bind('id_user', $data['id_user']);
          $this->db->execute();
         
      
@@ -118,4 +119,6 @@ class User_model
         return $this->db->resultSet();
 
     }
+
+
 }

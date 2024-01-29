@@ -34,7 +34,7 @@ class KelolaAkun extends Controller {
     }
 
     public function ubahUser(){
-            if($this->model('User_model')->ubahMerekBarang($_POST) > 0){
+            if($this->model('User_model')->updateUser($_POST) > 0){
                 Flasher::setFlash('Data User', 'berhasil', ' diUbah', 'success');
                 header('Location: '. BASEURL . 'Kelola_akun');
                 exit;

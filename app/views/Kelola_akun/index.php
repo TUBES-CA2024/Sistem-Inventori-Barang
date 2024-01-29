@@ -55,19 +55,21 @@
                 <?php Flasher::flash();?>
             </div>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <a href="<?= BASEURL; ?>Register?>"
-                                class="btn d-flex align-items-center justify-content-center"
-                                >
-                                <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
-                            </a>
+                <button onclick="location.href='<?=BASEURL;?>Register'"
+                    class="btn d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
+                </button>
                 <div class="search" style="width:350px">
                     <form action="<?=BASEURL;?>MerekBarang/cari" method="post">
-                    <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
-                </div>
-                <input  type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword" style="height: 45px;" autocomplete="off">
-                </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
+                                    style="width: 60px;"><i class="fa-solid fa-magnifying-glass"
+                                        style="color: #ffffff;"></i></button>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword"
+                                style="height: 45px;" autocomplete="off">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -78,38 +80,42 @@
                         <th scope="col" class="px-2">Nama lengkap</th>
                         <th scope="col" class="px-2">Email</th>
                         <th scope="col" class="px-2">No Hp</th>
+                        <th scope="col" class="px-2">Jenis Kelamin</th>
+                        <th scope="col" class="px-2">Alamat</th>
                         <th scope="col" class="px-2">Role</th>
                         <th scope="col" class="px-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($data['dataUser'] as $row): ?>
+                    <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr>
                         <th scope="row" class="px-2"><?= $i++; ?></th>
                         <td class="px-2"><?= $row['nama_user']; ?></td>
                         <td class="px-2"><?= $row['email']; ?></td>
                         <td class="px-2"><?= $row['no_hp_user']; ?></td>
+                        <td class="px-2"><?= $row['jenis_kelamin']; ?></td>
+                        <td class="px-2"><?= $row['alamat']; ?></td>
                         <td class="px-2"><?= $row['role']; ?></td>
                         <td class="px-2" style="display: flex;">
                             <!-- hapus -->
-                            <a href="<?= BASEURL; ?>MerekBarang/hapus/<?=$row['id_user'];?>"
+                            <a href="<?=BASEURL;?>KelolaAkun/hapus/<?= $row['id_data_user']; ?>"
                                 class="btn d-flex align-items-center justify-content-center"
                                 onclick="return confirm('yakin');">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
+
                             <!-- ubah -->
-                            <a href="<?= BASEURL; ?>/MerekBarang/ubah/<?=$row['id_user'];?>"
-                                class="btn d-flex align-items-center justify-content-center tampilMerekBarangUbah" data-toggle="modal"
-                                data-target="#modalTambah" 
-                                data-id="<?=$row['id_user'];?>">
+                            <a href="<?= BASEURL; ?>/KelolaAkun/ubah/<?=$row['id_user'];?>"
+                                class="btn d-flex align-items-center justify-content-center tampilMerekBarangUbah"
+                                data-toggle="modal" data-id="<?=$row['id_user'];?>">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" >
+            <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="height: 550px; border-radius:15px">
                         <div class="modal-header">
@@ -119,31 +125,33 @@
                             </button>
                         </div>
                         <div class="modal-body body-merek">
-                                <form action="<?=BASEURL?>MerekBarang/tambahMerekBarang" method="post">
+                            <form action="<?=BASEURL?>MerekBarang/tambahMerekBarang" method="post">
                                 <input type="hidden" name="id_merek_barang" id="id_merek_barang">
-                                    <div class="nama_merek_barang">
-                                        <label for="nama_merek_barang">Merek barang</label>
-                                        <br>
-                                        <input type="text" name="nama_merek_barang" id="nama_merek_barang" style="width: 250px;" required>
-                                    </div>
+                                <div class="nama_merek_barang">
+                                    <label for="nama_merek_barang">Merek barang</label>
                                     <br>
-                                    <div class="kode_merek_barang">
-                                        <label for="kode_merek_barang">Kode merek</label>
-                                        <br>
-                                        <input type="text" name="kode_merek_barang" id="kode_merek_barang" minlength="3" maxlength="3" required  oninput="validasiInput(this)" placeholder="cth: 00x">
-                                    </div>
+                                    <input type="text" name="nama_merek_barang" id="nama_merek_barang"
+                                        style="width: 250px;" required>
+                                </div>
+                                <br>
+                                <div class="kode_merek_barang">
+                                    <label for="kode_merek_barang">Kode merek</label>
                                     <br>
-                                    <br>
-                                    <div class="modal-footer" style="margin-right: 30%;">
-                                    </div>
-                                    <br>
-                                    <div style="display: flex; width:100%; justify-content: end; align-items: end;">
+                                    <input type="text" name="kode_merek_barang" id="kode_merek_barang" minlength="3"
+                                        maxlength="3" required oninput="validasiInput(this)" placeholder="cth: 00x">
+                                </div>
+                                <br>
+                                <br>
+                                <div class="modal-footer" style="margin-right: 30%;">
+                                </div>
+                                <br>
+                                <div style="display: flex; width:100%; justify-content: end; align-items: end;">
                                     <button type="submit" id="kirim">Kirim</button>
-                                    </div>
-                                    
-                            </div>
-                          </div>
-            </form>
+                                </div>
+
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
