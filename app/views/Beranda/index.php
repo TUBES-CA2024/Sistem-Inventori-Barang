@@ -76,7 +76,7 @@
             }
             ?>
                 <div class="search" style="width:350px">
-                    <form action="<?=BASEURL;?>JenisBarang/cari" method="post">
+                    <form action="<?=BASEURL;?>Beranda/cari" method="post">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
