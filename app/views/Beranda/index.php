@@ -21,26 +21,38 @@
                         Beranda
                     </button>
                 </li>
-                <li class="tambah-jenis-barang">
-                    <button onclick="location.href='<?=BASEURL;?>JenisBarang'">
-                        <i class="fa-solid fa-box" style="color: #ffffff"></i>
-                        Jenis barang
-                    </button>
-                </li>
-                <li class="tambah-merek-barang">
-                    <button onclick="location.href='<?=BASEURL?>merekBarang'">
+                <?php
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                        echo '<li class="tambah-jenis-barang">
+                            <button onclick="location.href=\''.BASEURL.'JenisBarang\'">
+                                <i class="fa-solid fa-box" style="color: #ffffff"></i>
+                                Jenis barang
+                            </button>
+                        </li>';
+                    }
+                ?>
+                <?php
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                echo '<li class="tambah-merek-barang">
+                    <button onclick="location.href=\''.BASEURL.'merekBarang\'">
                         <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>
                         Merek barang
                     </button>
-                </li>
-                <li class="kelola-akun">
-                    <button onclick="location.href='<?=BASEURL;?>KelolaAkun'" >
+                </li>';
+                    }
+                    ?>
+                    <?php
+                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
+                echo '<li class="kelola-akun">
+                    <button onclick="location.href=\''.BASEURL.'KelolaAkun\'">
                         <i class="fa-solid fa-users-gear" style="color: #ffffff"></i>
                         Kelola akun
                     </button>
-                </li>
+                </li>';
+                }
+                ?>
                 <li class="keluar">
-                    <button href="#">
+                    <button onclick="location.href='<?=BASEURL;?>Logout'">
                         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff"></i>
                         Keluar
                     </button>
@@ -54,10 +66,15 @@
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
+
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah">
+                <?php
+                if (isset($_SESSION['login']) && $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2') {
+                    echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
-                </button>
+                </button>';
+            }
+            ?>
                 <div class="search" style="width:350px">
                     <form action="<?=BASEURL;?>JenisBarang/cari" method="post">
                         <div class="input-group mb-3">
@@ -75,44 +92,50 @@
             <table class="table table-hover table-sm">
                 <thead>
                     <tr>
-                        <th scope="col" class="px-2">No.</th>
-                        <th scope="col" class="px-2">Kode barang</th>
-                        <th scope="col" class="px-2">Sub barang</th>
-                        <th scope="col" class="px-2">Merek barang</th>
-                        <th scope="col" class="px-2">Kondisi barang</th>
-                        <th scope="col" class="px-2">Status peminjaman</th>
-                        <th scope="col" class="px-2">Aksi</th>
+                        <th scope="col" class="p-3">No.</th>
+                        <th scope="col" class="p-3">Kode barang</th>
+                        <th scope="col" class="p-3">Sub barang</th>
+                        <th scope="col" class="p-3">Merek barang</th>
+                        <th scope="col" class="p-3">Kondisi barang</th>
+                        <th scope="col" class="p-3">Status peminjaman</th>
+                        <th scope="col" class="p-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilBarang'] as $row): ?>
                     <tr>
-                        <th scope="row" class="px-2"><?= $i++; ?></th>
-                        <td class="px-2"><?= $row['kode_barang']; ?></td>
-                        <td class="px-2"><?= $row['sub_barang']; ?></td>
-                        <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
-                        <td class="px-2"><?= $row['kondisi_barang']; ?></td>
-                        <td class="px-2"><?= $row['status_peminjaman']; ?></td>
-                        <!-- aksi -->
-                        <td class="px-2" style="display: flex;">
-                            <!-- hapus -->
-                            <a href="<?= BASEURL; ?>Beranda/hapus/<?=$row['id_barang'];?>"
-                                class="btn d-flex align-items-center justify-content-center"
-                                onclick="return confirm('yakin');">
-                                <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
-                            </a>
-                            <!-- ubah -->
-                            <a href="<?= BASEURL; ?>Beranda/getUbah/<?=$row['id_barang'];?>"
-                                class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
-                                data-toggle="modal" data-target="#modalTambah" data-id="<?=$row['id_barang'];?>">
-                                <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
-                            </a>
+                        <th scope="row" class="p-3"><?= $i++; ?></th>
+                        <td class="p-3"><?= $row['kode_barang']; ?></td>
+                        <td class="p-3"><?= $row['sub_barang']; ?></td>
+                        <td class="p-3"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="p-3"><?= $row['kondisi_barang']; ?></td>
+                        <td class="p-3"><?= $row['status_peminjaman']; ?></td>
+                        <td class="p-3" style="display: flex;">
+                        <?php
+                            if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                                echo '<!-- aksi -->
+                                    <!-- hapus -->
+                                    <a href="' . BASEURL . 'Beranda/hapus/' . $row['id_barang'] . '"
+                                        class="btn d-flex align-items-center justify-content-center"
+                                        onclick="return confirm(\'yakin\');">
+                                        <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                                    </a>
+                                    <!-- ubah -->
+                                    <a href="' . BASEURL . 'Beranda/getUbah/' . $row['id_barang'] . '"
+                                        class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
+                                        data-toggle="modal" data-target="#modalTambah" data-id="' . $row['id_barang'] . '">
+                                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
+                                    </a>';
+                                
+                            }
+                            ?>
                             <!-- detail -->
-              <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
-                class="btn d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
-              </a>
+                            <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
+                                class="btn d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
+                            </a>
+                            </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -146,7 +169,8 @@
                                         <div class="nama_merek_barang">
                                             <label for="nama_merek_barang">Merek barang</label>
                                             <br>
-                                            <select name="nama_merek_barang" id="nama_merek_barang" style="width: 250px;">
+                                            <select name="nama_merek_barang" id="nama_merek_barang"
+                                                style="width: 250px;">
                                                 <?php foreach ($data['nama_merek_barang'] as $option) { ?>
                                                 <option value="<?php echo $option['id_merek_barang']?>">
                                                     <?php echo $option['nama_merek_barang']?></option>

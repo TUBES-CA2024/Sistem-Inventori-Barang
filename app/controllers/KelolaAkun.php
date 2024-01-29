@@ -3,6 +3,10 @@
 class KelolaAkun extends Controller {
     
     public function index() {
+        if(!isset($_SESSION['login'])){
+            header("Location:" . BASEURL . "Login");
+            exit;
+        }
         $data['judul'] = 'Kelola Akun';
         
         // Mengambil data kondisi barang dari model

@@ -3,6 +3,10 @@
 class Beranda extends Controller {
     
     public function index() {
+        if(!isset($_SESSION['login'])){
+            header("Location:" . BASEURL . "Login");
+            exit;
+        }
         $data['judul'] = 'Beranda';
         
         // Mengambil data kondisi barang dari model

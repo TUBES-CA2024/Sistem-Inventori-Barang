@@ -9,6 +9,9 @@
     </div>
 </div>
 <div class="form-login">
+<div class="flash" style="width: 80%;">
+            <?php Flasher::flash();?>
+          </div>
     <div class="container1">
       <div class="header">
         <h2>Masuk</h2>

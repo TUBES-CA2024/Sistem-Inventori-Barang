@@ -33,14 +33,18 @@
                         Merek barang
                     </button>
                 </li>
-                <li class="kelola-akun">
-                    <button onclick="location.href='<?=BASEURL;?>KelolaAkun'">
+                <?php
+                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
+                echo '<li class="kelola-akun">
+                    <button onclick="location.href=\''.BASEURL.'KelolaAkun\'">
                         <i class="fa-solid fa-users-gear" style="color: #ffffff"></i>
                         Kelola akun
                     </button>
-                </li>
+                </li>';
+                }
+                ?>
                 <li class="keluar">
-                    <button href="#">
+                <button onclick="location.href='<?=BASEURL;?>Logout'">
                         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff"></i>
                         Keluar
                     </button>

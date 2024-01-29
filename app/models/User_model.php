@@ -52,7 +52,7 @@ class User_model
 
     public function getUser($email, $password)
     {
-        $this->db->query("SELECT * FROM trx_user WHERE email = :email");
+        $this->db->query("SELECT * FROM trx_user WHERE email = :email AND id_role IS NOT NULL");
         $this->db->bind("email", $email);
 
         $user = $this->db->single(); // Ambil data user dari database
