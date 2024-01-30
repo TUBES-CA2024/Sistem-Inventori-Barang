@@ -44,7 +44,7 @@
                 }
                 ?>
                 <li class="keluar">
-                <button onclick="location.href='<?=BASEURL;?>Logout'">
+                    <button onclick="location.href='<?=BASEURL;?>Logout'">
                         <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff"></i>
                         Keluar
                     </button>
@@ -81,6 +81,7 @@
                 <thead>
                     <tr>
                         <th scope="col" class="px-2">No.</th>
+                        <th scope="col" class="px-2">Foto</th>
                         <th scope="col" class="px-2">Nama lengkap</th>
                         <th scope="col" class="px-2">Email</th>
                         <th scope="col" class="px-2">No Hp</th>
@@ -95,6 +96,7 @@
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr>
                         <th scope="row" class="px-2"><?= $i++; ?></th>
+                        <td class="px-2"><?= $row['foto']; ?></td>
                         <td class="px-2"><?= $row['nama_user']; ?></td>
                         <td class="px-2"><?= $row['email']; ?></td>
                         <td class="px-2"><?= $row['no_hp_user']; ?></td>
@@ -103,7 +105,7 @@
                         <td class="px-2"><?= $row['role']; ?></td>
                         <td class="px-2" style="display: flex;">
                             <!-- hapus -->
-                            <a href="<?=BASEURL;?>KelolaAkun/hapus/<?= $row['id_data_user']; ?>"
+                            <a href="<?=BASEURL;?>KelolaAkun/hapusUser/<?= $row['id_user']; ?>"
                                 class="btn d-flex align-items-center justify-content-center"
                                 onclick="return confirm('yakin');">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
@@ -112,7 +114,7 @@
                             <!-- ubah -->
                             <a href="<?= BASEURL; ?>KelolaAkun/ubah/<?=$row['id_user'];?>"
                                 class="btn d-flex align-items-center justify-content-center tampilMerekBarangUbah"
-                                data-toggle="modal" data-id="<?=$row['id_user'];?>">
+                                data-toggle="modal" data-id="<?=$row['id_user'];?>" data-target="#modalTambah">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
                     </tr>
@@ -121,9 +123,9 @@
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="height: 550px; border-radius:15px">
+                    <div class="modal-content" style="height: max-content; border-radius:15px">
                         <div class="modal-header">
-                            <h5 class="modal-title title-merek">Tambah Merek Barang</h5>
+                            <h5 class="modal-title title-merek">Ubah Role User</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -131,31 +133,36 @@
                         <div class="modal-body body-merek">
                             <form action="<?=BASEURL?>MerekBarang/tambahMerekBarang" method="post">
                                 <input type="hidden" name="id_merek_barang" id="id_merek_barang">
-                                <div class="nama_merek_barang">
-                                    <label for="nama_merek_barang">Merek barang</label>
+                                <br>
+                                    <div class="ubah-role">
+                                        <div class="User d-flex align-items-center">
+                                            <input type="radio" name="role" id="role"
+                                                value="user" required />
+                                            <label for="role" class="mt-2 ml-2">User</label>
+                                        </div>
+                                        <div class="Admin d-flex align-items-center">
+                                            <input type="radio" name="role" id="role"
+                                                value="admin" required />
+                                            <label for="role" class="mt-2 ml-2">Admin</label>
+                                        </div>
+                                        <div class="Super-Admin  d-flex align-items-center">
+                                            <input type="radio" name="role" id="role"
+                                                value="Super Admin" required />
+                                            <label for="role" class="mt-2 ml-2">Super Admin</label>
+                                        </div>
+                                    </div>
                                     <br>
-                                    <input type="text" name="nama_merek_barang" id="nama_merek_barang"
-                                        style="width: 250px;" required>
-                                </div>
-                                <br>
-                                <div class="kode_merek_barang">
-                                    <label for="kode_merek_barang">Kode merek</label>
                                     <br>
-                                    <input type="text" name="kode_merek_barang" id="kode_merek_barang" minlength="3"
-                                        maxlength="3" required oninput="validasiInput(this)" placeholder="cth: 00x">
-                                </div>
-                                <br>
-                                <br>
-                                <div class="modal-footer" style="margin-right: 30%;">
-                                </div>
-                                <br>
-                                <div style="display: flex; width:100%; justify-content: end; align-items: end;">
-                                    <button type="submit" id="kirim">Kirim</button>
-                                </div>
+                                    <div class="modal-footer" style="margin-right: 30%;">
+                                    </div>
+                                    <br>
+                                    <div style="display: flex; width:100%; justify-content: end; align-items: end;">
+                                        <button type="submit" id="kirim">Kirim</button>
+                                    </div>
 
+                               
                         </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
-        </div>

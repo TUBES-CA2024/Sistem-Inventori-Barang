@@ -21,7 +21,7 @@ class KelolaAkun extends Controller {
     }
 
 
-    public function hapus($id_user){
+    public function hapusUser($id_user){
         if($this->model('User_model')->hapusUser($id_user) > 0){
             Flasher::setFlash('User', 'berhasil', ' dihapus', 'success');
             header('Location: '. BASEURL . 'Kelola_akun');

@@ -14,7 +14,7 @@ class Login extends Controller {
         
     public function login(){
         $email = $_POST['email'];
-        $password = $_POST['kata-sandi'];    
+        $password = $_POST['kata-sandi']; 
         
         $data['cekLogin'] = $this->model("User_model")->getUser($email, $password);
         if ($data['cekLogin'] == NULL) {
