@@ -3,10 +3,7 @@
 class Beranda extends Controller {
     
     public function index() {
-        if(!isset($_SESSION['login'])){
-            header("Location:" . BASEURL . "Login");
-            exit;
-        }
+
         $data['judul'] = 'Beranda';
         
         // Mengambil data kondisi barang dari model
@@ -19,6 +16,8 @@ class Beranda extends Controller {
         $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
         $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
 
+        // $userModel = $this->model('User_model');
+        // $data['dataTampilUser']= $userModel->profile();
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
         $this->view('Beranda/index', $data);
@@ -98,5 +97,6 @@ class Beranda extends Controller {
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }
+
    
 }

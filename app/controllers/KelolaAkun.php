@@ -62,6 +62,20 @@ class KelolaAkun extends Controller {
         $this->view('Kelola_akun/index', $data);
         $this->view('templates/footer');
     }
-   
+
+    public function ubahRole(){
+        
+            if($this->model('User_model')->ubahRole($_POST) > 0){
+                Flasher::setFlash('Role', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'KelolaAkun');
+                exit;
+            
+        } else {
+            Flasher::setFlash('Role', 'gagal', ' diUbah', 'danger');
+            header('Location: '. BASEURL . 'KelolaAkun');
+            exit;
+        }
+    
+}
 }
 

@@ -262,7 +262,7 @@ public function hapusBarang($id_barang){
         }
 $month = date('m', strtotime($data['tgl_pengadaan_barang']));
 $romanMonth = Romawi($month);
-
+  
 $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
 
 $this->db->bind('kode_barang', $kodeBarang);
@@ -314,6 +314,12 @@ return $this->db->rowCount();
         
     }
 
+    // public function profile($id_user){
+    //     $this->db->query("SELECT * FROM trx_data_user WHERE id_user = :id_user");
+    //     $this->db->bind("id_user", $id_user);
+    //     return $this->db->single(); // Pastikan ini mengembalikan array dengan kunci "detail_barang"
+
+    // }
 
 
 }

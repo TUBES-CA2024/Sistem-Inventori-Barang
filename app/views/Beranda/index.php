@@ -1,3 +1,9 @@
+<?php
+        if (!isset($_SESSION['login'])) {
+          header("Location:" . BASEURL . "Login");
+          exit;
+        }    
+?>
 <div class="body-beranda">
     <div class="side-bar">
         <div class="profil">
@@ -5,8 +11,16 @@
                 <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo" />
             </div>
             <div class="data-profil">
-                <img src="<?=BASEURL;?>img/PersonCircle.png" alt="profile" style="width: 80px; height:80px" />
-                <div class="detail-data-profil">
+         <!-- <?php
+foreach ($data['dataTampilUser'] as $row) {
+    if (!isset($row['foto'])) {
+        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px" />';
+    } else {
+        echo '<img src="' . $row['foto'] . '" alt="profile" style="width: 80px; height: 80px; border-radius: 50%;" />';
+    }
+}
+?> -->
+            <div class="detail-data-profil">
                     <p id="nama">Profile</p>
                     <p id="role">User</p>
                 </div>

@@ -121,5 +121,20 @@ class User_model
 
     }
 
+    public function ubahRole($data)
+    {
+        // Insert data into trx_user
+        $queryUpdateRole = "UPDATE trx_user SET id_role = :id_role WHERE id_user = :id_user";
+        $this->db->query($queryUpdateRole);
+        $this->db->bind('id_role', $data['id_role']);
+        $this->db->bind('id_user', $data['id_user']);
+    
+        $this->db->execute();
+    
+        return $this->db->rowCount();
+    }
+    
+    
+
 
 }

@@ -1,3 +1,9 @@
+<?php
+        if (!isset($_SESSION['login'])) {
+          header("Location:" . BASEURL . "Login");
+          exit;
+        }    
+?>
 <style>
    
     p{
