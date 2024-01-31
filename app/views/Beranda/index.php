@@ -11,19 +11,27 @@
                 <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo" />
             </div>
             <div class="data-profil">
-         <!-- <?php
-foreach ($data['dataTampilUser'] as $row) {
-    if (!isset($row['foto'])) {
-        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px" />';
-    } else {
-        echo '<img src="' . $row['foto'] . '" alt="profile" style="width: 80px; height: 80px; border-radius: 50%;" />';
-    }
-}
-?> -->
-            <div class="detail-data-profil">
-                    <p id="nama">Profile</p>
-                    <p id="role">User</p>
-                </div>
+                <?php
+                    $data['id_user'] = $_SESSION['id_user'];
+                    $profile_data = $this->model("User_model")->profile($data);
+
+                    if (isset($profile_data['foto'])) {
+                        $foto_profil = $profile_data['foto'];
+                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 80px; width: 80px;">';
+                    } else {
+                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px; border-radius:50%;">';
+                        }
+                        
+               echo '<div class="detail-data-profil">';
+               if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
+                $nama = $profile_data['nama_user'];
+                $role = $profile_data['role'];
+                echo '<p style="color: white; font-weight: 600; margin-bottom:0;">' . $nama . '</p>
+                      <p style="color: white; font-size: 13px;">' . $role . '</p></div>';
+            }
+            
+                    ?>
+                
             </div>
         </div>
         <hr />
@@ -55,7 +63,7 @@ foreach ($data['dataTampilUser'] as $row) {
                 </li>';
                     }
                     ?>
-                    <?php
+                <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
                 echo '<li class="kelola-akun">
                     <button onclick="location.href=\''.BASEURL.'KelolaAkun\'">
@@ -126,7 +134,7 @@ foreach ($data['dataTampilUser'] as $row) {
                         <td class="p-3"><?= $row['kondisi_barang']; ?></td>
                         <td class="p-3"><?= $row['status_peminjaman']; ?></td>
                         <td class="p-3" style="display: flex;">
-                        <?php
+                            <?php
                             if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
                                 echo '<!-- aksi -->
                                     <!-- hapus -->
@@ -149,7 +157,7 @@ foreach ($data['dataTampilUser'] as $row) {
                                 class="btn d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
-                            </td>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

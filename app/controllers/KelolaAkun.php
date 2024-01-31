@@ -3,10 +3,10 @@
 class KelolaAkun extends Controller {
     
     public function index() {
-        if(!isset($_SESSION['login'])){
-            header("Location:" . BASEURL . "Login");
-            exit;
-        }
+        // if(!isset($_SESSION['login'])){
+        //     header("Location:" . BASEURL . "Login");
+        //     exit;
+        // }
         $data['judul'] = 'Kelola Akun';
         
         // Mengambil data kondisi barang dari model
@@ -64,8 +64,8 @@ class KelolaAkun extends Controller {
     }
 
     public function ubahRole(){
-        
-            if($this->model('User_model')->ubahRole($_POST) > 0){
+        $ubahModel = $this->model('User_model')->ubahRole($_POST);
+            if($ubahModel > 0){
                 Flasher::setFlash('Role', 'berhasil', ' diUbah', 'success');
                 header('Location: '. BASEURL . 'KelolaAkun');
                 exit;

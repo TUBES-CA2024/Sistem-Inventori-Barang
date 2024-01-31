@@ -69,7 +69,7 @@ class User_model
 
     public function tampilUser(){
         $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, 
-        trx_user.id_user, trx_data_user.id_data_user,trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role;";
+        trx_user.id_user, trx_user.id_role, trx_data_user.id_data_user,trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role;";
 
         $this->db->query($tampilView);
         return $this->db->resultSet();
@@ -134,6 +134,13 @@ class User_model
         return $this->db->rowCount();
     }
     
+    public function profile($data){
+        $query = "SELECT trx_data_user.foto, trx_data_user.nama_user, mst_role.role FROM trx_data_user JOIN trx_user ON trx_data_user.id_user = trx_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE trx_user.id_user = :id_user";
+        $this->db->query($query);
+        $this->db->bind('id_user', $data['id_user']);
+        return $this->db->single();
+
+    }
     
 
 

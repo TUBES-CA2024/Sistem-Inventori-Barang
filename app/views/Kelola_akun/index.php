@@ -11,17 +11,26 @@
                 <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo" />
             </div>
             <div class="data-profil">
-                <?php
-    if (!isset($data['foto'])) {
-        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px" />';
-    } else {
-        echo '<img src="' . $data['foto'] . '" alt="profile" style="width: 80px; height: 80px" />';
-    }
-    ?>
-                <div class="detail-data-profil">
-                    <p id="nama">Profile</p>
-                    <p id="role">User</p>
-                </div>
+            <?php
+                    $data['id_user'] = $_SESSION['id_user'];
+                    $profile_data = $this->model("User_model")->profile($data);
+
+                    if (isset($profile_data['foto'])) {
+                        $foto_profil = $profile_data['foto'];
+                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 80px; width: 80px;">';
+                    } else {
+                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px; border-radius:50%;">';
+                        }
+                        
+               echo '<div class="detail-data-profil">';
+               if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
+                $nama = $profile_data['nama_user'];
+                $role = $profile_data['role'];
+                echo '<p style="color: white; font-weight: 600; margin-bottom:0;">' . $nama . '</p>
+                      <p style="color: white; font-size: 13px;">' . $role . '</p></div>';
+            }
+            
+                    ?>
             </div>
         </div>
         <hr />

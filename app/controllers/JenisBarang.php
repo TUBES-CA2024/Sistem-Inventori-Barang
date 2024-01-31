@@ -3,10 +3,10 @@
 class jenisBarang extends Controller {
     
     public function index() {
-        if(!isset($_SESSION['login'])){
-            header("Location:" . BASEURL . "Login");
-            exit;
-        }
+        // if(!isset($_SESSION['login'])){
+        //     header("Location:" . BASEURL . "Login");
+        //     exit;
+        // }
         $data['judul'] = 'Jenis Barang';
         
         // Mengambil data kondisi barang dari model
