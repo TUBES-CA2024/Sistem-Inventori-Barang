@@ -17,9 +17,9 @@
 
                     if (isset($profile_data['foto'])) {
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 80px; width: 80px;">';
+                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
                     } else {
-                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 80px; height: 80px; border-radius:50%;">';
+                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
                         }
                         
                echo '<div class="detail-data-profil">';
@@ -109,7 +109,7 @@
                                 style="height: 45px;" autocomplete="off">
                         </div>
                     </form>
-                    <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank">Cetak</button>
+                    <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank"><i class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                 </div>
             </div>
             <table class="table table-hover table-sm">

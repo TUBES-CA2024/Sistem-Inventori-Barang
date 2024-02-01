@@ -1,6 +1,8 @@
 <style>
     @media print {
-        button, img{
+
+        button,
+        img {
             display: none;
         }
     }
@@ -12,7 +14,7 @@
     }
 
     button {
-        width: 130px;
+        width: 150px;
         height: 47px;
         border-radius: 8px;
         background-color: #0c1740;
@@ -24,14 +26,16 @@
     }
 </style>
 <div class="card-body p-3">
-<div class="header" style="display: flex; padding:20px;">
-                <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />    
-    <div class="button" style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
-    <button onclick="cetak()"><i class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
-    <button  onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
+    <div class="header" style="display: flex; padding:20px;">
+        <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
+        <div class="button"
+            style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
+            <button onclick="cetak()"><i class="fa-solid fa-print"
+                    style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
+            <button onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
+        </div>
     </div>
-</div>
-<table class="table table-hover table-sm">
+    <table class="table table-hover table-sm">
         <thead>
             <tr>
                 <th scope="col" class="p-3">No.</th>
