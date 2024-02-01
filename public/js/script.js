@@ -8,6 +8,10 @@ function validasiInput(input) {
   input.value = input.value.replace(/[^0-9]/g, "");
 }
 
+function cetak() {
+  window.print();
+}
+
 //jenis barang
 $(function () {
   $(".btn-tambah").on("click", function () {

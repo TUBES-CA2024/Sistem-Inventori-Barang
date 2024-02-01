@@ -109,6 +109,7 @@
                                 style="height: 45px;" autocomplete="off">
                         </div>
                     </form>
+                    <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank">Cetak</button>
                 </div>
             </div>
             <table class="table table-hover table-sm">
