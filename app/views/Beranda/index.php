@@ -134,24 +134,22 @@
                         <td class="p-3"><?= $row['kondisi_barang']; ?></td>
                         <td class="p-3"><?= $row['status_peminjaman']; ?></td>
                         <td class="p-3" style="display: flex;">
-                            <?php
-                            if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                                echo '<!-- aksi -->
-                                    <!-- hapus -->
-                                    <a href="' . BASEURL . 'Beranda/hapus/' . $row['id_barang'] . '"
-                                        class="btn d-flex align-items-center justify-content-center"
-                                        onclick="return confirm(\'yakin\');">
-                                        <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
-                                    </a>
-                                    <!-- ubah -->
-                                    <a href="' . BASEURL . 'Beranda/getUbah/' . $row['id_barang'] . '"
-                                        class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
-                                        data-toggle="modal" data-target="#modalTambah" data-id="' . $row['id_barang'] . '">
-                                        <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
-                                    </a>';
-                                
-                            }
-                            ?>
+                        <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
+                                <!-- Hapus -->
+                                <a href="<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>"
+                                class="btn d-flex align-items-center justify-content-center"
+                                onclick="return confirm('yakin');">
+                                    <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                                </a>
+
+                                <!-- Ubah -->
+                                <a href="<?= BASEURL ?>Beranda/getUbah/<?= $row['id_barang'] ?>"
+                                class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
+                                data-toggle="modal" data-target="#modalTambah" data-id="<?= $row['id_barang']; ?>">
+                                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
+                                </a>
+                        <?php endif; ?>
+
                             <!-- detail -->
                             <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center">
@@ -239,7 +237,7 @@
                                                 style="width: 250px;" min="0" required>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div style="margin-top: 8px;">
                                         <div class="tgl_pengadaan_barang">
                                             <label for="tgl_pengadaan_barang">Tgl pengadaan</label>
                                             <br>
@@ -314,9 +312,8 @@
                                     </div>
                                 </div>
                                 <br>
-                                <div class="modal-footer" style="margin-right: 30%;">
-                                    <div style="display: flex; width:100%; align-items: end; margin-top:50px;">
-
+                                <div class="modal-footer" style="margin-left: 30%;">
+                                    <div style="display: flex; width:100%; align-items: end; justify-content:end; margin-top:50px;">
                                         <button type="submit" id="kirim">Kirim</button>
                                     </div>
                                 </div>

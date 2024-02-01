@@ -63,19 +63,22 @@ class KelolaAkun extends Controller {
         $this->view('templates/footer');
     }
 
-    public function ubahRole(){
-        $ubahModel = $this->model('User_model')->ubahRole($_POST);
-            if($ubahModel > 0){
-                Flasher::setFlash('Role', 'berhasil', ' diUbah', 'success');
-                header('Location: '. BASEURL . 'KelolaAkun');
-                exit;
-            
-        } else {
-            Flasher::setFlash('Role', 'gagal', ' diUbah', 'danger');
-            header('Location: '. BASEURL . 'KelolaAkun');
-            exit;
-        }
+    public function ubahRole()
+    {
+ 
+    $ubahRole =  $this->model('User_model')->ubahRole($_POST);   
+       if($ubahRole > 0){
+        Flasher::setFlash('Role', 'berhasil', ' diUbah', 'success');
+        header('Location: '. BASEURL . 'Kelola_akun');
+        exit;
+    } else {
+    Flasher::setFlash('Role', 'gagal', ' diUbah', 'danger');
+    header('Location: '. BASEURL . 'Kelola_akun');
+    exit;
+}
     
 }
+    
+    
 }
 

@@ -86,30 +86,30 @@ class User_model
         return $this->db->resultSet();
     }
 
-    public function getUbah($id_user) {
-        $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE id_user = :id_user;";
-        $this->db->query($tampilView);
-        $this->db->bind("id_user", $id_user);
+    // public function getUbah($id_user) {
+    //     $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE id_user = :id_user;";
+    //     $this->db->query($tampilView);
+    //     $this->db->bind("id_user", $id_user);
 
-        return $this->db->single();
+    //     return $this->db->single();
     
-    }
+    // }
 
-    public function updateuser($data){
-         // Insert data into mst_jenis_barang
-         $queryUpdate = "UPDATE trx_data_user SET foto = :foto, nama_user=:nama_user, no_hp_user = :no_hp_user, jenis_kelamin=:jenis_kelamin, alamat = :alamat  WHERE id_user = :id_user";
-         $this->db->query($queryUpdate);
-         $this->db->bind('foto', $data['foto']);
-         $this->db->bind('nama_user', $data['nama_user']);
-         $this->db->bind('no_hp_user', $data['no_hp_user']);
-         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
-         $this->db->bind('alamat', $data['alamat']);
-         $this->db->bind('id_user', $data['id_user']);
-         $this->db->execute();
+    // public function updateuser($data){
+    //      // Insert data into mst_jenis_barang
+    //      $queryUpdate = "UPDATE trx_data_user SET foto = :foto, nama_user=:nama_user, no_hp_user = :no_hp_user, jenis_kelamin=:jenis_kelamin, alamat = :alamat  WHERE id_user = :id_user";
+    //      $this->db->query($queryUpdate);
+    //      $this->db->bind('foto', $data['foto']);
+    //      $this->db->bind('nama_user', $data['nama_user']);
+    //      $this->db->bind('no_hp_user', $data['no_hp_user']);
+    //      $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
+    //      $this->db->bind('alamat', $data['alamat']);
+    //      $this->db->bind('id_user', $data['id_user']);
+    //      $this->db->execute();
         
      
-         return $this->db->rowCount();
-    }
+    //      return $this->db->rowCount();
+    // }
 
     public function cariUser(){
         $keyword = $_POST['keyword'];
@@ -123,16 +123,20 @@ class User_model
 
     public function ubahRole($data)
     {
-        // Insert data into trx_user
+        // Update data in trx_user
         $queryUpdateRole = "UPDATE trx_user SET id_role = :id_role WHERE id_user = :id_user";
         $this->db->query($queryUpdateRole);
-        $this->db->bind('id_role', $data['id_role']);
-        $this->db->bind('id_user', $data['id_user']);
+    
+        // Bind parameters
+        $this->db->bind(':id_role', $data['id_role']);
+        $this->db->bind(':id_user', $data['id_user']);
     
         $this->db->execute();
     
         return $this->db->rowCount();
     }
+    
+
     
     public function profile($data){
         $query = "SELECT trx_data_user.foto, trx_data_user.nama_user, mst_role.role FROM trx_data_user JOIN trx_user ON trx_data_user.id_user = trx_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE trx_user.id_user = :id_user";

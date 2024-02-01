@@ -1,9 +1,10 @@
 <?php
-        if (!isset($_SESSION['login']) && ($_SESSION['id_role'] == '3') || ($_SESSION['id_role'] == '2')) {
+        if (!isset($_SESSION['login']) || ($_SESSION['id_role'] == '1')) {
           header("Location:" . BASEURL . "Login");
           exit;
         }    
 ?>
+
 <div class="body-beranda">
     <div class="side-bar">
         <div class="profil">

@@ -1,5 +1,5 @@
-<form action="<?= BASEURL;?>/Login/login" method="post">
-<div class="body-login">
+<form action="<?= BASEURL;?>Login/login" method="post">
+<div class="body-login" style="overflow: hidden;">
 <div class="figure">
     <div class="logo">
     <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo">
@@ -8,7 +8,8 @@
     <img id="login-figure" src="<?=BASEURL ?>img/login figure.svg" alt="figure">
     </div>
 </div>
-<div class="form-login">
+<div class="form-login" style="overflow: hidden
+;">
 <div class="flash" style="width: 80%;">
             <?php Flasher::flash();?>
           </div>
@@ -24,7 +25,7 @@
         <br>
         <div class="kata-sandi">
             <label for="kata-sandi">Kata sandi</label>
-            <input type="password" name="kata-sandi" placeholder="Masukkan kata sandi anda">
+            <input type="password" name="kata-sandi" placeholder="Masukkan kata sandi anda" id="kata-sandi">
         </div>
       </div>
     <br>

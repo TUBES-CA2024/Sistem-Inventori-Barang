@@ -1,5 +1,5 @@
 <?php
-        if (!isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
+        if (!isset($_SESSION['login']) || ($_SESSION['id_role'] == '1') || ($_SESSION['id_role'] == '2')) {
           header("Location:" . BASEURL . "Login");
           exit;
         }    
@@ -135,8 +135,8 @@
 
                             <!-- ubah -->
                             <a href="<?=BASEURL;?>KelolaAkun/ubahRole/<?= $row['id_user']; ?>"
-                                class="btn d-flex align-items-center justify-content-center"
-                                data-toggle="modal" data-id="<?=$row['id_user'];?>" data-target="#modalTambah" >
+                                class="btn d-flex align-items-center justify-content-center btnUbahRole" 
+                                data-toggle="modal" data-user="<?=$row['id_user'];?>" data-target="#modalTambah" >
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
                     </tr>
@@ -154,7 +154,7 @@
                         </div>
                         <div class="modal-body body-kelola-akun">
                             <form action="<?=BASEURL?>KelolaAkun/ubahRole" method="post">
-                                <input type="hidden" name="id_user" id="id_user">
+                                <input type="hidden" name="id_user" id="id_user" value="<?=$row['id_user']?>">
                                 <br>
                                 <div class="ubah-role">
                                     <div class="User d-flex align-items-center">

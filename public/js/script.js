@@ -67,10 +67,7 @@ $(function () {
       },
     });
   });
-});
 
-//Beranda
-$(function () {
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");
   });
@@ -82,7 +79,7 @@ $(function () {
       "http://localhost/inventori/public/Beranda/ubahBarang"
     );
     const id = $(this).data("id");
-
+    console.log(id);
     $.ajax({
       url: "http://localhost/inventori/public/Beranda/getUbah",
       data: {
@@ -91,6 +88,7 @@ $(function () {
       method: "post",
       dataType: "json",
       success: function (data) {
+        $("#id_barang").val(data.id_barang);
         $("#id_jenis_barang").val(data.sub_barang);
         $("#nama_merek_barang").val(data.id_merek_barang);
         $("#id_kondisi_barang").val(data.kondisi_barang);
