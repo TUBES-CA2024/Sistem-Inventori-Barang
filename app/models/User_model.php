@@ -113,7 +113,7 @@ class User_model
 
     public function cariUser(){
         $keyword = $_POST['keyword'];
-        $query= "SELECT * FROM mst_jenis_barang WHERE sub_barang LIKE :keyword";
+        $query= "SELECT trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, trx_user.email FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role WHERE sub_barang LIKE :keyword";
 
         $this->db->query($query);
         $this->db->bind('keyword', "%$keyword%");

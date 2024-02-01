@@ -172,7 +172,7 @@
                         </div>
                         <div class="modal-body body-barang">
                             <form action="<?=BASEURL?>Beranda/tambahBarang" method="post">
-                                <input type="hidden" name="id_barang" id="id_barang">
+                                <input type="hidden" name="id_barang" id="id_barang" value="<?=$row['id_barang']?>">
                                 <div style="display: flex; width:100%; gap:20%;">
                                     <div style="margin-top: 8px;">
                                         <div class="sub_barang">

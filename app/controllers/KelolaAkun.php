@@ -55,7 +55,7 @@ class KelolaAkun extends Controller {
         // Mengambil data kondisi barang dari model
         $tampilUser = $this->model('User_model');
 
-        $data['tampilDataUser']= $tampilUser->cariUser();
+        $data['dataTampilUser']= $tampilUser->cariUser();
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
