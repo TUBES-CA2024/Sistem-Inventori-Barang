@@ -30,13 +30,13 @@
         <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
         <div class="button"
             style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
-            <button onclick="cetak()"><i class="fa-solid fa-print"
+            <button onclick="cetak()" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
                     style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
-            <button onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
+            <button style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);" onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
         </div>
     </div>
-    <table class="table table-hover table-sm">
-        <thead>
+    <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+        <thead class="table-info">
             <tr>
                 <th scope="col" class="p-3">No.</th>
                 <th scope="col" class="p-3">Kode barang</th>

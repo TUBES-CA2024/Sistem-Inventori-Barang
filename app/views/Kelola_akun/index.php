@@ -81,12 +81,12 @@
             </div>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <button onclick="location.href='<?=BASEURL;?>Register'"
-                    class="btn d-flex align-items-center justify-content-center">
+                    class="btn d-flex align-items-center justify-content-center" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
                 </button>
                 <div class="search" style="width:350px">
                     <form action="<?=BASEURL;?>KelolaAkun/cari" method="post">
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
                                     style="width: 60px;"><i class="fa-solid fa-magnifying-glass"
@@ -98,34 +98,34 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-hover table-">
-                <thead>
+            <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                <thead class="table-info">
                     <tr>
-                        <th scope="col" class="text-nowrap">No.</th>
-                        <th scope="col" class="text-nowrap">Foto</th>
-                        <th scope="col" class="text-nowrap">Nama User</th>
-                        <th scope="col" class="text-nowrap">Email</th>
-                        <th scope="col" class="text-nowrap">No Hp</th>
-                        <th scope="col" class="text-nowrap">Jenis Kelamin</th>
-                        <th scope="col" class="text-nowrap">Alamat</th>
-                        <th scope="col" class="text-nowrap">Role</th>
-                        <th scope="col" class="text-nowrap">Aksi</th>
+                        <th scope="col" class="text-nowrap p-3">No.</th>
+                        <th scope="col" class="text-nowrap p-3 ">Foto</th>
+                        <th scope="col" class="text-nowrap p-3">Nama User</th>
+                        <th scope="col" class="text-nowrap p-3">Email</th>
+                        <th scope="col" class="text-nowrap p-3">No Hp</th>
+                        <th scope="col" class="text-nowrap p-3">Jenis Kelamin</th>
+                        <th scope="col" class="text-nowrap p-3">Alamat</th>
+                        <th scope="col" class="text-nowrap p-3">Role</th>
+                        <th scope="col" class="text-nowrap p-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr>
-                        <th scope="row" class="px-2"><?= $i++; ?></th>
-                        <td class="px-2"><img src="<?= $row['foto']; ?>" alt="profile"
+                        <th scope="row" class="p-2"><?= $i++; ?></th>
+                        <td class="p-2"><img src="<?= $row['foto']; ?>" alt="profile"
                                 style="height: 100px; width:100px; object-fit:cover;"></td>
-                        <td class="px-2"><?= $row['nama_user']; ?></td>
-                        <td class="px-2"><?= $row['email']; ?></td>
-                        <td class="px-2"><?= $row['no_hp_user']; ?></td>
-                        <td class="px-2"><?= $row['jenis_kelamin']; ?></td>
-                        <td class="px-2"><?= $row['alamat']; ?></td>
-                        <td class="px-2"><?= $row['role'];?></td>
-                        <td class="px-2" style="display: flex;">
+                        <td class="p-2"><?= $row['nama_user']; ?></td>
+                        <td class="p-2"><?= $row['email']; ?></td>
+                        <td class="p-2"><?= $row['no_hp_user']; ?></td>
+                        <td class="p-2"><?= $row['jenis_kelamin']; ?></td>
+                        <td class="p-2"><?= $row['alamat']; ?></td>
+                        <td class="p-2"><?= $row['role'];?></td>
+                        <td class="p-2" style="display: flex;">
                             <!-- hapus -->
                             <a href="<?=BASEURL;?>KelolaAkun/hapusUser/<?= $row['id_user']; ?>"
                                 class="btn d-flex align-items-center justify-content-center"

@@ -90,16 +90,19 @@
             </div>
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
+            <div style="display: flex; flex-direction:column; gap:10px;">
+            <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                 <?php
                 if (isset($_SESSION['login']) && $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2') {
-                    echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah">
-                    <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
+                    echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                    <i class="fa-solid fa-plus" style="color: #ffffff; "></i> Tambah
                 </button>';
             }
             ?>
+            </div>
                 <div class="search" style="width:350px">
                     <form action="<?=BASEURL;?>Beranda/cari" method="post">
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
                                     style="width: 60px;"><i class="fa-solid fa-magnifying-glass"
@@ -109,11 +112,10 @@
                                 style="height: 45px;" autocomplete="off">
                         </div>
                     </form>
-                    <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank"><i class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                 </div>
             </div>
-            <table class="table table-hover table-sm">
-                <thead>
+            <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                <thead class="table-info">
                     <tr>
                         <th scope="col" class="p-3">No.</th>
                         <th scope="col" class="p-3">Kode barang</th>

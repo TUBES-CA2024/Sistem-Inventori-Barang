@@ -80,12 +80,12 @@
                 <?php Flasher::flash();?>
             </div>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <button data-toggle="modal" class="btn-tambah-merek" data-target="#modalTambah">
-                    <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
+                <button data-toggle="modal" class="btn-tambah-merek" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                    <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Tambah
                 </button>
                 <div class="search" style="width:350px">
                     <form action="<?=BASEURL;?>MerekBarang/cari" method="post">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
   <div class="input-group-prepend">
     <button class="btn btn-outline-secondary" type="submit" id="btn-cari" style="width: 60px;"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
   </div>
@@ -94,23 +94,23 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-hover table-sm">
-                <thead>
+            <table class="table table-hover table-sm" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                <thead class="table-info">
                     <tr>
-                        <th scope="col" class="px-2">No.</th>
-                        <th scope="col" class="px-2">Merek barang</th>
-                        <th scope="col" class="px-2">Kode merek</th>
-                        <th scope="col" class="px-2">Aksi</th>
+                        <th scope="col" class="p-2">No.</th>
+                        <th scope="col" class="p-2">Merek barang</th>
+                        <th scope="col" class="p-2">Kode merek</th>
+                        <th scope="col" class="p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilMerekBarang'] as $row): ?>
                     <tr>
-                        <th scope="row" class="px-2"><?= $i++; ?></th>
-                        <td class="px-2"><?= $row['nama_merek_barang']; ?></td>
-                        <td class="px-2"><?= $row['kode_merek_barang']; ?></td>
-                        <td class="px-2" style="display: flex;">
+                        <th scope="row" class="p-2"><?= $i++; ?></th>
+                        <td class="p-2"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="p-2"><?= $row['kode_merek_barang']; ?></td>
+                        <td class="p-2" style="display: flex;">
                             <!-- hapus -->
                             <a href="<?= BASEURL; ?>MerekBarang/hapus/<?=$row['id_merek_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center"
