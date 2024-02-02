@@ -73,16 +73,18 @@
             name="foto"
             id="foto"
             accept="image/*"
+            onchange="limitSize()"
             placeholder="Pilih foto"
           />
           <label for="foto">Upload Foto</label>
+          <label id="info"></label>
         </div>
         <div class="jenis-kelamin">
           <div class="laki-laki">
             <input
               type="radio"
               name="jenis_kelamin"
-              id="jenis_kelamin"
+              id="laki-laki"
               value="laki-laki"
               required
             />
@@ -92,7 +94,7 @@
             <input
               type="radio"
               name="jenis_kelamin"
-              id="jenis_kelamin"
+              id="perempuan"
               value="perempuan"
               required
             />
@@ -122,7 +124,7 @@
         </div>
    
         <div class="button-daftar">
-          <button type="submit">Daftar</button>
+          <button type="submit" id="btn-daftar">Daftar</button>
         </div>
     </div>
     </div>

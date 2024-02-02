@@ -121,15 +121,23 @@ class User_model
 
     }
 
+    public function getRole($id_user) {
+        $tampilView = "SELECT * FROM trx_user WHERE id_user = :id_user;";
+        $this->db->query($tampilView);
+        $this->db->bind("id_user", $id_user);
+
+        return $this->db->single();
+    
+    }
+
     public function ubahRole($data)
     {
         // Update data in trx_user
         $queryUpdateRole = "UPDATE trx_user SET id_role = :id_role WHERE id_user = :id_user";
+        
         $this->db->query($queryUpdateRole);
-    
-        // Bind parameters
-        $this->db->bind(':id_role', $data['id_role']);
-        $this->db->bind(':id_user', $data['id_user']);
+        $this->db->bind('id_role', $data['id_role']);
+        $this->db->bind('id_user', $data['id_user']);
     
         $this->db->execute();
     
