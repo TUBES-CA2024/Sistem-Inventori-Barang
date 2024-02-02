@@ -100,7 +100,7 @@
             }
             ?>
             </div>
-                <div class="search" style="width:350px">
+                <div class="search" style="width:350px; ">
                     <form action="<?=BASEURL;?>Beranda/cari" method="post">
                         <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                             <div class="input-group-prepend">
@@ -158,6 +158,7 @@
                                 class="btn d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
+                            <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox" name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
                         </td>
                     </tr>
                     <?php endforeach; ?>

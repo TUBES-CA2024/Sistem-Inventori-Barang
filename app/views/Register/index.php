@@ -76,8 +76,7 @@
             onchange="limitSize()"
             placeholder="Pilih foto"
           />
-          <label for="foto">Upload Foto</label>
-          <label id="info"></label>
+          <label for="foto">Upload Foto (Maks 2 MB) </label>
         </div>
         <div class="jenis-kelamin">
           <div class="laki-laki">

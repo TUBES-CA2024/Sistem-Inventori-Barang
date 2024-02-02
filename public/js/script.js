@@ -12,6 +12,19 @@ function cetak() {
   window.print();
 }
 
+function tampilCetak() {
+  const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
+  let id_barang = [];
+
+  checkboxes.forEach(function (checkboxes) {
+    if (checkboxes.checked) {
+      // Menambahkan id_barang ke dalam array
+      id_barang.push(checkboxes.value);
+    }
+  });
+  console.log(id_barang);
+}
+
 //jenis barang
 $(function () {
   $(".btn-tambah").on("click", function () {
@@ -125,7 +138,6 @@ $(function () {
         $("#id_user").val(data.id_user);
         $("id_role").val(data.id_role);
       },
-   
     });
   });
 });

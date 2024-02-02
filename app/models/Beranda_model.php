@@ -321,7 +321,7 @@ return $this->db->rowCount();
 
     // }
 
-    public function cetak(){
+    public function cetak($id_barang){
         $query = "SELECT   mst_jenis_barang.sub_barang,
         mst_merek_barang.nama_merek_barang,      
         mst_kondisi_barang.kondisi_barang,
@@ -345,10 +345,12 @@ return $this->db->rowCount();
     JOIN 
         mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
     JOIN 
-        mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan";
-
+        mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
+    WHERE id_barang = :id_barang";
+  
 
 $this->db->query($query);
+$this->db->query('id_barang', $id_barang);
 $this->db->execute();
 $result = $this->db->resultSet();
 
