@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="content">
-        <div class="content-beranda" style="overflow-y: auto;">
+        <div class="content-beranda" style="overflow-y: auto; overflow-x: hidden;">
             <h3 id="title">Kelola Akun</h3>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
@@ -101,15 +101,15 @@
             <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                 <thead class="table-info">
                     <tr>
-                        <th scope="col" class="text-nowrap p-3">No.</th>
-                        <th scope="col" class="text-nowrap p-3 ">Foto</th>
-                        <th scope="col" class="text-nowrap p-3">Nama User</th>
-                        <th scope="col" class="text-nowrap p-3">Email</th>
-                        <th scope="col" class="text-nowrap p-3">No Hp</th>
-                        <th scope="col" class="text-nowrap p-3">Jenis Kelamin</th>
-                        <th scope="col" class="text-nowrap p-3">Alamat</th>
-                        <th scope="col" class="text-nowrap p-3">Role</th>
-                        <th scope="col" class="text-nowrap p-3">Aksi</th>
+                        <th scope="col" class="text-nowrap p-2">No.</th>
+                        <th scope="col" class="text-nowrap p-2 ">Foto</th>
+                        <th scope="col" class="text-nowrap p-2">Nama User</th>
+                        <th scope="col" class="text-nowrap p-2">Email</th>
+                        <th scope="col" class="text-nowrap p-2">No Hp</th>
+                        <th scope="col" class="text-nowrap p-2">Jenis Kelamin</th>
+                        <th scope="col" class="text-nowrap p-2">Alamat</th>
+                        <th scope="col" class="text-nowrap p-2">Role</th>
+                        <th scope="col" class="text-nowrap p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

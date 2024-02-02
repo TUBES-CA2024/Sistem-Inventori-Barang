@@ -109,7 +109,8 @@
             id="no_hp_user"
             placeholder="Masukkan no. Hp anda"
             required
-            maxlength="15"
+            maxlength="13"
+            oninput="validasiInput(this)"
           />
         </div>
         <div class="alamat">

@@ -11,6 +11,10 @@ class User_model
 
     public function tambahUser($data)
     {
+        $ukuranFile = $_FILES['foto']['size'];
+        $limit = 2 * 1024 *1024;
+        if($ukuranFile <= $limit){
+
         $password = $_POST['password'];
         $confirmPassword = $_POST['konfirmasi-password'];
 
@@ -28,6 +32,9 @@ class User_model
             $this->db->execute();
             $idUser = $this->db->lastInsertId();
 
+         
+                
+            
             // Pindahkan file foto ke folder yang ditentukan
             $uploadDirectory = '../public/img/foto-profile/';
             $uploadedFile = $_FILES['foto']['tmp_name'];
@@ -48,6 +55,12 @@ class User_model
 
             return $this->db->rowCount();
         } 
+    }
+    else{
+        Flasher::setFlash('Foto', 'gagal', ' diUpload <br> ukuran gambar terlalu besar', 'danger');
+        header('Location: '. BASEURL . 'Register');
+        exit;
+    }
     }
 
     public function getUser($email, $password)

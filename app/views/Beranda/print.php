@@ -30,9 +30,10 @@
         <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
         <div class="button"
             style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
-            <button onclick="cetak()" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
-                    style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
-            <button style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);" onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
+            <button onclick="cetak()" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i
+                    class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
+            <button style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"
+                onclick="location.href='<?=BASEURL?>Beranda'">Kembali</button>
         </div>
     </div>
     <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
@@ -55,32 +56,19 @@
         </thead>
         <tbody><?php $i=1;
 ?><?php foreach ($data['dataCetak'] as $row): ?><tr>
-                <th scope="row" class="p-3"><?=$i++;
-?></th>
-                <td class="p-3"><?=$row['kode_barang'];
-?></td>
-                <td class="p-3"><?=$row['sub_barang'];
-?></td>
-                <td class="p-3"><?=$row['nama_merek_barang'];
-?></td>
-                <td class="p-3"><?=$row['deskripsi_barang'];
-?></td>
-                <td class="p-3"><?=$row['jumlah_barang'];
-?></td>
-                <td class="p-3"><?=$row['nama_satuan'];
-?></td>
-                <td class="p-3"><?=$row['tgl_pengadaan_barang'];
-?></td>
-                <td class="p-3"><?=$row['nama_lokasi_penyimpanan'];
-?></td>
-                <td class="p-3"><?=$row['deskripsi_detail_lokasi'];
-?></td>
-                <td class="p-3"><?=$row['keterangan_label'];
-?></td>
-                <td class="p-3"><?=$row['kondisi_barang'];
-?></td>
-                <td class="p-3"><?=$row['status_peminjaman'];
-?></td>
+                <th scope="row" class="p-3"><?=$i++;?></th>
+                <td class="p-3"><?=$row['kode_barang'];?></td>
+                <td class="p-3"><?=$row['sub_barang'];?></td>
+                <td class="p-3"><?=$row['nama_merek_barang'];?></td>
+                <td class="p-3"><?=$row['deskripsi_barang'];?></td>
+                <td class="p-3"><?=$row['jumlah_barang'];?></td>
+                <td class="p-3"><?=$row['nama_satuan'];?></td>
+                <td class="p-3"><?=$row['tgl_pengadaan_barang'];?></td>
+                <td class="p-3"><?=$row['nama_lokasi_penyimpanan'];?></td>
+                <td class="p-3"><?=$row['deskripsi_detail_lokasi'];?></td>
+                <td class="p-3"><?=$row['keterangan_label'];?></td>
+                <td class="p-3"><?=$row['kondisi_barang'];?></td>
+                <td class="p-3"><?=$row['status_peminjaman'];?></td>
             </tr><?php endforeach;
 ?></tbody>
     </table>
