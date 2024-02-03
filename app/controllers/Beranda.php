@@ -98,16 +98,18 @@ class Beranda extends Controller {
         $this->view('templates/footer');
     }
 
+
+    public function getCetak(){
+        echo json_encode( $this->model('Beranda_model')->cetak($_POST['id_barang']));
+    }
+
     public function cetak() {
         $data['judul'] = 'Beranda';
-        
-    var_dump($_POST);
-        // $data['dataCetak'] = $this->model('Beranda_model')->cetak();
-    
-        // // Memanggil view cetak
-        // $this->view('templates/header', $data);
-        // $this->view('Beranda/print', $data);
-        // $this->view('templates/footer');
+
+        $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
+        $this->view('templates/header', $data);
+        $this->view('Beranda/print', $data);
+        $this->view('templates/footer');
     }
     
 }

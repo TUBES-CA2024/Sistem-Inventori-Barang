@@ -4,7 +4,7 @@
           exit;
         }    
 ?>
-<div class="body-beranda">
+<div class="body-beranda" style="overflow: hidden;">
     <div class="side-bar">
         <div class="profil">
             <div class="logo">
@@ -73,10 +73,10 @@
                 </li>';
                 }
                 ?>
-                <li class="keluar">
+                <li class="keluar" style="margin-top: 40px;">
                     <div class="btn-group dropright">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" onmouseover="this.style.backgroundColor='#CAD6FF'" onmouseout="this.style.backgroundColor='transparent'">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
@@ -102,7 +102,7 @@
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <div style="display: flex; flex-direction:column; gap:10px;">
-                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank"
+                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();" target="_blank"
                         style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
                             style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                     <?php
@@ -142,6 +142,7 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilBarang'] as $row): ?>
+                        <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
                     <tr>
                         <th scope="row" class="p-3"><?= $i++; ?></th>
                         <td class="p-3"><?= $row['kode_barang']; ?></td>
@@ -172,9 +173,10 @@
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
                             <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
-                                name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
+                                name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
                         </td>
                     </tr>
+                    </form>
                     <?php endforeach; ?>
                 </tbody>
             </table>

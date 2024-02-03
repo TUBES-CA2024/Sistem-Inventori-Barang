@@ -321,43 +321,36 @@ return $this->db->rowCount();
 
     // }
 
-    public function cetak($id_barang){
-        $query = "SELECT   mst_jenis_barang.sub_barang,
-        mst_merek_barang.nama_merek_barang,      
-        mst_kondisi_barang.kondisi_barang,
-        trx_barang.jumlah_barang,
-        mst_satuan.nama_satuan,
-        trx_barang.deskripsi_barang,
-        trx_barang.tgl_pengadaan_barang,
-        trx_barang.kode_barang,
-        trx_barang.keterangan_label,
-        mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
-        trx_barang.deskripsi_detail_lokasi,
-        trx_barang.status_peminjaman
-    FROM 
-        trx_barang
-    JOIN 
-        mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
-    JOIN 
-        mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
-    JOIN
-        mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan
-    JOIN 
-        mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
-    JOIN 
-        mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
-    WHERE id_barang = :id_barang";
-  
-
-$this->db->query($query);
-$this->db->query('id_barang', $id_barang);
-$this->db->execute();
-$result = $this->db->resultSet();
-
-    return $result;
-
+    public function cetak($id_barang) {
+        foreach ($id_barang as $idbarang) {
+            $query = "SELECT mst_jenis_barang.sub_barang,
+                mst_merek_barang.nama_merek_barang,      
+                mst_kondisi_barang.kondisi_barang,
+                trx_barang.jumlah_barang,
+                mst_satuan.nama_satuan,
+                trx_barang.deskripsi_barang,
+                trx_barang.tgl_pengadaan_barang,
+                trx_barang.kode_barang,
+                trx_barang.keterangan_label,
+                mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
+                trx_barang.deskripsi_detail_lokasi,
+                trx_barang.status_peminjaman
+            FROM trx_barang
+            JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
+            JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
+            JOIN mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan
+            JOIN mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
+            JOIN mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
+            WHERE id_barang = :id_barang";
+    
+            $this->db->query($query);
+            $this->db->bind('id_barang', $idbarang);
+            $this->db->execute();
+            return $this->db->resultSet();
+        }
+    
     }
-
+    
 
 }
 

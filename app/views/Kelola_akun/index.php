@@ -4,7 +4,7 @@
           exit;
         }    
 ?>
-<div class="body-beranda">
+<div class="body-beranda" style="overflow: hidden;">
     <div class="side-bar">
         <div class="profil">
             <div class="logo">
@@ -64,9 +64,9 @@
                 </li>';
                 }
                 ?>
-                <li class="keluar">
+                <li class="keluar" style="margin-top: 40px;">
                 <div class="btn-group dropright">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onmouseover="this.style.backgroundColor='#CAD6FF'" onmouseout="this.style.backgroundColor='transparent'"
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">

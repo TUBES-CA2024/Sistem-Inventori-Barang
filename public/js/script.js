@@ -14,28 +14,33 @@ function cetak() {
 
 function tampilCetak() {
   const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
-  let id_barang = [];
+  let idbarang = [];
 
   checkboxes.forEach(function (checkbox) {
     if (checkbox.checked) {
       // Menambahkan id_barang ke dalam array
-      id_barang.push(checkbox.value);
+      idbarang.push(checkbox.value);
     }
   });
-  console.log(id_barang);
 
+  console.log(idbarang);
   $.ajax({
-    url: "http://localhost/inventori/public/Beranda/cetak",
+    url: "http://localhost/inventori/public/Beranda/getCetak",
     data: {
-      id_barang: id_barang
+      id_barang: idbarang,
     },
-    method: "POST",
-    contentType: "application/json",
+    method: "post",
+    dataType: "json",
     success: function (data) {
-      console.log(data);
+      $("id_barang").val(data.id_barang);
     },
   });
+}
 
+function checkbox() {
+  let form = document.getElementById("formCheckbox");
+
+  form.submit();
 }
 
 //jenis barang
@@ -98,6 +103,7 @@ $(function () {
     });
   });
 
+  //ubah barang
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");
   });
