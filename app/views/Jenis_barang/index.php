@@ -66,10 +66,21 @@
                 }
                 ?>
                 <li class="keluar">
-                <button onclick="location.href='<?=BASEURL;?>Logout'">
-                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff"></i>
-                        Keluar
-                    </button>
+                <div class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
+                                <i class="fa-regular fa-user"></i>Profil</button>
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
+                                style="color: black; margin-top: 0;">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Keluar
+                            </button>
+                        </div>
+                    </div>
+
                 </li>
             </ul>
         </div>

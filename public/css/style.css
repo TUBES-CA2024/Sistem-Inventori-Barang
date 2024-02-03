@@ -389,7 +389,6 @@ ul .beranda button:hover,
 .tambah-jenis-barang button:hover,
 .tambah-merek-barang button:hover,
 .kelola-akun button:hover,
-.keluar button:hover,
 .fa-solid:hover {
   opacity: 0.9;
   cursor: pointer;
@@ -421,10 +420,6 @@ ul .beranda button,
   list-style: none;
 }
 
-.keluar button {
-  margin-top: 80px;
-}
-
 i {
   background-color: transparent;
 }
@@ -445,7 +440,7 @@ i {
 
 #title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 28px;
   font-family: "Poppins", sans-serif;
   color: #0c1740;
   padding: 50px;

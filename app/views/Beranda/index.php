@@ -31,7 +31,7 @@
             }
             
                     ?>
-                
+
             </div>
         </div>
         <hr />
@@ -74,33 +74,46 @@
                 }
                 ?>
                 <li class="keluar">
-                    <button onclick="location.href='<?=BASEURL;?>Logout'">
-                        <i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff"></i>
-                        Keluar
-                    </button>
+                    <div class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
+                                <i class="fa-regular fa-user"></i>Profil</button>
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
+                                style="color: black; margin-top: 0;">
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                Keluar
+                            </button>
+                        </div>
+                    </div>
+
                 </li>
             </ul>
         </div>
     </div>
     <div class="content">
         <div class="content-beranda" style="overflow-y: auto;">
-            <h3 id="title">Beranda</h3>
+            <h1 id="title">Beranda</h1>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-            <div style="display: flex; flex-direction:column; gap:10px;">
-            <button  onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
-                <?php
+                <div style="display: flex; flex-direction:column; gap:10px;">
+                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'" target="_blank"
+                        style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
+                            style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
+                    <?php
                 if (isset($_SESSION['login']) && $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2') {
                     echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                     <i class="fa-solid fa-plus" style="color: #ffffff; "></i> Tambah
                 </button>';
             }
             ?>
-            </div>
-                <div class="search" style="width:350px; ">
+                </div>
+                <div class="search" style="width:350px; background-color:transparent;">
                     <form action="<?=BASEURL;?>Beranda/cari" method="post">
                         <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                             <div class="input-group-prepend">
@@ -137,28 +150,29 @@
                         <td class="p-3"><?= $row['kondisi_barang']; ?></td>
                         <td class="p-3"><?= $row['status_peminjaman']; ?></td>
                         <td class="p-3" style="display: flex;">
-                        <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
-                                <!-- Hapus -->
-                                <a href="<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>"
+                            <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
+                            <!-- Hapus -->
+                            <a href="<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>"
                                 class="btn d-flex align-items-center justify-content-center"
                                 onclick="return confirm('yakin');">
-                                    <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
-                                </a>
+                                <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                            </a>
 
-                                <!-- Ubah -->
-                                <a href="<?= BASEURL ?>Beranda/getUbah/<?= $row['id_barang'] ?>"
+                            <!-- Ubah -->
+                            <a href="<?= BASEURL ?>Beranda/getUbah/<?= $row['id_barang'] ?>"
                                 class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
                                 data-toggle="modal" data-target="#modalTambah" data-id="<?= $row['id_barang']; ?>">
-                                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
-                                </a>
-                        <?php endif; ?>
+                                <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
+                            </a>
+                            <?php endif; ?>
 
                             <!-- detail -->
                             <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
                                 class="btn d-flex align-items-center justify-content-center">
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
-                            <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox" name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
+                            <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
+                                name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -317,7 +331,8 @@
                                 </div>
                                 <br>
                                 <div class="modal-footer" style="margin-left: 30%;">
-                                    <div style="display: flex; width:100%; align-items: end; justify-content:end; margin-top:50px;">
+                                    <div
+                                        style="display: flex; width:100%; align-items: end; justify-content:end; margin-top:50px;">
                                         <button type="submit" id="kirim">Kirim</button>
                                     </div>
                                 </div>

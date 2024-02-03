@@ -16,13 +16,26 @@ function tampilCetak() {
   const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
   let id_barang = [];
 
-  checkboxes.forEach(function (checkboxes) {
-    if (checkboxes.checked) {
+  checkboxes.forEach(function (checkbox) {
+    if (checkbox.checked) {
       // Menambahkan id_barang ke dalam array
-      id_barang.push(checkboxes.value);
+      id_barang.push(checkbox.value);
     }
   });
   console.log(id_barang);
+
+  $.ajax({
+    url: "http://localhost/inventori/public/Beranda/cetak",
+    data: {
+      id_barang: id_barang
+    },
+    method: "POST",
+    contentType: "application/json",
+    success: function (data) {
+      console.log(data);
+    },
+  });
+
 }
 
 //jenis barang

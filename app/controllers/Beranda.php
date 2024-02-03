@@ -101,13 +101,13 @@ class Beranda extends Controller {
     public function cetak() {
         $data['judul'] = 'Beranda';
         
-        // Mengambil data cetak dari model
-        $data['dataCetak'] = $this->model('Beranda_model')->cetak();
+    var_dump($_POST);
+        // $data['dataCetak'] = $this->model('Beranda_model')->cetak();
     
-        // Memanggil view cetak
-        $this->view('templates/header', $data);
-        $this->view('Beranda/print', $data);
-        $this->view('templates/footer');
+        // // Memanggil view cetak
+        // $this->view('templates/header', $data);
+        // $this->view('Beranda/print', $data);
+        // $this->view('templates/footer');
     }
     
 }
