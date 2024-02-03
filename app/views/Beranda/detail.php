@@ -108,5 +108,5 @@
         </div>
         
   </div>
-                <a href="<?=BASEURL;?>Beranda" class="btn">Kembali</a>
+                <a href="<?=BASEURL;?>Beranda" class="btn"><i class="fa-solid fa-arrow-left" style="color: #ffffff; margin-right: 10px;"></i>Kembali</a>
 </div>

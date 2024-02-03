@@ -321,8 +321,8 @@ return $this->db->rowCount();
 
     // }
 
-    public function cetak($id_barang) {
-        foreach ($id_barang as $idbarang) {
+    public function cetak($data) {
+        // foreach ($id_barang as $idbarang) {
             $query = "SELECT mst_jenis_barang.sub_barang,
                 mst_merek_barang.nama_merek_barang,      
                 mst_kondisi_barang.kondisi_barang,
@@ -344,10 +344,10 @@ return $this->db->rowCount();
             WHERE id_barang = :id_barang";
     
             $this->db->query($query);
-            $this->db->bind('id_barang', $idbarang);
+            $this->db->bind('id_barang', $data['id_barang']);
             $this->db->execute();
             return $this->db->resultSet();
-        }
+        // }
     
     }
     

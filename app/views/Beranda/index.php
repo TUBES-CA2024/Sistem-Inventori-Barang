@@ -79,7 +79,7 @@
                             aria-haspopup="true" aria-expanded="false" onmouseover="this.style.backgroundColor='#CAD6FF'" onmouseout="this.style.backgroundColor='transparent'">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button" style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
                                 style="color: black; margin-top: 0;">
@@ -140,9 +140,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilBarang'] as $row): ?>
-                        <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
                     <tr>
                         <th scope="row" class="p-3"><?= $i++; ?></th>
                         <td class="p-3"><?= $row['kode_barang']; ?></td>
@@ -173,11 +173,11 @@
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
                             <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
-                                name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
+                                name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
                         </td>
                     </tr>
-                    </form>
                     <?php endforeach; ?>
+                </form>
                 </tbody>
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">

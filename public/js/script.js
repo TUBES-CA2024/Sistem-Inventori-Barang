@@ -25,7 +25,7 @@ function tampilCetak() {
 
   console.log(idbarang);
   $.ajax({
-    url: "http://localhost/inventori/public/Beranda/getCetak",
+    url: "http://localhost/inventori/public/Beranda/cetak",
     data: {
       id_barang: idbarang,
     },
