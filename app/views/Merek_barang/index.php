@@ -70,7 +70,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button" style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
                                 style="color: black; margin-top: 0;">

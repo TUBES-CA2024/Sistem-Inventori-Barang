@@ -89,7 +89,7 @@ public function hapusJenisBarang($id_jenis_barang){
 
     public function cariDataJenisBarang(){
         $keyword = $_POST['keyword'];
-        $query= "SELECT * FROM mst_jenis_barang WHERE sub_barang LIKE :keyword";
+        $query= "SELECT * FROM mst_jenis_barang WHERE sub_barang LIKE :keyword OR grup_sub LIKE :keyword OR kode_sub LIKE :keyword OR kode_jenis_barang LIKE :keyword";
 
         $this->db->query($query);
         $this->db->bind('keyword', "%$keyword%");

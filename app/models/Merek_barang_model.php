@@ -86,7 +86,7 @@ public function hapusMerekBarang($id_merek_barang){
 
     public function cariDataMerekBarang(){
         $keyword = $_POST['keyword'];
-        $query= "SELECT * FROM mst_merek_barang WHERE nama_merek_barang LIKE :keyword";
+        $query= "SELECT * FROM mst_merek_barang WHERE nama_merek_barang LIKE :keyword OR kode_merek_barang LIKE :keyword";
 
         $this->db->query($query);
         $this->db->bind('keyword', "%$keyword%");

@@ -306,6 +306,8 @@ return $this->db->rowCount();
                 OR mst_merek_barang.nama_merek_barang LIKE :keyword
                 OR mst_lokasi_penyimpanan.nama_lokasi_penyimpanan LIKE :keyword
                 OR trx_barang.status_peminjaman LIKE :keyword
+                OR trx_barang.tgl_pengadaan_barang LIKE :keyword
+                OR mst_kondisi_barang.kondisi_barang LIKE :keyword
                 OR trx_barang.kode_barang LIKE :keyword";
         
         $this->db->query($query);

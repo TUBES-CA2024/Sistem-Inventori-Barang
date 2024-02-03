@@ -70,7 +70,7 @@
                             aria-haspopup="true" aria-expanded="false">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button" style="margin-top: 10px; color:black;">
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button" style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
                                 style="color: black; margin-top: 0;">
@@ -128,7 +128,7 @@
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr>
                         <th scope="row" class="p-2"><?= $i++; ?></th>
-                        <td class="p-2"><img src="<?= $row['foto']; ?>" alt="profile"
+                        <td class="p-2"><img src="<?=$row['foto'];?>" alt="profile"
                                 style="height: 100px; width:100px; object-fit:cover;"></td>
                         <td class="p-2"><?= $row['nama_user']; ?></td>
                         <td class="p-2"><?= $row['email']; ?></td>
