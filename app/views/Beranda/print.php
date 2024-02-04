@@ -38,7 +38,7 @@
                     class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
         </div>
     </div>
-    <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+    <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
         <thead class="table-info">
             <tr>
                 <th scope="col" class="p-3">No.</th>

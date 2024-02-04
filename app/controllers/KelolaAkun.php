@@ -24,11 +24,11 @@ class KelolaAkun extends Controller {
     public function hapusUser($id_user){
         if($this->model('User_model')->hapusUser($id_user) > 0){
             Flasher::setFlash('User', 'berhasil', ' dihapus', 'success');
-            header('Location: '. BASEURL . 'Kelola_akun');
+            header('Location: '. BASEURL . 'KelolaAkun');
             exit;
         }else{
             Flasher::setFlash('User', 'gagal', ' dihapus', 'danger');
-            header('Location: '. BASEURL . 'Kelola_akun');
+            header('Location: '. BASEURL . 'KelolaAkun');
             exit;
         }
     }
@@ -40,11 +40,11 @@ class KelolaAkun extends Controller {
     public function ubahUser(){
             if($this->model('User_model')->updateUser($_POST) > 0){
                 Flasher::setFlash('Data User', 'berhasil', ' diUbah', 'success');
-                header('Location: '. BASEURL . 'Kelola_akun');
+                header('Location: '. BASEURL . 'KelolaAkun');
                 exit;
             } else {
             Flasher::setFlash('User_model', 'gagal', ' diUbah', 'danger');
-            header('Location: '. BASEURL . 'Kelola_akun');
+            header('Location: '. BASEURL . 'KelolaAkun');
             exit;
         }
     }
@@ -72,11 +72,11 @@ class KelolaAkun extends Controller {
         $ubahRole =  $this->model('User_model')->ubahRole($_POST);   
        if($ubahRole > 0){
         Flasher::setFlash('Role', 'berhasil', ' diUbah', 'success');
-        header('Location: '. BASEURL . 'Kelola_akun');
+        header('Location: '. BASEURL . 'KelolaAkun');
         exit;
     } else {
     Flasher::setFlash('Role', 'gagal', ' diUbah', 'danger');
-    header('Location: '. BASEURL . 'Kelola_akun');
+    header('Location: '. BASEURL . 'KelolaAkun');
     exit;
 }
     

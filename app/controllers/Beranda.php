@@ -90,7 +90,6 @@ class Beranda extends Controller {
     public function cari(){
         $data['judul'] = ' Beranda';
         
-        // Mengambil data kondisi barang dari model
         $TambahBarangModel = $this->model('Beranda_model');
 
         $data['dataTampilBarang']= $TambahBarangModel->cariDataBarang();
@@ -103,12 +102,19 @@ class Beranda extends Controller {
 
 
     public function cetak() {
-        $data['judul'] = 'Beranda';
+        if(isset($_POST)&& !empty($_POST)){
+            $data['judul'] = 'Beranda';
+    
+            $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
+            $this->view('templates/header', $data);
+            $this->view('Beranda/print', $data);
+            $this->view('templates/footer');
 
-        $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
-        $this->view('templates/header', $data);
-        $this->view('Beranda/print', $data);
-        $this->view('templates/footer');
+        } else{
+            Flasher::setFlash('Data barang', 'gagal', ' diCetak </br> Pilih data barang', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }
     }
     
 }

@@ -3,10 +3,6 @@
 class jenisBarang extends Controller {
     
     public function index() {
-        // if(!isset($_SESSION['login'])){
-        //     header("Location:" . BASEURL . "Login");
-        //     exit;
-        // }
         $data['judul'] = 'Jenis Barang';
         
         $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
