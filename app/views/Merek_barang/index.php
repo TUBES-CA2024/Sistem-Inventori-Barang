@@ -164,7 +164,7 @@
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog" >
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="height: 550px; border-radius:15px">
+                    <div class="modal-content" style="border-radius:15px">
                         <div class="modal-header">
                             <h5 class="modal-title title-merek">Tambah Merek Barang</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
