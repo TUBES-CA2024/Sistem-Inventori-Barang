@@ -12,11 +12,12 @@
 
 ### Fitur MVP Aplikasi
 
-- CRUD Data Barang (Asisten dan Admin)
-- Read Data Barang (User biasa)
-- Ajukan Peminjaman (All User)
-- Validasi Peminjaman (Admin)
-- Kelola Akun (Admin)
+- CRUD data barang (super admin & admin)
+- CRUD jenis barang (super admin & admin)
+- CRUD merek barang (super admin & admin)
+- CRUD Kelola akun (super admin)
+- Read data barang (user biasa)
+- Cetak data barang (All user)
 
 ### Penjelasan Mengenai Arsitektur MVC
 
