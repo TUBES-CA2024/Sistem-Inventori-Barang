@@ -83,7 +83,8 @@
                             <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button"
                                 style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
-                            <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
+                            <button class="dropdown-item"  data-toggle="modal"
+                                    data-target="#konfirmasiKeluar"
                                 style="color: black; margin-top: 0;">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 Keluar
@@ -95,6 +96,29 @@
             </ul>
         </div>
     </div>
+
+  <!-- modal keluar -->
+  <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body"
+                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+                         
+                            <lottie-player src="https://lottie.host/48c004f8-57cd-4acb-a04a-de46793ba7dc/jUGVFL9qIO.json" background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay direction="1" mode="normal"></lottie-player>
+                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda yakin ingin keluar?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" style="width: 100px;"
+                                data-dismiss="modal">Batal</button>
+                            <button type="button" style="width: 100px;" class="btn btn-danger"
+                            onclick="location.href='<?=BASEURL;?>Logout'">Keluar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
     <div class="content">
         <div class="content-beranda" style="overflow-y: auto;">
             <h1 id="title">Beranda</h1>
@@ -362,7 +386,7 @@
                                 src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
                                 background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
                                 direction="1" mode="normal"></lottie-player>
-                            <p style="color:#385161; opacity: 0.5; font-weight: 500; font-size: medium;">Apakah anda yakin ingin menghapus item ini?</p>
+                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda yakin ingin menghapus item ini?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" style="width: 100px;"
