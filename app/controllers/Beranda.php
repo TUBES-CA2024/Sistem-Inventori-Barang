@@ -53,15 +53,19 @@ class Beranda extends Controller {
     }
 
     public function hapus($id_barang){
-        if($this->model('Beranda_model')->hapusBarang($id_barang) > 0){
-            Flasher::setFlash('Barang', 'berhasil', ' dihapus', 'success');
-            header('Location: '. BASEURL . 'Beranda');
-            exit;
-        }else{
+        try{
+            if($this->model('Beranda_model')->hapusBarang($id_barang) > 0){
+                Flasher::setFlash('Barang', 'berhasil', ' dihapus', 'success');
+                header('Location: '. BASEURL . 'Beranda');
+                exit;}
+
+        }catch(PDOException $e){
+
             Flasher::setFlash('Barang', 'gagal', ' dihapus', 'danger');
             header('Location: '. BASEURL . 'Beranda');
             exit;
         }
+        
     }
 
     public function getUbah(){
@@ -69,18 +73,17 @@ class Beranda extends Controller {
     }
 
     public function ubahBarang(){
-        // $this->model('Beranda_model')->ubahBarang($_POST);
-       
-            if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
-                Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
-                header('Location: '. BASEURL . 'Beranda');
-                exit;
-            }
-            else {
-                Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
-                header('Location: '. BASEURL . 'Beranda');
-                exit;
-               }
+   
+           if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
+               Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
+               header('Location: '. BASEURL . 'Beranda');
+               exit;
+           }
+       else{
+           Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
+           header('Location: '. BASEURL . 'Beranda');
+           exit;
+       }
              
     }
 
@@ -98,10 +101,6 @@ class Beranda extends Controller {
         $this->view('templates/footer');
     }
 
-
-    // public function getCetak(){
-    //     echo json_encode( $this->model('Beranda_model')->cetak($_POST['checkbox']));
-    // }
 
     public function cetak() {
         $data['judul'] = 'Beranda';

@@ -35,15 +35,19 @@ class jenisBarang extends Controller {
     }
 
     public function hapus($id_jenis_barang){
-        if($this->model('Tambah_jenis_barang_model')->hapusJenisBarang($id_jenis_barang) > 0){
-            Flasher::setFlash('Jenis Barang', 'berhasil', ' dihapus', 'success');
-            header('Location: '. BASEURL . 'JenisBarang');
-            exit;
-        }else{
+        try{
+            if($this->model('Tambah_jenis_barang_model')->hapusJenisBarang($id_jenis_barang) > 0){
+                Flasher::setFlash('Jenis Barang', 'berhasil', ' dihapus', 'success');
+                header('Location: '. BASEURL . 'JenisBarang');
+                exit;
+            }
+
+        }catch(PDOException $e){
             Flasher::setFlash('Jenis Barang', 'gagal', ' dihapus', 'danger');
             header('Location: '. BASEURL . 'JenisBarang');
             exit;
         }
+        
     }
 
     public function getUbah(){
@@ -51,19 +55,21 @@ class jenisBarang extends Controller {
     }
 
     public function ubahJenisBarang(){
-        $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
-        if(!$cekJenis){
-            if($this->model('Tambah_jenis_barang_model')->ubahJenisBarang($_POST) > 0){
-                Flasher::setFlash('Jenis Barang', 'berhasil', ' diUbah', 'success');
-                header('Location: '. BASEURL . 'JenisBarang');
-                exit;
-            }
-        }
-        else {
+
+            $cekJenis = $this->model('Tambah_jenis_barang_model')->cekDataJenisBarang($_POST);
+            if(!$cekJenis){
+                if($this->model('Tambah_jenis_barang_model')->ubahJenisBarang($_POST) > 0){
+                    Flasher::setFlash('Jenis Barang', 'berhasil', ' diUbah', 'success');
+                    header('Location: '. BASEURL . 'JenisBarang');
+                    exit;
+                }
+            }else{
             Flasher::setFlash('Jenis Barang', 'gagal', ' diUbah </br>Jenis barang sudah ada', 'danger');
             header('Location: '. BASEURL . 'JenisBarang');
             exit;
         }
+
+        
     }
 
     public function cari(){
