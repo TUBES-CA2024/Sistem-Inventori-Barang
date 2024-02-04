@@ -160,3 +160,13 @@ $(function () {
     });
   });
 });
+
+//pilih semua
+const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+const checkboxes = document.querySelectorAll('.checkbox');
+
+selectAllCheckbox.addEventListener('change', function () {
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+    });
+});

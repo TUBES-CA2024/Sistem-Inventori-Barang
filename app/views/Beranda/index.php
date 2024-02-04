@@ -101,7 +101,7 @@
             </div>
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-                <div style="display: flex; flex-direction:column; gap:10px;">
+                <div style="display: flex; gap:10px;">
                     <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();" 
                         style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
                             style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
@@ -125,6 +125,10 @@
                                 style="height: 45px;" autocomplete="off">
                         </div>
                     </form>
+                    <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
+                        <input type="checkbox" id="selectAllCheckbox" name="selectAllCheckbox" style="width: 15px;">
+                        <label for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
+                    </div>
                 </div>
             </div>
             <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
