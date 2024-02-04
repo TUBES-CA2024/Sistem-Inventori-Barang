@@ -102,7 +102,7 @@
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <div style="display: flex; flex-direction:column; gap:10px;">
-                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();" target="_blank"
+                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();" 
                         style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
                             style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                     <?php
@@ -146,8 +146,8 @@
                     <tr>
                         <th scope="row" class="p-3"><?= $i++; ?></th>
                         <td class="p-3"><?= $row['kode_barang']; ?></td>
-                        <td class="p-3"><?= $row['sub_barang']; ?></td>
-                        <td class="p-3"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
+                        <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
                         <td class="p-3"><?= $row['kondisi_barang']; ?></td>
                         <td class="p-3"><?= $row['status_peminjaman']; ?></td>
                         <td class="p-3" style="display: flex;">
@@ -173,7 +173,7 @@
                                 <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                             </a>
                             <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
-                                name="checkbox" value="<?=$row['id_barang']?>" style="width:15px">
+                                name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
                         </td>
                     </tr>
                     <?php endforeach; ?>
@@ -222,7 +222,7 @@
                                             <label for="deskripsi_barang">Deskripsi barang</label>
                                             <br>
                                             <input type="text" name="deskripsi_barang" id="deskripsi_barang"
-                                                style="width: 250px;">
+                                                style="width: 250px; text-transform: capitalize;">
                                         </div>
                                         <br>
                                         <div class="jumlah_barang">
@@ -281,7 +281,7 @@
                                             <label for="deskripsi_detail_lokasi">Detail penyimpanan</label>
                                             <br>
                                             <input type="text" name="deskripsi_detail_lokasi"
-                                                id="deskripsi_detail_lokasi" style="width: 250px;">
+                                                id="deskripsi_detail_lokasi" style="width: 250px; text-transform: capitalize;">
                                         </div>
                                         <br>
                                         <div class="status" style="margin-top: 10px;">

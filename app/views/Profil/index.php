@@ -1,11 +1,10 @@
 <style>
-
-      p{
-        opacity: 0.5; 
+    p {
+        opacity: 0.5;
         font-family: "Poppins", sans-serif;
     }
 
-    .btn{
+    .btn {
         width: 20%;
         margin: 15px;
         background-color: #0C1740;
@@ -13,43 +12,44 @@
         border-radius: 8px;
     }
 
-    .btn:hover{
+    .btn:hover {
         opacity: 0.9;
         color: white;
     }
-    .card-header{
+
+    .card-header {
         background-color: #0C1740;
-        color: white;}
-        .card{
+        color: white;
+    }
+
+    .card {
         box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
         width: 70%;
     }
 
-    .card-body{
+    .card-body {
         display: flex;
         gap: 100px;
-        
+
     }
-
-
 </style>
 
 
 <div class="body p-5" style="height: 95vh;">
-<div class="header mb-3">
-<img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
-</div>
-<div style="display: flex;  gap:50px; width:100%;">
+    <div class="header mb-3">
+        <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
+    </div>
+    <div style="display: flex;  gap:50px; width:100%;">
 
-<div class="justify-content-center d-flex" style="width: 100%;">
-<div class="card">
-  <div class="card-header">
-    Informasi pribadi
-  </div>
-  <div class="card-body p-5">
-  <div class="foto" style=" width:80%; display: flex;  justify-content: center;
+        <div class="justify-content-center d-flex" style="width: 100%;">
+            <div class="card">
+                <div class="card-header">
+                    Informasi pribadi
+                </div>
+                <div class="card-body p-5">
+                    <div class="foto" style=" width:80%; display: flex;  justify-content: center;
 ">
-<?php
+                        <?php
                     $data['id_user'] = $_SESSION['id_user'];
                     $profile_data = $this->model("User_model")->profile($data);
 
@@ -69,35 +69,34 @@
             }
             
             ?>
-</div>
-<div style="width: 100%;">
-    <span>          
-        
-        <h6>Nama Lengkap</h6>
-        <p><?= $profile_data['nama_user']; ?></p>
-    </span>
- <span>
-   <h6>No Hp</h6>
-   <p><?=$profile_data['no_hp_user'];?></p>
-</span>
-<span>
-    <h6>Email</h6>
-    <p><?=$profile_data['email'];?></p>
-</span>
-<span>
-    <h6>Jenis Kelamin</h6>
-    <p><?=$profile_data['jenis_kelamin']?></p>
-</span>
-<span>
-    <h6>Alamat</h6>
-    <p><?=$profile_data['alamat']?></p>
-</span>
-</div>
-</div>
-<a href="<?=BASEURL;?>Beranda" class="btn"><i class="fa-solid fa-arrow-left" style="color: #ffffff; margin-right: 10px;"></i>Kembali</a>
-</div>
-</div>
-</div>
-</div>
+                    </div>
+                    <div style="width: 100%;">
+                        <span>
 
-
+                            <h6>Nama Lengkap</h6>
+                            <p><?= $profile_data['nama_user']; ?></p>
+                        </span>
+                        <span>
+                            <h6>No Hp</h6>
+                            <p><?=$profile_data['no_hp_user'];?></p>
+                        </span>
+                        <span>
+                            <h6>Email</h6>
+                            <p><?=$profile_data['email'];?></p>
+                        </span>
+                        <span>
+                            <h6>Jenis Kelamin</h6>
+                            <p><?=$profile_data['jenis_kelamin']?></p>
+                        </span>
+                        <span>
+                            <h6>Alamat</h6>
+                            <p><?=$profile_data['alamat']?></p>
+                        </span>
+                    </div>
+                </div>
+                <a href="<?=BASEURL;?>Beranda" class="btn"><i class="fa-solid fa-arrow-left"
+                        style="color: #ffffff; margin-right: 10px;"></i>Kembali</a>
+            </div>
+        </div>
+    </div>
+</div>

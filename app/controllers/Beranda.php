@@ -100,14 +100,13 @@ class Beranda extends Controller {
 
 
     // public function getCetak(){
-    //     echo json_encode( $this->model('Beranda_model')->cetak($_POST['id_barang']));
+    //     echo json_encode( $this->model('Beranda_model')->cetak($_POST['checkbox']));
     // }
 
     public function cetak() {
         $data['judul'] = 'Beranda';
 
-      echo json_encode($_POST);
-        // $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
+        $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
         $this->view('templates/header', $data);
         $this->view('Beranda/print', $data);
         $this->view('templates/footer');

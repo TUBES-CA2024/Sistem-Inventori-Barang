@@ -122,7 +122,7 @@
                     <?php foreach ($data['dataTampilJenisBarang'] as $row): ?>
                     <tr>
                         <th scope="row" class="px-2"><?= $i++; ?></th>
-                        <td class="p-2"><?= $row['sub_barang']; ?></td>
+                        <td class="p-2" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                         <td class="p-2"><?= $row['grup_sub']; ?></td>
                         <td class="p-2"><?= $row['kode_sub']; ?></td>
                         <td class="p-2"><?= $row['kode_jenis_barang']; ?></td>
@@ -159,7 +159,7 @@
                                     <div class="sub_barang">
                                         <label for="sub_barang">Sub barang</label>
                                         <br>
-                                        <input type="text" name="sub_barang" id="sub_barang" style="width: 250px;" required>
+                                        <input type="text" name="sub_barang" id="sub_barang" style="width: 250px; text-transform: capitalize;" required>
                                     </div>
                                     <br>
                                     <div class="grup_sub">

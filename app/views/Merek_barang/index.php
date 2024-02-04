@@ -119,7 +119,7 @@
                     <?php foreach ($data['dataTampilMerekBarang'] as $row): ?>
                     <tr>
                         <th scope="row" class="p-2"><?= $i++; ?></th>
-                        <td class="p-2"><?= $row['nama_merek_barang']; ?></td>
+                        <td class="p-2" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
                         <td class="p-2"><?= $row['kode_merek_barang']; ?></td>
                         <td class="p-2" style="display: flex;">
                             <!-- hapus -->
@@ -154,7 +154,7 @@
                                     <div class="nama_merek_barang">
                                         <label for="nama_merek_barang">Merek barang</label>
                                         <br>
-                                        <input type="text" name="nama_merek_barang" id="nama_merek_barang" style="width: 250px;" required>
+                                        <input type="text" name="nama_merek_barang" id="nama_merek_barang" style="width: 250px; text-transform: capitalize;" required>
                                     </div>
                                     <br>
                                     <div class="kode_merek_barang">

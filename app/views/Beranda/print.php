@@ -5,6 +5,8 @@
         img {
             display: none;
         }
+
+      
     }
 
 
@@ -55,23 +57,23 @@
             </tr>
         </thead>
         <tbody>
+            
     <?php $i = 1; ?>
     <?php foreach ($data['dataCetak'] as $row): ?>
-        
             <tr>
                 <th scope="row" class="p-3"><?= $i++; ?></th>
-                <td class="p-3"><?= $row['kode_barang']; ?></td>
-                <td class="p-3"><?= $row['sub_barang']; ?></td>
-                <td class="p-3"><?= $row['nama_merek_barang']; ?></td>
-                <td class="p-3"><?= $row['deskripsi_barang']; ?></td>
-                <td class="p-3"><?= $row['jumlah_barang']; ?></td>
-                <td class="p-3"><?= $row['nama_satuan']; ?></td>
-                <td class="p-3"><?= $row['tgl_pengadaan_barang']; ?></td>
-                <td class="p-3"><?= $row['nama_lokasi_penyimpanan']; ?></td>
-                <td class="p-3"><?= $row['deskripsi_detail_lokasi']; ?></td>
-                <td class="p-3"><?= $row['keterangan_label']; ?></td>
-                <td class="p-3"><?= $row['kondisi_barang']; ?></td>
-                <td class="p-3"><?= $row['status_peminjaman']; ?></td>
+                <td class="p-3"><?= $row[0]['kode_barang']; ?></td>
+                <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['sub_barang']; ?></td>
+                <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['nama_merek_barang']; ?></td>
+                <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['deskripsi_barang']; ?></td>
+                <td class="p-3"><?= $row[0]['jumlah_barang']; ?></td>
+                <td class="p-3"><?= $row[0]['nama_satuan']; ?></td>
+                <td class="p-3"><?= $row[0]['tgl_pengadaan_barang']; ?></td>
+                <td class="p-3"><?= $row[0]['nama_lokasi_penyimpanan']; ?></td>
+                <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['deskripsi_detail_lokasi']; ?></td>
+                <td class="p-3"><?= $row[0]['keterangan_label']; ?></td>
+                <td class="p-3"><?= $row[0]['kondisi_barang']; ?></td>
+                <td class="p-3"><?= $row[0]['status_peminjaman']; ?></td>
             </tr>
         
     <?php endforeach; ?>

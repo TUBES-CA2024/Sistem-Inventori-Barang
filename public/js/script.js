@@ -1,5 +1,5 @@
 function uppercaseInput() {
-  var inputElement = document.getElementById("kode_sub");
+  let inputElement = document.getElementById("kode_sub");
   inputElement.value = inputElement.value.toUpperCase();
 }
 

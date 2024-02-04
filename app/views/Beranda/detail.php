@@ -61,15 +61,15 @@
                         </span>
                         <span>
                           <h6>Jenis barang</h6>
-                          <p><?=$data['dataTampilBarang']['sub_barang'];?></p>
+                          <p style="text-transform: capitalize;"><?=$data['dataTampilBarang']['sub_barang'];?></p>
                         </span>
                         <span>
                           <h6>Merek barang</h6>
-                          <p><?=$data['dataTampilBarang']['nama_merek_barang'];?></p>
+                          <p style="text-transform: capitalize;"><?=$data['dataTampilBarang']['nama_merek_barang'];?></p>
                         </span>
                         <span>
                           <h6>Deskripsi Barang</h6>
-                          <p><?=$data['dataTampilBarang']['deskripsi_barang'];?></p>
+                          <p style="text-transform: capitalize;"><?=$data['dataTampilBarang']['deskripsi_barang'];?></p>
                         </span>
                         <span>
                           <h6>Jumlah barang</h6>
@@ -91,7 +91,7 @@
                         </span>
                         <span>
                           <h6>Detail lokasi penyimpanan</h6>
-                          <p><?=$data['dataTampilBarang']['deskripsi_detail_lokasi'];?></p>
+                          <p style="text-transform: capitalize;"><?=$data['dataTampilBarang']['deskripsi_detail_lokasi'];?></p>
                         </span>
                         <span>
                           <h6>Kondisi barang</h6>
@@ -103,7 +103,7 @@
                         </span>
                         <span>
                           <h6>Keterangan label</h6>
-                          <p><?=$data['dataTampilBarang']    ['keterangan_label'];?></p>
+                          <p><?=$data['dataTampilBarang']['keterangan_label'];?></p>
                         </span>
         </div>
         
