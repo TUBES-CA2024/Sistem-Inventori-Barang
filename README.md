@@ -35,10 +35,13 @@ view merupakan tempat UI nya yang dimana semua tampilan halaman disimpan disini.
 
 ### LINK UI/UX [Click here](https://www.figma.com/file/oZXus3WPSv3mKgu0U4HBsO/TUBES?type=design&node-id=0%3A1&mode=design&t=lpzNRXvjw8ZHeySR-1)
 
-
 ### Beranda
+
+Tampil data barang
 ![Tampil data barang](image.png)
 
+Tambah barang
+![tambah barang](image-1.png)
 
 > [!CAUTION]
 > PHP VERSION 8.3.2

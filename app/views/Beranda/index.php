@@ -75,11 +75,13 @@
                 ?>
                 <li class="keluar" style="margin-top: 40px;">
                     <div class="btn-group dropright">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" onmouseover="this.style.backgroundColor='#CAD6FF'" onmouseout="this.style.backgroundColor='transparent'">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" onmouseover="this.style.backgroundColor='#CAD6FF'"
+                            onmouseout="this.style.backgroundColor='transparent'">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button" style="margin-top: 10px; color:black;">
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button"
+                                style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" onclick="location.href='<?=BASEURL;?>Logout'"
                                 style="color: black; margin-top: 0;">
@@ -102,7 +104,7 @@
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <div style="display: flex; gap:10px;">
-                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();" 
+                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();"
                         style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
                             style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
                     <?php
@@ -131,7 +133,8 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <table class="table table-hover table-sm"
+                style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="p-3">No.</th>
@@ -145,43 +148,42 @@
                 </thead>
                 <tbody>
                     <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
-                    <?php $i = 1; ?>
-                    <?php foreach ($data['dataTampilBarang'] as $row): ?>
-                    <tr>
-                        <th scope="row" class="p-3"><?= $i++; ?></th>
-                        <td class="p-3"><?= $row['kode_barang']; ?></td>
-                        <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
-                        <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
-                        <td class="p-3"><?= $row['kondisi_barang']; ?></td>
-                        <td class="p-3"><?= $row['status_peminjaman']; ?></td>
-                        <td class="p-3" style="display: flex;">
-                            <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
-                            <!-- Hapus -->
-                            <a href="<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>"
-                                class="btn d-flex align-items-center justify-content-center"
-                                onclick="return confirm('yakin');">
-                                <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
-                            </a>
+                        <?php $i = 1; ?>
+                        <?php foreach ($data['dataTampilBarang'] as $row): ?>
+                        <tr>
+                            <th scope="row" class="p-3"><?= $i++; ?></th>
+                            <td class="p-3"><?= $row['kode_barang']; ?></td>
+                            <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
+                            <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
+                            <td class="p-3"><?= $row['kondisi_barang']; ?></td>
+                            <td class="p-3"><?= $row['status_peminjaman']; ?></td>
+                            <td class="p-3" style="display: flex;">
+                                <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
+                                <!-- Hapus -->
+                                <a class="btn d-flex align-items-center justify-content-center" data-toggle="modal"
+                                    data-target="#konfirmasiHapus">
+                                    <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                                </a>
 
-                            <!-- Ubah -->
-                            <a href="<?= BASEURL ?>Beranda/getUbah/<?= $row['id_barang'] ?>"
-                                class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
-                                data-toggle="modal" data-target="#modalTambah" data-id="<?= $row['id_barang']; ?>">
-                                <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
-                            </a>
-                            <?php endif; ?>
+                                <!-- Ubah -->
+                                <a href="<?= BASEURL ?>Beranda/getUbah/<?= $row['id_barang'] ?>"
+                                    class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
+                                    data-toggle="modal" data-target="#modalTambah" data-id="<?= $row['id_barang']; ?>">
+                                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
+                                </a>
+                                <?php endif; ?>
 
-                            <!-- detail -->
-                            <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
-                                class="btn d-flex align-items-center justify-content-center">
-                                <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
-                            </a>
-                            <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
-                                name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </form>
+                                <!-- detail -->
+                                <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>"
+                                    class="btn d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
+                                </a>
+                                <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
+                                    name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </form>
                 </tbody>
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
@@ -285,7 +287,8 @@
                                             <label for="deskripsi_detail_lokasi">Detail penyimpanan</label>
                                             <br>
                                             <input type="text" name="deskripsi_detail_lokasi"
-                                                id="deskripsi_detail_lokasi" style="width: 250px; text-transform: capitalize;">
+                                                id="deskripsi_detail_lokasi"
+                                                style="width: 250px; text-transform: capitalize;">
                                         </div>
                                         <br>
                                         <div class="status" style="margin-top: 10px;">
@@ -347,4 +350,30 @@
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="konfirmasiHapus" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body"
+                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+                         
+                            <lottie-player
+                                src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
+                                background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
+                                direction="1" mode="normal"></lottie-player>
+                            <p style="color:#385161; opacity: 0.5; font-weight: 500; font-size: medium;">Apakah anda yakin ingin menghapus item ini?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" style="width: 100px;"
+                                data-dismiss="modal">Batal</button>
+                            <button type="button" style="width: 100px;" class="btn btn-danger"
+                                onclick="location.href='<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>'">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
