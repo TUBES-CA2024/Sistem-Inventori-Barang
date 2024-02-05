@@ -90,7 +90,7 @@
     <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="border-radius: 15px;">
                         <div class="modal-body"
                             style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
                          
@@ -203,7 +203,7 @@
     <div class="modal fade" id="konfirmasiHapus" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="border-radius: 15px;">
                         <div class="modal-body"
                             style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
                          

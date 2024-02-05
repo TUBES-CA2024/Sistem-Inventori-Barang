@@ -91,7 +91,7 @@
  <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="border-radius: 15px;">
                         <div class="modal-body"
                             style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
                          
@@ -224,10 +224,9 @@
     <div class="modal fade" id="konfirmasiHapus" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                    <div class="modal-content" style="border-radius: 15px;">
                         <div class="modal-body"
                             style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-                         
                             <lottie-player
                                 src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
                                 background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
