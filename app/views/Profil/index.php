@@ -55,7 +55,7 @@
 
                     if (isset($profile_data['foto'])) {
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 200px; width: 200px; object-fit:cover;">';
+                        echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 200px; width: 200px; object-fit:cover;">';
                     } else {
                         echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 200px; height: 200px; border-radius:50%;">';
                         }
@@ -77,12 +77,12 @@
                             <p><?= $profile_data['nama_user']; ?></p>
                         </span>
                         <span>
-                            <h6>No Hp</h6>
-                            <p><?=$profile_data['no_hp_user'];?></p>
-                        </span>
-                        <span>
                             <h6>Email</h6>
                             <p><?=$profile_data['email'];?></p>
+                        </span>
+                        <span>
+                            <h6>No Hp</h6>
+                            <p><?=$profile_data['no_hp_user'];?></p>
                         </span>
                         <span>
                             <h6>Jenis Kelamin</h6>

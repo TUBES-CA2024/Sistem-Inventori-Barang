@@ -36,7 +36,7 @@ class User_model
                 
             
             // Pindahkan file foto ke folder yang ditentukan
-            $uploadDirectory = '../public/img/foto-profile/';
+            $uploadDirectory = BASEURL . '/img/foto-profile/';
             $uploadedFile = $_FILES['foto']['tmp_name'];
             $newFileName = $uploadDirectory . $_FILES['foto']['name'];
 

@@ -17,7 +17,7 @@
 
                     if (isset($profile_data['foto'])) {
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
+                        echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
                     } else {
                         echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
                         }
@@ -379,7 +379,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="border-radius: 15px;">
+    <div class="modal-content" >
       <div class="modal-header" >
         <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail barang</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -389,7 +389,7 @@
       <?php $dataDetail = $data['dataTampilBarang'][0]; ?>
       <div class="modal-body" style="display: flex; gap:50px; font-weight: 500;">
       <style>
-        p{
+       span p{
 
             opacity: 0.5;
         }

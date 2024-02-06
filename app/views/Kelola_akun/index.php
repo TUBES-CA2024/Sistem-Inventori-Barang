@@ -17,7 +17,7 @@
 
                     if (isset($profile_data['foto'])) {
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit: cover;">';
+                        echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit: cover;">';
                     } else {
                         echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
                         }
@@ -179,7 +179,7 @@
                 </tbody>
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" style="height: max-content; border-radius:15px">
                         <div class="modal-header">
                             <h5 class="modal-title">Ubah Role User</h5>
