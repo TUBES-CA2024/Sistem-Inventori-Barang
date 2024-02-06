@@ -36,7 +36,7 @@ class User_model
                 
             
             // Pindahkan file foto ke folder yang ditentukan
-            $uploadDirectory = BASEURL . '/img/foto-profile/';
+            $uploadDirectory ='../public/img/foto-profile/';
             $uploadedFile = $_FILES['foto']['tmp_name'];
             $newFileName = $uploadDirectory . $_FILES['foto']['name'];
 
@@ -171,27 +171,6 @@ class User_model
         $this->db->bind('id_user', $data['id_user']);
         return $this->db->single();
 
-    }
-
-    public function totalSuperAdmin(){
-        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 3;";
-
-        $this->db->query($query);
-        return $this->db->single();
-    }
-
-    public function totalAdmin(){
-        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 2;";
-
-        $this->db->query($query);
-        return $this->db->single();
-    }
-
-    public function totalUser(){
-        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 1;";
-
-        $this->db->query($query);
-        return $this->db->single();
     }
 
 

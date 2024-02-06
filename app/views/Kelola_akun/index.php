@@ -4,15 +4,7 @@
           exit;
         }    
 ?>
-<style>
-.total-user .super-admin:hover,
-.total-user .admin:hover,
-.total-user .user:hover {
-  cursor: pointer;
-  background-color: #0c1740;
-  color: white;
-}
-</style>
+
 <div class="body-beranda" style="overflow: hidden;">
     <div class="side-bar">
         <div class="profil">
@@ -26,7 +18,7 @@
 
                     if (isset($profile_data['foto'])) {
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit: cover;">';
+                        echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit: cover;">';
                     } else {
                         echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
                         }
@@ -128,32 +120,6 @@
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
-            <div class="total-user"
-                style="display: flex; width:80%; justify-content: space-between; padding-inline: 20px;">
-                <div class="super-admin"
-                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
-                    <p style="font-size: 16px; font-weight: 400;">Total super admin</p>
-                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalSuperAdmin']['total'];?></h3>
-                    <div style="width:100%; display: flex; justify-content: end;">
-                        <i class="fa-solid fa-crown" style="font-size: 30px;"></i>
-                    </div>
-                </div>
-                <div class="admin"
-                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
-                    <p style="font-size: 16px; font-weight: 400;">Total admin</p>
-                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalAdmin']['total'];?></h3>
-                    <div style="width:100%; display: flex; justify-content: end;">
-                        <i class="fa-solid fa-star" style="font-size: 30px;"></i> </div>
-                </div>
-                <div class="user"
-                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
-                    <p style="font-size: 16px; font-weight: 400;">Total user</p>
-                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalUser']['total'];?></h3>
-                    <div style="width:100%; display: flex; justify-content: end;">
-                        <i class="fa-solid fa-user" style="font-size: 30px;"></i> </div>
-                </div>
-            </div>
-            <br>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <button onclick="location.href='<?=BASEURL;?>Register'"
                     class="btn d-flex align-items-center justify-content-center"
@@ -195,7 +161,7 @@
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr>
                         <th scope="row" class="p-2"><?= $i++; ?></th>
-                        <td class="p-2"><img src="<?=$row['foto'];?>" alt="profile"
+                        <td class="p-2"><img src="<?=BASEURL . $row['foto'];?>" alt="profile"
                                 style="height: 100px; width:100px; object-fit:cover;"></td>
                         <td class="p-2"><?= $row['nama_user']; ?></td>
                         <td class="p-2"><?= $row['email']; ?></td>

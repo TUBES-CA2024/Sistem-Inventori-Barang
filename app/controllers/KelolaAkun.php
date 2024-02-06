@@ -11,9 +11,6 @@ class KelolaAkun extends Controller {
         
         // Mengambil data kondisi barang dari model
         $userModel = $this->model('User_model');
-        $data['totalSuperAdmin']= $userModel->totalSuperAdmin();
-        $data['totalAdmin']= $userModel->totalAdmin();
-        $data['totalUser']= $userModel->totalUser();
         $data['dataTampilUser']= $userModel->tampilUser();
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
@@ -55,7 +52,6 @@ class KelolaAkun extends Controller {
         
         // Mengambil data kondisi barang dari model
         $tampilUser = $this->model('User_model');
-
         $data['dataTampilUser']= $tampilUser->cariUser();
 
         // Memanggil view transaksi barang
