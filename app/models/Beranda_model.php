@@ -59,15 +59,17 @@ class Beranda_model{
     $kodeMerekBarang = $this->db->single();
     $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
 
-    
+    $uploadDirectory ='../public/img/foto-barang/';
+    $uploadedFile = $_FILES['foto_barang']['tmp_name'];
+    $fotoBarang = $uploadDirectory . $_FILES['foto_barang']['name'];
+
+    move_uploaded_file($uploadedFile, $fotoBarang);
 
     
-    $queryBarang = "INSERT INTO trx_barang (id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang) VALUES (:id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang)";
+    $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang)";
     
-
     $this->db->query($queryBarang);
-
-    $this->db->query($queryBarang);
+    $this->db->bind('foto_barang', $fotoBarang);
     $this->db->bind('id_jenis_barang', $data['sub_barang']);
     $this->db->bind('id_merek_barang', $data['nama_merek_barang']);
     $this->db->bind('id_kondisi_barang', $data['kondisi_barang']);
@@ -181,16 +183,21 @@ public function hapusBarang($id_barang){
         $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
 
         
+        $uploadDirectory ='../public/img/foto-barang/';
+        $uploadedFile = $_FILES['foto_barang']['tmp_name'];
+        $fotoBarang = $uploadDirectory . $_FILES['foto_barang']['name'];
     
+        move_uploaded_file($uploadedFile, $fotoBarang);
         
         
         $queryBarang = "UPDATE trx_barang SET
+        foto_barang = :foto_barang,
         id_jenis_barang = :id_jenis_barang, id_merek_barang = :id_merek_barang, id_kondisi_barang = :id_kondisi_barang, jumlah_barang = :jumlah_barang, id_satuan = :id_satuan, deskripsi_barang = :deskripsi_barang, tgl_pengadaan_barang = :tgl_pengadaan_barang, keterangan_label = :keterangan_label, id_lokasi_penyimpanan = :id_lokasi_penyimpanan, deskripsi_detail_lokasi = :deskripsi_detail_lokasi, id_status = :id_status, status_peminjaman = :status_peminjaman, 
         kode_barang = :kode_barang WHERE id_barang = :id_barang";
 
 
         $this->db->query($queryBarang);
-
+        $this->db->bind('foto_barang', $fotoBarang);
         $this->db->bind('id_jenis_barang', $data['sub_barang']);
         $this->db->bind('id_merek_barang', $data['nama_merek_barang']);
         $this->db->bind('id_kondisi_barang', $data['kondisi_barang']);

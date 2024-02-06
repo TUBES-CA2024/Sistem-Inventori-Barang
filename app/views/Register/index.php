@@ -19,8 +19,7 @@
         <div class="header">
           <h2>Daftar</h2>
         </div>
-        <div class="form">
-           
+        <div class="form">     
             <div class="nama">
                 <label for="nama_user">Nama Lengkap</label>
                 <input
