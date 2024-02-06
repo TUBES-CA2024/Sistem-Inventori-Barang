@@ -4,6 +4,15 @@
           exit;
         }    
 ?>
+<style>
+.total-user .super-admin:hover,
+.total-user .admin:hover,
+.total-user .user:hover {
+  cursor: pointer;
+  background-color: #0c1740;
+  color: white;
+}
+</style>
 <div class="body-beranda" style="overflow: hidden;">
     <div class="side-bar">
         <div class="profil">
@@ -11,7 +20,7 @@
                 <img src="<?=BASEURL;?>img/logo bg hitam.svg" alt="logo" />
             </div>
             <div class="data-profil">
-            <?php
+                <?php
                     $data['id_user'] = $_SESSION['id_user'];
                     $profile_data = $this->model("User_model")->profile($data);
 
@@ -65,15 +74,17 @@
                 }
                 ?>
                 <li class="keluar" style="margin-top: 40px;">
-                <div class="btn-group dropright">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" onmouseover="this.style.backgroundColor='#CAD6FF'" onmouseout="this.style.backgroundColor='transparent'"
-                            aria-haspopup="true" aria-expanded="false">
+                    <div class="btn-group dropright">
+                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            onmouseover="this.style.backgroundColor='#CAD6FF'"
+                            onmouseout="this.style.backgroundColor='transparent'" aria-haspopup="true"
+                            aria-expanded="false">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button" style="margin-top: 10px; color:black;">
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button"
+                                style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
-                            <button class="dropdown-item" data-toggle="modal"
-                                    data-target="#konfirmasiKeluar"
+                            <button class="dropdown-item" data-toggle="modal" data-target="#konfirmasiKeluar"
                                 style="color: black; margin-top: 0;">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 Keluar
@@ -87,25 +98,28 @@
     </div>
 
     <!-- modal keluar -->
-    <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="border-radius: 15px;">
-                        <div class="modal-body"
-                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-                         
-                            <lottie-player src="https://lottie.host/48c004f8-57cd-4acb-a04a-de46793ba7dc/jUGVFL9qIO.json" background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay direction="1" mode="normal"></lottie-player>
-                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda yakin ingin keluar?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light" style="width: 100px;"
-                                data-dismiss="modal">Batal</button>
-                            <button type="button" style="width: 100px;" class="btn btn-danger"
-                            onclick="location.href='<?=BASEURL;?>Logout'">Keluar</button>
-                        </div>
-                    </div>
+    <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-body"
+                    style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+
+                    <lottie-player src="https://lottie.host/48c004f8-57cd-4acb-a04a-de46793ba7dc/jUGVFL9qIO.json"
+                        background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay direction="1"
+                        mode="normal"></lottie-player>
+                    <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda yakin ingin
+                        keluar?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" style="width: 100px;"
+                        data-dismiss="modal">Batal</button>
+                    <button type="button" style="width: 100px;" class="btn btn-danger"
+                        onclick="location.href='<?=BASEURL;?>Logout'">Keluar</button>
                 </div>
             </div>
+        </div>
+    </div>
 
 
     <div class="content">
@@ -114,9 +128,36 @@
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
             </div>
+            <div class="total-user"
+                style="display: flex; width:80%; justify-content: space-between; padding-inline: 20px;">
+                <div class="super-admin"
+                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
+                    <p style="font-size: 16px; font-weight: 400;">Total super admin</p>
+                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalSuperAdmin']['total'];?></h3>
+                    <div style="width:100%; display: flex; justify-content: end;">
+                        <i class="fa-solid fa-crown" style="font-size: 30px;"></i>
+                    </div>
+                </div>
+                <div class="admin"
+                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
+                    <p style="font-size: 16px; font-weight: 400;">Total admin</p>
+                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalAdmin']['total'];?></h3>
+                    <div style="width:100%; display: flex; justify-content: end;">
+                        <i class="fa-solid fa-star" style="font-size: 30px;"></i> </div>
+                </div>
+                <div class="user"
+                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:15px; width:240px; height:150px; padding:15px;">
+                    <p style="font-size: 16px; font-weight: 400;">Total user</p>
+                    <h3 style="font-size: 40px; font-weight: 500;"><?= $data['totalUser']['total'];?></h3>
+                    <div style="width:100%; display: flex; justify-content: end;">
+                        <i class="fa-solid fa-user" style="font-size: 30px;"></i> </div>
+                </div>
+            </div>
+            <br>
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <button onclick="location.href='<?=BASEURL;?>Register'"
-                    class="btn d-flex align-items-center justify-content-center" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
+                    class="btn d-flex align-items-center justify-content-center"
+                    style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                     <i class="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
                 </button>
                 <div class="search" style="width:350px">
@@ -133,7 +174,9 @@
                     </form>
                 </div>
             </div>
-            <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
+            
+            <table class="table table-hover table-sm"
+                style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="text-nowrap p-2">No.</th>
@@ -162,20 +205,19 @@
                         <td class="p-2"><?= $row['role'];?></td>
                         <td class="p-2" style="display: flex;">
                             <!-- hapus -->
-                            <a 
-                                class="btn d-flex align-items-center justify-content-center"
-                                data-toggle="modal" data-target="#konfirmasiHapus">
+                            <a class="btn d-flex align-items-center justify-content-center" data-toggle="modal"
+                                data-target="#konfirmasiHapus">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
 
                             <!-- ubah -->
                             <a href="<?=BASEURL;?>KelolaAkun/ubahRole/<?= $row['id_user']; ?>"
-                                class="btn d-flex align-items-center justify-content-center btnUbahRole" 
-                                data-toggle="modal" data-user="<?=$row['id_user'];?>" data-target="#modalTambah" >
+                                class="btn d-flex align-items-center justify-content-center btnUbahRole"
+                                data-toggle="modal" data-user="<?=$row['id_user'];?>" data-target="#modalTambah">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
                     </tr>
-                    <?php endforeach; ?>  
+                    <?php endforeach; ?>
                 </tbody>
             </table>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
@@ -193,7 +235,7 @@
                                 <br>
                                 <div class="ubah-role">
                                     <div class="User d-flex align-items-center">
-                                        
+
                                         <input type="radio" name="id_role" id="userRole" value="1" required />
                                         <label for="userRole" class="mt-2 ml-2">User</label>
                                     </div>
@@ -202,8 +244,7 @@
                                         <label for="adminRole" class="mt-2 ml-2">Admin</label>
                                     </div>
                                     <div class="Super-Admin d-flex align-items-center">
-                                        <input type="radio" name="id_role" id="superAdminRole" value="3"
-                                            required />
+                                        <input type="radio" name="id_role" id="superAdminRole" value="3" required />
                                         <label for="superAdminRole" class="mt-2 ml-2">Super Admin</label>
                                     </div>
                                 </div>
@@ -227,12 +268,13 @@
                     <div class="modal-content" style="border-radius: 15px;">
                         <div class="modal-body"
                             style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-                         
+
                             <lottie-player
                                 src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
                                 background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
                                 direction="1" mode="normal"></lottie-player>
-                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda yakin ingin menghapus item ini?</p>
+                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda
+                                yakin ingin menghapus item ini?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" style="width: 100px;"

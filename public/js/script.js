@@ -162,11 +162,19 @@ $(function () {
 });
 
 //pilih semua
-const selectAllCheckbox = document.getElementById('selectAllCheckbox');
-const checkboxes = document.querySelectorAll('.checkbox');
+const selectAllCheckbox = document.getElementById("selectAllCheckbox");
+const checkboxes = document.querySelectorAll(".checkbox");
 
-selectAllCheckbox.addEventListener('change', function () {
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = selectAllCheckbox.checked;
-    });
+selectAllCheckbox.addEventListener("change", function () {
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAllCheckbox.checked;
+  });
 });
+
+//setTime flasher
+// setTimeout(function () {
+//   let flashAlert = document.getElementById("flasher");
+//   if (flashAlert) {
+//     flashAlert.style.display = "none";
+//   }
+// }, 1500);

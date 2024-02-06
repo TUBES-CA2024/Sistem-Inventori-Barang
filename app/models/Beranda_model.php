@@ -164,29 +164,22 @@ public function hapusBarang($id_barang){
 
     public function ubahBarang($data)
     {
-        try {
         
-            $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE  trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang ;";
+        $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE  trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang ;";
 
         $this->db->query($joinKodeJenisBarang);
 
         $kodeJenisBarang = $this->db->single();
         $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
-        } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
-        
-        
-        try {
-            $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang;";
+   
+  
+         $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang;";
 
         $this->db->query($joinKodeMerekBarang);
 
         $kodeMerekBarang = $this->db->single();
         $kodeMerekBarangString = $kodeMerekBarang['kode_merek_barang'];
-        } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
+
         
     
         

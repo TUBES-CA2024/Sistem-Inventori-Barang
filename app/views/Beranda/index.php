@@ -176,7 +176,7 @@
                         <?php foreach ($data['dataTampilBarang'] as $row): ?>
                         <tr>
                             <th scope="row" class="p-3"><?= $i++; ?></th>
-                            <td class="p-3"><?= $row['kode_barang']; ?></td>
+                            <td class="p-3"><?= $row['kode_barang'];?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
                             <td class="p-3"><?= $row['kondisi_barang']; ?></td>

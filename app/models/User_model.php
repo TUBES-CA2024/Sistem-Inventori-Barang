@@ -172,6 +172,29 @@ class User_model
         return $this->db->single();
 
     }
+
+    public function totalSuperAdmin(){
+        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 3;";
+
+        $this->db->query($query);
+        return $this->db->single();
+    }
+
+    public function totalAdmin(){
+        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 2;";
+
+        $this->db->query($query);
+        return $this->db->single();
+    }
+
+    public function totalUser(){
+        $query = "SELECT COUNT(*) AS total FROM trx_user WHERE id_role = 1;";
+
+        $this->db->query($query);
+        return $this->db->single();
+    }
+
+
     
 
 
