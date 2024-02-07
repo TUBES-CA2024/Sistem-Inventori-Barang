@@ -65,8 +65,8 @@ class Beranda_model{
 
     move_uploaded_file($uploadedFile, $fotoBarang);
 
-    
-    $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang)";
+  
+    $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang, qr_code) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang, :qr_code)";
     
     $this->db->query($queryBarang);
     $this->db->bind('foto_barang', $fotoBarang);
@@ -118,9 +118,20 @@ $romanMonth = angkaRomawi($month);
 
 $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
 
-    $this->db->bind('kode_barang', $kodeBarang);
+$this->db->bind('kode_barang', $kodeBarang);
+
+    $qrCode = "Foto \n" .$fotoBarang.  "\nKode barang \n".$kodeBarang. "\nSub barang \n" . $data['sub_barang']. "\nMerek barang\n" . $data['nama_merek_barang']. "\nKondisi barang\n". $data['kondisi_barang']. "\nJumlah barang\n". $data['jumlah_barang']. "\nSatuan\n". $data['satuan']. "\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\nKeterangan label\n" . $data['keterangan_label']. "\nLokasi penyimpanan\n" . $data['lokasi_penyimpanan'] . "\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\nStatus\n" . $data['status'] . "\nStatus peminjaman\n" . $data['status_pinjam'];
+   QRcode::png("$qrCode", "code1.png","M", 2,2 );
+
+   $uploadDirectory ='../public/img/qr-code/';
+$uploadedFile = "code1.png"; // Sesuaikan dengan nama file QR code 
+$fotoQr = $uploadDirectory . $uploadedFile;
+move_uploaded_file($uploadedFile, $fotoQr);
+    
+    move_uploaded_file($uploadedFile, $fotoQr);
+    $this->db->bind('qr_code', $fotoQr);
     $this->db->execute();
-   
+
 
     return $this->db->rowCount();
 }
@@ -188,6 +199,7 @@ public function hapusBarang($id_barang){
         $fotoBarang = $uploadDirectory . $_FILES['foto_barang']['name'];
     
         move_uploaded_file($uploadedFile, $fotoBarang);
+        
         
         
         $queryBarang = "UPDATE trx_barang SET

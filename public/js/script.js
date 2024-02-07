@@ -171,10 +171,3 @@ selectAllCheckbox.addEventListener("change", function () {
   });
 });
 
-//setTime flasher
-// setTimeout(function () {
-//   let flashAlert = document.getElementById("flasher");
-//   if (flashAlert) {
-//     flashAlert.style.display = "none";
-//   }
-// }, 1500);

@@ -140,7 +140,7 @@
                     </form>
                 </div>
             </div>
-            
+
             <table class="table table-hover table-sm"
                 style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
                 <thead class="table-info">
@@ -172,7 +172,7 @@
                         <td class="p-2" style="display: flex;">
                             <!-- hapus -->
                             <a class="btn d-flex align-items-center justify-content-center" data-toggle="modal"
-                                data-target="#konfirmasiHapus">
+                                data-target="#konfirmasiHapus<?=$row['id_user']?>">
                                 <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                             </a>
 
@@ -182,6 +182,32 @@
                                 data-toggle="modal" data-user="<?=$row['id_user'];?>" data-target="#modalTambah">
                                 <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                             </a>
+                            <div class="modal fade" id="konfirmasiHapus<?=$row['id_user']?>" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content" style="border-radius: 15px;">
+                                        <div class="modal-body"
+                                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+
+                                            <lottie-player
+                                                src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
+                                                background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop
+                                                autoplay direction="1" mode="normal"></lottie-player>
+                                            <p
+                                                style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">
+                                                Apakah anda
+                                                yakin ingin menghapus item ini?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light" style="width: 100px;"
+                                                data-dismiss="modal">Batal</button>
+                                            <button type="button" style="width: 100px;" class="btn btn-danger"
+                                                onclick="location.href='<?=BASEURL;?>KelolaAkun/hapusUser/<?= $row['id_user']; ?>'">Hapus</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -228,28 +254,6 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="konfirmasiHapus" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="border-radius: 15px;">
-                        <div class="modal-body"
-                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
 
-                            <lottie-player
-                                src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
-                                background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
-                                direction="1" mode="normal"></lottie-player>
-                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda
-                                yakin ingin menghapus item ini?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light" style="width: 100px;"
-                                data-dismiss="modal">Batal</button>
-                            <button type="button" style="width: 100px;" class="btn btn-danger"
-                                onclick="location.href='<?=BASEURL;?>KelolaAkun/hapusUser/<?= $row['id_user']; ?>'">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>

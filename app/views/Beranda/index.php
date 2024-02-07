@@ -179,7 +179,8 @@
                         <?php foreach ($data['dataTampilBarang'] as $row): ?>
                         <tr>
                             <th scope="row" class="p-3"><?= $i++; ?></th>
-                            <td class="p-3"><img src="<?=BASEURL.$row['foto_barang'];?>" alt="" style="width:100px; height:100px;"></td>
+                            <td class="p-3"><img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
+                                    style="width:100px; height:100px;"></td>
                             <td class="p-3"><?= $row['kode_barang'];?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
@@ -189,7 +190,8 @@
                                 <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
                                 <!-- Hapus -->
                                 <a class="btn d-flex align-items-center justify-content-center" data-toggle="modal"
-                                    data-target="#konfirmasiHapus">
+                                    id="iconHapusBarang" data-target="#konfirmasiHapus<?=$row['id_barang']?>"
+                                    data-id="<?=$row['id_barang'];?>">
                                     <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                                 </a>
 
@@ -209,6 +211,32 @@
                                 </a>
                                 <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
                                     name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
+                                    <div class="modal fade" id="konfirmasiHapus<?=$row['id_barang']?>" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content" style="border-radius: 15px;">
+                                                <div class="modal-body"
+                                                    style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+        
+                                                    <lottie-player
+                                                        src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
+                                                        background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop
+                                                        autoplay direction="1" mode="normal"></lottie-player>
+                                                    <p
+                                                        style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">
+                                                        Apakah anda
+                                                        yakin ingin menghapus item ini?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light" style="width: 100px;"
+                                                        data-dismiss="modal">Batal</button>
+                                                    <button type="button" style="width: 100px;" class="btn btn-danger"
+                                                        id="konfirmasiHapusBarang"
+                                                        onclick="location.href='<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>'">Hapus</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -409,9 +437,10 @@
                             </style>
                             <div>
                                 <span>
-                                <h6>Foto</h6>
-                          <img src="<?=BASEURL.$dataDetail['foto_barang'];?>" alt="" style="width:100px; height:100px;">
-                          </span>
+                                    <h6>Foto</h6>
+                                    <img src="<?=BASEURL.$dataDetail['foto_barang'];?>" alt=""
+                                        style="width:100px; height:100px;">
+                                </span>
                                 <span>
                                     <h6>Kode barang</h6>
                                     <p><?= $dataDetail['kode_barang']; ?></p>
@@ -470,30 +499,6 @@
             </div>
 
 
-
-            <div class="modal fade" id="konfirmasiHapus" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content" style="border-radius: 15px;">
-                        <div class="modal-body"
-                            style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-
-                            <lottie-player
-                                src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
-                                background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay
-                                direction="1" mode="normal"></lottie-player>
-                            <p style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">Apakah anda
-                                yakin ingin menghapus item ini?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light" style="width: 100px;"
-                                data-dismiss="modal">Batal</button>
-                            <button type="button" style="width: 100px;" class="btn btn-danger"
-                                onclick="location.href='<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>'">Hapus</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
