@@ -26,22 +26,47 @@
         font-size: 15px;
         border: none;
     }
+
+    .card-body{
+        width: 100vw;
+    }
+
+    .buttons-excel,
+    .buttons-pdf,
+    .buttons-copy,
+    .buttons-colvis{
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        background-color: #0c1740;
+        width: 170px;
+    }
+
+    .buttons-excel:hover,
+    .buttons-pdf:hover,
+    .buttons-copy:hover,
+    .buttons-colvis:hover{
+        background-color: #0c1740;
+ 
+    }
+
+
 </style>
 <div class="card-body p-3">
     <div class="header" style="display: flex; padding:20px;">
         <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
         <div class="button"
             style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
-            <button style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"
+            <button style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"
             onclick="location.href='<?=BASEURL?>Beranda'"><i class="fa-solid fa-arrow-left" style="color: #ffffff; margin-right:10px;"></i>Kembali</button>
-            <button onclick="cetak()" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i
-                    class="fa-solid fa-print" style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
         </div>
     </div>
-    <table class="table table-hover table-sm" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
+    <div style="max-width: 100vw;height:80vh; padding:20px;">
+    <table id="example" class="table " style="font-size:14px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
         <thead class="table-info">
             <tr>
                 <th scope="col" class="p-3">No.</th>
+                <th scope="col" class="p-3">Qr code</th>
+                <th scope="col" class="p-3">Foto</th>
                 <th scope="col" class="p-3">Kode barang</th>
                 <th scope="col" class="p-3">Sub barang</th>
                 <th scope="col" class="p-3">Nama merek</th>
@@ -62,6 +87,8 @@
     <?php foreach ($data['dataCetak'] as $row): ?>
             <tr>
                 <th scope="row" class="p-3"><?= $i++; ?></th>
+                <td class="p-3"><img src="<?=BASEURL . $row[0]['qr_code']; ?>" style="width:100px;height:100px;" alt=""></td>
+                <td class="p-3"><img src="<?=BASEURL . $row[0]['foto_barang']; ?>" style="width:100px;height:100px;" alt=""></td>
                 <td class="p-3"><?= $row[0]['kode_barang']; ?></td>
                 <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['sub_barang']; ?></td>
                 <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['nama_merek_barang']; ?></td>
@@ -80,4 +107,5 @@
 </tbody>
 
     </table>
+    </div>
 </div>

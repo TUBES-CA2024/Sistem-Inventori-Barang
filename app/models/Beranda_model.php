@@ -366,7 +366,9 @@ return $this->db->rowCount();
                 trx_barang.keterangan_label,
                 mst_lokasi_penyimpanan.nama_lokasi_penyimpanan,
                 trx_barang.deskripsi_detail_lokasi,
-                trx_barang.status_peminjaman
+                trx_barang.status_peminjaman,
+                trx_barang.foto_barang,
+                trx_barang.qr_code
             FROM trx_barang
             JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
             JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang

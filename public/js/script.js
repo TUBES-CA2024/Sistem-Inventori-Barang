@@ -8,9 +8,9 @@ function validasiInput(input) {
   input.value = input.value.replace(/[^0-9]/g, "");
 }
 
-function cetak() {
-  window.print();
-}
+// function cetak() {
+//   window.print();
+// }
 
 function tampilCetak() {
   const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
@@ -103,6 +103,47 @@ $(function () {
     });
   });
 
+  //data tables
+  let table = $("#example").DataTable({
+    lengthChange: false,
+    searching: false,
+    responsive: true,
+    scrollY: 380,
+    scrollX: 400,
+    // deferRender: true,
+    scroller: true,
+    buttons: [
+      {
+        extend: "copy",
+        class: "buttons-copy",
+        text: "Copy",
+        exportOptions: {
+          columns: ":visible",
+        },
+      },
+      {
+        extend: "excel",
+        text: "Export to Excel",
+        exportOptions: {
+          columns: ":visible",
+        },
+      },
+      {
+        extend: "pdf",
+        text: "Export to PDF",
+        exportOptions: {
+          columns: ":visible",
+        },
+      },
+      {
+        extend: "colvis",
+        text: "Column Visibility",
+      },
+    ],
+  });
+
+  table.buttons().container().appendTo("#example_wrapper .col-md-6:eq(0)");
+
   //ubah barang
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");
@@ -170,4 +211,3 @@ selectAllCheckbox.addEventListener("change", function () {
     checkbox.checked = selectAllCheckbox.checked;
   });
 });
-
