@@ -205,7 +205,7 @@
 
                                 <!-- detail -->
                                 <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>" data-toggle="modal"
-                                    data-target="#modalUpdate"
+                                    data-target="#modalUpdate<?= $row['id_barang']; ?>"
                                     class="btn d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                                 </a>
@@ -237,6 +237,91 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+                <div class="modal fade" id="modalUpdate<?= $row['id_barang']; ?>" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="width: 700px;">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail barang
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" style="display: flex; gap:50px; font-weight: 500; width:100%;">
+                            <style>
+                                span p {
+                                    word-wrap: break-word;
+                                    opacity: 0.5;
+                                }
+                            </style>
+                            <div style="width: 50%;">
+                                <span>
+                                    <h6>Foto</h6>
+                                    <img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
+                                        style="width:100px; height:100px;">
+                                </span>
+                                <span>
+                                    <h6>Kode barang</h6>
+                                    <p><?= $row['kode_barang']; ?></p>
+                                </span>
+                                <span>
+                                    <h6>Jenis barang</h6>
+                                    <p style="text-transform: capitalize;"><?=$row['sub_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Merek barang</h6>
+                                    <p style="text-transform: capitalize;"><?=$row['nama_merek_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Deskripsi Barang</h6>
+                                    <p style="text-transform: capitalize;"><?=$row['deskripsi_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Jumlah barang</h6>
+                                    <p><?=$row['jumlah_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Satuan jumlah</h6>
+                                    <p><?=$row['nama_satuan'];?></p>
+                                </span>
+                            </div>
+                            <div style="width: 50%;">
+                                <span>
+                                    <h6>Tanggal pengadaan</h6>
+                                    <p><?=$row['tgl_pengadaan_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Lokasi penyimpanan</h6>
+                                    <p><?=$row['nama_lokasi_penyimpanan'];?></p>
+                                </span>
+                                <span style="width: 100%;">
+                                    <h6>Detail lokasi penyimpanan</h6>
+                                    <p style="text-transform: capitalize;"><?=$row['deskripsi_detail_lokasi'];?>
+                                    </p>
+                                </span>
+                                <span>
+                                    <h6>Kondisi barang</h6>
+                                    <p><?=$row['kondisi_barang'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Status pinjam</h6>
+                                    <p><?=$row['status_peminjaman'];?></p>
+                                </span>
+                                <span>
+                                    <h6>Keterangan label</h6>
+                                    <p><?=$row['keterangan_label'];?></p>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -416,90 +501,7 @@
 
 
             <!-- Modal -->
-            <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail barang
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <?php $dataDetail = $data['dataTampilBarang'][0]; ?>
-                        <div class="modal-body" style="display: flex; gap:50px; font-weight: 500;">
-                            <style>
-                                span p {
-
-                                    opacity: 0.5;
-                                }
-                            </style>
-                            <div>
-                                <span>
-                                    <h6>Foto</h6>
-                                    <img src="<?=BASEURL.$dataDetail['foto_barang'];?>" alt=""
-                                        style="width:100px; height:100px;">
-                                </span>
-                                <span>
-                                    <h6>Kode barang</h6>
-                                    <p><?= $dataDetail['kode_barang']; ?></p>
-                                </span>
-                                <span>
-                                    <h6>Jenis barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$dataDetail['sub_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Merek barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$dataDetail['nama_merek_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Deskripsi Barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$dataDetail['deskripsi_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Jumlah barang</h6>
-                                    <p><?=$dataDetail['jumlah_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Satuan jumlah</h6>
-                                    <p><?=$dataDetail['nama_satuan'];?></p>
-                                </span>
-                            </div>
-                            <div>
-                                <span>
-                                    <h6>Tanggal pengadaan</h6>
-                                    <p><?=$dataDetail['tgl_pengadaan_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Lokasi penyimpanan</h6>
-                                    <p><?=$dataDetail['nama_lokasi_penyimpanan'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Detail lokasi penyimpanan</h6>
-                                    <p style="text-transform: capitalize;"><?=$dataDetail['deskripsi_detail_lokasi'];?>
-                                    </p>
-                                </span>
-                                <span>
-                                    <h6>Kondisi barang</h6>
-                                    <p><?=$dataDetail['kondisi_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Status pinjam</h6>
-                                    <p><?=$dataDetail['status_peminjaman'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Keterangan label</h6>
-                                    <p><?=$dataDetail['keterangan_label'];?></p>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
+           
 
 
         </div>

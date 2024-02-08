@@ -46,8 +46,6 @@ class Beranda_model{
 {
  
     
-    // Insert data into mst_jenis_barang
-
     $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
     $this->db->query($joinKodeJenisBarang);
     $kodeJenisBarang = $this->db->single();
@@ -64,9 +62,10 @@ class Beranda_model{
     $fotoBarang = $uploadDirectory . $_FILES['foto_barang']['name'];
 
     move_uploaded_file($uploadedFile, $fotoBarang);
-
+    // $imgFotoBarang = file_get_contents($fotoBarang);
+    // $imgDataFotoBarang = base64_encode($imgFotoBarang);
   
-    $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang, qr_code) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang, :qr_code)";
+    $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang)";
     
     $this->db->query($queryBarang);
     $this->db->bind('foto_barang', $fotoBarang);
@@ -119,20 +118,25 @@ $romanMonth = angkaRomawi($month);
 $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
 
 $this->db->bind('kode_barang', $kodeBarang);
+$this->db->execute();
+$idbarang = $this->db->lastInsertId() ;
 
-    $qrCode = "Foto \n" .$fotoBarang.  "\nKode barang \n".$kodeBarang. "\nSub barang \n" . $data['sub_barang']. "\nMerek barang\n" . $data['nama_merek_barang']. "\nKondisi barang\n". $data['kondisi_barang']. "\nJumlah barang\n". $data['jumlah_barang']. "\nSatuan\n". $data['satuan']. "\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\nKeterangan label\n" . $data['keterangan_label']. "\nLokasi penyimpanan\n" . $data['lokasi_penyimpanan'] . "\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\nStatus\n" . $data['status'] . "\nStatus peminjaman\n" . $data['status_pinjam'];
-   QRcode::png("$qrCode", "code1.png","M", 2,2 );
+    $qrCode ="Kode barang \n".$kodeBarang. "\n\nSub barang \n" . $data['sub_barang']. "\n\nMerek barang\n" . $data['nama_merek_barang']. "\n\nKondisi barang\n". $data['kondisi_barang']. "\n\nJumlah barang\n". $data['jumlah_barang']. "\n\nSatuan\n". $data['satuan']. "\n\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\n\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\n\nKeterangan label\n" . $data['keterangan_label']. "\n\nLokasi penyimpanan\n" . $data['lokasi_penyimpanan'] . "\n\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\n\nStatus\n" . $data['status'] . "\n\nStatus peminjaman\n" . $data['status_pinjam'];
+    QRcode::png("$qrCode", "../public/img/qr-code/code_" . time() . ".png", "M", 4, 4);
 
-   $uploadDirectory ='../public/img/qr-code/';
-$uploadedFile = "code1.png"; // Sesuaikan dengan nama file QR code 
-$fotoQr = $uploadDirectory . $uploadedFile;
-move_uploaded_file($uploadedFile, $fotoQr);
+$uniqueFileName = uniqid("code_") . ".png";
+$uploadDirectory = '../public/img/qr-code/';
+$fotoQr = $uploadDirectory . $uniqueFileName;
+move_uploaded_file($_FILES["code_" . time() . ".png"]['tmp_name'], $fotoQr);
+
+// Update database with the unique filename
+$queryQr = "UPDATE trx_barang SET qr_code = :qr_code WHERE id_barang = :id_barang";
+$this->db->query($queryQr);
+$this->db->bind('qr_code', $uniqueFileName);
+$this->db->bind('id_barang', $idbarang);
+$this->db->execute();
+
     
-    move_uploaded_file($uploadedFile, $fotoQr);
-    $this->db->bind('qr_code', $fotoQr);
-    $this->db->execute();
-
-
     return $this->db->rowCount();
 }
 

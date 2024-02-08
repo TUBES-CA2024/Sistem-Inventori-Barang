@@ -28,7 +28,7 @@ class Beranda extends Controller {
         $data['judul'] = 'Beranda';
         // Mengambil data kondisi barang dari model
         $TambahBarangModel = $this->model('Beranda_model');
-        $data['dataTampilBarang'] = $TambahBarangModel->getDetailDataBarang($id_barang);
+        $data['dataTampilDetailBarang'] = $TambahBarangModel->getDetailDataBarang($id_barang);
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
