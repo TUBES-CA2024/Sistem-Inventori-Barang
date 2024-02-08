@@ -211,118 +211,129 @@
                                 </a>
                                 <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
                                     name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
-                                    <div class="modal fade" id="konfirmasiHapus<?=$row['id_barang']?>" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content" style="border-radius: 15px;">
-                                                <div class="modal-body"
-                                                    style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-        
-                                                    <lottie-player
-                                                        src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
-                                                        background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop
-                                                        autoplay direction="1" mode="normal"></lottie-player>
-                                                    <p
-                                                        style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">
-                                                        Apakah anda
-                                                        yakin ingin menghapus item ini?</p>
+                                <div class="modal fade" id="konfirmasiHapus<?=$row['id_barang']?>" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="border-radius: 15px;">
+                                            <div class="modal-body"
+                                                style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+
+                                                <lottie-player
+                                                    src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
+                                                    background="##FFFFFF" speed="1" style="width: 250px; height: 250px"
+                                                    loop autoplay direction="1" mode="normal"></lottie-player>
+                                                <p
+                                                    style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">
+                                                    Apakah anda
+                                                    yakin ingin menghapus item ini?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light" style="width: 100px;"
+                                                    data-dismiss="modal">Batal</button>
+                                                <button type="button" style="width: 100px;" class="btn btn-danger"
+                                                    id="konfirmasiHapusBarang"
+                                                    onclick="location.href='<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>'">Hapus</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="modal fade" id="modalUpdate<?= $row['id_barang']; ?>" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content" style="width: 700px;">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                                    style="font-weight: 600;">Detail barang
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body"
+                                                style="display: flex; gap:50px; font-weight: 500; width:100%;">
+                                                <style>
+                                                    span p {
+                                                        word-wrap: break-word;
+                                                        opacity: 0.5;
+                                                    }
+                                                </style>
+                                                <div style="width: 50%;">
+                                                    <span>
+                                                        <h6>Foto</h6>
+                                                        <img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
+                                                            style="width:150px; height:150px;">
+                                                    </span>
+                                                    <span>
+                                                        <h6>Kode barang</h6>
+                                                        <p><?= $row['kode_barang']; ?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Jenis barang</h6>
+                                                        <p style="text-transform: capitalize;"><?=$row['sub_barang'];?>
+                                                        </p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Merek barang</h6>
+                                                        <p style="text-transform: capitalize;">
+                                                            <?=$row['nama_merek_barang'];?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Deskripsi Barang</h6>
+                                                        <p style="text-transform: capitalize;">
+                                                            <?=$row['deskripsi_barang'];?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Jumlah barang</h6>
+                                                        <p><?=$row['jumlah_barang'];?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Satuan jumlah</h6>
+                                                        <p><?=$row['nama_satuan'];?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Status pinjam</h6>
+                                                        <p><?=$row['status_peminjaman'];?></p>
+                                                    </span>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light" style="width: 100px;"
-                                                        data-dismiss="modal">Batal</button>
-                                                    <button type="button" style="width: 100px;" class="btn btn-danger"
-                                                        id="konfirmasiHapusBarang"
-                                                        onclick="location.href='<?= BASEURL ?>Beranda/hapus/<?= $row['id_barang'] ?>'">Hapus</button>
+                                                <div style="width: 50%;">
+                                                    <span>
+                                                        <h6>Qr code</h6>
+                                                        <img src="<?=BASEURL . $row['qr_code']?>" alt=""
+                                                            style="width:200px; height:200px;">
+                                                    </span>
+                                                    <br><br>
+                                                    <span>
+                                                        <h6>Tanggal pengadaan</h6>
+                                                        <p><?=$row['tgl_pengadaan_barang'];?></p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Lokasi penyimpanan</h6>
+                                                        <p><?=$row['nama_lokasi_penyimpanan'];?></p>
+                                                    </span>
+                                                    <span style="width: 100%;">
+                                                        <h6>Detail lokasi penyimpanan</h6>
+                                                        <p style="text-transform: capitalize;">
+                                                            <?=$row['deskripsi_detail_lokasi'];?>
+                                                        </p>
+                                                    </span>
+                                                    <span>
+                                                        <h6>Kondisi barang</h6>
+                                                        <p><?=$row['kondisi_barang'];?></p>
+                                                    </span>
+                                                    
+                                                    <span>
+                                                        <h6>Keterangan label</h6>
+                                                        <p><?=$row['keterangan_label'];?></p>
+                                                    </span>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                <div class="modal fade" id="modalUpdate<?= $row['id_barang']; ?>" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="width: 700px;">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail barang
-                            </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="display: flex; gap:50px; font-weight: 500; width:100%;">
-                            <style>
-                                span p {
-                                    word-wrap: break-word;
-                                    opacity: 0.5;
-                                }
-                            </style>
-                            <div style="width: 50%;">
-                                <span>
-                                    <h6>Foto</h6>
-                                    <img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
-                                        style="width:100px; height:100px;">
-                                </span>
-                                <span>
-                                    <h6>Kode barang</h6>
-                                    <p><?= $row['kode_barang']; ?></p>
-                                </span>
-                                <span>
-                                    <h6>Jenis barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$row['sub_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Merek barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$row['nama_merek_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Deskripsi Barang</h6>
-                                    <p style="text-transform: capitalize;"><?=$row['deskripsi_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Jumlah barang</h6>
-                                    <p><?=$row['jumlah_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Satuan jumlah</h6>
-                                    <p><?=$row['nama_satuan'];?></p>
-                                </span>
-                            </div>
-                            <div style="width: 50%;">
-                                <span>
-                                    <h6>Tanggal pengadaan</h6>
-                                    <p><?=$row['tgl_pengadaan_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Lokasi penyimpanan</h6>
-                                    <p><?=$row['nama_lokasi_penyimpanan'];?></p>
-                                </span>
-                                <span style="width: 100%;">
-                                    <h6>Detail lokasi penyimpanan</h6>
-                                    <p style="text-transform: capitalize;"><?=$row['deskripsi_detail_lokasi'];?>
-                                    </p>
-                                </span>
-                                <span>
-                                    <h6>Kondisi barang</h6>
-                                    <p><?=$row['kondisi_barang'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Status pinjam</h6>
-                                    <p><?=$row['status_peminjaman'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Keterangan label</h6>
-                                    <p><?=$row['keterangan_label'];?></p>
-                                </span>
-                                <span>
-                                    <h6>Qr code</h6>
-                                    <img src="<?=BASEURL . $row['qr_code']?>" alt="" style="width:200px; height:200px;">
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                </div>
 
                             </td>
                         </tr>
@@ -500,7 +511,7 @@
                     </div>
                 </div>
             </div>
-           
+
 
 
         </div>

@@ -273,7 +273,32 @@ $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $roma
 $this->db->bind('kode_barang', $kodeBarang);
 $this->db->bind('id_barang', $data['id_barang']);
 $this->db->execute();
- 
+
+$this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
+$this->db->bind("id_barang", $data['id_barang']);
+$detailBarang = $this->db->single();
+$subBarang = $detailBarang['sub_barang'];
+$merekBarang =$detailBarang['nama_merek_barang'];
+$kondisiBarang = $detailBarang['kondisi_barang'];
+$satuan = $detailBarang['nama_satuan'];
+$lokasiPenyimpanan = $detailBarang['nama_lokasi_penyimpanan'];
+$status = $detailBarang['status'];
+
+$qrCode ="Kode barang \n".$kodeBarang. "\n\nSub barang \n" . $subBarang. "\n\nMerek barang\n" . $merekBarang. "\n\nKondisi barang\n". $kondisiBarang. "\n\nJumlah barang\n". $data['jumlah_barang']. "\n\nSatuan\n". $satuan. "\n\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\n\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\n\nKeterangan label\n" . $data['keterangan_label']. "\n\nLokasi penyimpanan\n" . $lokasiPenyimpanan. "\n\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\n\nStatus\n" . $status. "\n\nStatus peminjaman\n" . $data['status_pinjam'];
+
+$uniqueFileName = uniqid("code_") . ".png";
+QRcode::png("$qrCode", "../public/img/qr-code/"."$uniqueFileName", "M", 4, 4);
+
+$uploadDirectory = '../public/img/qr-code/';
+$fotoQr = $uploadDirectory . $uniqueFileName;
+move_uploaded_file($_FILES[$uniqueFileName]['tmp_name'], $fotoQr);
+
+// Update database with the unique filename
+$queryQr = "UPDATE trx_barang SET qr_code = :qr_code WHERE id_barang = :id_barang";
+$this->db->query($queryQr);
+$this->db->bind('qr_code', $fotoQr);
+$this->db->bind('id_barang', $data['id_barang']);
+$this->db->execute();
 
 return $this->db->rowCount();
 }
