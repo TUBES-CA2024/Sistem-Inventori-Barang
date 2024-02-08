@@ -314,13 +314,15 @@
                                     <h6>Keterangan label</h6>
                                     <p><?=$row['keterangan_label'];?></p>
                                 </span>
+                                <span>
+                                    <h6>Qr code</h6>
+                                    <img src="<?=BASEURL . $row['qr_code']?>" alt="" style="width:200px; height:200px;">
+                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
 
                             </td>
                         </tr>
@@ -498,9 +500,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- Modal -->
            
 
 

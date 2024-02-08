@@ -62,9 +62,7 @@ class Beranda_model{
     $fotoBarang = $uploadDirectory . $_FILES['foto_barang']['name'];
 
     move_uploaded_file($uploadedFile, $fotoBarang);
-    // $imgFotoBarang = file_get_contents($fotoBarang);
-    // $imgDataFotoBarang = base64_encode($imgFotoBarang);
-  
+
     $queryBarang = "INSERT INTO trx_barang (foto_barang, id_jenis_barang, id_merek_barang, id_kondisi_barang, jumlah_barang, id_satuan, deskripsi_barang, tgl_pengadaan_barang, keterangan_label, id_lokasi_penyimpanan, deskripsi_detail_lokasi, id_status, status_peminjaman, kode_barang) VALUES (:foto_barang, :id_jenis_barang, :id_merek_barang, :id_kondisi_barang, :jumlah_barang, :id_satuan, :deskripsi_barang, :tgl_pengadaan_barang, :keterangan_label, :id_lokasi_penyimpanan, :deskripsi_detail_lokasi, :id_status, :status_peminjaman, :kode_barang)";
     
     $this->db->query($queryBarang);
@@ -121,18 +119,19 @@ $this->db->bind('kode_barang', $kodeBarang);
 $this->db->execute();
 $idbarang = $this->db->lastInsertId() ;
 
-    $qrCode ="Kode barang \n".$kodeBarang. "\n\nSub barang \n" . $data['sub_barang']. "\n\nMerek barang\n" . $data['nama_merek_barang']. "\n\nKondisi barang\n". $data['kondisi_barang']. "\n\nJumlah barang\n". $data['jumlah_barang']. "\n\nSatuan\n". $data['satuan']. "\n\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\n\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\n\nKeterangan label\n" . $data['keterangan_label']. "\n\nLokasi penyimpanan\n" . $data['lokasi_penyimpanan'] . "\n\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\n\nStatus\n" . $data['status'] . "\n\nStatus peminjaman\n" . $data['status_pinjam'];
-    QRcode::png("$qrCode", "../public/img/qr-code/code_" . time() . ".png", "M", 4, 4);
+$qrCode ="Kode barang \n".$kodeBarang. "\n\nSub barang \n" . $data['sub_barang']. "\n\nMerek barang\n" . $data['nama_merek_barang']. "\n\nKondisi barang\n". $data['kondisi_barang']. "\n\nJumlah barang\n". $data['jumlah_barang']. "\n\nSatuan\n". $data['satuan']. "\n\nDeskripsi barang\n" . $data['deskripsi_barang'] . "\n\nTanggal pengadaan barang\n" . $data['tgl_pengadaan_barang'] . "\n\nKeterangan label\n" . $data['keterangan_label']. "\n\nLokasi penyimpanan\n" . $data['lokasi_penyimpanan'] . "\n\nDeskripsi detail lokasi\n". $data['deskripsi_detail_lokasi']."\n\nStatus\n" . $data['status'] . "\n\nStatus peminjaman\n" . $data['status_pinjam'];
 
 $uniqueFileName = uniqid("code_") . ".png";
+    QRcode::png("$qrCode", "../public/img/qr-code/"."$uniqueFileName", "M", 4, 4);
+
 $uploadDirectory = '../public/img/qr-code/';
 $fotoQr = $uploadDirectory . $uniqueFileName;
-move_uploaded_file($_FILES["code_" . time() . ".png"]['tmp_name'], $fotoQr);
+move_uploaded_file($_FILES[$uniqueFileName]['tmp_name'], $fotoQr);
 
 // Update database with the unique filename
 $queryQr = "UPDATE trx_barang SET qr_code = :qr_code WHERE id_barang = :id_barang";
 $this->db->query($queryQr);
-$this->db->bind('qr_code', $uniqueFileName);
+$this->db->bind('qr_code', $fotoQr);
 $this->db->bind('id_barang', $idbarang);
 $this->db->execute();
 
