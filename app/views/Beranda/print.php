@@ -46,7 +46,6 @@
     .buttons-copy:hover,
     .buttons-colvis:hover{
         background-color: #0c1740;
- 
     }
 
 

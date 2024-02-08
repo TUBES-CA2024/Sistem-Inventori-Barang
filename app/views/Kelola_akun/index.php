@@ -140,9 +140,8 @@
                     </form>
                 </div>
             </div>
-
-            <table class="table table-hover table-sm"
-                style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 5px;">
+            <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <table class="table table-hover table-sm">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="text-nowrap p-2">No.</th>
@@ -212,6 +211,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+        </div>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content" style="height: max-content; border-radius:15px">

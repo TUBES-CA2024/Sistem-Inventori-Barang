@@ -4,7 +4,7 @@
           exit;
         }    
 ?>
-<div class="body-beranda" style="overflow: hidden;">
+<div class="body-beranda" >
     <div class="side-bar">
         <div class="profil">
             <div class="logo">
@@ -122,7 +122,7 @@
 
 
     <div class="content">
-        <div class="content-beranda" style="overflow-y: auto;">
+        <div class="content-beranda">
             <h1 id="title">Beranda</h1>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
@@ -159,8 +159,9 @@
                     </div>
                 </div>
             </div>
-            <table class="table table-hover table-sm"
-                style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <table  class="table table-hover table-sm"
+                style=" width:100%;">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="p-3">No.</th>
@@ -180,7 +181,7 @@
                         <tr>
                             <th scope="row" class="p-3"><?= $i++; ?></th>
                             <td class="p-3"><img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
-                                    style="width:100px; height:100px;"></td>
+                                    style="width:60px; height:60px;"></td>
                             <td class="p-3"><?= $row['kode_barang'];?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
@@ -341,6 +342,7 @@
                     </form>
                 </tbody>
             </table>
+            </div>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content" style="height: 100%;width:900px; border-radius:15px">

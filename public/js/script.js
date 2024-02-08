@@ -103,6 +103,15 @@ $(function () {
     });
   });
 
+  //data tables barang
+  let tableBarang = $("#dataTablesBarang").DataTable({
+    searching: false,
+    responsive: true,
+    scrollY: 380,
+    scrollX: 400,
+    lengthChange: false,
+  });
+
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
