@@ -113,7 +113,7 @@
 
 
     <div class="content">
-        <div class="content-beranda" style="overflow-y: auto; overflow-x: hidden;">
+        <div class="content-beranda" style="overflow: hidden;">
             <h3 id="title">Kelola Akun</h3>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>
@@ -138,7 +138,7 @@
                     </form>
                 </div>
             </div>
-            <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <div style="max-height: 420px; overflow:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
             <table class="table table-hover table-sm">
                 <thead class="table-info">
                     <tr>

@@ -121,7 +121,7 @@
 
 
     <div class="content">
-        <div class="content-beranda">
+        <div class="content-beranda" style="overflow: hidden;">
             <h1 id="title">Beranda</h1>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>

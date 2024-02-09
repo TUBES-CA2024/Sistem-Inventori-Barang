@@ -153,6 +153,11 @@ $(function () {
 
   table.buttons().container().appendTo("#example_wrapper :eq(0)");
 
+  // set time flasher
+  setTimeout(function () {
+    $("#flasher").fadeOut("slow");
+  }, 3000);
+
   //ubah barang
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");

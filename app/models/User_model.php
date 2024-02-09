@@ -31,9 +31,7 @@ class User_model
 
             $this->db->execute();
             $idUser = $this->db->lastInsertId();
-
          
-                
             
             // Pindahkan file foto ke folder yang ditentukan
             $uploadDirectory ='../public/img/foto-profile/';
@@ -120,7 +118,6 @@ class User_model
     //      $this->db->bind('id_user', $data['id_user']);
     //      $this->db->execute();
         
-     
     //      return $this->db->rowCount();
     // }
 

@@ -112,7 +112,7 @@
 
 
     <div class="content">
-        <div class="content-beranda" style="overflow-y: auto;">
+        <div class="content-beranda" style="overflow: hidden;">
             <h3 id="title">Jenis Barang</h3>
             <div class="flash" style="width: 40%; margin-left:15px;">
                 <?php Flasher::flash();?>

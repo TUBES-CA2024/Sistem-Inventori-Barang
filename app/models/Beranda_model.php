@@ -44,8 +44,10 @@ class Beranda_model{
 
     public function postDataBarang($data)
 {
- 
-    
+    $ukuranFile = $_FILES['foto_barang']['size'];
+    $limit = 2 * 1024 *1024;
+
+    if($ukuranFile <= $limit){
     $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE mst_jenis_barang.id_jenis_barang = trx_barang.id_jenis_barang";
     $this->db->query($joinKodeJenisBarang);
     $kodeJenisBarang = $this->db->single();
@@ -147,6 +149,11 @@ $this->db->execute();
 
     
     return $this->db->rowCount();
+} else{
+    Flasher::setFlash('Foto barang', 'gagal', ' diUpload <br> ukuran gambar terlalu besar', 'danger');
+    header('Location: '. BASEURL . 'Beranda');
+    exit;
+}
 }
 
 
