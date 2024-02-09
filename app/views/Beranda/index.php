@@ -131,8 +131,7 @@
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <div style="display: flex; gap:10px;">
                     <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();"
-                        style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-print"
-                            style="color: #ffffff;margin-right:10px;"></i>Cetak</button>
+                        style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-file-export" style="color: #ffffff;"></i>Ekspor</button>
                     <?php
                 if (isset($_SESSION['login']) && $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2') {
                     echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">

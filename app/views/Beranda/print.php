@@ -30,19 +30,22 @@
     .card-body{
         width: 100vw;
     }
-
+  
     .buttons-excel,
     .buttons-pdf,
     .buttons-copy,
+    .buttons-csv,
     .buttons-colvis{
         box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
         border-radius: 8px;
         background-color: #0c1740;
         width: 170px;
+        border: none;
     }
 
     .buttons-excel:hover,
     .buttons-pdf:hover,
+    .buttons-csv:hover,
     .buttons-copy:hover,
     .buttons-colvis:hover{
         background-color: #0c1740;
@@ -55,12 +58,12 @@
         <img src="<?=BASEURL;?>img/logo bg putih.svg" alt="logo" />
         <div class="button"
             style="padding-top:10px; width:100%; display:flex; align-items:end; gap:10px; flex-direction:column;">
-            <button style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"
+            <button style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); font-weight:600;"
             onclick="location.href='<?=BASEURL?>Beranda'"><i class="fa-solid fa-arrow-left" style="color: #ffffff; margin-right:10px;"></i>Kembali</button>
         </div>
     </div>
-    <div style="max-width: 100vw;height:80vh; padding:20px;">
-    <table id="example" class="table " style="font-size:14px; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+    <div style="max-width: 100vw;height:80vh; padding:20px;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:10px;">
+    <table id="example" class="table display nowrap" style="font-size:14px; ">
         <thead class="table-info">
             <tr>
                 <th scope="col" class="p-3">No.</th>

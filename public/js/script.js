@@ -103,55 +103,55 @@ $(function () {
     });
   });
 
-  //data tables barang
-  let tableBarang = $("#dataTablesBarang").DataTable({
-    searching: false,
-    responsive: true,
-    scrollY: 380,
-    scrollX: 400,
-    lengthChange: false,
-  });
-
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
     searching: false,
     responsive: true,
-    scrollY: 380,
+    scrollY: 400,
     scrollX: 400,
-    // deferRender: true,
+    deferRender: true,
     scroller: true,
     buttons: [
       {
         extend: "copy",
-        class: "buttons-copy",
-        text: "Copy",
+        text: '<i class="fa-solid fa-copy" style="color: #ffffff;margin-right:10px;"></i>Salin',
+        exportOptions: {
+          columns: ":visible",
+        },
+      },
+      {
+        extend: "csv",
+        text: '<i class="fa-solid fa-file-csv" style="color: #ffffff; margin-right:10px;"></i>Ekspor ke CSV',
         exportOptions: {
           columns: ":visible",
         },
       },
       {
         extend: "excel",
-        text: "Export to Excel",
+        text: '<i class="fa-solid fa-file-excel" style="color: #ffffff; margin-right:10px;"></i>Ekspor ke Excel',
         exportOptions: {
           columns: ":visible",
         },
       },
       {
         extend: "pdf",
-        text: "Export to PDF",
+        text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
         exportOptions: {
           columns: ":visible",
+        },
+        customize: function (doc) {
+          doc.pageSize = "A3";
         },
       },
       {
         extend: "colvis",
-        text: "Column Visibility",
+        text: "Visibilitas kolom",
       },
     ],
   });
 
-  table.buttons().container().appendTo("#example_wrapper .col-md-6:eq(0)");
+  table.buttons().container().appendTo("#example_wrapper :eq(0)");
 
   //ubah barang
   $(".btn-tambah-barang").on("click", function () {
