@@ -12,20 +12,17 @@
             </div>
             <div class="data-profil">
                 <?php
-                    $data['id_user'] = $_SESSION['id_user'];
-                    $profile_data = $this->model("User_model")->profile($data);
-
-                    if (isset($profile_data['foto'])) {
-                        $foto_profil = $profile_data['foto'];
+                    if (isset($data['profile']['foto'])) {
+                        $foto_profil = $data['profile']['foto'];
                         echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
                     } else {
                         echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
                         }
                         
                echo '<div class="detail-data-profil">';
-               if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
-                $nama = $profile_data['nama_user'];
-                $role = $profile_data['role'];
+               if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {
+                $nama = $data['profile']['nama_user'];
+                $role = $data['profile']['role'];
                 echo '<p style="color: white; font-weight: 600; margin-bottom:0;">' . $nama . '</p>
                       <p style="color: white; font-size: 13px;">' . $role . '</p></div>';
             }

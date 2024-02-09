@@ -153,7 +153,7 @@ $this->db->execute();
 
 public function getDataBarang() {
 
-    $tampilView = "CALL tampil_data_barang;";
+    $tampilView = "SELECT * FROM detail_barang;";
     
     $this->db->query($tampilView);
 

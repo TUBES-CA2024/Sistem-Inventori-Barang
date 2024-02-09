@@ -3,16 +3,13 @@
 class KelolaAkun extends Controller {
     
     public function index() {
-        // if(!isset($_SESSION['login'])){
-        //     header("Location:" . BASEURL . "Login");
-        //     exit;
-        // }
         $data['judul'] = 'Kelola Akun';
         
-        // Mengambil data kondisi barang dari model
         $userModel = $this->model('User_model');
         $data['dataTampilUser']= $userModel->tampilUser();
-        // Memanggil view transaksi barang
+        $data['id_user'] = $_SESSION['id_user'];
+        $data['profile'] = $this->model("User_model")->profile($data);
+        
         $this->view('templates/header', $data);
         $this->view('Kelola_akun/index', $data);
         $this->view('templates/footer');

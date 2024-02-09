@@ -30,7 +30,7 @@ class Login extends Controller {
             $_SESSION['email'] = $email; 
             $_SESSION['id_role'] = $data['cekLogin']['id_role'];
             $_SESSION['login'] = true;
-            
+
             header("Location:" . BASEURL . "Beranda");
             exit;
         }

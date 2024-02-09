@@ -8,7 +8,9 @@ class merekBarang extends Controller {
         $TambahMerekBarangModel = $this->model('Merek_barang_model');
 
         $data['dataTampilMerekBarang']= $TambahMerekBarangModel->getDataMerekBarang();
-
+        $data['id_user'] = $_SESSION['id_user'];
+        $data['profile'] = $this->model("User_model")->profile($data);
+        
         $this->view('templates/header', $data);
         $this->view('Merek_barang/index', $data);
         $this->view('templates/footer');

@@ -15,7 +15,8 @@ class Beranda extends Controller {
         $data['nama_merek_barang'] = $TambahBarangModel->getMerekBarang();
         $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
         $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
-
+        $data['id_user'] = $_SESSION['id_user'];
+        $data['profile'] = $this->model("User_model")->profile($data);
         // $userModel = $this->model('User_model');
         // $data['dataTampilUser']= $userModel->profile();
         // Memanggil view transaksi barang
@@ -89,9 +90,8 @@ class Beranda extends Controller {
         $data['judul'] = ' Beranda';
         
         $TambahBarangModel = $this->model('Beranda_model');
-
         $data['dataTampilBarang']= $TambahBarangModel->cariDataBarang();
-
+     
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
         $this->view('Beranda/index', $data);
