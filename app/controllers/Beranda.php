@@ -91,7 +91,8 @@ class Beranda extends Controller {
         
         $TambahBarangModel = $this->model('Beranda_model');
         $data['dataTampilBarang']= $TambahBarangModel->cariDataBarang();
-     
+        $data['id_user'] = $_SESSION['id_user'];
+        $data['profile'] = $this->model("User_model")->profile($data);
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
         $this->view('Beranda/index', $data);

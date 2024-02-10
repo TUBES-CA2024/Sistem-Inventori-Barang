@@ -77,7 +77,8 @@ class jenisBarang extends Controller {
         $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
 
         $data['dataTampilJenisBarang']= $TambahJenisBarangModel->cariDataJenisBarang();
-
+        $data['id_user'] = $_SESSION['id_user'];
+        $data['profile'] = $this->model("User_model")->profile($data);
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
         $this->view('Jenis_barang/index', $data);
