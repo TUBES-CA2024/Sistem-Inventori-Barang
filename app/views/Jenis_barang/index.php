@@ -220,8 +220,9 @@
                                 <div class="grup_sub">
                                     <label for="grup_sub">Grup sub</label>
                                     <br>
-                                    <select name="grup_sub" id="grup_sub" style="width: 250px;">
-                                        <option value="C">C</option>
+                                    <select name="grup_sub" required id="grup_sub" style="width: 250px;">
+                                    <option>-- Pilih --</option>    
+                                    <option value="C">C</option>
                                         <option value="S">S</option>
                                         <option value="J">J</option>
                                         <option value="F">F</option>

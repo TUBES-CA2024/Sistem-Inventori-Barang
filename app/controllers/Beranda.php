@@ -15,6 +15,7 @@ class Beranda extends Controller {
         $data['nama_merek_barang'] = $TambahBarangModel->getMerekBarang();
         $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
         $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
+       
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
         // $userModel = $this->model('User_model');

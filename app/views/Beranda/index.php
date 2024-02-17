@@ -364,7 +364,8 @@
                                         <div class="sub_barang">
                                             <label for="sub_barang">Sub barang</label>
                                             <br>
-                                            <select name="sub_barang" id="sub_barang" style="width: 250px;">
+                                            <select name="sub_barang" id="sub_barang" style="width: 250px;" required>
+                                            <option>-- Pilih --</option>
                                                 <?php foreach ($data['sub_barang'] as $option) { ?>
                                                 <option value="<?php echo $option['id_jenis_barang']?>">
                                                     <?php echo $option['sub_barang'] ?>
@@ -377,7 +378,8 @@
                                             <label for="nama_merek_barang">Merek barang</label>
                                             <br>
                                             <select name="nama_merek_barang" id="nama_merek_barang"
-                                                style="width: 250px;">
+                                                style="width: 250px;" required>
+                                                <option>-- Pilih --</option>
                                                 <?php foreach ($data['nama_merek_barang'] as $option) { ?>
                                                 <option value="<?php echo $option['id_merek_barang']?>">
                                                     <?php echo $option['nama_merek_barang']?></option>
@@ -403,7 +405,8 @@
                                             <label for="satuan">Satuan</label>
                                             <br>
                                             <select name="satuan" id="satuan" required style="width: 250px;">
-                                                <?php foreach ($data['satuan'] as $option) { ?>
+                                            <option>-- Pilih --</option>    
+                                            <?php foreach ($data['satuan'] as $option) { ?>
                                                 <option value="<?php echo $option['id_satuan']; ?>">
                                                     <?php echo $option['nama_satuan']; ?></option>
                                                 <?php } ?>
@@ -437,6 +440,7 @@
                                             <br>
                                             <select name="lokasi_penyimpanan" id="lokasi_penyimpanan" required
                                                 style="width: 250px;">
+                                                <option>-- Pilih --</option>
                                                 <?php foreach ($data['lokasiPenyimpanan'] as $option) { ?>
                                                 <option value="<?php echo $option['id_lokasi_penyimpanan']; ?>">
                                                     <?php echo $option['nama_lokasi_penyimpanan']; ?></option>
@@ -456,7 +460,8 @@
                                             <label for="status">Status</label>
                                             <br>
                                             <select name="status" id="status" required style="width: 250px;">
-                                                <?php foreach ($data['status'] as $option) { ?>
+                                            <option>-- Pilih --</option>   
+                                            <?php foreach ($data['status'] as $option) { ?>
                                                 <option value="<?php echo $option['id_status']; ?>">
                                                     <?php echo $option['status']; ?></option>
                                                 <?php } ?>
@@ -468,6 +473,7 @@
                                             <br>
                                             <select name="kondisi_barang" id="kondisi_barang" required
                                                 style="width: 250px;">
+                                                <option>-- Pilih --</option>
                                                 <?php foreach ($data['kondisiBarang'] as $option) { ?>
                                                 <option value="<?php echo $option['id_kondisi_barang']; ?>">
                                                     <?php echo $option['kondisi_barang']; ?></option>
@@ -480,6 +486,7 @@
                                             <br>
                                             <select name="status_pinjam" id="status_pinjam"
                                                 style="width: 250px; margin-top: 5px;">
+                                                <option>-- Pilih --</option>
                                                 <option value="bisa">Bisa</option>
                                                 <option value="tidak bisa">Tidak bisa</option>
                                             </select>
@@ -490,6 +497,7 @@
                                             <br>
                                             <select name="keterangan_label" id="keterangan_label" required
                                                 style="width: 250px; margin-top: 5px;">
+                                                <option>-- Pilih --</option>
                                                 <option value="sudah">Sudah</option>
                                                 <option value="belum">Belum</option>
                                             </select>

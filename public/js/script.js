@@ -47,6 +47,15 @@ function checkbox() {
 $(function () {
   $(".btn-tambah").on("click", function () {
     $(".modal-title").html("Tambah Jenis Barang");
+    $(".modal-body form").attr(
+      "action",
+      "http://localhost/inventori/public/JenisBarang/tambahJenisBarang"
+    );
+   const data = "";
+        $("#sub_barang").val(data.sub_barang);
+        $("#grup_sub").val(data.grup_sub);
+        $("#kode_sub").val(data.kode_sub);
+        $("#id_jenis_barang").val(data.id_jenis_barang);
   });
 
   $(".tampilJenisBarangUbah").on("click", function () {
@@ -78,6 +87,14 @@ $(function () {
 $(function () {
   $(".btn-tambah-merek").on("click", function () {
     $(".title-merek").html("Tambah Merek Barang");
+    $(".body-merek form").attr(
+      "action",
+      "http://localhost/inventori/public/MerekBarang/tambahMerekBarang"
+    );
+    const data = "";
+    $("#nama_merek_barang").val(data.nama_merek_barang);
+    $("#kode_merek_barang").val(data.kode_merek_barang);
+    $("#id_merek_barang").val(data.id_merek_barang);
   });
 
   $(".tampilMerekBarangUbah").on("click", function () {
@@ -110,6 +127,7 @@ $(function () {
     responsive: true,
     scrollY: 400,
     scrollX: 400,
+    pageLength: 6,
     deferRender: true,
     scroller: true,
     buttons: [
@@ -135,10 +153,11 @@ $(function () {
         },
       },
       {
-        extend: "pdf",
+        extend: "pdfHtml5",
         text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
         exportOptions: {
           columns: ":visible",
+          stripHtml: false,
         },
         customize: function (doc) {
           doc.pageSize = "A3";
@@ -161,6 +180,26 @@ $(function () {
   //ubah barang
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");
+    $(".body-barang form").attr(
+      "action",
+      "http://localhost/inventori/public/Beranda/tambahBarang"
+    );
+    const data = "";
+        $("#id_barang").val(data.id_barang);
+        $("#id_jenis_barang").val(data.sub_barang);
+        $("#nama_merek_barang").val(data.id_merek_barang);
+        $("#id_kondisi_barang").val(data.kondisi_barang);
+        $("#jumlah_barang").val(data.jumlah_barang);
+        $("#id_satuan").val(data.satuan);
+        $("#deskripsi_barang").val(data.deskripsi_barang);
+        $("#tgl_pengadaan_barang").val(data.tgl_pengadaan_barang);
+        $("#keterangan_label").val(data.keterangan_label);
+        $("#id_lokasi_penyimpanan").val(data.lokasi_penyimpanan);
+        $("#deskripsi_detail_lokasi").val(data.deskripsi_detail_lokasi);
+        $("#status").val(data.id_status);
+        $("#status_peminjaman").val(data.status_pinjam);
+        $("#barang_ke").val(data.barang_ke);
+        $("#total_barang").val(data.total_barang);
   });
 
   $(".tampilBarangUbah").on("click", function () {

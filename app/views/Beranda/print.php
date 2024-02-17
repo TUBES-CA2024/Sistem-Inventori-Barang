@@ -1,5 +1,5 @@
 <style>
-    @media print {
+    /* @media print {
 
         button,
         img {
@@ -7,7 +7,7 @@
         }
 
       
-    }
+    } */
 
 
     button:hover {
@@ -87,9 +87,16 @@
             
     <?php $i = 1; ?>
     <?php foreach ($data['dataCetak'] as $row): ?>
+                <?php $dp = BASEURL . $row[0]['qr_code'];  
+                $type = pathinfo($dp, PATHINFO_EXTENSION);
+                $data = file_get_contents($dp);
+                $imgdata = base64_encode($data);
+                
+                $src = 'data:image/'.$type.';base64,'.$imgdata;
+                ?>
             <tr>
                 <th scope="row" class="p-3"><?= $i++; ?></th>
-                <td class="p-3"><img src="<?=BASEURL . $row[0]['qr_code']; ?>" style="width:100px;height:100px;" alt=""></td>
+                <td class="p-3"><img class="qr" src="<?=$src ?>" data-image="<?= $src ?>" style="width:100px;height:100px;" alt=""></td>
                 <td class="p-3"><img src="<?=BASEURL . $row[0]['foto_barang']; ?>" style="width:100px;height:100px;" alt=""></td>
                 <td class="p-3"><?= $row[0]['kode_barang']; ?></td>
                 <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['sub_barang']; ?></td>
@@ -110,4 +117,6 @@
 
     </table>
     </div>
+
 </div>
+
