@@ -3,6 +3,23 @@ function uppercaseInput() {
   inputElement.value = inputElement.value.toUpperCase();
 }
 
+function camelCase() {
+  const inputDeskBarang = document.getElementById("deskripsi_barang");
+  inputDeskBarang.value =
+    inputDeskBarang.value.charAt(0).toUpperCase() +
+    inputDeskBarang.value.slice(1);
+
+  const inputDetailLokasi = document.getElementById("deskripsi_detail_lokasi");
+  inputDetailLokasi.value =
+    inputDetailLokasi.value.charAt(0).toUpperCase() +
+    inputDetailLokasi.value.slice(1);
+
+  const inputSubBarang = document.getElementById("sub_barang");
+  inputSubBarang.value =
+    inputSubBarang.value.charAt(0).toUpperCase() +
+    inputSubBarang.value.slice(1);
+}
+
 function validasiInput(input) {
   // Menghapus karakter non-angka menggunakan ekspresi reguler
   input.value = input.value.replace(/[^0-9]/g, "");
@@ -51,11 +68,11 @@ $(function () {
       "action",
       "http://localhost/inventori/public/JenisBarang/tambahJenisBarang"
     );
-   const data = "";
-        $("#sub_barang").val(data.sub_barang);
-        $("#grup_sub").val(data.grup_sub);
-        $("#kode_sub").val(data.kode_sub);
-        $("#id_jenis_barang").val(data.id_jenis_barang);
+    const data = "";
+    $("#sub_barang").val(data.sub_barang);
+    $("#grup_sub").val(data.grup_sub);
+    $("#kode_sub").val(data.kode_sub);
+    $("#id_jenis_barang").val(data.id_jenis_barang);
   });
 
   $(".tampilJenisBarangUbah").on("click", function () {
@@ -153,11 +170,10 @@ $(function () {
         },
       },
       {
-        extend: "pdfHtml5",
+        extend: "pdf",
         text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
         exportOptions: {
           columns: ":visible",
-          stripHtml: false,
         },
         customize: function (doc) {
           doc.pageSize = "A3";
@@ -185,21 +201,21 @@ $(function () {
       "http://localhost/inventori/public/Beranda/tambahBarang"
     );
     const data = "";
-        $("#id_barang").val(data.id_barang);
-        $("#id_jenis_barang").val(data.sub_barang);
-        $("#nama_merek_barang").val(data.id_merek_barang);
-        $("#id_kondisi_barang").val(data.kondisi_barang);
-        $("#jumlah_barang").val(data.jumlah_barang);
-        $("#id_satuan").val(data.satuan);
-        $("#deskripsi_barang").val(data.deskripsi_barang);
-        $("#tgl_pengadaan_barang").val(data.tgl_pengadaan_barang);
-        $("#keterangan_label").val(data.keterangan_label);
-        $("#id_lokasi_penyimpanan").val(data.lokasi_penyimpanan);
-        $("#deskripsi_detail_lokasi").val(data.deskripsi_detail_lokasi);
-        $("#status").val(data.id_status);
-        $("#status_peminjaman").val(data.status_pinjam);
-        $("#barang_ke").val(data.barang_ke);
-        $("#total_barang").val(data.total_barang);
+    $("#id_barang").val(data.id_barang);
+    $("#id_jenis_barang").val(data.sub_barang);
+    $("#nama_merek_barang").val(data.id_merek_barang);
+    $("#id_kondisi_barang").val(data.kondisi_barang);
+    $("#jumlah_barang").val(data.jumlah_barang);
+    $("#id_satuan").val(data.satuan);
+    $("#deskripsi_barang").val(data.deskripsi_barang);
+    $("#tgl_pengadaan_barang").val(data.tgl_pengadaan_barang);
+    $("#keterangan_label").val(data.keterangan_label);
+    $("#id_lokasi_penyimpanan").val(data.lokasi_penyimpanan);
+    $("#deskripsi_detail_lokasi").val(data.deskripsi_detail_lokasi);
+    $("#status").val(data.id_status);
+    $("#status_peminjaman").val(data.status_pinjam);
+    $("#barang_ke").val(data.barang_ke);
+    $("#total_barang").val(data.total_barang);
   });
 
   $(".tampilBarangUbah").on("click", function () {

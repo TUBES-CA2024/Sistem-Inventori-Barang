@@ -350,13 +350,15 @@ return $this->db->rowCount();
                 trx_barang.deskripsi_detail_lokasi,
                 trx_barang.status_peminjaman,
                 trx_barang.foto_barang,
-                trx_barang.qr_code
+                trx_barang.qr_code,
+                mst_status.status
             FROM trx_barang
             JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang
             JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang
             JOIN mst_satuan ON trx_barang.id_satuan = mst_satuan.id_satuan
             JOIN mst_kondisi_barang ON trx_barang.id_kondisi_barang = mst_kondisi_barang.id_kondisi_barang
             JOIN mst_lokasi_penyimpanan ON trx_barang.id_lokasi_penyimpanan = mst_lokasi_penyimpanan.id_lokasi_penyimpanan
+            JOIN mst_status ON trx_barang.id_status = mst_status.id_status
             WHERE id_barang = :id_barang";
     
             $this->db->query($query);

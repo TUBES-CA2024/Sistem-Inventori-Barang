@@ -390,8 +390,8 @@
                                         <div class="deskripsi_barang">
                                             <label for="deskripsi_barang">Deskripsi barang</label>
                                             <br>
-                                            <input type="text" name="deskripsi_barang" id="deskripsi_barang"
-                                                style="width: 250px; text-transform: capitalize;">
+                                            <input type="text" name="deskripsi_barang"  id="deskripsi_barang" oninput="camelCase()()"
+                                                style="width: 250px;">
                                         </div>
                                         <br>
                                         <div class="jumlah_barang">
@@ -453,7 +453,7 @@
                                             <br>
                                             <input type="text" name="deskripsi_detail_lokasi"
                                                 id="deskripsi_detail_lokasi"
-                                                style="width: 250px; text-transform: capitalize;">
+                                                style="width: 250px;" oninput="camelCase()">
                                         </div>
                                         <br>
                                         <div class="status" style="margin-top: 10px;">

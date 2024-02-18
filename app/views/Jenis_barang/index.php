@@ -213,8 +213,8 @@
                                 <div class="sub_barang">
                                     <label for="sub_barang">Sub barang</label>
                                     <br>
-                                    <input type="text" name="sub_barang" id="sub_barang"
-                                        style="width: 250px; text-transform: capitalize;" required>
+                                    <input type="text" name="sub_barang" id="sub_barang" oninput="camelCase()"
+                                        style="width: 250px;" required>
                                 </div>
                                 <br>
                                 <div class="grup_sub">

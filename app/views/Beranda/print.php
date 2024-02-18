@@ -80,6 +80,7 @@
                 <th scope="col" class="p-3">Detail lokasi</th>
                 <th scope="col" class="p-3">Keterangan label</th>
                 <th scope="col" class="p-3">Kondisi barang</th>
+                <th scope="col" class="p-3">Status</th>
                 <th scope="col" class="p-3">Status peminjaman</th>
             </tr>
         </thead>
@@ -87,16 +88,9 @@
             
     <?php $i = 1; ?>
     <?php foreach ($data['dataCetak'] as $row): ?>
-                <?php $dp = BASEURL . $row[0]['qr_code'];  
-                $type = pathinfo($dp, PATHINFO_EXTENSION);
-                $data = file_get_contents($dp);
-                $imgdata = base64_encode($data);
-                
-                $src = 'data:image/'.$type.';base64,'.$imgdata;
-                ?>
             <tr>
                 <th scope="row" class="p-3"><?= $i++; ?></th>
-                <td class="p-3"><img class="qr" src="<?=$src ?>" data-image="<?= $src ?>" style="width:100px;height:100px;" alt=""></td>
+                <td class="p-3"><img class="qr" src="<?=BASEURL . $row[0]['qr_code'] ?>" style="width:100px;height:100px;" alt=""></td>
                 <td class="p-3"><img src="<?=BASEURL . $row[0]['foto_barang']; ?>" style="width:100px;height:100px;" alt=""></td>
                 <td class="p-3"><?= $row[0]['kode_barang']; ?></td>
                 <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['sub_barang']; ?></td>
@@ -109,6 +103,7 @@
                 <td class="p-3" style="text-transform: capitalize;"><?= $row[0]['deskripsi_detail_lokasi']; ?></td>
                 <td class="p-3"><?= $row[0]['keterangan_label']; ?></td>
                 <td class="p-3"><?= $row[0]['kondisi_barang']; ?></td>
+                <td class="p-3"><?= $row[0]['status']; ?></td>
                 <td class="p-3"><?= $row[0]['status_peminjaman']; ?></td>
             </tr>
         
