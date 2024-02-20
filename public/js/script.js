@@ -193,6 +193,27 @@ $(function () {
     $("#flasher").fadeOut("slow");
   }, 3000);
 
+  //ubah profile
+  $(".btn-Ubah-profile").on("click", function () {
+    const id = $(this).data("id");
+    $.ajax({
+      url: "http://localhost/inventori/public/Profil/getUbah",
+      data: {
+        id_user: id,
+      },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        console.log(data);
+        $("#id_user").val(data.id_user);
+        $("#nama_user").val(data.nama_user);
+        $("#no_hp_user").val(data.no_hp_user);
+        $("#alamat").val(data.alamat);
+        $("#foto").val(data.foto);
+      },
+    });
+  });
+
   //ubah barang
   $(".btn-tambah-barang").on("click", function () {
     $("#title-barang").html("Tambah Barang");
@@ -265,7 +286,7 @@ $(function () {
       dataType: "json",
       success: function (data) {
         $("#id_user").val(data.id_user);
-        $("id_role").val(data.id_role);
+        $("#id_role").val(data.id_role);
       },
     });
   });

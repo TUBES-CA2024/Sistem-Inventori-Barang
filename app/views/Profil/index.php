@@ -50,15 +50,12 @@
                     <div class="foto" style=" width:80%; display: flex;  justify-content: center;
 ">
                         <?php
-                    $data['id_user'] = $_SESSION['id_user'];
-                    $profile_data = $this->model("User_model")->profile($data);
+                   $profile_data = $data['profile'];
 
-                    if (isset($profile_data['foto'])) {
+
                         $foto_profil = $profile_data['foto'];
                         echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 200px; width: 200px; object-fit:cover;">';
-                    } else {
-                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 200px; height: 200px; border-radius:50%;">';
-                        }
+
                         
                echo '<div class="detail-data-profil">';
                if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
@@ -71,6 +68,9 @@
             ?>
                     </div>
                     <div style="width: 100%;">
+                    <div class="flash" style="width: 80%; margin-left:15px;">
+                <?php Flasher::flash();?>
+            </div>
                         <span>
 
                             <h6>Nama Lengkap</h6>
@@ -94,9 +94,66 @@
                         </span>
                     </div>
                 </div>
-                <a href="<?=BASEURL;?>Beranda" class="btn"><i class="fa-solid fa-arrow-left"
-                        style="color: #ffffff; margin-right: 10px;"></i>Kembali</a>
+                <div class="btn-footer d-flex">
+                    <a href="<?=BASEURL;?>Beranda" class="btn"><i class="fa-solid fa-arrow-left"
+                            style="color: #ffffff; margin-right: 10px;"></i>Kembali</a>
+                    <a href="<?= BASEURL; ?>/Profil/ubah/<?=$profile_data['id_user'];?>" data-id="<?=$profile_data['id_user'];?>" class="btn btn-Ubah-profile"
+                        data-target="#modalUbah" data-toggle="modal"><i class="fa-solid fa-pen-to-square"
+                            style="color: #ffffff; margin-right: 10px;"></i>Ubah</a>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalUbah" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius:15px">
+            <div class="modal-header">
+                <h5 class="modal-title title-ubahUser">Ubah data user</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body body-ubahUser">
+                <form action="<?=BASEURL?>Profil/ubah" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_user" id="id_user">
+                    <div style="width: 70%; padding-left: 15px;">
+                    <div class="foto">
+                        <input type="file" name="foto" id="foto" accept="image/*" 
+                            placeholder="Pilih foto" />
+                        <label for="foto">Upload Foto (Maks 2 MB) </label>
+                    </div>
+                    <br>
+                    <div class="nama">
+                        <label for="nama_user">Nama Lengkap</label>
+                        <input type="text" id="nama_user" placeholder="Masukkan nama lengkap anda" maxlength="100"
+                            name="nama_user" style="width: 100%;" required />
+                    </div>
+                    <br>
+                    <div class="no_hp">
+                        <label for="no_hp_user">No. Hp</label>
+                        <input type="text" name="no_hp_user" id="no_hp_user" placeholder="Masukkan no. Hp anda" required
+                            maxlength="13" oninput="validasiInput(this)" />
+                    </div>
+                    <br>
+                    <div class="alamat">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" placeholder="Masukkan alamat anda" required maxlength="100" />
+                    </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer" style="margin-right: 30%;">
+                    </div>
+                    <br>
+                    <div style="display: flex; width:100%; justify-content: end; align-items: end;">
+                        <button type="submit" id="kirim">Kirim</button>
+                    </div>
+
+            </div>
+        </div>
+        </form>
     </div>
 </div>

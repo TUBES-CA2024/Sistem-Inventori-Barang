@@ -13,12 +13,9 @@
             </div>
             <div class="data-profil">
                 <?php
-                    if (isset($data['profile']['foto'])) {
+
                         $foto_profil = $data['profile']['foto'];
                         echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
-                    } else {
-                        echo '<img src="' . BASEURL . 'img/PersonCircle.png" alt="profile" style="width: 100px; height: 100px; border-radius:50%;">';
-                        }
                         
                echo '<div class="detail-data-profil">';
                if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {

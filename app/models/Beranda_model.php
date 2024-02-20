@@ -174,7 +174,7 @@ public function getDetailDataBarang($id_barang){
         $this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
         $this->db->bind("id_barang", $id_barang);
      
-        return $this->db->single(); // Pastikan ini mengembalikan array dengan kunci "detail_barang"
+        return $this->db->single(); 
     }
 
 public function hapusBarang($id_barang){

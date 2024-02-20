@@ -97,14 +97,14 @@ class User_model
         return $this->db->resultSet();
     }
 
-    // public function getUbah($id_user) {
-    //     $tampilView = "SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE id_user = :id_user;";
-    //     $this->db->query($tampilView);
-    //     $this->db->bind("id_user", $id_user);
-
-    //     return $this->db->single();
+    public function getUbah($id_user) {
+        $tampilView = "SELECT trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, trx_data_user.alamat, trx_data_user.id_user FROM trx_data_user WHERE id_user = :id_user;";
+        $this->db->query($tampilView);
+        $this->db->bind("id_user", $id_user);
     
-    // }
+        return $this->db->single();
+    }
+    
 
     // public function updateuser($data){
     //      // Insert data into mst_jenis_barang
@@ -163,15 +163,52 @@ class User_model
 
     
     public function profile($data){
-        $this->db->query("SELECT trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, 
-        trx_user.id_user, trx_user.id_role, trx_data_user.id_data_user,trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE trx_user.id_user = :id_user;");
+        $this->db->query("SELECT trx_user.id_user, trx_user.email, trx_data_user.foto, trx_data_user.nama_user, trx_data_user.no_hp_user, 
+        trx_user.id_user, trx_user.id_role, trx_data_user.id_data_user, trx_data_user.jenis_kelamin, trx_data_user.alamat, mst_role.role FROM trx_user JOIN trx_data_user ON trx_user.id_user = trx_data_user.id_user JOIN mst_role ON trx_user.id_role = mst_role.id_role WHERE trx_user.id_user = :id_user;");
         $this->db->bind('id_user', $data['id_user']);
         return $this->db->single();
 
     }
 
-
+    public function ubah($data)
+    {
+        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
+            $ukuranFile = $_FILES['foto']['size'];
+            $limit = 2 * 1024 * 1024;
+            if ($ukuranFile <= $limit) {
+                $uploadDirectory = '../public/img/foto-profile/';
+                $uploadedFile = $_FILES['foto']['tmp_name'];
+                $namaFileBaru = uniqid() . '-' . $_FILES['foto']['name']; // Generate nama file unik
+                $newFileName = $uploadDirectory . $namaFileBaru;
     
-
+                move_uploaded_file($uploadedFile, $newFileName);
+            } else {
+                Flasher::setFlash('Foto', 'gagal', ' diUpload <br> ukuran gambar terlalu besar', 'danger');
+                header('Location: ' . BASEURL . 'Register');
+                exit;
+            }
+        } else {
+    
+            $newFileName  = "../public/img/foto-profile/user.svg";
+        }
+    
+        $queryUpdateDataUser = "UPDATE trx_data_user SET foto = :foto,
+            nama_user = :nama_user,
+            no_hp_user = :no_hp_user,
+            alamat = :alamat
+            WHERE id_user = :id_user";
+    
+        $this->db->query($queryUpdateDataUser);
+        $this->db->bind(':foto', $newFileName);
+        $this->db->bind(':nama_user', $data['nama_user']);
+        $this->db->bind(':no_hp_user', $data['no_hp_user']);
+        $this->db->bind(':alamat', $data['alamat']);
+        $this->db->bind(':id_user', $data['id_user']);
+    
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+    
+    
 
 }
