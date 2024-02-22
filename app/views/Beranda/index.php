@@ -4,6 +4,7 @@
           exit;
         }    
 ?>
+    
 <div class="body-beranda" >
     <div class="side-bar">
         <div class="profil">
@@ -158,14 +159,14 @@
                 style=" width:100%;">
                 <thead class="table-info">
                     <tr>
-                        <th scope="col" class="p-3">No.</th>
-                        <th scope="col" class="p-3">Foto</th>
-                        <th scope="col" class="p-3">Kode barang</th>
-                        <th scope="col" class="p-3">Sub barang</th>
-                        <th scope="col" class="p-3">Merek barang</th>
-                        <th scope="col" class="p-3">Kondisi barang</th>
-                        <th scope="col" class="p-3">Status peminjaman</th>
-                        <th scope="col" class="p-3">Aksi</th>
+                        <th scope="col" class="p-2">No.</th>
+                        <th scope="col" class="p-2">Foto</th>
+                        <th scope="col" class="p-2">Kode barang</th>
+                        <th scope="col" class="p-2">Sub barang</th>
+                        <th scope="col" class="p-2">Merek barang</th>
+                        <th scope="col" class="p-2">Kondisi barang</th>
+                        <th scope="col" class="p-2">Status</th>
+                        <th scope="col" class="p-2">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -180,7 +181,7 @@
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                             <td class="p-3" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
                             <td class="p-3"><?= $row['kondisi_barang']; ?></td>
-                            <td class="p-3"><?= $row['status_peminjaman']; ?></td>
+                            <td class="p-3"><?= $row['status']; ?></td>
                             <td class="p-3" style="display: flex;">
                                 <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')): ?>
                                 <!-- Hapus -->
