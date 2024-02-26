@@ -153,8 +153,8 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
-                    <tr>
-                        <th scope="row" class="p-2"><?= $i++; ?></th>
+                    <tr style="font-size: 14px;">
+                        <td scope="row" class="p-2"><?= $i++; ?></td>
                         <td class="p-2"><img src="<?=BASEURL . $row['foto'];?>" alt="profile"
                                 style="height: 100px; width:100px; object-fit:cover;"></td>
                         <td class="p-2"><?= $row['nama_user']; ?></td>

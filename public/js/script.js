@@ -21,7 +21,6 @@ function camelCase() {
 }
 
 function validasiInput(input) {
-  // Menghapus karakter non-angka menggunakan ekspresi reguler
   input.value = input.value.replace(/[^0-9]/g, "");
 }
 
@@ -137,14 +136,16 @@ $(function () {
     });
   });
 
+
+
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
     searching: false,
     responsive: true,
-    // scrollY: 400,
+    scrollY: 350,
     scrollX: 400,
-    pageLength: 2,
+    pageLength: 3,
     deferRender: true,
     scroller: true,
     dom: "Bfrtip",
@@ -175,9 +176,16 @@ $(function () {
         text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
         data: "foto",
         exportOptions: {
+          format: {
+            body: function (data, row, column, node) {
+                if (column === 6) { // Check if it's the column with images
+                    return $(node).find('img').attr('src'); // Export the image URL
+                } else {
+                    return data;
+                }
+              }},
           columns: ":visible",
         },
-        render: function (data, type) {},
         customize: function (doc) {
           doc.pageSize = "A3";
         },

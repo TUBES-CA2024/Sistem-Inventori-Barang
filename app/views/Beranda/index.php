@@ -173,8 +173,8 @@
                     <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
                         <?php $i = 1; ?>
                         <?php foreach ($data['dataTampilBarang'] as $row): ?>
-                        <tr>
-                            <th scope="row" class="p-3"><?= $i++; ?></th>
+                        <tr style="font-size: 14px;">
+                            <td scope="row" class="p-3"><?= $i++; ?></td>
                             <td class="p-3"><img src="<?=BASEURL.$row['foto_barang'];?>" alt=""
                                     style="width:60px; height:60px;"></td>
                             <td class="p-3"><?= $row['kode_barang'];?></td>

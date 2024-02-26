@@ -145,8 +145,8 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilMerekBarang'] as $row): ?>
-                    <tr>
-                        <th scope="row" class="p-2"><?= $i++; ?></th>
+                    <tr style="font-size: 14px;">
+                        <td scope="row" class="p-2"><?= $i++; ?></td>
                         <td class="p-2" style="text-transform: capitalize;"><?= $row['nama_merek_barang']; ?></td>
                         <td class="p-2"><?= $row['kode_merek_barang']; ?></td>
                         <td class="p-2" style="display: flex;">

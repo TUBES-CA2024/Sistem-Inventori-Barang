@@ -148,8 +148,8 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($data['dataTampilJenisBarang'] as $row): ?>
-                    <tr>
-                        <th scope="row" class="px-2"><?= $i++; ?></th>
+                    <tr style="font-size: 14px;">
+                        <td scope="row" class="px-2"><?= $i++; ?></td>
                         <td class="p-2" style="text-transform: capitalize;"><?= $row['sub_barang']; ?></td>
                         <td class="p-2"><?= $row['grup_sub']; ?></td>
                         <td class="p-2"><?= $row['kode_sub']; ?></td>
