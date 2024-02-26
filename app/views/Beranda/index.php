@@ -149,8 +149,8 @@
                         </div>
                     </form>
                     <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
-                        <input type="checkbox" id="selectAllCheckbox" name="selectAllCheckbox" style="width: 15px;">
-                        <label for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
+                        <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox" style="width: 15px;">
+                        <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
                     </div>
                 </div>
             </div>
@@ -297,8 +297,11 @@
                                                 <div style="width: 50%;">
                                                     <span>
                                                         <h6>Qr code</h6>
+                                                        <div style="display: flex; flex-direction: column;">
                                                         <img src="<?=BASEURL . $row['qr_code']?>" alt=""
                                                             style="width:200px; height:200px;">
+                                                        <a href="<?=BASEURL . $row['qr_code']?>" style="margin-left: 15px;" download>Download</a>
+                                                        </div>
                                                     </span>
                                                     <br><br>
                                                     <span>

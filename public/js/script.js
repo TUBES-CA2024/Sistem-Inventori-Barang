@@ -1,20 +1,20 @@
 function uppercaseInput() {
-  let inputElement = document.getElementById("kode_sub");
+  let inputElement = $("#kode_sub");
   inputElement.value = inputElement.value.toUpperCase();
 }
 
 function camelCase() {
-  const inputDeskBarang = document.getElementById("deskripsi_barang");
+  const inputDeskBarang = $("#deskripsi_barang");
   inputDeskBarang.value =
     inputDeskBarang.value.charAt(0).toUpperCase() +
     inputDeskBarang.value.slice(1);
 
-  const inputDetailLokasi = document.getElementById("deskripsi_detail_lokasi");
+  const inputDetailLokasi = $("#deskripsi_detail_lokasi");
   inputDetailLokasi.value =
     inputDetailLokasi.value.charAt(0).toUpperCase() +
     inputDetailLokasi.value.slice(1);
 
-  const inputSubBarang = document.getElementById("sub_barang");
+  const inputSubBarang = $("#sub_barang");
   inputSubBarang.value =
     inputSubBarang.value.charAt(0).toUpperCase() +
     inputSubBarang.value.slice(1);
@@ -142,11 +142,12 @@ $(function () {
     lengthChange: false,
     searching: false,
     responsive: true,
-    scrollY: 400,
+    // scrollY: 400,
     scrollX: 400,
-    pageLength: 6,
+    pageLength: 2,
     deferRender: true,
     scroller: true,
+    dom: "Bfrtip",
     buttons: [
       {
         extend: "copy",
@@ -172,9 +173,11 @@ $(function () {
       {
         extend: "pdf",
         text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
+        data: "foto",
         exportOptions: {
           columns: ":visible",
         },
+        render: function (data, type) {},
         customize: function (doc) {
           doc.pageSize = "A3";
         },
@@ -295,7 +298,6 @@ $(function () {
 //pilih semua
 const selectAllCheckbox = document.getElementById("selectAllCheckbox");
 const checkboxes = document.querySelectorAll(".checkbox");
-
 selectAllCheckbox.addEventListener("change", function () {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = selectAllCheckbox.checked;
