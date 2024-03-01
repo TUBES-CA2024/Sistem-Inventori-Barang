@@ -11,9 +11,18 @@ class User_model
 
     public function tambahUser($data)
     {
+        $this->db->query("SELECT * FROM trx_user WHERE email = :email");
+        $this->db->bind('email', $data['email']);
+       $cekEmail =  $this->db->resultSet();
+
+        if(count($cekEmail)> 0){
+            Flasher::setFlash('Akun', 'gagal', ' ditambahkan <br> Email telah digunakan', 'danger');
+            header('Location: '. BASEURL . 'Register');
+            exit;
+        } else{
         $ukuranFile = $_FILES['foto']['size'];
         $limit = 2 * 1024 *1024;
-        if($ukuranFile <= $limit){
+        if ($ukuranFile <= $limit){
 
         $password = $_POST['password'];
         $confirmPassword = $_POST['konfirmasi-password'];
@@ -59,6 +68,7 @@ class User_model
         header('Location: '. BASEURL . 'Register');
         exit;
     }
+}
     }
 
     public function getUser($email, $password)

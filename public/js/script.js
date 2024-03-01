@@ -143,7 +143,7 @@ $(function () {
     responsive: true,
     scrollY: 350,
     scrollX: 400,
-    pageLength: 3,
+    pageLength: 10,
     deferRender: true,
     scroller: true,
     dom: "Bfrtip",
@@ -164,6 +164,7 @@ $(function () {
       },
       {
         extend: "excel",
+        title: "Data Barang Laboratorium Terpadu Fakultas Ilmu Komputer",
         text: '<i class="fa-solid fa-file-excel" style="color: #ffffff; margin-right:10px;"></i>Ekspor ke Excel',
         exportOptions: {
           columns: ":visible",
