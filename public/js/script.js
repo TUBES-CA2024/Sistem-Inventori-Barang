@@ -136,8 +136,6 @@ $(function () {
     });
   });
 
-
-
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
@@ -172,23 +170,42 @@ $(function () {
         },
       },
       {
-        extend: "pdf",
-        text: '<i class="fa-solid fa-file-pdf" style="color: #ffffff;  margin-right:10px;"></i>Ekspor ke PDF',
-        data: "foto",
+        extend: "print",
+        title: "",
+        text: '<i class="fa-solid fa-print" style="color: #ffffff;  margin-right:10px;"></i>Cetak',
         exportOptions: {
-          format: {
-            body: function (data, row, column, node) {
-                if (column === 6) { // Check if it's the column with images
-                    return $(node).find('img').attr('src'); // Export the image URL
-                } else {
-                    return data;
-                }
-              }},
           columns: ":visible",
+          stripHtml: false,
+          orientation: "landscape",
         },
-        customize: function (doc) {
-          doc.pageSize = "A3";
+        customize: function (win) {
+          $(win.document.body).prepend(
+            '<img src="../img/logo bg putih.svg" style="width:250px;height:250px;">'
+          );
+          var css =
+              "@page { size: A3 landscape; }" +
+              "table.dataTable { width: 100% !important; }" +
+              "table.dataTable th, table.dataTable td { white-space: nowrap; }",
+            head =
+              win.document.head || win.document.getElementsByTagName("head")[0],
+            style = win.document.createElement("style");
+
+          style.type = "text/css";
+          style.media = "print";
+
+          if (style.styleSheet) {
+            style.styleSheet.cssText = css;
+          } else {
+            style.appendChild(win.document.createTextNode(css));
+          }
+
+          head.appendChild(style);
         },
+
+        //   // Lakukan hal lain yang diperlukan dengan dokumen PDF
+        // },
+        // });
+        // },
       },
       {
         extend: "colvis",
