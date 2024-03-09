@@ -178,10 +178,24 @@ public function getDetailDataBarang($id_barang){
     }
 
 public function hapusBarang($id_barang){
+    $this->db->query("SELECT (foto_barang) FROM trx_barang WHERE id_barang = :id_barang;");
+    $this->db->bind("id_barang", $id_barang);
+   $pathFotoBarang = $this->db->single();
+   $pathFotoBarangString = $pathFotoBarang['foto_barang'];
+
+        $lokasi_foto = "C:/xampp/htdocs/inventori/public/img/foto-barang/". basename($pathFotoBarangString);
+            unlink($lokasi_foto); 
+        
+    $this->db->query("SELECT (qr_code) FROM trx_barang WHERE id_barang = :id_barang;");
+    $this->db->bind("id_barang", $id_barang);
+   $pathQrCode = $this->db->single();
+   $pathQrCodeString = $pathQrCode['qr_code'];
+
+   $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
+   unlink($lokasi_qr); 
+        
     $this->db->query("DELETE FROM trx_barang WHERE id_barang = :id_barang;");
     $this->db->bind("id_barang", $id_barang);
-
-    $this->db->execute();
 
     return $this->db->resultSet();
     }
@@ -300,7 +314,6 @@ $uploadDirectory = '../public/img/qr-code/';
 $fotoQr = $uploadDirectory . $uniqueFileName;
 move_uploaded_file($_FILES[$uniqueFileName]['tmp_name'], $fotoQr);
 
-// Update database with the unique filename
 $queryQr = "UPDATE trx_barang SET qr_code = :qr_code WHERE id_barang = :id_barang";
 $this->db->query($queryQr);
 $this->db->bind('qr_code', $fotoQr);
