@@ -54,8 +54,11 @@
 
 
                         $foto_profil = $profile_data['foto'];
-                        echo '<img src="' . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 200px; width: 200px; object-fit:cover;">';
-
+                        if($foto_profil == "../public/img/foto-profile/"){
+                            echo '<img src="'. BASEURL . $foto_profil . '/user.svg'. '" alt="profile" style="border-radius: 50%; height: 180px; width: 180px; object-fit:cover;">';
+                        }else{
+                        echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 180px; width: 180px; object-fit:cover;">';
+                        }
                         
                echo '<div class="detail-data-profil">';
                if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {

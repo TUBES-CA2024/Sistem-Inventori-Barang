@@ -190,7 +190,6 @@ class User_model
 
     public function ubah($data)
     {
-        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === 0) {
             $ukuranFile = $_FILES['foto']['size'];
             $limit = 2 * 1024 * 1024;
             if ($ukuranFile <= $limit) {
@@ -205,11 +204,7 @@ class User_model
                 header('Location: ' . BASEURL . 'Register');
                 exit;
             }
-        } else {
-    
-            $newFileName  = "../public/img/foto-profile/user.svg";
-        }
-    
+
         $queryUpdateDataUser = "UPDATE trx_data_user SET foto = :foto,
             nama_user = :nama_user,
             no_hp_user = :no_hp_user,
@@ -227,6 +222,4 @@ class User_model
         return $this->db->rowCount();
     }
     
-    
-
 }
