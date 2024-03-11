@@ -97,6 +97,14 @@ class User_model
     }
 
     public function hapusUser($id_user){
+        $this->db->query("SELECT (foto) FROM trx_data_user WHERE id_user = :id_user;");
+        $this->db->bind("id_user", $id_user);
+       $pathProfile = $this->db->single();
+       $pathProfileString = $pathProfile['foto'];
+    
+       $lokasi_foto = "C:/xampp/htdocs/inventori/public/img/foto-profile/". basename($pathProfileString);
+       unlink($lokasi_foto);
+
         $this->db->query("DELETE FROM trx_data_user WHERE id_user = :id_user;");
         $this->db->bind("id_user", $id_user);
         $this->db->execute();

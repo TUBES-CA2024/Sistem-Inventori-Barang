@@ -14,9 +14,13 @@
             <div class="data-profil">
                 <?php
 
-                        $foto_profil = $data['profile']['foto'];
-                        echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
-                        
+                    $foto_profil = $data['profile']['foto'];
+                    if($foto_profil == "../public/img/foto-profile/"){
+                        echo '<img src="'. BASEURL . $foto_profil . '/user.svg'. '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
+                    }else{
+                    echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
+                    }
+
                echo '<div class="detail-data-profil">';
                if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {
                 $nama = $data['profile']['nama_user'];

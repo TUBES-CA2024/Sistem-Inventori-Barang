@@ -211,6 +211,15 @@ public function hapusBarang($id_barang){
 
     public function ubahBarang($data)
     {
+
+        $this->db->query("SELECT (qr_code) FROM trx_barang WHERE id_barang = :id_barang;");
+        $this->db->bind("id_barang", $data['id_barang']);
+       $pathQrCode = $this->db->single();
+       $pathQrCodeString = $pathQrCode['qr_code'];
+    
+       $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
+       unlink($lokasi_qr);
+
         
         $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE  trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang ;";
 

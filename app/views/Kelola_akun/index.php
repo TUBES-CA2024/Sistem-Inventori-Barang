@@ -14,9 +14,12 @@
             <div class="data-profil">
                 <?php
                     
-                        $foto_profil = $data['profile']['foto'];
-                        echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit: cover;">';
-           
+                    $foto_profil = $data['profile']['foto'];
+                    if($foto_profil == "../public/img/foto-profile/"){
+                        echo '<img src="'. BASEURL . $foto_profil . '/user.svg'. '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
+                    }else{
+                    echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
+                    }
                         
                echo '<div class="detail-data-profil">';
                if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {
@@ -155,8 +158,15 @@
                     <?php foreach ($data['dataTampilUser'] as $row): ?>
                     <tr style="font-size: 14px;">
                         <td scope="row" class="p-2"><?= $i++; ?></td>
-                        <td class="p-2"><img src="<?=BASEURL . $row['foto'];?>" alt="profile"
-                                style="height: 100px; width:100px; object-fit:cover;"></td>
+                        <td class="p-2"><?php
+                        if($row['foto'] == "../public/img/foto-profile/"){
+                         echo   '<img src="'.BASEURL . $row['foto'] .'/user.svg'.'" alt="profile"
+                                style="height: 100px; width:100px; object-fit:cover;">';
+                        } else{
+                            echo   '<img src="'. BASEURL . $row['foto'] .'" alt="profile"
+                                style="height: 100px; width:100px; object-fit:cover;">';
+                        }
+                        ?></td>
                         <td class="p-2"><?= $row['nama_user']; ?></td>
                         <td class="p-2"><?= $row['email']; ?></td>
                         <td class="p-2"><?= $row['no_hp_user']; ?></td>
