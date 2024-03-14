@@ -47,12 +47,9 @@
                     Informasi pribadi
                 </div>
                 <div class="card-body p-5">
-                    <div class="foto" style=" width:80%; display: flex;  justify-content: center;
-">
+                    <div class="foto" style=" width:80%; display: flex;  justify-content: center;">
                         <?php
-                   $profile_data = $data['profile'];
-
-
+                        $profile_data = $data['profile'];
                         $foto_profil = $profile_data['foto'];
                         if($foto_profil == "../public/img/foto-profile/"){
                             echo '<img src="'. BASEURL . $foto_profil . '/user.svg'. '" alt="profile" style="border-radius: 50%; height: 180px; width: 180px; object-fit:cover;">';

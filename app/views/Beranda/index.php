@@ -204,7 +204,7 @@
 
                                 <!-- detail -->
                                 <a href="<?= BASEURL; ?>Beranda/detail/<?=$row['id_barang'];?>" data-toggle="modal"
-                                    data-target="#modalUpdate<?= $row['id_barang']; ?>"
+                                    data-target="#modalDetail<?= $row['id_barang']; ?>"
                                     class="btn d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                                 </a>
@@ -238,7 +238,7 @@
                                 </div>
 
 
-                                <div class="modal fade" id="modalUpdate<?= $row['id_barang']; ?>" tabindex="-1"
+                                <div class="modal fade" id="modalDetail<?= $row['id_barang']; ?>" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content" style="width: 700px;">
