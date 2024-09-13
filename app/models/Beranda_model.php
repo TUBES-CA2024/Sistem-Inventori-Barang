@@ -82,7 +82,7 @@ class Beranda_model{
     $this->db->bind('id_status', $data['status']);
     $this->db->bind('status_peminjaman', $data['status_pinjam']);
 
-        function angkaRomawi($number)
+function angkaRomawi($number)
 {
     $romans = [
         'M'  => 1000,
