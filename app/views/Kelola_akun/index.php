@@ -139,7 +139,7 @@
                 </div>
             </div>
             <div style="max-height: 420px; overflow:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
-            <table class="table table-hover table-sm">
+            <table id="myTable" class="table table-hover table-sm">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="text-nowrap p-2">No.</th>
