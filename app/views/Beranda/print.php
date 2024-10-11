@@ -27,7 +27,6 @@
         border: none;
     }
 
-  
     .buttons-excel,
     .buttons-print,
     .buttons-copy,
