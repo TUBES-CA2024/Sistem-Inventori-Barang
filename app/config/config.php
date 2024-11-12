@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'http://localhost/inventori/public/');
+define('BASEURL', 'http://localhost/Sistem-Inventori-Barang/public/');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
