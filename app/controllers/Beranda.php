@@ -21,7 +21,8 @@ class Beranda extends Controller {
         // $userModel = $this->model('User_model');
         // $data['dataTampilUser']= $userModel->profile();
         // Memanggil view transaksi barang
-        $this->view('templates/header', $data);
+        $this->view('templates/header', data: $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }
@@ -96,6 +97,7 @@ class Beranda extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');
     }

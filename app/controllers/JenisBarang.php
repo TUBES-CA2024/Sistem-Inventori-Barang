@@ -12,6 +12,7 @@ class jenisBarang extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Jenis_barang/index', $data);
         $this->view('templates/footer');
     }
@@ -81,6 +82,7 @@ class jenisBarang extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Jenis_barang/index', $data);
         $this->view('templates/footer');
     }

@@ -11,6 +11,7 @@ class KelolaAkun extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Kelola_akun/index', $data);
         $this->view('templates/footer');
     }
@@ -56,6 +57,7 @@ class KelolaAkun extends Controller {
 
         // Memanggil view transaksi barang
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Kelola_akun/index', $data);
         $this->view('templates/footer');
     }

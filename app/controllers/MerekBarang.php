@@ -12,6 +12,7 @@ class merekBarang extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Merek_barang/index', $data);
         $this->view('templates/footer');
     }
@@ -78,6 +79,7 @@ class merekBarang extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         
         $this->view('templates/header', $data);
+        $this->view('templates/sidebar', data: $data);
         $this->view('Merek_barang/index', $data);
         $this->view('templates/footer');
     }
