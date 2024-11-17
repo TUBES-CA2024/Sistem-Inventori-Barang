@@ -211,7 +211,7 @@ $(function () {
       {
         extend: "colvis",
         text: "Visibilitas kolom",
-      },
+      },  
     ],
   });
 

@@ -388,6 +388,7 @@ ul {
 ul .beranda button:hover,
 .tambah-jenis-barang button:hover,
 .tambah-merek-barang button:hover,
+.tambah-peminjaman-barang button:hover,
 .kelola-akun button:hover,
 .fa-solid:hover {
   opacity: 0.9;
@@ -399,6 +400,7 @@ ul .beranda button:hover,
 ul .beranda button,
 .tambah-jenis-barang button,
 .tambah-merek-barang button,
+.tambah-peminjaman-barang button,
 .kelola-akun button,
 .keluar button {
   display: flex;
