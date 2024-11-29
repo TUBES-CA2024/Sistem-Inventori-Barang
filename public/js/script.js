@@ -143,6 +143,17 @@ $(document).ready(function(){
   $('#myTable').DataTable();
 });
 
+var myTable = $('#myTable').DataTable({
+  dom: 'lrtip', // Menghilangkan search bawaan DataTable
+  "bLengthChange": false, // Menonaktifkan opsi show entries
+  "bInfo": false // Menonaktifkan informasi total entries
+});
+
+// Hubungkan search kustom ke DataTable
+$('#customSearch').on('keyup', function () {
+  myTable.search(this.value).draw(); // Cari data sesuai input
+});
+
 
   //data tables
   let table = $("#example").DataTable({
