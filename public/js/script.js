@@ -65,7 +65,7 @@ $(function () {
     $(".modal-title").html("Tambah Jenis Barang");
     $(".modal-body form").attr(
       "action",
-      "http://localhost/inventori/public/JenisBarang/tambahJenisBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/JenisBarang/tambahJenisBarang"
     );
     const data = "";
     $("#sub_barang").val(data.sub_barang);
@@ -78,18 +78,19 @@ $(function () {
     $(".modal-title").html("Ubah Jenis Barang");
     $(".modal-body form").attr(
       "action",
-      "http://localhost/inventori/public/JenisBarang/ubahJenisBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/JenisBarang/ubahJenisBarang"
     );
     const id = $(this).data("id");
 
     $.ajax({
-      url: "http://localhost/inventori/public/JenisBarang/getUbah",
+      url: "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/JenisBarang/getUbah",
       data: {
         id_jenis_barang: id,
       },
       method: "post",
       dataType: "json",
       success: function (data) {
+        console.log(data)
         $("#sub_barang").val(data.sub_barang);
         $("#grup_sub").val(data.grup_sub);
         $("#kode_sub").val(data.kode_sub);
@@ -105,7 +106,7 @@ $(function () {
     $(".title-merek").html("Tambah Merek Barang");
     $(".body-merek form").attr(
       "action",
-      "http://localhost/inventori/public/MerekBarang/tambahMerekBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/merekBarang/tambahMerekBarang"
     );
     const data = "";
     $("#nama_merek_barang").val(data.nama_merek_barang);
@@ -117,16 +118,16 @@ $(function () {
     $(".title-merek").html("Ubah Merek Barang");
     $(".body-merek form").attr(
       "action",
-      "http://localhost/inventori/public/MerekBarang/ubahMerekBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/merekBarang/ubahMerekBarang"
     );
     const id = $(this).data("id");
 
     $.ajax({
-      url: "http://localhost/inventori/public/MerekBarang/getUbah",
+      url: "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/merekBarang/getUbah",
       data: {
         id_merek_barang: id,
       },
-      method: "post",
+      method: "post", 
       dataType: "json",
       success: function (data) {
         $("#nama_merek_barang").val(data.nama_merek_barang);
@@ -135,7 +136,6 @@ $(function () {
       },
     });
   });
-
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
@@ -226,7 +226,7 @@ $(function () {
   $(".btn-Ubah-profile").on("click", function () {
     const id = $(this).data("id");
     $.ajax({
-      url: "http://localhost/inventori/public/Profil/getUbah",
+      url: "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/Profil/getUbah",
       data: {
         id_user: id,
       },
@@ -248,7 +248,7 @@ $(function () {
     $("#title-barang").html("Tambah Barang");
     $(".body-barang form").attr(
       "action",
-      "http://localhost/inventori/public/Beranda/tambahBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/Beranda/tambahBarang"
     );
     const data = "";
     $("#id_barang").val(data.id_barang);
@@ -272,18 +272,19 @@ $(function () {
     $("#title-barang").html("Ubah Data Barang");
     $(".body-barang form").attr(
       "action",
-      "http://localhost/inventori/public/Beranda/ubahBarang"
+      "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/Beranda/ubahBarang"
     );
     const id = $(this).data("id");
     console.log(id);
     $.ajax({
-      url: "http://localhost/inventori/public/Beranda/getUbah",
+      url: "http://localhost/tubes_lab/Sistem-Inventori-Barang/public/Beranda/getUbah",
       data: {
         id_barang: id,
       },
       method: "post",
       dataType: "json",
       success: function (data) {
+        console.log(data)
         $("#id_barang").val(data.id_barang);
         $("#id_jenis_barang").val(data.sub_barang);
         $("#nama_merek_barang").val(data.id_merek_barang);
@@ -329,3 +330,4 @@ selectAllCheckbox.addEventListener("change", function () {
     checkbox.checked = selectAllCheckbox.checked;
   });
 });
+
