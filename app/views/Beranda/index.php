@@ -1,8 +1,8 @@
 <?php
         if (!isset($_SESSION['login'])) {
-          header("Location:" . BASEURL . "Login");
-          exit;
-        }    
+        header("Location:" . BASEURL . "Login");
+        exit;
+        }
 ?>
     
 
@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
             <table  id="myTable"class="table table-hover table-sm"
                 style=" width:100%;">
                 <thead class="table-info">
@@ -84,7 +84,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
+                <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
                         <?php $i = 1; ?>
                         <?php foreach ($data['dataTampilBarang'] as $row): ?>
                         <tr style="font-size: 14px;">

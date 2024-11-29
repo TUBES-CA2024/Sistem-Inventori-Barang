@@ -26,11 +26,5 @@
 "></script>
 <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 <script src="<?=BASEURL;?>/js/script.js"></script>
-<script>
-    $(document).ready(function(){
-        $('#myTable').DataTable();
-});
-</script>
-
 </body>
 </html>

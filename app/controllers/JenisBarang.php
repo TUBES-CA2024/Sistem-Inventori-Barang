@@ -50,7 +50,7 @@ class jenisBarang extends Controller {
     }
 
     public function getUbah(){
-       echo json_encode( $this->model('Tambah_jenis_barang_model')->getUbah($_POST['id_jenis_barang']));
+        echo json_encode( $this->model('Tambah_jenis_barang_model')->getUbah($_POST['id_jenis_barang']));
     }
 
     public function ubahJenisBarang(){
@@ -86,6 +86,6 @@ class jenisBarang extends Controller {
         $this->view('Jenis_barang/index', $data);
         $this->view('templates/footer');
     }
-   
+
 }
 

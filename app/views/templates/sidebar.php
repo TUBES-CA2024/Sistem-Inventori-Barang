@@ -14,12 +14,12 @@
                         echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 100px; width: 100px; object-fit:cover;">';
                         }
                         
-               echo '<div class="detail-data-profil">';
-               if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {
+                echo '<div class="detail-data-profil">';
+                if (isset($data['profile']['nama_user']) && isset($data['profile']['role'])) {
                 $nama = $data['profile']['nama_user'];
                 $role = $data['profile']['role'];
                 echo '<p style="color: white; font-weight: 600; margin-bottom:0;">' . $nama . '</p>
-                      <p style="color: white; font-size: 13px;">' . $role . '</p></div>';
+                    <p style="color: white; font-size: 13px;">' . $role . '</p></div>';
             }
             
                     ?>

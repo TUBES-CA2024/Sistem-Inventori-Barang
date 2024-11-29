@@ -1,8 +1,8 @@
 <?php
         if (!isset($_SESSION['login']) || ($_SESSION['id_role'] == '1')) {
-          header("Location:" . BASEURL . "Login");
-          exit;
-        }    
+            header("Location:" . BASEURL . "Login");
+            exit;
+        }
 ?>
 
     <!-- modal keluar -->
@@ -55,8 +55,8 @@
                     </form>
                 </div>
             </div>
-            <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
-            <table id="myTable" class="table table-hover table-sm">
+            <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
+            <table id="myTable" class="table table-hover table-sm" style="">
                 <thead class="table-info">
                     <tr>
                         <th scope="col" class="p-2">No.</th>
@@ -140,7 +140,7 @@
                                     <label for="grup_sub">Grup sub</label>
                                     <br>
                                     <select name="grup_sub" required id="grup_sub" style="width: 250px;">
-                                    <option>-- Pilih --</option>    
+                                    <option>-- Pilih --</option>
                                     <option value="C">C</option>
                                         <option value="S">S</option>
                                         <option value="J">J</option>

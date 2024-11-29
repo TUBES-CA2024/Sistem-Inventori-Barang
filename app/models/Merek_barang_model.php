@@ -16,8 +16,7 @@ class Merek_barang_model{
     $this->db->bind('nama_merek_barang', $data['nama_merek_barang']);
     $this->db->bind('kode_merek_barang', $data['kode_merek_barang']);
     $this->db->execute();
-   
-
+    
     return $this->db->rowCount();
 }
 
@@ -35,7 +34,7 @@ public function cekDataMerekBarang($data)
     $this->db->bind('kode_merek_barang', $data['kode_merek_barang']);
     $this->db->bind('id_merek_barang', $data['id_merek_barang']);
     $this->db->execute();
-   
+    
 
     return $this->db->single()['COUNT(*)'];
 }
@@ -78,7 +77,7 @@ public function hapusMerekBarang($id_merek_barang){
         $this->db->bind('id_merek_barang', $data['id_merek_barang']);
 
         $this->db->execute();
-       
+        
     
         return $this->db->rowCount();
     }

@@ -3,6 +3,7 @@ function uppercaseInput() {
   inputElement.value = inputElement.value.toUpperCase();
 }
 
+
 function camelCase() {
   const inputDeskBarang = $("#deskripsi_barang");
   inputDeskBarang.value =
@@ -23,6 +24,7 @@ function camelCase() {
 function validasiInput(input) {
   input.value = input.value.replace(/[^0-9]/g, "");
 }
+
 
 // function cetak() {
 //   window.print();
@@ -136,14 +138,20 @@ $(function () {
     });
   });
 
+
+$(document).ready(function(){
+  $('#myTable').DataTable();
+});
+
+
   //data tables
   let table = $("#example").DataTable({
     lengthChange: false,
-    searching: false,
+    searching: true,
     responsive: true,
     scrollY: 350,
     scrollX: 400,
-    pageLength: 10,
+    pageLength: 20,
     deferRender: true,
     scroller: true,
     dom: "Bfrtip",
@@ -171,14 +179,14 @@ $(function () {
         },
       },
       {
-        extend: "print",
-        title: "",
-        text: '<i class="fa-solid fa-print" style="color: #ffffff;  margin-right:10px;"></i>Cetak',
-        exportOptions: {
-          columns: ":visible",
-          stripHtml: false,
-          orientation: "landscape",
-        },
+          extend: "print",
+          title: "",
+          text: '<i class="fa-solid fa-print" style="color: #ffffff;  margin-right:10px;"></i>Cetak',
+          exportOptions: {
+            columns: ":visible",
+            stripHtml: false,
+            orientation: "landscape",
+          },
         customize: function (win) {
           $(win.document.body).prepend(
             '<img src="../img/logo bg putih.svg" style="width:250px;height:250px;">'
@@ -208,12 +216,23 @@ $(function () {
         // });
         // },
       },
+      {//edit search
+
+
+      },
       {
         extend: "colvis",
         text: "Visibilitas kolom",
       },
     ],
+    initComplete: function () {
+      // Tambahkan kelas khusus ke elemen input Search
+      $("#example_filter input").addClass("custom-search");
+    },
+
   });
+
+//penutup datatable
 
   table.buttons().container().appendTo("#example_wrapper :eq(0)");
 

@@ -19,7 +19,7 @@
         <div class="header">
           <h2>Daftar</h2>
         </div>
-        <div class="form">     
+        <div class="form">
             <div class="nama">
                 <label for="nama_user">Nama Lengkap</label>
                 <input
@@ -51,7 +51,7 @@
               required
             />
           </div>
-           <div class="konfirmasi-kata-sandi">
+          <div class="konfirmasi-kata-sandi">
             <label for="konfirmasi-password">Konfirmasi kata sandi</label>
             <input
               type="password"
@@ -121,7 +121,6 @@
             maxlength="100"
           />
         </div>
-   
         <div class="button-daftar">
           <button type="submit" id="btn-daftar">Daftar</button>
         </div>

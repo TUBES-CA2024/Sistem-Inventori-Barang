@@ -19,7 +19,7 @@ class Tambah_jenis_barang_model{
     $kodeJenisBarang = $data['grup_sub'] . '/' . $data['kode_sub'];
     $this->db->bind('kode_jenis_barang', $kodeJenisBarang);
     $this->db->execute();
-   
+    
 
     return $this->db->rowCount();
 }
@@ -34,19 +34,19 @@ public function getDataJenisBarang() {
 
 public function cekDataJenisBarang($data){
        // Insert data into mst_jenis_barang
-       $queryCekJenisBarang = "SELECT COUNT(*) FROM mst_jenis_barang WHERE
-       (sub_barang = :sub_barang OR
-       kode_sub = :kode_sub) AND
-       id_jenis_barang != :id_jenis_barang";
-   
-       $this->db->query($queryCekJenisBarang);
-       $this->db->bind('sub_barang', $data['sub_barang']);
-       $this->db->bind('kode_sub', $data['kode_sub']);
-       $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
-       $this->db->execute();
-      
-   
-       return $this->db->single()['COUNT(*)'];
+        $queryCekJenisBarang = "SELECT COUNT(*) FROM mst_jenis_barang WHERE
+        (sub_barang = :sub_barang OR
+        kode_sub = :kode_sub) AND
+        id_jenis_barang != :id_jenis_barang";
+    
+        $this->db->query($queryCekJenisBarang);
+        $this->db->bind('sub_barang', $data['sub_barang']);
+        $this->db->bind('kode_sub', $data['kode_sub']);
+        $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
+        $this->db->execute();
+        
+    
+        return $this->db->single()['COUNT(*)'];
 }
 
 public function hapusJenisBarang($id_jenis_barang){
@@ -81,7 +81,7 @@ public function hapusJenisBarang($id_jenis_barang){
         $this->db->bind('kode_jenis_barang', $kodeJenisBarang);        $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
 
         $this->db->execute();
-       
+        
     
         return $this->db->rowCount();
     }

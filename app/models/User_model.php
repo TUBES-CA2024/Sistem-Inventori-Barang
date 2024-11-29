@@ -13,7 +13,7 @@ class User_model
     {
         $this->db->query("SELECT * FROM trx_user WHERE email = :email");
         $this->db->bind('email', $data['email']);
-       $cekEmail =  $this->db->resultSet();
+        $cekEmail =  $this->db->resultSet();
 
         if(count($cekEmail)> 0){
             Flasher::setFlash('Akun', 'gagal', ' ditambahkan <br> Email telah digunakan', 'danger');
@@ -40,7 +40,7 @@ class User_model
 
             $this->db->execute();
             $idUser = $this->db->lastInsertId();
-         
+        
             
             // Pindahkan file foto ke folder yang ditentukan
             $uploadDirectory ='../public/img/foto-profile/';
@@ -99,11 +99,11 @@ class User_model
     public function hapusUser($id_user){
         $this->db->query("SELECT (foto) FROM trx_data_user WHERE id_user = :id_user;");
         $this->db->bind("id_user", $id_user);
-       $pathProfile = $this->db->single();
-       $pathProfileString = $pathProfile['foto'];
+        $pathProfile = $this->db->single();
+        $pathProfileString = $pathProfile['foto'];
     
-       $lokasi_foto = "C:/xampp/htdocs/inventori/public/img/foto-profile/". basename($pathProfileString);
-       unlink($lokasi_foto);
+        $lokasi_foto = "C:/xampp/htdocs/inventori/public/img/foto-profile/". basename($pathProfileString);
+        unlink($lokasi_foto);
 
         $this->db->query("DELETE FROM trx_data_user WHERE id_user = :id_user;");
         $this->db->bind("id_user", $id_user);

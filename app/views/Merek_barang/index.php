@@ -1,8 +1,8 @@
 <?php
         if (!isset($_SESSION['login']) || ($_SESSION['id_role'] == '1')) {
-          header("Location:" . BASEURL . "Login");
-          exit;
-        }    
+            header("Location:" . BASEURL . "Login");
+            exit;
+        }
 ?>
 
     <!-- modal keluar -->
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div
-                style="max-height: 400px; overflow:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+                style="max-height: 400px; overflow:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px;">
                 <table id="myTable" class="table table-hover table-sm">
                     <thead class="table-info">
                         <tr>
@@ -154,8 +154,4 @@
                     </form>
                 </div>
             </div>
-
-
-
-
         </div>

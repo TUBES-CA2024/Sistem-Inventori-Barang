@@ -46,11 +46,11 @@ class merekBarang extends Controller {
             header('Location: '. BASEURL . 'MerekBarang');
             exit;
         }
-       
+        
     }
 
     public function getUbah(){
-       echo json_encode( $this->model('Merek_barang_model')->getUbah($_POST['id_merek_barang']));
+        echo json_encode( $this->model('Merek_barang_model')->getUbah($_POST['id_merek_barang']));
     }
 
     public function ubahMerekBarang(){
@@ -83,6 +83,6 @@ class merekBarang extends Controller {
         $this->view('Merek_barang/index', $data);
         $this->view('templates/footer');
     }
-   
+
 }
 

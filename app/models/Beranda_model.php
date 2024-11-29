@@ -108,7 +108,6 @@ function angkaRomawi($number)
         $number %= $value;
     }
 
-     
 
     return $result;
 }
@@ -173,26 +172,26 @@ public function getDataBarang() {
 public function getDetailDataBarang($id_barang){
         $this->db->query("SELECT * FROM detail_barang WHERE id_barang = :id_barang");
         $this->db->bind("id_barang", $id_barang);
-     
+    
         return $this->db->single(); 
     }
 
 public function hapusBarang($id_barang){
     $this->db->query("SELECT (foto_barang) FROM trx_barang WHERE id_barang = :id_barang;");
     $this->db->bind("id_barang", $id_barang);
-   $pathFotoBarang = $this->db->single();
-   $pathFotoBarangString = $pathFotoBarang['foto_barang'];
+    $pathFotoBarang = $this->db->single();
+    $pathFotoBarangString = $pathFotoBarang['foto_barang'];
 
         $lokasi_foto = "C:/xampp/htdocs/inventori/public/img/foto-barang/". basename($pathFotoBarangString);
             unlink($lokasi_foto); 
         
     $this->db->query("SELECT (qr_code) FROM trx_barang WHERE id_barang = :id_barang;");
     $this->db->bind("id_barang", $id_barang);
-   $pathQrCode = $this->db->single();
-   $pathQrCodeString = $pathQrCode['qr_code'];
+    $pathQrCode = $this->db->single();
+    $pathQrCodeString = $pathQrCode['qr_code'];
 
-   $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
-   unlink($lokasi_qr); 
+    $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
+    unlink($lokasi_qr); 
         
     $this->db->query("DELETE FROM trx_barang WHERE id_barang = :id_barang;");
     $this->db->bind("id_barang", $id_barang);
@@ -214,11 +213,11 @@ public function hapusBarang($id_barang){
 
         $this->db->query("SELECT (qr_code) FROM trx_barang WHERE id_barang = :id_barang;");
         $this->db->bind("id_barang", $data['id_barang']);
-       $pathQrCode = $this->db->single();
-       $pathQrCodeString = $pathQrCode['qr_code'];
+        $pathQrCode = $this->db->single();
+        $pathQrCodeString = $pathQrCode['qr_code'];
     
-       $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
-       unlink($lokasi_qr);
+        $lokasi_qr = "C:/xampp/htdocs/inventori/public/img/qr-code/". basename($pathQrCodeString);
+        unlink($lokasi_qr);
 
         
         $joinKodeJenisBarang = "SELECT (mst_jenis_barang.kode_jenis_barang) FROM trx_barang JOIN mst_jenis_barang ON trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang WHERE  trx_barang.id_jenis_barang = mst_jenis_barang.id_jenis_barang ;";
@@ -227,9 +226,9 @@ public function hapusBarang($id_barang){
 
         $kodeJenisBarang = $this->db->single();
         $kodeJenisBarangString = $kodeJenisBarang['kode_jenis_barang'];
-   
-  
-         $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang;";
+
+
+        $joinKodeMerekBarang = "SELECT mst_merek_barang.kode_merek_barang FROM trx_barang JOIN mst_merek_barang ON trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang WHERE trx_barang.id_merek_barang = mst_merek_barang.id_merek_barang;";
 
         $this->db->query($joinKodeMerekBarang);
 
@@ -297,7 +296,7 @@ public function hapusBarang($id_barang){
         }
 $month = date('m', strtotime($data['tgl_pengadaan_barang']));
 $romanMonth = Romawi($month);
-  
+
 $kodeBarang =  date('Y', strtotime($data['tgl_pengadaan_barang'])) . '/' . $romanMonth . '/' .  $kodeJenisBarangString. '/' . $kodeMerekBarangString. '/' . $data['barang_ke'] . '/' . $data['total_barang'];
 
 $this->db->bind('kode_barang', $kodeBarang);
@@ -393,10 +392,3 @@ return $this->db->rowCount();
     
 
 }
-
-
-
-
-
-
-

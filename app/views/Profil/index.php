@@ -57,8 +57,8 @@
                         echo '<img src="'. BASEURL . $foto_profil . '" alt="profile" style="border-radius: 50%; height: 180px; width: 180px; object-fit:cover;">';
                         }
                         
-               echo '<div class="detail-data-profil">';
-               if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
+                echo '<div class="detail-data-profil">';
+                if (isset($profile_data['nama_user']) && isset($profile_data['role'])) {
                 $nama = $profile_data['nama_user'];
                 $role = $profile_data['role'];
                 echo '<h3 style=" font-weight: 600; margin-bottom:0; font-size: 25px;">' . $nama . '</h3>

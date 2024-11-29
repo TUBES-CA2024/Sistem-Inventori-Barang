@@ -6,7 +6,7 @@
             display: none;
         }
 
-      
+        
     } */
 
 
@@ -81,7 +81,7 @@
         </thead>
         <tbody>
             
-    <?php $i = 1; 
+        <?php $i = 1; 
     ?>
     <?php foreach ($data['dataCetak'] as $row): ?>
 
@@ -111,4 +111,3 @@
     </div>
 
 </div>
-

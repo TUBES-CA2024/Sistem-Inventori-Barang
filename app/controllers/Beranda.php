@@ -15,7 +15,7 @@ class Beranda extends Controller {
         $data['nama_merek_barang'] = $TambahBarangModel->getMerekBarang();
         $data['lokasiPenyimpanan'] = $TambahBarangModel->getLokasiPenyimpanan();
         $data['dataTampilBarang']= $TambahBarangModel->getDataBarang();
-       
+        
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
         // $userModel = $this->model('User_model');
@@ -70,22 +70,21 @@ class Beranda extends Controller {
     }
 
     public function getUbah(){
-       echo json_encode( $this->model('Beranda_model')->getUbah($_POST['id_barang']));
+        echo json_encode( $this->model('Beranda_model')->getUbah($_POST['id_barang']));
     }
 
     public function ubahBarang(){
-   
-           if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
-               Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
-               header('Location: '. BASEURL . 'Beranda');
-               exit;
-           }
-       else{
-           Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
-           header('Location: '. BASEURL . 'Beranda');
-           exit;
-       }
-             
+
+            if($this->model('Beranda_model')->ubahBarang($_POST) > 0){
+                Flasher::setFlash('Barang', 'berhasil', ' diUbah', 'success');
+                header('Location: '. BASEURL . 'Beranda');
+                exit;
+            }
+        else{
+            Flasher::setFlash('Barang', 'gagal', ' diUbah </br>barang sudah ada', 'danger');
+            header('Location: '. BASEURL . 'Beranda');
+            exit;
+        }
     }
 
     public function cari(){

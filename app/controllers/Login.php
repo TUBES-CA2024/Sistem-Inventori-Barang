@@ -6,7 +6,7 @@ class Login extends Controller {
             header("Location:" . BASEURL. "Beranda");
             exit();
         }
- 
+
         $data['judul'] = 'Login';
         $this->view('templates/header', $data);
         $this->view('Login/index');

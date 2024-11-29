@@ -57,7 +57,7 @@
                     </form>
                 </div>
             </div>
-            <div style="max-height: 420px; overflow:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+            <div style="max-height: 420px; overflow:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px;">
             <table id="myTable" class="table table-hover table-sm">
                 <thead class="table-info">
                     <tr>
