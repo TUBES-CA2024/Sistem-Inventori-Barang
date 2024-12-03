@@ -77,7 +77,7 @@ if (!isset($_SESSION['login'])) {
                 style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
                 <label>
                     Show
-                    <select name="example_length" aria-controls="example" class="form-control form-control-sm"
+                    <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
                         style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
                         <option value="10">10</option>
                         <option value="25">25</option>
