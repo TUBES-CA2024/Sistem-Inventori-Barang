@@ -50,6 +50,7 @@ if (!isset($_SESSION['login'])) {
                 }
                 ?>
             </div>
+            
             <div class="search" style="width:350px; background-color:transparent;">
                 <form action="<?= BASEURL; ?>Beranda/cari" method="post">
                     <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
@@ -70,16 +71,39 @@ if (!isset($_SESSION['login'])) {
             </div>
         </div>
         <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
-            <div style="display: flex; align-items: center; justify-content: flex-end; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 8px; overflow: hidden; width: 320px; margin-bottom: 20px;">
-                <!-- Tombol Pencarian (ikon search) di kiri -->
-                <button style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 4px 0 0 4px;">
+            <div style = " display: flex; align-items: center; justify-content: space-between; ">
+                <!-- Dropdown datatables_length -->
+            <div class="dataTables_length"
+                style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
+                <label>
+                    Show
+                    <select name="example_length" aria-controls="example" class="form-control form-control-sm"
+                        style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    entries
+                </label>
+            </div>
+
+            <!-- Div pencarian -->
+            <div
+                style="display: flex; align-items: center; justify-content: flex-end; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 8px; overflow: hidden; width: 320px;">
+                <!-- Tombol Pencarian -->
+                <button
+                    style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 4px 0 0 4px;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
-                        <path d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z">
+                        <path
+                            d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z">
                         </path>
                     </svg>
                 </button>
-                <!-- Input Pencarian di kanan -->
-                <input type="text" id="customSearch" class="form-control" placeholder="Cari" style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
+                <!-- Input Pencarian -->
+                <input type="text" id="customSearch" class="form-control" placeholder="Cari"
+                    style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
+            </div>
             </div>
 
             <table id="myTable" class="table table-hover table-sm" style=" width:100%;">

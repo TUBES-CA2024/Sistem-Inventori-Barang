@@ -143,7 +143,7 @@ $(document).ready(function(){
   $('#myTable').DataTable();
 });
 
-var myTable = $('#myTable').DataTable({
+let myTable = $('#myTable').DataTable({
   dom: 'lrtip', // Menghilangkan search bawaan DataTable
   "bLengthChange": false, // Menonaktifkan opsi show entries
   "bInfo": false // Menonaktifkan informasi total entries
