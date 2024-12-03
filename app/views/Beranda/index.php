@@ -70,8 +70,8 @@ if (!isset($_SESSION['login'])) {
                 </div>
             </div>
         </div>
-        <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
-            <div style = " display: flex; align-items: center; justify-content: space-between; ">
+        <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px; ">
+            <div style = " display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; ">
                 <!-- Dropdown datatables_length -->
             <div class="dataTables_length"
                 style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
