@@ -55,6 +55,16 @@
                 </li>';
                     }
                     ?>
+                    <?php
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                echo '<li class="tambah-peminjaman-barang">
+                    <button onclick="location.href=\''.BASEURL.'peminjaman\'">
+                        <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>
+                        Peminjaman
+                    </button>
+                </li>';
+                    }
+                    ?>
                 <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
                 echo '<li class="kelola-akun">

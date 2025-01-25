@@ -50,26 +50,15 @@ if (!isset($_SESSION['login'])) {
                 }
                 ?>
             </div>
-            dewi
             
-            <div class="search" style="width:350px; background-color:transparent;">
-                <form action="<?= BASEURL; ?>Beranda/cari" method="post">
-                    <div class="input-group mb-3" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
-                                style="width: 60px;"><i class="fa-solid fa-magnifying-glass"
-                                    style="color: #ffffff;"></i></button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword"
-                            style="height: 45px;" autocomplete="off">
-                    </div>
-                </form>
+            <!-- <div class="search" style="width:350px; background-color:transparent;">
+                
                 <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
                     <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"
                         style="width: 15px;">
                     <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px; ">
             <div style = " display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; ">

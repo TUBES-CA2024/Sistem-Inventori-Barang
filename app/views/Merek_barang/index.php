@@ -40,19 +40,6 @@
                     style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                     <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Tambah
                 </button>
-                <div class="search" style="width:350px">
-                    <form action="<?=BASEURL;?>MerekBarang/cari" method="post">
-                        <div class="input-group mb-3" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="submit" id="btn-cari"
-                                    style="width: 60px;"><i class="fa-solid fa-magnifying-glass"
-                                        style="color: #ffffff;"></i></button>
-                            </div>
-                            <input type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword"
-                                style="height: 45px;" autocomplete="off">
-                        </div>
-                    </form>
-                </div>
             </div>
             <div style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
             <div style = " display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; ">
