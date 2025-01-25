@@ -19,7 +19,7 @@ class merekBarang extends Controller {
 
     public function tambahMerekBarang(){
         $cekMerek = $this->model('Merek_barang_model')->cekDataMerekBarang($_POST);
-        if(!$cekMerek){
+        if(!$cekMerek){ 
             if($this->model('Merek_barang_model')->postDataMerekBarang($_POST) > 0){
                 Flasher::setFlash('Merek Barang', 'berhasil', ' ditambahkan', 'success');
                 header('Location: '. BASEURL . 'MerekBarang');
