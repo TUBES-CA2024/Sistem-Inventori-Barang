@@ -6,7 +6,7 @@ if (!isset($_SESSION['login'])) {
 ?>
 
 
-<!-- modal keluar -->
+<!-- modal keluarr -->
 <div class="modal fade" id="konfirmasiKeluar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
