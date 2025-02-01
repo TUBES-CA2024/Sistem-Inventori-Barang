@@ -20,7 +20,7 @@ class Beranda extends Controller {
         $data['profile'] = $this->model("User_model")->profile($data);
         // $userModel = $this->model('User_model');
         // $data['dataTampilUser']= $userModel->profile();
-        // Memanggil view transaksi barang
+        // Memanggil view transaksi ubahBarang
         $this->view('templates/header', $data);
         $this->view('Beranda/index', $data);
         $this->view('templates/footer');

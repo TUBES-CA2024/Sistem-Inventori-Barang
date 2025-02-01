@@ -73,6 +73,7 @@ public function hapusMerekBarang($id_merek_barang){
         // Insert data into mst_jenis_barang
         $queryMerekBarang = "UPDATE mst_merek_barang SET nama_merek_barang = :nama_merek_barang, kode_merek_barang=:kode_merek_barang WHERE id_merek_barang = :id_merek_barang";
         $this->db->query($queryMerekBarang);
+                        //nama kolom                //nama view
         $this->db->bind('nama_merek_barang', $data['nama_merek_barang']);
         $this->db->bind('kode_merek_barang', $data['kode_merek_barang']);
         $this->db->bind('id_merek_barang', $data['id_merek_barang']);
