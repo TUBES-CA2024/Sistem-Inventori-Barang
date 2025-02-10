@@ -1,7 +1,6 @@
 <?php
-
 class jenisBarang extends Controller {
-    
+
     public function index() {
         $data['judul'] = 'Jenis Barang';
         
@@ -40,7 +39,6 @@ class jenisBarang extends Controller {
                 header('Location: '. BASEURL . 'JenisBarang');
                 exit;
             }
-
         }catch(PDOException $e){
             Flasher::setFlash('Jenis Barang', 'gagal', ' dihapus', 'danger');
             header('Location: '. BASEURL . 'JenisBarang');
@@ -67,8 +65,6 @@ class jenisBarang extends Controller {
             header('Location: '. BASEURL . 'JenisBarang');
             exit;
         }
-
-        
     }
 
     public function cari(){
@@ -76,7 +72,6 @@ class jenisBarang extends Controller {
         
         // Mengambil data kondisi barang dari model
         $TambahJenisBarangModel = $this->model('Tambah_jenis_barang_model');
-
         $data['dataTampilJenisBarang']= $TambahJenisBarangModel->cariDataJenisBarang();
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);

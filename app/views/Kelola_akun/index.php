@@ -45,8 +45,10 @@
                 </button>
                 
             </div>
-            <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px">
-            <div style=" display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; ">
+            <div
+            style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
+            <div
+                style=" height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0;margin-top: 0; background-color: #fff; z-index: 10; ">
                 <!-- Dropdown datatables_length -->
                 <div class="dataTables_length"
                     style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
@@ -100,7 +102,7 @@
                         <td scope="row" class="p-2"><?= $i++; ?></td>
                         <td class="p-2"><?php
                         if($row['foto'] == "../public/img/foto-profile/"){
-                         echo   '<img src="'.BASEURL . $row['foto'] .'/user.svg'.'" alt="profile"
+                            echo   '<img src="'.BASEURL . $row['foto'] .'/user.svg'.'" alt="profile"
                                 style="height: 100px; width:100px; object-fit:cover;">';
                         } else{
                             echo   '<img src="'. BASEURL . $row['foto'] .'" alt="profile"
@@ -171,20 +173,36 @@
                                 <input type="hidden" name="id_user" id="id_user" value="<?=$row['id_user']?>">
                                 <br>
                                 <div class="ubah-role">
-                                    <div class="User d-flex align-items-center">
-
-                                        <input type="radio" name="id_role" id="userRole" value="1" required />
-                                        <label for="userRole" class="mt-2 ml-2">User</label>
-                                    </div>
-                                    <div class="Admin d-flex align-items-center">
-                                        <input type="radio" name="id_role" id="adminRole" value="2" required />
-                                        <label for="adminRole" class="mt-2 ml-2">Admin</label>
-                                    </div>
-                                    <div class="Super-Admin d-flex align-items-center">
-                                        <input type="radio" name="id_role" id="superAdminRole" value="3" required />
-                                        <label for="superAdminRole" class="mt-2 ml-2">Super Admin</label>
-                                    </div>
+                                <div class="KEPLAB d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="keplabRole" value="1" required />
+                                    <label for="keplabRole" class="mt-2 ml-2">KEPALA LAB</label>
                                 </div>
+                                <div class="LABORAN d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="laboranRole" value="2" required />
+                                    <label for="laboranRole" class="mt-2 ml-2">LABORAN</label>
+                                </div>
+                                <div class="KORLAB d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="korlabRole" value="3" required />
+                                    <label for="korlabRole" class="mt-2 ml-2">KOORDINATOR LAB</label>
+                                </div>
+                                <div class="ASISTEN d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="asistenRole" value="4" required />
+                                    <label for="asistenRole" class="mt-2 ml-2">ASISTEN</label>
+                                </div>
+                                <div class="CA d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="caRole" value="5" required />
+                                    <label for="caRole" class="mt-2 ml-2">CALON ASISTEN</label>
+                                </div>
+                                <div class="CCA d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="ccaRole" value="6" required />
+                                    <label for="ccaRole" class="mt-2 ml-2">CALON CALON ASISTEN</label>
+                                </div>
+                                <div class="MHS d-flex align-items-center">
+                                    <input type="radio" name="id_role" id="mhsRole" value="7" required />
+                                    <label for="mhsRole" class="mt-2 ml-2">MAHASISWA</label>
+                                </div>
+                            </div>
+
                                 <br>
                                 <br>
                                 <div class="modal-footer" style="margin-right: 30%;">

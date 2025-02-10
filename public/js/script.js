@@ -28,7 +28,105 @@ function validasiInput(input) {
 
 // function cetak() {
 //   window.print();
-// }
+// $(function(){
+
+//   $('.tombolTambahData').on('click', function(){
+//     $('#tambahPeminjaman').html('Tambah Data Peminjaman');
+//     $('.modal-footer button[type=submit]').html('Kirim');
+
+//   });
+
+//   $('.tampilModalPeminjaman').on('click', function(){
+//     $('#tambahPeminjaman').html('Ubah Data Peminjaman');
+//     $('.modal-footer button[type=submit]').html('Simpan Perubahan');
+//     $('.modal-body form').attr('action','http://localhost/inventori/public/Peminjaman/ubahPeminjaman');
+
+//     const id_peminjaman = $(this).data('id');
+//     console.log(id_peminjaman);
+//     if (!id_peminjaman) {
+//         alert('ID peminjaman tidak ditemukan');
+//         return;
+//     }
+
+//     $.ajax({
+//         url: "http://localhost/inventori/public/Peminjaman/getUbah",
+//         data: {id_peminjaman : id_peminjaman},
+//         method: 'post',
+//         dataType :'json',
+//         success :function(data){
+//             if (data.error) {
+//                 alert(data.error);
+//                 return;
+//             }
+
+//             $('#judul_kegiatan').val(data.judul_kegiatan);
+//             $('#tanggal_peminjaman').val(data.tanggal_peminjaman);
+//             $('#tanggal_pengembalian').val(data.tanggal_pengembalian);
+//             $('#id_jenis_barang').val(data.id_jenis_barang);
+//             $('#jumlah_peminjaman').val(data.jumlah_peminjaman);
+//             $('#keterangan_peminjaman').val(data.keterangan_peminjaman);
+//             $('#id_peminjaman').val(data.id_peminjaman);
+//         },
+//         error: function() {
+//             alert('Terjadi kesalahan saat mengambil data');
+//         }
+//     });
+// });
+// });
+
+
+
+  $(document).ready(function () {
+    // Event untuk tombol tambah data
+    $('.tombolTambahData').on('click', function () {
+        $('#tambahPeminjaman').html('Tambah Data Peminjaman');
+        $('.modal-footer button[type=submit]').html('Kirim');
+    });
+
+    // Event delegation untuk tombol edit peminjaman
+    $(document).on('click', '.tampilModalPeminjaman', function () {
+        $('#tambahPeminjaman').html('Ubah Data Peminjaman');
+        $('.modal-footer button[type=submit]').html('Simpan Perubahan');
+        $('.modal-body form').attr('action', 'http://localhost/inventori/public/Peminjaman/ubahPeminjaman');
+
+        // Ambil ID peminjaman dari atribut data-id
+        const id_peminjaman = $(this).data('id');
+
+        // Debugging untuk memastikan ID terbaca
+        console.log("ID Peminjaman:", id_peminjaman);
+
+        if (!id_peminjaman) {
+            alert('ID peminjaman tidak ditemukan');
+            return;
+        }
+
+        // AJAX untuk mendapatkan data peminjaman berdasarkan ID
+        $.ajax({
+            url: "http://localhost/inventori/public/Peminjaman/getUbah",
+            data: { id_peminjaman: id_peminjaman },
+            method: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log("Data dari server:", data); // Debugging
+
+                // Mengisi data ke dalam form modal
+                $('#judul_kegiatan').val(data.judul_kegiatan);
+                $('#nama_peminjam').val(data.nama_peminjam);
+                $('#tanggal_peminjaman').val(data.tanggal_peminjaman);
+                $('#tanggal_pengembalian').val(data.tanggal_pengembalian);
+                $('#id_jenis_barang').val(data.id_jenis_barang).trigger('change');
+                $('#jumlah_peminjaman').val(data.jumlah_peminjaman);
+                $('#keterangan_peminjaman').val(data.keterangan_peminjaman);
+                $('#status').val(data.status);
+                $('#id_peminjaman').val(data.id_peminjaman);
+            },
+            error: function (xhr, status, error) {
+                console.error("AJAX Error:", status, error);
+                alert("Terjadi kesalahan saat mengambil data peminjaman.");
+            }
+        });
+    });
+  });
 
 function tampilCetak() {
   const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
@@ -43,14 +141,16 @@ function tampilCetak() {
 
   console.log(idbarang);
   $.ajax({
-    url: "http://localhost/inventori/public/Beranda/cetak",
+    url: "http://localhost/inventori/public/DetailBarang/cetak",
     data: {
       id_barang: idbarang,
     },
-    method: "post",
+    type: "post",
     dataType: "json",
     success: function (data) {
-      $("id_barang").val(data.id_barang);
+      // $("id_barang").val(data.id_barang);
+      $("#id_barang").val(data.id_barang);
+
     },
   });
 }
@@ -283,7 +383,7 @@ $('#customSearch').on('keyup', function () {
     $("#title-barang").html("Tambah Barang");
     $(".body-barang form").attr(
       "action",
-      "http://localhost/inventori/public/Beranda/tambahBarang"
+      "http://localhost/inventori/public/DetailBarang/tambahBarang"
     );
     const data = "";
     $("#id_barang").val(data.id_barang);
@@ -307,12 +407,12 @@ $('#customSearch').on('keyup', function () {
     $("#title-barang").html("Ubah Data Barang");
     $(".body-barang form").attr(
       "action",
-      "http://localhost/inventori/public/Beranda/ubahBarang"
+      "http://localhost/inventori/public/DetailBarang/ubahBarang"
     );
     const id = $(this).data("id");
     console.log(id);
     $.ajax({
-      url: "http://localhost/inventori/public/Beranda/getUbah",
+      url: "http://localhost/inventori/public/DetailBarang/getUbah",
       data: {
         id_barang: id,
       },
@@ -362,5 +462,28 @@ const checkboxes = document.querySelectorAll(".checkbox");
 selectAllCheckbox.addEventListener("change", function () {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = selectAllCheckbox.checked;
+  });
+});
+
+//hover custom untuk halaman active
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Ambil path URL saat ini tanpa parameter GET
+  let currentPath = window.location.pathname.replace(/^\/|\/$/g, ""); // Hilangkan garis miring di awal & akhir
+
+  // Seleksi semua elemen <li> sidebar
+  document.querySelectorAll(".menu ul li").forEach((item) => {
+      // Ambil tombol dalam setiap <li>
+      let button = item.querySelector("button");
+
+      if (button) {
+          // Ambil link dari onclick attribute
+          let targetPath = button.getAttribute("onclick").match(/'([^']+)'/)[1];
+
+          // Bandingkan dengan URL saat ini
+          if (currentPath.includes(targetPath.replace("<?=BASEURL;?>", "").toLowerCase())) {
+              item.classList.add("active"); // Tambahkan kelas "active"
+          }
+      }
   });
 });
