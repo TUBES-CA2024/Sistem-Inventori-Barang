@@ -13,7 +13,6 @@ if (!isset($_SESSION['login'])) {
         <div class="modal-content" style="border-radius: 15px;">
             <div class="modal-body"
                 style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-
                 <lottie-player src="https://lottie.host/48c004f8-57cd-4acb-a04a-de46793ba7dc/jUGVFL9qIO.json"
                     background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay direction="1"
                     mode="normal"></lottie-player>
@@ -36,7 +35,6 @@ if (!isset($_SESSION['login'])) {
         <div class="flash" style="width: 40%; margin-left:15px;">
             <?php Flasher::flash(); ?>
         </div>
-
         <div class="btn-fitur" style="display: flex; justify-content:space-between;">
             <div style="display: flex; gap:10px;">
                 <!-- <button onclick="location.href='<?= BASEURL ?>DetailBarang/cetak'; checkbox();"
@@ -55,13 +53,11 @@ if (!isset($_SESSION['login'])) {
                 }
                 ?>
             </div>
-
             <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
                 <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"
                     style="width: 15px;">
                 <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
             </div>
-
         </div>
         <div
             style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
@@ -83,23 +79,43 @@ if (!isset($_SESSION['login'])) {
                     </label>
                 </div>
                 <form method="POST" action="">
-    <select name="lokasi" id="lokasi" onchange="this.form.submit()" 
-        style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
-               font-size: 16px; border-radius: 6px; cursor: pointer;
-               box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); outline: none;">
+    <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+           font-size: 16px; border-radius: 6px; cursor: pointer;
+           box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
         <option value="">Pilih Lokasi</option>
-        <?php foreach ($data['lokasiPenyimpanan'] ?? [] as $lokasi) : ?>
-            <option value="<?= $lokasi['id_lokasi_penyimpanan'] ?>" 
-                <?= isset($_POST['lokasi']) && $_POST['lokasi'] == $lokasi['id_lokasi_penyimpanan'] ? 'selected' : '' ?>>
+        <?php foreach ($data['lokasiPenyimpanan'] ?? [] as $lokasi): ?>
+            <option value="<?= $lokasi['id_lokasi_penyimpanan'] ?>" <?= isset($_POST['lokasi']) && $_POST['lokasi'] == $lokasi['id_lokasi_penyimpanan'] ? 'selected' : '' ?>>
                 <?= htmlspecialchars($lokasi['nama_lokasi_penyimpanan']) ?>
             </option>
         <?php endforeach; ?>
     </select>
-    
 </form>
 
+<form method="POST" action="">
+    <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+       font-size: 16px; border-radius: 6px; cursor: pointer;
+       box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
+        <option value="">Pilih Sub Barang</option>
+        <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
+            <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_POST['sub_barang']) && $_POST['sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($sub['sub_barang']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</form>
 
-
+<form method="POST" action="">
+    <select name="merek_barang" id="merek_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+       font-size: 16px; border-radius: 6px; cursor: pointer;
+       box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
+        <option value="">Pilih Merek Barang</option>
+        <?php foreach ($data['nama_merek_barang'] ?? [] as $merek): ?>
+            <option value="<?= $merek['id_merek_barang'] ?>" <?= isset($_POST['merek_barang']) && $_POST['merek_barang'] == $merek['id_merek_barang'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($merek['nama_merek_barang']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</form>
 
 
                 <!-- Div pencarian -->
@@ -119,7 +135,6 @@ if (!isset($_SESSION['login'])) {
                         style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
                 </div>
             </div>
-
             <table id="myTable" class="table table-hover table-sm" style=" width:100%;">
                 <thead class="table-info">
                     <tr>
@@ -154,7 +169,6 @@ if (!isset($_SESSION['login'])) {
                                             data-id="<?= $row['id_barang']; ?>">
                                             <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                                         </a>
-
                                         <!-- Ubah -->
                                         <a href="<?= BASEURL ?>DetailBarang/getUbah/<?= $row['id_barang'] ?>"
                                             class="btn d-flex align-items-center justify-content-center tampilBarangUbah"
@@ -162,8 +176,6 @@ if (!isset($_SESSION['login'])) {
                                             <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                                         </a>
                                     <?php endif; ?>
-
-
                                     <!-- detail -->
                                     <a href="<?= BASEURL; ?>DetailBarang/detail/<?= $row['id_barang']; ?>"
                                         data-toggle="modal" data-target="#modalDetail<?= $row['id_barang']; ?>"
@@ -172,14 +184,12 @@ if (!isset($_SESSION['login'])) {
                                     </a>
                                     <input class="checkbox" type="checkbox" id="checkbox" onclick="tampilCetak()"
                                         name="id_barang[]" value="<?= $row['id_barang'] ?>" style="width:15px">
-
                                     <div class="modal fade" id="konfirmasiHapus<?= $row['id_barang'] ?>" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content" style="border-radius: 15px;">
                                                 <div class="modal-body"
                                                     style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-
                                                     <lottie-player
                                                         src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
                                                         background="##FFFFFF" speed="1" style="width: 250px; height: 250px"
@@ -199,8 +209,6 @@ if (!isset($_SESSION['login'])) {
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div class="modal fade" id="modalDetail<?= $row['id_barang']; ?>" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -292,18 +300,15 @@ if (!isset($_SESSION['login'])) {
                                                             <h6>Kondisi barang</h6>
                                                             <p><?= $row['kondisi_barang']; ?></p>
                                                         </span>
-
                                                         <span>
                                                             <h6>Keterangan label</h6>
                                                             <p><?= $row['keterangan_label']; ?></p>
                                                         </span>
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -495,7 +500,4 @@ if (!isset($_SESSION['login'])) {
                 </div>
             </div>
         </div>
-
-
-
     </div>

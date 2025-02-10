@@ -49,7 +49,70 @@ class Detail_barang_model
         $this->db->query($query);
         return $this->db->resultSet();
     }
+    public function getDataBarangByMerek($id_merek_barang) { 
+        $query = "SELECT 
+            b.id_barang,
+            b.foto_barang,
+            b.deskripsi_barang,
+            b.tgl_pengadaan_barang,
+            b.keterangan_label,
+            b.deskripsi_detail_lokasi,
+            b.status_peminjaman,
+            b.kode_barang,
+            b.qr_code,
+            j.sub_barang, 
+            m.nama_merek_barang, 
+            k.kondisi_barang, 
+            s.status, 
+            l.nama_lokasi_penyimpanan,
+            b.jumlah_barang,
+            n.nama_satuan
+        FROM trx_barang b
+        JOIN mst_jenis_barang j ON b.id_jenis_barang = j.id_jenis_barang
+        JOIN mst_merek_barang m ON b.id_merek_barang = m.id_merek_barang
+        JOIN mst_kondisi_barang k ON b.id_kondisi_barang = k.id_kondisi_barang
+        JOIN mst_status s ON b.id_status = s.id_status
+        JOIN mst_lokasi_penyimpanan l ON b.id_lokasi_penyimpanan = l.id_lokasi_penyimpanan
+        JOIN mst_satuan n ON b.id_satuan = n.id_satuan
+        WHERE b.id_merek_barang = :id_merek_barang"; 
+        
+        $this->db->query($query);
+        $this->db->bind(':id_merek_barang', $id_merek_barang); 
+        return $this->db->resultSet();
+    }
     
+    public function getDataBarangBySubBarang($id_jenis_barang) { 
+    $query = "SELECT 
+        b.id_barang,
+        b.foto_barang,
+        b.deskripsi_barang,
+        b.tgl_pengadaan_barang,
+        b.keterangan_label,
+        b.deskripsi_detail_lokasi,
+        b.status_peminjaman,
+        b.kode_barang,
+        b.qr_code,
+        j.sub_barang, 
+        m.nama_merek_barang, 
+        k.kondisi_barang, 
+        s.status, 
+        l.nama_lokasi_penyimpanan,
+        b.jumlah_barang,
+        n.nama_satuan
+    FROM trx_barang b
+    JOIN mst_jenis_barang j ON b.id_jenis_barang = j.id_jenis_barang
+    JOIN mst_merek_barang m ON b.id_merek_barang = m.id_merek_barang
+    JOIN mst_kondisi_barang k ON b.id_kondisi_barang = k.id_kondisi_barang
+    JOIN mst_status s ON b.id_status = s.id_status
+    JOIN mst_lokasi_penyimpanan l ON b.id_lokasi_penyimpanan = l.id_lokasi_penyimpanan
+    JOIN mst_satuan n ON b.id_satuan = n.id_satuan
+    WHERE j.id_jenis_barang = :id_jenis_barang"; 
+    
+    $this->db->query($query);
+    $this->db->bind(':id_jenis_barang', $id_jenis_barang); 
+    return $this->db->resultSet(); // Pastikan resultSet() dieksekusi
+}
+
     public function getDataBarangByLokasi($id_lokasi) {
         $query = "SELECT 
         b.id_barang,

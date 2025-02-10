@@ -6,7 +6,7 @@ class DetailBarang extends Controller {
     
         // Ambil model
         $DetailBarangModel = $this->model('Detail_barang_model');
-
+    
         // Ambil semua data terkait barang
         $data += [
             'kondisiBarang' => $DetailBarangModel->getKondisiBarang(),
@@ -16,27 +16,39 @@ class DetailBarang extends Controller {
             'nama_merek_barang' => $DetailBarangModel->getMerekBarang(),
             'lokasiPenyimpanan' => $DetailBarangModel->getLokasiPenyimpanan()
         ];
-
+    
         // Ambil data user
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
-
-        // Ambil filter lokasi (dari GET atau POST)
+    
+        // Ambil filter dari GET atau POST
         $lokasi_id = $_GET['id_lokasi'] ?? $_POST['lokasi'] ?? null;
-
-        // Jika lokasi dipilih, ambil barang berdasarkan lokasi, jika tidak, ambil semua
-        $data['dataTampilBarang'] = !empty($lokasi_id) 
-            ? $DetailBarangModel->getDataBarangByLokasi($lokasi_id) 
-            : $DetailBarangModel->getDataBarang();
-
+        $jenis_barang_id = $_GET['id_jenis_barang'] ?? $_POST['sub_barang'] ?? null;
+        $merek_barang_id = $_GET['id_merek_barang'] ?? $_POST['merek_barang'] ?? null;
+    
+        // Jika merek_barang dipilih, ambil data berdasarkan merek_barang
+        if (!empty($merek_barang_id)) {
+            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangByMerek($merek_barang_id);
+        } 
+        // Jika sub_barang dipilih, ambil data berdasarkan sub_barang
+        else if (!empty($jenis_barang_id)) {
+            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangBySubBarang($jenis_barang_id);
+        } 
+        // Jika lokasi dipilih tetapi sub_barang tidak dipilih, filter berdasarkan lokasi
+        else if (!empty($lokasi_id)) {
+            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangByLokasi($lokasi_id);
+        } 
+        // Jika tidak ada filter, ambil semua barang
+        else {
+            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarang();
+        }
+    
         // Load tampilan
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('DetailBarang/index', $data);
         $this->view('templates/footer');
     }
-
-    
     
     public function detail($id_barang) {
         $data['judul'] = 'Detail Barang';
