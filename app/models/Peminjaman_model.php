@@ -7,10 +7,12 @@ class Peminjaman_model {
     }
 
     public function postDataPeminjaman($data) {
-        // Automatically add current timestamp for tanggal_pengajuan if not provided
         if (!isset($data['tanggal_pengajuan']) || empty($data['tanggal_pengajuan'])) {
             $data['tanggal_pengajuan'] = date('Y-m-d'); // Format for MySQL date
         }
+    
+        // Status harus selalu "Diproses" saat insert
+        $data['status'] = "Diproses";
     
         // Insert new peminjaman data into the table
         $query = "INSERT INTO trx_peminjaman
@@ -26,12 +28,13 @@ class Peminjaman_model {
         $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
         $this->db->bind('jumlah_peminjaman', $data['jumlah_peminjaman']);
         $this->db->bind('keterangan_peminjaman', $data['keterangan_peminjaman']);
-        $this->db->bind('status', $data['status']);
+        $this->db->bind('status', $data['status']); // Status default "Diproses"
     
         $this->db->execute();
     
         return $this->db->rowCount();
     }
+    
 
     public function getPeminjamanBarang() {
         $query = "SELECT trx_peminjaman.*, mst_jenis_barang.sub_barang 
@@ -47,7 +50,34 @@ class Peminjaman_model {
         $this->db->query($query);
         return $this->db->resultSet();
     }
-
+    
+    public function getPeminjamanBySubBarang($id_jenis_barang) {
+        if (!$id_jenis_barang) {
+            return []; // Jika ID sub_barang tidak valid, kembalikan array kosong
+        }
+    
+        $query = "SELECT 
+            b.id_peminjaman,
+            b.nama_peminjam,
+            b.judul_kegiatan,
+            b.tanggal_pengajuan,
+            b.tanggal_peminjaman,
+            b.tanggal_pengembalian,
+            j.sub_barang,
+            b.jumlah_peminjaman,
+            b.keterangan_peminjaman,
+            b.status
+        FROM trx_peminjaman b
+        JOIN mst_jenis_barang j ON b.id_jenis_barang = j.id_jenis_barang
+        WHERE b.id_jenis_barang = :id_jenis_barang";
+    
+        $this->db->query($query);
+        $this->db->bind(':id_jenis_barang', $id_jenis_barang);
+        return $this->db->resultSet();
+    }
+    
+    
+    
     public function hapusDataPeminjaman($id) {
         $query = "DELETE FROM trx_peminjaman WHERE id_peminjaman = :id_peminjaman";
         $this->db->query($query);
@@ -73,7 +103,6 @@ class Peminjaman_model {
     }
 
     public function ubahDataPeminjaman($data) {
-        // Update data in trx_peminjaman
         $queryPeminjaman = "UPDATE trx_peminjaman 
                             SET nama_peminjam = :nama_peminjam, 
                                 judul_kegiatan = :judul_kegiatan, 
@@ -93,13 +122,14 @@ class Peminjaman_model {
         $this->db->bind('id_jenis_barang', $data['id_jenis_barang']);
         $this->db->bind('jumlah_peminjaman', $data['jumlah_peminjaman']);
         $this->db->bind('keterangan_peminjaman', $data['keterangan_peminjaman']);
-        $this->db->bind('status', $data['status']);
+        $this->db->bind('status', $data['status']); // Bisa diubah hanya pada ubahDataPeminjaman
         $this->db->bind('id_peminjaman', $data['id_peminjaman']);
     
         $this->db->execute();
     
         return $this->db->rowCount();
     }
+    
 
     public function getDetailDataPeminjaman($id_peminjaman)
     {

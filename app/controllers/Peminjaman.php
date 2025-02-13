@@ -2,40 +2,51 @@
 class Peminjaman extends Controller {
     public function index() {
         if (!isset($_SESSION)) {
-            session_start(); // Ensure the session starts
+            session_start();
         }
-
+    
         if (!isset($_SESSION['id_user'])) {
-            // Redirect if user is not logged in
             header('Location: ' . BASEURL . 'Login');
             exit;
         }
-
+    
         $data['judul'] = 'Peminjaman';
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
-
-        // Create an instance of the Peminjaman model
+    
         $TambahPeminjamanModel = $this->model('Peminjaman_model');
-
-        // Fetch the jenis barang options from the model
+    
+        // Ambil daftar sub_barang dari database
         $data['sub_barang'] = $TambahPeminjamanModel->getSubBarang();
-
-        // Fetch all peminjaman data to display in the table
-        $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanBarang();
-
-        // Convert tanggal_pengajuan to Indonesian format (d-m-Y)
+    
+        // Cek apakah ada filter yang dikirim
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!empty($_POST['sub_barang'])) {
+                $_SESSION['selected_sub_barang'] = $_POST['sub_barang']; // Simpan pilihan di sesi
+            } else {
+                unset($_SESSION['selected_sub_barang']); // Hapus filter jika "Pilih Sub Barang" dipilih
+            }
+        }
+    
+        // Gunakan filter jika ada
+        if (!empty($_SESSION['selected_sub_barang'])) {
+            $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanBySubBarang($_SESSION['selected_sub_barang']);
+        } else {
+            $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanBarang(); // Semua data jika tidak ada filter
+        }
+    
+        // Format tanggal
         foreach ($data['peminjaman'] as &$peminjaman) {
             $peminjaman['tanggal_pengajuan'] = date('d-m-Y', strtotime($peminjaman['tanggal_pengajuan']));
         }
-
-        // Load the views
+    
         $this->view('templates/header', data: $data);
         $this->view('templates/sidebar', data: $data);
         $this->view('Peminjaman/index', $data);
         $this->view('templates/footer');
     }
-
+    
+    
     public function detail($id_peminjaman) {
         $data['judul'] = 'Peminjaman';
         
