@@ -29,7 +29,7 @@ if (!isset($_SESSION['login'])) {
 
 <div class="content">
     <div class="content-beranda" style="overflow: hidden;">
-        <h1 id="title" style="padding: 0px;margin: 40px 0px 40px 15px;">Peminjaman</h1>
+    <h3 id="title">Peminjaman</h3>
         <div class="flash" style="width: 40%; margin-left:15px;">
             <?php Flasher::flash(); ?>
         </div>
