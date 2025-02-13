@@ -80,6 +80,18 @@
         }
     ?>
     <?php
+        // Semua role login dapat mengakses Pengembalian
+        if (isset($_SESSION['login'])) {
+            echo '<li class="tambah-pengembalian-barang">
+                <button onclick="location.href=\''.BASEURL.'pengembalian\'">
+                    <i class="fa-solid fa-rotate-left" style="color: #ffffff;"></i>
+                    Pengembalian
+                </button>
+            </li>';
+        }
+    ?>
+
+    <?php
         // Role 1 hingga 4 dapat mengakses Kelola Akun
         if (isset($_SESSION['login']) && in_array($_SESSION['id_role'], ['1', '2', '3', '4'])) {
             echo '<li class="kelola-akun">

@@ -11,6 +11,7 @@ class Beranda extends Controller {
             $data['jumlah_peminjaman'] = $this->model('Beranda_model')->getCount('trx_peminjaman');
             $data['jumlah_merek_barang'] = $this->model('Beranda_model')->getCount('mst_merek_barang');
             $data['jumlah_detail_barang'] = $this->model('Beranda_model')->getCount('detail_barang');
+            $data['jumlah_pengembalian'] = $this->model('Beranda_model')->getCount('trx_pengembalian');
         
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
