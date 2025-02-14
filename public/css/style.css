@@ -309,8 +309,7 @@ input[type="radio"] {
 .body-beranda {
   background-color: #0c1740;
   display: flex;
-
-  height: 100vh;
+  height: max-content;
 }
 
 .body-beranda .side-bar {
@@ -328,6 +327,7 @@ input[type="radio"] {
 
 .side-bar hr {
   width: 70%;
+  height: max-content;
   border: 1px solid #385161;
 }
 

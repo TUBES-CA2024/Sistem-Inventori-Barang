@@ -29,70 +29,73 @@ if (!isset($_SESSION['login'])) {
 
 <div class="content">
     <div class="content-beranda" style="overflow: hidden;">
-    <h3 id="title">Peminjaman</h3>
+        <h3 id="title">Peminjaman</h3>
         <div class="flash" style="width: 40%; margin-left:15px;">
             <?php Flasher::flash(); ?>
         </div>
 
         <!-- Button trigger modal -->
-        <div class="btn-fitur" style="display: flex; justify-content:space-between;">
+        <div class="btn-fitur" style="display: flex; justify-content:left;">
             <button data-toggle="modal" class="btn btn-primary tombolTambahData" data-toggle="modal"
                 data-target="#exampleModal" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
-                <i cl   ass="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
+                <i cl ass="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
             </button>
+            <!-- Form diposisikan di samping "Show Entries" -->
+         <form method="POST" action="" style="margin-left: 20px; ">
+            <select name="sub_barang" id="sub_barang" onchange="this.form.submit()"
+                style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+                font-size: 16px; border-radius: 6px; cursor: pointer;
+                box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
+                <option value="">Pilih Sub Barang</option>
+                <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
+                    <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
+                        <?= htmlspecialchars($sub['sub_barang']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </form>
         </div>
+         
 
         <div
             style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
             <div
-                style=" height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0;margin-top: 0; background-color: #fff; z-index: 10; ">
-                <!-- Dropdown datatables_length -->
-                <div class="dataTables_length"
-                    style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
-                    <label>
-                        Show
-                        <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
-                            style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                        entries
-                    </label>
-                </div>
+    style="height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0; margin-top: 0; background-color: #fff; z-index: 10;">
+    
+    <!-- Dropdown datatables_length dan form dalam satu flex container -->
+    <div style="display: flex; align-items: center;">
+        <div class="dataTables_length"
+            style="display: flex; align-items: center; font-size: 14px;">
+            <label>
+                Show
+                <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
+                    style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                entries
+            </label>
+        </div>
+    </div>
 
-                <form method="POST" action="">
-    <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
-       font-size: 16px; border-radius: 6px; cursor: pointer;
-       box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-        <option value="">Pilih Sub Barang</option>
-        <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
-            <option value="<?= $sub['id_jenis_barang'] ?>" 
-                <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($sub['sub_barang']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</form>
+    <!-- Div pencarian -->
+    <div style="display: flex; align-items: center; justify-content: flex-end; 
+        box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 8px; 
+        overflow: hidden; width: 320px;">
+        <button style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; 
+            display: flex; align-items: center; justify-content: center; cursor: pointer; 
+            border-radius: 4px 0 0 4px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+                <path d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"></path>
+            </svg>
+        </button>
+        <input type="text" id="customSearch" class="form-control" placeholder="Cari"
+            style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
+    </div>
+</div>
 
-                <!-- Div pencarian -->
-                <div
-                    style="display: flex; align-items: center; justify-content: flex-end; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 8px; overflow: hidden; width: 320px;">
-                    <!-- Tombol Pencarian -->
-                    <button
-                        style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; border-radius: 4px 0 0 4px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
-                            <path
-                                d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z">
-                            </path>
-                        </svg>
-                    </button>
-                    <!-- Input Pencarian -->
-                    <input type="text" id="customSearch" class="form-control" placeholder="Cari"
-                        style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-gpe: 1; height: 40px;">
-                </div>
-            </div>
             <table id="myTable" class="table table-hover table-sm" style="width:100%;">
                 <thead class="table-info">
                     <tr>
@@ -131,9 +134,37 @@ if (!isset($_SESSION['login'])) {
                                     data-id="<?= $peminjaman['id_peminjaman']; ?>">
                                     <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                                 </a>
-                                <a href="<?= BASEURL; ?>Peminjaman/hapusPeminjaman/<?= $peminjaman['id_peminjaman'] ?>"
-                                    class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"
-                                    onclick="return confirm('Apakah Anda yakin ingin menghapus?')"></a>
+                                <a class="btn d-flex align-items-center justify-content-center" data-toggle="modal"
+                                    data-target="#konfirmasiHapus<?= $peminjaman['id_peminjaman']; ?>">
+                                    <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                                </a>
+
+                                <div class="modal fade" id="konfirmasiHapus<?= $peminjaman['id_peminjaman']; ?>"
+                                    tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content" style="border-radius: 15px;">
+                                            <div class="modal-body"
+                                                style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
+                                                <lottie-player
+                                                    src="https://lottie.host/482b772b-9f0c-4065-b54d-dcc81da3b212/Dmb3I1o98u.json"
+                                                    background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop
+                                                    autoplay direction="1" mode="normal"></lottie-player>
+                                                <p
+                                                    style="color:#385161; opacity: 0.6; font-weight: 500; font-size: medium;">
+                                                    Apakah anda yakin ingin menghapus item ini?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light" style="width: 100px;"
+                                                    data-dismiss="modal">Batal</button>
+                                                <button type="button" style="width: 100px;" class="btn btn-danger"
+                                                    onclick="location.href='<?= BASEURL; ?>Peminjaman/hapusPeminjaman/<?= $peminjaman['id_peminjaman']; ?>'">Hapus</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <a href="<?= BASEURL; ?>Peminjaman/detail/<?= $peminjaman['id_peminjaman']; ?>"
                                     data-toggle="modal" data-target="#modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>"
                                     class="btn d-flex align-items-center justify-content-center">
@@ -143,85 +174,77 @@ if (!isset($_SESSION['login'])) {
                         </tr>
 
 
- <!-- Modal Detail Peminjaman -->
- <div class="modal fade" id="modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width: 700px;">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail Peminjaman
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" style="display: flex; gap:50px; font-weight: 500; width:100%;">
-                        <style>
-                            span p {
-                                word-wrap: break-word;
-                                opacity: 0.5;
-                            }
-                        </style>
-                        <div style="width: 50%;">
-                            <span>
-                                <h6>Nama Peminjam</h6>
-                                <p><?= $peminjaman['nama_peminjam']; ?></p>
-                            </span>
-                            <span>
-                                <h6>Judul Kegiatan</h6>
-                                <p style="text-transform: capitalize;">
-                                    <?= $peminjaman['judul_kegiatan']; ?>
-                                </p>
-                            </span>
-                            <span>
-                                <h6>Tanggal Pengajuan</h6>
-                                <p style="text-transform: capitalize;">
-                                    <?= $peminjaman['tanggal_pengajuan']; ?>
-                                </p>
-                            </span>
-                            <span>
-                                <h6>Tanggal Mulai Peminjaman</h6>
-                                <p style="text-transform: capitalize;">
-                                    <?= $peminjaman['tanggal_peminjaman']; ?>
-                                </p>
-                            </span>
-                            <span>
-                                <h6>Tanggal Pengembalian</h6>
-                                <p><?= $peminjaman['tanggal_pengembalian']; ?></p>
-                            </span>
+                        <!-- Modal Detail Peminjaman -->
+                        <div class="modal fade" id="modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>" tabindex="-1"
+                            role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width: 700px;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail
+                                            Peminjaman
+                                        </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" style="display: flex; gap:50px; font-weight: 500; width:100%;">
+                                        <style>
+                                            span p {
+                                                word-wrap: break-word;
+                                                opacity: 0.5;
+                                            }
+                                        </style>
+                                        <div style="width: 50%;">
+                                            <span>
+                                                <h6>Nama Peminjam</h6>
+                                                <p><?= $peminjaman['nama_peminjam']; ?></p>
+                                            </span>
+                                            <span>
+                                                <h6>Judul Kegiatan</h6>
+                                                <p style="text-transform: capitalize;">
+                                                    <?= $peminjaman['judul_kegiatan']; ?>
+                                                </p>
+                                            </span>
+                                            <span>
+                                                <h6>Tanggal Pengajuan</h6>
+                                                <p style="text-transform: capitalize;">
+                                                    <?= $peminjaman['tanggal_pengajuan']; ?>
+                                                </p>
+                                            </span>
+                                            <span>
+                                                <h6>Tanggal Mulai Peminjaman</h6>
+                                                <p style="text-transform: capitalize;">
+                                                    <?= $peminjaman['tanggal_peminjaman']; ?>
+                                                </p>
+                                            </span>
+                                            <span>
+                                                <h6>Tanggal Pengembalian</h6>
+                                                <p><?= $peminjaman['tanggal_pengembalian']; ?></p>
+                                            </span>
+                                        </div>
+                                        <div style="width: 50%;">
+                                            <br><br>
+                                            <span>
+                                                <h6>Jenis Barang</h6>
+                                                <p><?= $peminjaman['sub_barang']; ?></p>
+                                            </span>
+                                            <span>
+                                                <h6>Jumlah Peminjaman</h6>
+                                                <p><?= $peminjaman['jumlah_peminjaman']; ?></p>
+                                            </span>
+                                            <span>
+                                                <h6>Keterangan </h6>
+                                                <p><?= $peminjaman['keterangan_peminjaman']; ?></p>
+                                            </span>
+                                            <span>
+                                                <h6>Status </h6>
+                                                <p><?= $peminjaman['status']; ?></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div style="width: 50%;">
-                            <!-- <span>
-                        <h6>Qr code</h6>
-                        <div style="display: flex; flex-direction: column;">
-                            <img src="<?= BASEURL . $peminjaman['qr_code'] ?>" alt=""
-                                style="width:200px; height:200px;">
-                            <a href="<?= BASEURL . $peminjaman['qr_code'] ?>"
-                                style="margin-left: 15px;" download>Download</a>
-                        </div>
-                    </span> -->
-                            <br><br>
-                            <span>
-                                <h6>Jenis Barang</h6>
-                                <p><?= $peminjaman['sub_barang']; ?></p>
-                            </span>
-                            <span>
-                                <h6>Jumlah Peminjaman</h6>
-                                <p><?= $peminjaman['jumlah_peminjaman']; ?></p>
-                            </span>
-                            <span>
-                                <h6>Keterangan </h6>
-                                <p><?= $peminjaman['keterangan_peminjaman']; ?></p>
-                            </span>
-                            <span>
-                                <h6>Status </h6>
-                                <p><?= $peminjaman['status']; ?></p>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -230,7 +253,7 @@ if (!isset($_SESSION['login'])) {
             </table>
         </div>
 
-       
+
         <!-- Modal -->
         <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog"
             aria-labelledby="tambahPeminjaman" aria-hidden="true">

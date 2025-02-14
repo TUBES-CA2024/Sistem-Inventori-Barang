@@ -76,6 +76,8 @@ if (!isset($_SESSION['login'])) {
                         <th>Sub Barang</th>
                         <th>Status</th>
                         <th>Keterangan</th>
+                        <th>Detail Masalah</th>
+                        <th scope="col" class="p-2">Aksi</th> <!-- Kolom aksi -->
                     </tr>
                 </thead>
                 <tbody>
@@ -91,12 +93,194 @@ if (!isset($_SESSION['login'])) {
                                 <td><?= $pengembalian['sub_barang'] ?></td>
                                 <td><?= $pengembalian['status_pengembalian'] ?></td>
                                 <td><?= $pengembalian['keterangan'] ?? '-' ?></td>
-                            </tr>
+                                <td><?= $pengembalian['detail_masalah'] ?? '-' ?></td>
+                                <td style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                                <!-- Aksi: Edit dan Hapus -->
+                                <a href="<?= BASEURL; ?>/Pengembalian/ubahPengembalian/<?= $pengembalian['id_pengembalian']; ?>"
+                                    class="btn d-flex align-items-center justify-content-center tampilModalPengembalian"
+                                    data-toggle="modal" data-target="#modalEditPengembalian"
+                                    data-id="<?= $pengembalian['id_pengembalian']; ?>">
+                                    <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
+                                </a>
+                                <a href="<?= BASEURL; ?>Pengembalian/detail/<?= $pengembalian['id_pengembalian']; ?>"
+                                    data-toggle="modal" data-target="#modalPengembalian<?= $pengembalian['id_pengembalian']; ?>"
+                                    class="btn d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+
+ <!-- Modal Detail Pengembalian -->
+ <div class="modal fade" id="modalPengembalian<?= $pengembalian['id_pengembalian']; ?>" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width: 700px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: 600;">Detail Pengembalian
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="display: flex; gap:50px; font-weight: 500; width:100%;">
+                        <style>
+                            span p {
+                                word-wrap: break-word;
+                                opacity: 0.5;
+                            }
+                        </style>
+                        <div style="width: 50%;">
+                            <span>
+                                <h6>Nama Peminjam</h6>
+                                <p><?= $pengembalian['nama_peminjam']; ?></p>
+                            </span>
+                            <span>
+                                <h6>Tanggal Mulai Peminjaman</h6>
+                                <p style="text-transform: capitalize;">
+                                    <?= $pengembalian['tanggal_peminjaman']; ?>
+                                </p>
+                            </span>
+                            <span>
+                                <h6>Tanggal Pengembalian</h6>
+                                <p><?= $pengembalian['tanggal_pengembalian']; ?></p>
+                            </span>
+                        </div>
+                        <div style="width: 50%;">
+                            <span>
+                                <h6>Jenis Barang</h6>
+                                <p><?= $pengembalian['sub_barang']; ?></p>
+                            </span>
+                            <span>
+                                <h6>Status </h6>
+                                <p><?= $pengembalian['status_pengembalian']; ?></p>
+                            </span>
+                            <span>
+                                <h6>Keterangan </h6>
+                                <p><?= $pengembalian['keterangan']; ?></p>
+                            </span>
+                            <span>
+                                <h6>Detail Masalah</h6>
+                                <p><?= $pengembalian['detail_masalah']; ?></p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
                         <?php endforeach;
                     endif; ?>
                 </tbody>
             </table>
 
         </div>
+
+        <!-- Modal Edit Pengembalian -->
+<div class="modal fade bd-example-modal-lg" id="modalEditPengembalian" tabindex="-1" role="dialog" aria-labelledby="editPengembalian" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document" style="
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPengembalian">Edit Data Pengembalian</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <form action="<?= BASEURL ?>/pengembalian/editPengembalian" method="post">
+                    <input type="hidden" name="id_pengembalian" id="id_pengembalian">
+                    <input type="hidden" name="id_peminjaman" id="id_peminjaman">
+
+                    <!-- Layout Nama Peminjam, Tanggal Peminjaman, dsb. di kiri & IMG di kanan -->
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="width: 50%;">
+                            <div class="form-group">
+                                <label for="nama_peminjam">Nama Peminjam</label>
+                                <input type="text" id="nama_peminjam" class="form-control" readonly 
+                                    style="background-color: #f0f5ff; color: #0c1740; font-weight: bold; border: none; padding: 5px; border-radius: 5px; font-size: 14px; width: 80%;">
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal_peminjaman">Tanggal Peminjaman</label>
+                                <input type="text" id="tanggal_peminjaman" class="form-control" readonly 
+                                    style="background-color: #f0f5ff; color: #0c1740; font-weight: bold; border: none; padding: 5px; border-radius: 5px; font-size: 14px; width: 80%;">
+                            </div>
+                            <div class="form-group">
+                                <label for="tanggal_pengembalian">Tanggal Pengembalian</label>
+                                <input type="text" id="tanggal_pengembalian" class="form-control" readonly 
+                                    style="background-color: #f0f5ff; color: #0c1740; font-weight: bold; border: none; padding: 5px; border-radius: 5px; font-size: 14px; width: 80%;">
+                            </div>
+                            <div class="form-group">
+                                <label for="sub_barang">Sub Barang</label>
+                                <input type="text" id="sub_barang" class="form-control" readonly 
+                                    style="background-color: #f0f5ff; color: #0c1740; font-weight: bold; border: none; padding: 5px; border-radius: 5px; font-size: 14px; width: 80%;">
+                            </div>
+                        </div>
+                        <div style="width: 50%; text-align: center;">
+                            <img src="<?= BASEURL ?>img/happy robot assistant.svg" alt="Happy Robot Assistant"
+                                style="width: 250px; height: 250px;">
+                        </div>
+                    </div>
+
+                    <!-- Status Pengembalian & Keterangan (Sudah Sesuai) -->
+                    <div style="display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <label for="status_pengembalian">Status Pengembalian</label>
+                            <select name="status_pengembalian" id="status_pengembalian" required
+                                style="width: 100%; height: 40px; border-radius: 5px; border: none; padding: 5px 10px; background-color: #f0f5ff; color: #0c1740;">
+                                <option value="">-- Pilih --</option>
+                                <option value="Dikembalikan">Dikembalikan</option>
+                                <option value="Belum Dikembalikan">Belum Dikembalikan</option>
+                                <option value="Rusak">Rusak</option>
+                                <option value="Hilang">Hilang</option>
+                            </select>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="keterangan">Keterangan</label>
+                            <select name="keterangan" id="keterangan" required
+                                style="width: 100%; height: 40px; border-radius: 5px; border: none; padding: 5px 10px; background-color: #f0f5ff; color: #0c1740;">
+                                <option value="">-- Pilih --</option>
+                                <option value="Tepat Waktu">Tepat Waktu</option>
+                                <option value="Tidak Tepat Waktu">Tidak Tepat Waktu</option>
+                                <option value="Bermasalah">Bermasalah</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Detail Masalah -->
+                    <div style="margin-top: 20px;">
+                        <label for="detail_masalah">Detail Masalah</label>
+                        <textarea name="detail_masalah" id="detail_masalah" rows="4"
+                            style="width: 100%; border-radius: 5px; padding: 10px; border: none; background-color: #f0f5ff; color: #0c1740;"></textarea>
+                    </div>
+
+                    <!-- Tombol Simpan -->
+                    <div class="modal-footer" style="justify-content: center;">
+                        <button type="submit" class="btn" style="
+                            background-color: #0c1740;
+                            color: white;
+                            border: none;
+                            border-radius: 8px;
+                            height: 40px;
+                            width: 200px;
+                            font-size: 16px;
+                            font-weight: bold;
+                            cursor: pointer;
+                            transition: 0.3s;
+                        " onmouseover="this.style.backgroundColor='#162a66'" onmouseout="this.style.backgroundColor='#0c1740'">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     </div>
 </div>

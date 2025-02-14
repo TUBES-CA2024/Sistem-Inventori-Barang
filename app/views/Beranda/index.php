@@ -61,12 +61,6 @@ if (!isset($_SESSION['login'])) {
         </div>
     </div>
 
-    <!-- Elemen Tengah -->
-    <div class="data3 data-box" onclick="location.href='<?= BASEURL ?>merekBarang'" style="width: 55%; max-width: 280px; padding: 30px 0; text-align: center;">
-        <i class="fa-solid fa-barcode"></i>
-        <p><span style="font-size: 24px; font-weight: bold;"><?= $data['jumlah_merek_barang']; ?></span> Merek Barang</p>
-    </div>
-
     <!-- Baris Bawah -->
     <div style="display: flex; justify-content: center; gap: 15px; width: 100%; max-width: 500px;">
         <div class="data4 data-box" onclick="location.href='<?= BASEURL ?>DetailBarang'" style="width: 50%; padding: 30px 0; text-align: center;">
@@ -77,6 +71,12 @@ if (!isset($_SESSION['login'])) {
             <i class="fa-solid fa-rotate-left"></i>
             <p><span style="font-size: 24px; font-weight: bold;"><?= $data['jumlah_pengembalian']; ?></span> Pengembalian</p>
         </div>
+    </div>
+
+      <!-- Elemen Tengah -->
+      <div class="data3 data-box" onclick="location.href='<?= BASEURL ?>merekBarang'" style="width: 90%;  padding: 30px 0; text-align: center;">
+        <i class="fa-solid fa-barcode"></i>
+        <p><span style="font-size: 24px; font-weight: bold;"><?= $data['jumlah_merek_barang']; ?></span> Merek Barang</p>
     </div>
 </div>
 

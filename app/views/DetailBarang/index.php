@@ -35,7 +35,7 @@ if (!isset($_SESSION['login'])) {
             <?php Flasher::flash(); ?>
         </div>
         <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-            <div style="display: flex; gap:10px;">
+            <div style="display: flex; gap:20px;">
                 <!-- <button onclick="location.href='<?= BASEURL ?>DetailBarang/cetak'; checkbox();"
                     style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-file-export"
                         style="color: #ffffff;"></i>Ekspor</button> -->
@@ -51,32 +51,6 @@ if (!isset($_SESSION['login'])) {
                                 </button>';
                 }
                 ?>
-            </div>
-            <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
-                <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"
-                    style="width: 15px;">
-                <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
-            </div>
-        </div>
-        <div
-            style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
-            <div
-                style=" height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0;margin-top: 0; background-color: #fff; z-index: 10; ">
-                <!-- Dropdown datatables_length -->
-                <div class="dataTables_length"
-                    style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
-                    <label>
-                        Show
-                        <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
-                            style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                        entries
-                    </label>
-                </div>
                 <form method="POST" action="">
     <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
            font-size: 16px; border-radius: 6px; cursor: pointer;
@@ -115,6 +89,33 @@ if (!isset($_SESSION['login'])) {
         <?php endforeach; ?>
     </select>
 </form>
+            </div>
+            <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
+                <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"
+                    style="width: 15px;">
+                <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
+            </div>
+        </div>
+        <div
+            style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
+            <div
+                style=" height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0;margin-top: 0; background-color: #fff; z-index: 10; ">
+                <!-- Dropdown datatables_length -->
+                <div class="dataTables_length"
+                    style="display: inline-block; font-size: 14px; display: flex; justify-content: space-between; align-items: center;">
+                    <label>
+                        Show
+                        <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
+                            style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        entries
+                    </label>
+                </div>
+                
 
 
                 <!-- Div pencarian -->
