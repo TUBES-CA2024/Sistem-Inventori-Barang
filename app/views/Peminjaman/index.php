@@ -39,48 +39,54 @@ if (!isset($_SESSION['login'])) {
         <div class="menu">
             <ul>
                 <li class="beranda">
-                    <button onclick="location.href='<?= BASEURL; ?>Beranda'">
-                        <i class="fa-solid fa-house" style="color: #ffffff;"></i>
+                    <button onclick="location.href='<?=BASEURL;?>Beranda'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                        </svg>
                         Beranda
                     </button>
                 </li>
                 <?php
-                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                    echo '<li class="tambah-jenis-barang">
-                            <button onclick="location.href=\'' . BASEURL . 'JenisBarang\'">
-                                <i class="fa-solid fa-box" style="color: #ffffff"></i>
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                        echo '<li class="tambah-jenis-barang">
+                            <button onclick="location.href=\''.BASEURL.'JenisBarang\'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill" viewBox="0 0 16 16">
+                                <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM15 4.667V5H1v-.333L1.5 4h6V1h1v3h6z"/>
+                                </svg>
                                 Jenis barang
                             </button>
                         </li>';
-                }
+                    }
                 ?>
                 <?php
-                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                    echo '<li class="tambah-merek-barang">
-                    <button onclick="location.href=\'' . BASEURL . 'merekBarang\'">
-                        <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                echo '<li class="tambah-merek-barang">
+                    <button onclick="location.href=\''.BASEURL.'merekBarang\'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-upc" viewBox="1 0 16 16">
+                        <path d="M3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0z"/>
+                        </svg>
                         Merek barang
+
                     </button>
                 </li>';
-                }
-                ?>
+                    }
+                    ?>
                 <?php
-                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                    echo '<li class="tambah-peminjaman-barang">
+                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                echo '<li class="tambah-peminjaman-barang">
                     <button onclick="location.href=\'' . BASEURL . 'peminjaman\'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus-fill" viewBox="-1 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
                     </svg>
                         Peminjaman
                     </button>
                 </li>';
-                }
-                ?>
+                    }
+                    ?>
                 <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
-                    echo '<li class="kelola-akun">
-                    <button onclick="location.href=\'' . BASEURL . 'KelolaAkun\'">
+                echo '<li class="kelola-akun">
+                    <button onclick="location.href=\''.BASEURL.'KelolaAkun\'">
                         <i class="fa-solid fa-users-gear" style="color: #ffffff"></i>
                         Kelola akun
                     </button>
@@ -94,7 +100,7 @@ if (!isset($_SESSION['login'])) {
                             onmouseout="this.style.backgroundColor='transparent'">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" onclick="location.href='<?= BASEURL ?>Profil'" type="button"
+                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button"
                                 style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" data-toggle="modal" data-target="#konfirmasiKeluar"
@@ -104,6 +110,7 @@ if (!isset($_SESSION['login'])) {
                             </button>
                         </div>
                     </div>
+
                 </li>
             </ul>
         </div>
@@ -176,18 +183,14 @@ if (!isset($_SESSION['login'])) {
                                      $(function() {
                                         $('.tampilUbahPeminjaman').on('click', function() {
                                             const id = $(this).data('id');
-                                            console.log("ID yang dikirim:", id); // Debugging
-                                            
+            
                                             $.ajax({
                                                 url: 'http://localhost/tubes_lab/Sistem-Inventori-Barang/public/peminjaman/ubahPeminjaman',
                                                 data: { id_peminjaman: id }, // Sesuaikan dengan PHP
                                                 method: 'POST',
                                                 dataType: 'json',
                                                 success: function(data) {
-                                                    if (data.error) {
-                                                        $("#errorMessage").text(data.error).show();
-                                                    } else {
-                                                        $("#errorMessage").hide();
+
                                                         $("#id_peminjaman").val(data.id_peminjaman);
                                                         $("#judul_kegiatan").val(data.judul_kegiatan);
                                                         $("#tanggal_pengajuan").val(data.tanggal_pengajuan);
@@ -196,18 +199,10 @@ if (!isset($_SESSION['login'])) {
                                                         $("#jenis_barang").val(data.id_jenis_barang);
                                                         $("#jumlah").val(data.jumlah);
                                                         $("#spesifikasi").val(data.spesifikasi);
-                                                    }
                                                 },
-                                                error: function(xhr, status, error) {
-                                                    console.log("AJAX Error:", status, error);
-                                                    console.log("Response Text:", xhr.responseText);
-                                                    $("#errorMessage").text("Terjadi kesalahan saat mengambil data.").show();
-                                                }
                                             });
                                         });
                                     });
-
-
                                     </script>
 
                                     <!-- Modal Edit -->

@@ -53,19 +53,9 @@ public function ubahPeminjaman()
 {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = $_POST['id_peminjaman'];
-        
-        if (!$id) {
-            echo json_encode(["error" => "ID tidak ditemukan!"]);
-            return;
-        }
 
         $data = $this->model('Peminjaman_model')->getPeminjamanById($id);
-
-        if ($data) {
             echo json_encode($data);
-        } else {
-            echo json_encode(["error" => "Data peminjaman tidak ditemukan!"]);
-        }
     }
 }
 

@@ -37,7 +37,9 @@
             <ul>
                 <li class="beranda">
                     <button onclick="location.href='<?=BASEURL;?>Beranda'">
-                        <i class="fa-solid fa-house" style="color: #ffffff;"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                        </svg>
                         Beranda
                     </button>
                 </li>
@@ -45,7 +47,9 @@
                     if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
                         echo '<li class="tambah-jenis-barang">
                             <button onclick="location.href=\''.BASEURL.'JenisBarang\'">
-                                <i class="fa-solid fa-box" style="color: #ffffff"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill" viewBox="0 0 16 16">
+                                <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM15 4.667V5H1v-.333L1.5 4h6V1h1v3h6z"/>
+                                </svg>
                                 Jenis barang
                             </button>
                         </li>';
@@ -55,7 +59,9 @@
                     if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
                 echo '<li class="tambah-merek-barang">
                     <button onclick="location.href=\''.BASEURL.'merekBarang\'">
-                        <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-upc" viewBox="1 0 16 16">
+                        <path d="M3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0z"/>
+                        </svg>
                         Merek barang
 
                     </button>
@@ -65,8 +71,10 @@
                 <?php
                     if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
                 echo '<li class="tambah-peminjaman-barang">
-                    <button onclick="location.href=\''.BASEURL.'peminjaman\'">
-                        <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>
+                    <button onclick="location.href=\'' . BASEURL . 'peminjaman\'">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus-fill" viewBox="-1 0 16 16">
+                    <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
+                    </svg>
                         Peminjaman
                     </button>
                 </li>';

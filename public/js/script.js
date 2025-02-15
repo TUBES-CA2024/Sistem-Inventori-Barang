@@ -324,24 +324,24 @@ $(function () {
 
 // peminjaman
 
-$(function() {
-  $('.tampilUbahPeminjaman').on('click', function() {
-    const id = $(this).data('id');
+// $(function() {
+//   $('.tampilUbahPeminjaman').on('click', function() {
+//     const id = $(this).data('id');
       
-    $.ajax({
-      url: 'http://localhost/tubes_lab/Sistem-Inventori-Barang/public/peminjaman/ubahPeminjaman',
-      data: {id : id},
-      method: 'post',
-      // dataType: 'json',
-      success: function (data) {
-        console.log(data);
+//     $.ajax({
+//       url: 'http://localhost/tubes_lab/Sistem-Inventori-Barang/public/peminjaman/ubahPeminjaman',
+//       data: {id : id},
+//       method: 'post',
+//       // dataType: 'json',
+//       success: function (data) {
+//         console.log(data);
         
-        // $("#id_user").val(data.id_user);
-        // $("#id_role").val(data.id_role);
-      },
-    });
-  })
-});
+//         // $("#id_user").val(data.id_user);
+//         // $("#id_role").val(data.id_role);
+//       },
+//     });
+//   })
+// });
 
 //pilih semua
 const selectAllCheckbox = document.getElementById("selectAllCheckbox");
