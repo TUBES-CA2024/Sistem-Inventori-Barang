@@ -22,15 +22,24 @@ class Peminjaman extends Controller {
         // Cek apakah ada filter yang dikirim
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!empty($_POST['sub_barang'])) {
-                $_SESSION['selected_sub_barang'] = $_POST['sub_barang']; // Simpan pilihan di sesi
+                $_SESSION['selected_sub_barang'] = $_POST['sub_barang']; // Simpan pilihan sub_barang di sesi
             } else {
-                unset($_SESSION['selected_sub_barang']); // Hapus filter jika "Pilih Sub Barang" dipilih
+                unset($_SESSION['selected_sub_barang']); // Hapus filter jika "Pilih Jenis Barang" dipilih
+            }
+
+            if (!empty($_POST['status'])) {
+                $_SESSION['selected_status'] = $_POST['status']; // Simpan pilihan status di sesi
+            } else {
+                unset($_SESSION['selected_status']); // Hapus filter jika status tidak dipilih
             }
         }
     
         // Gunakan filter jika ada
-        if (!empty($_SESSION['selected_sub_barang'])) {
-            $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanBySubBarang($_SESSION['selected_sub_barang']);
+        if (!empty($_SESSION['selected_sub_barang']) || !empty($_SESSION['selected_status'])) {
+            $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanByFilters(
+                $_SESSION['selected_sub_barang'] ?? '', 
+                $_SESSION['selected_status'] ?? ''
+            );
         } else {
             $data['peminjaman'] = $TambahPeminjamanModel->getPeminjamanBarang(); // Semua data jika tidak ada filter
         }
@@ -45,6 +54,7 @@ class Peminjaman extends Controller {
         $this->view('Peminjaman/index', $data);
         $this->view('templates/footer');
     }
+
     
     
     public function detail($id_peminjaman) {

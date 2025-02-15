@@ -51,11 +51,7 @@ class Peminjaman_model {
         return $this->db->resultSet();
     }
     
-    public function getPeminjamanBySubBarang($id_jenis_barang) {
-        if (!$id_jenis_barang) {
-            return []; // Jika ID sub_barang tidak valid, kembalikan array kosong
-        }
-    
+    public function getPeminjamanByFilters($id_jenis_barang, $status) {
         $query = "SELECT 
             b.id_peminjaman,
             b.nama_peminjam,
@@ -69,12 +65,29 @@ class Peminjaman_model {
             b.status
         FROM trx_peminjaman b
         JOIN mst_jenis_barang j ON b.id_jenis_barang = j.id_jenis_barang
-        WHERE b.id_jenis_barang = :id_jenis_barang";
+        WHERE 1=1"; // Start with no filter
+    
+        if (!empty($id_jenis_barang)) {
+            $query .= " AND b.id_jenis_barang = :id_jenis_barang";
+        }
+    
+        if (!empty($status)) {
+            $query .= " AND b.status = :status";
+        }
     
         $this->db->query($query);
-        $this->db->bind(':id_jenis_barang', $id_jenis_barang);
+    
+        // Bind parameters
+        if (!empty($id_jenis_barang)) {
+            $this->db->bind(':id_jenis_barang', $id_jenis_barang);
+        }
+        if (!empty($status)) {
+            $this->db->bind(':status', $status);
+        }
+    
         return $this->db->resultSet();
     }
+    
     
     
     

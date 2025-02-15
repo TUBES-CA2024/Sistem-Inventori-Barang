@@ -11,7 +11,6 @@ if (!isset($_SESSION['login'])) {
         <div class="modal-content" style="border-radius: 15px;">
             <div class="modal-body"
                 style="display: flex;justify-content: center; flex-direction: column; align-items: center;">
-
                 <lottie-player src="https://lottie.host/48c004f8-57cd-4acb-a04a-de46793ba7dc/jUGVFL9qIO.json"
                     background="##FFFFFF" speed="1" style="width: 250px; height: 250px" loop autoplay direction="1"
                     mode="normal"></lottie-player>
@@ -41,18 +40,29 @@ if (!isset($_SESSION['login'])) {
                 <i cl ass="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
             </button>
             <!-- Form diposisikan di samping "Show Entries" -->
-            <form method="POST" action="" style="margin-left: 20px; ">
-                <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+            <form method="POST" action="" style="margin-left: 20px;">
+    <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
                 font-size: 16px; border-radius: 6px; cursor: pointer;
                 box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-                    <option value="">Pilih Jenis Barang</option>
-                    <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
-                        <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($sub['sub_barang']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
+        <option value="">Pilih Jenis Barang</option>
+        <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
+            <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
+                <?= htmlspecialchars($sub['sub_barang']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+
+    <!-- Filter status yang sesuai dengan nilai enum -->
+    <select name="status" id="status" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+                font-size: 16px; border-radius: 6px; cursor: pointer;
+                box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
+        <option value="">Pilih Status</option>
+        <option value="diproses" <?= isset($_SESSION['selected_status']) && $_SESSION['selected_status'] == 'diproses' ? 'selected' : '' ?>>Diproses</option>
+        <option value="disetujui" <?= isset($_SESSION['selected_status']) && $_SESSION['selected_status'] == 'disetujui' ? 'selected' : '' ?>>Disetujui</option>
+        <option value="ditolak" <?= isset($_SESSION['selected_status']) && $_SESSION['selected_status'] == 'ditolak' ? 'selected' : '' ?>>Ditolak</option>
+    </select>
+</form>
+
         </div>
 
 
@@ -60,7 +70,6 @@ if (!isset($_SESSION['login'])) {
             style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
             <div
                 style="height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0; margin-top: 0; background-color: #fff; z-index: 10;">
-
                 <!-- Dropdown datatables_length dan form dalam satu flex container -->
                 <div style="display: flex; align-items: center;">
                     <div class="dataTables_length" style="display: flex; align-items: center; font-size: 14px;">
@@ -134,7 +143,6 @@ if (!isset($_SESSION['login'])) {
                                     data-target="#konfirmasiHapus<?= $peminjaman['id_peminjaman']; ?>">
                                     <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                                 </a>
-
                                 <div class="modal fade" id="konfirmasiHapus<?= $peminjaman['id_peminjaman']; ?>"
                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
                                     aria-hidden="true">
@@ -159,8 +167,6 @@ if (!isset($_SESSION['login'])) {
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <a href="<?= BASEURL; ?>Peminjaman/detail/<?= $peminjaman['id_peminjaman']; ?>"
                                     data-toggle="modal" data-target="#modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>"
                                     class="btn d-flex align-items-center justify-content-center">
@@ -168,7 +174,6 @@ if (!isset($_SESSION['login'])) {
                                 </a>
                             </td>
                         </tr>
-
 
                         <!-- Modal Detail Peminjaman -->
                         <div class="modal fade" id="modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>" tabindex="-1"
@@ -241,9 +246,6 @@ if (!isset($_SESSION['login'])) {
                                 </div>
                             </div>
                         </div>
-
-
-
                     <?php endforeach; ?>
                 </tbody>
             </table>
