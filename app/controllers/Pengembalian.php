@@ -7,7 +7,6 @@ class Pengembalian extends Controller
             session_start();
         }
 
-        // Redirect ke login jika user belum login
         if (!isset($_SESSION['id_user'])) {
             header('Location: ' . BASEURL . 'Login');
             exit;
@@ -18,12 +17,24 @@ class Pengembalian extends Controller
         $data['pengembalian'] = $this->model('Pengembalian_model')->getAllPengembalian();
         $data['profile'] = $this->model("User_model")->profile($data);
 
-        // Load tampilan
         $this->view('templates/header', $data);
         $this->view('templates/sidebar', $data);
         $this->view('Pengembalian/index', $data);
         $this->view('templates/footer');
     }
 
+    public function getUbah()
+    {
+        echo json_encode($this->model('Pengembalian_model')->getUbahPengembalian($_POST['id_pengembalian']));
+    }
 
+    public function ubahPengembalian()
+    {
+        if ($this->model('Pengembalian_model')->updatePengembalian($_POST)) {
+            header('Location: ' . BASEURL . 'Pengembalian');
+            exit;
+        } else {
+            echo "Gagal mengubah data pengembalian.";
+        }
+    }
 }

@@ -154,7 +154,7 @@ label {
   color: #0c1740;
 }
 
-.button-login a:hover{
+.button-login a:hover {
   color: #cad6ff;
 }
 .button-login p {
@@ -309,7 +309,8 @@ input[type="radio"] {
 .body-beranda {
   background-color: #0c1740;
   display: flex;
-  height: max-content;
+
+  height: 100vh;
 }
 
 .body-beranda .side-bar {
@@ -327,7 +328,6 @@ input[type="radio"] {
 
 .side-bar hr {
   width: 70%;
-  height: max-content;
   border: 1px solid #385161;
 }
 

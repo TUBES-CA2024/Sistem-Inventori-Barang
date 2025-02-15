@@ -8,7 +8,7 @@ class Peminjaman_model {
 
     public function postDataPeminjaman($data) {
         if (!isset($data['tanggal_pengajuan']) || empty($data['tanggal_pengajuan'])) {
-            $data['tanggal_pengajuan'] = date('Y-m-d'); // Format for MySQL date
+            $data['tanggal_pengajuan'] = date('d-m-Y'); // Format for MySQL date
         }
     
         // Status harus selalu "Diproses" saat insert

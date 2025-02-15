@@ -41,60 +41,60 @@ if (!isset($_SESSION['login'])) {
                 <i cl ass="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
             </button>
             <!-- Form diposisikan di samping "Show Entries" -->
-         <form method="POST" action="" style="margin-left: 20px; ">
-            <select name="sub_barang" id="sub_barang" onchange="this.form.submit()"
-                style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+            <form method="POST" action="" style="margin-left: 20px; ">
+                <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
                 font-size: 16px; border-radius: 6px; cursor: pointer;
                 box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-                <option value="">Pilih Sub Barang</option>
-                <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
-                    <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
-                        <?= htmlspecialchars($sub['sub_barang']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </form>
+                    <option value="">Pilih Jenis Barang</option>
+                    <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
+                        <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_SESSION['selected_sub_barang']) && $_SESSION['selected_sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($sub['sub_barang']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </form>
         </div>
-         
+
 
         <div
             style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
             <div
-    style="height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0; margin-top: 0; background-color: #fff; z-index: 10;">
-    
-    <!-- Dropdown datatables_length dan form dalam satu flex container -->
-    <div style="display: flex; align-items: center;">
-        <div class="dataTables_length"
-            style="display: flex; align-items: center; font-size: 14px;">
-            <label>
-                Show
-                <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
-                    style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
-                    <option value="10">10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                </select>
-                entries
-            </label>
-        </div>
-    </div>
+                style="height: 80px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; position: sticky; top: 0; margin-top: 0; background-color: #fff; z-index: 10;">
 
-    <!-- Div pencarian -->
-    <div style="display: flex; align-items: center; justify-content: flex-end; 
+                <!-- Dropdown datatables_length dan form dalam satu flex container -->
+                <div style="display: flex; align-items: center;">
+                    <div class="dataTables_length" style="display: flex; align-items: center; font-size: 14px;">
+                        <label>
+                            Show
+                            <select name="entries_length" aria-controls="example" class="form-control form-control-sm"
+                                style="width: auto; display: inline-block; margin-left: 5px; margin-right: 5px;">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Div pencarian -->
+                <div style="display: flex; align-items: center; justify-content: flex-end; 
         box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius: 8px; 
         overflow: hidden; width: 320px;">
-        <button style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; 
+                    <button style="background-color: #0d1a4a; border: none; width: 40px; height: 40px; 
             display: flex; align-items: center; justify-content: center; cursor: pointer; 
             border-radius: 4px 0 0 4px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
-                <path d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"></path>
-            </svg>
-        </button>
-        <input type="text" id="customSearch" class="form-control" placeholder="Cari"
-            style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
-    </div>
-</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+                            <path
+                                d="M10 2a8 8 0 016.32 12.9l5.38 5.38a1 1 0 01-1.42 1.42l-5.38-5.38A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z">
+                            </path>
+                        </svg>
+                    </button>
+                    <input type="text" id="customSearch" class="form-control" placeholder="Cari"
+                        style="border: none; outline: none; padding: 10px 15px; font-size: 16px; flex-grow: 1; height: 40px;">
+                </div>
+            </div>
 
             <table id="myTable" class="table table-hover table-sm" style="width:100%;">
                 <thead class="table-info">
@@ -118,13 +118,9 @@ if (!isset($_SESSION['login'])) {
                         <tr data-id="<?= $peminjaman['id_peminjaman'] ?>" style="cursor: pointer;">
                             <td><?= $no++ ?></td>
                             <td><?= $peminjaman['nama_peminjam'] ?></td>
-                            <!-- <td><?= $peminjaman['judul_kegiatan'] ?></td> -->
-                            <!-- <td><?= $peminjaman['tanggal_pengajuan'] ?></td> -->
-                            <td><?= $peminjaman['tanggal_peminjaman'] ?></td>
-                            <td><?= $peminjaman['tanggal_pengembalian'] ?></td>
+                            <td><?= date('d-m-Y', strtotime($peminjaman['tanggal_peminjaman'])) ?></td>
+                            <td><?= date('d-m-Y', strtotime($peminjaman['tanggal_pengembalian'])) ?></td>
                             <td><?= $peminjaman['sub_barang']; ?></td>
-                            <!-- <td><?= $peminjaman['jumlah_peminjaman'] ?></td> -->
-                            <!-- <td><?= $peminjaman['keterangan_peminjaman'] ?></td> -->
                             <td><?= $peminjaman['status'] ?></td>
                             <td style="display: flex; justify-content: center; align-items: center; gap: 10px;">
                                 <!-- Aksi: Edit dan Hapus -->

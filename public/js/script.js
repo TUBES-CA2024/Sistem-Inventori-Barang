@@ -74,6 +74,70 @@ function validasiInput(input) {
 // });
 // });
 
+//Modal Edit Pengembalian
+
+$(document).ready(function () {
+  $(document).on('click', '.tampilModalPengembalian', function () {
+      $('#modalEditPengembalianLabel').html('Ubah Data Pengembalian');
+      $('.modal-footer button[type=submit]').html('Simpan Perubahan');
+      $('.modal-body form').attr('action', 'http://localhost/inventori/public/Pengembalian/ubahPengembalian');
+
+      const id_pengembalian = $(this).data('id');
+      if (!id_pengembalian) {
+          alert('ID pengembalian tidak ditemukan');
+          return;
+      }
+
+      $.ajax({
+          url: "http://localhost/inventori/public/Pengembalian/getUbah",
+          data: { id_pengembalian: id_pengembalian },
+          method: 'POST',
+          dataType: 'json',
+          success: function (data) {
+              $('#status_pengembalian').val(data.status_pengembalian);
+              $('#detail_masalah').val(data.detail_masalah);
+              $('#id_pengembalian').val(data.id_pengembalian);
+              $('#nama_peminjam').val(data.nama_peminjam); 
+              $('#tanggal_peminjaman').val(data.tanggal_peminjaman); 
+              $('#tanggal_pengembalian').val(data.tanggal_pengembalian); 
+
+              updateKeterangan();
+          },
+          error: function (xhr, status, error) {
+              console.error("AJAX Error:", status, error);
+              alert("Terjadi kesalahan saat mengambil data pengembalian.");
+          }
+      });
+  });
+
+  $('#status_pengembalian').on('change', function () {
+      updateKeterangan();
+  });
+
+  function updateKeterangan() {
+      const status = $('#status_pengembalian').val();
+      const tanggalPengembalian = new Date($('#tanggal_pengembalian').val());
+      const today = new Date();
+      let keterangan = '';
+
+      if (status === 'Dikembalikan') {
+          if (today <= tanggalPengembalian) {
+              keterangan = 'Tepat Waktu';
+          } else {
+              keterangan = 'Tidak Tepat Waktu';
+          }
+      } else if (status === 'Hilang' || status === 'Rusak') {
+          keterangan = 'Bermasalah';
+          $('#detail_masalah').prop('required', true);
+      } else {
+          if (today > tanggalPengembalian) {
+              keterangan = 'Tidak Tepat Waktu';
+          }
+      }
+
+      $('#keterangan').val(keterangan);
+  }
+});
 
 
   $(document).ready(function () {
