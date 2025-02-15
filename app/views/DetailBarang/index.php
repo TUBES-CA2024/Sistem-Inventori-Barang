@@ -53,8 +53,8 @@ if (!isset($_SESSION['login'])) {
                 ?>
                 <form method="POST" action="">
     <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
-           font-size: 16px; border-radius: 6px; cursor: pointer;
-           box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
+       font-size: 16px; border-radius: 6px; cursor: pointer;
+       box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
         <option value="">Pilih Lokasi</option>
         <?php foreach ($data['lokasiPenyimpanan'] ?? [] as $lokasi): ?>
             <option value="<?= $lokasi['id_lokasi_penyimpanan'] ?>" <?= isset($_POST['lokasi']) && $_POST['lokasi'] == $lokasi['id_lokasi_penyimpanan'] ? 'selected' : '' ?>>
@@ -62,9 +62,7 @@ if (!isset($_SESSION['login'])) {
             </option>
         <?php endforeach; ?>
     </select>
-</form>
 
-<form method="POST" action="">
     <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
@@ -75,9 +73,7 @@ if (!isset($_SESSION['login'])) {
             </option>
         <?php endforeach; ?>
     </select>
-</form>
 
-<form method="POST" action="">
     <select name="merek_barang" id="merek_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
@@ -89,6 +85,7 @@ if (!isset($_SESSION['login'])) {
         <?php endforeach; ?>
     </select>
 </form>
+
             </div>
             <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
                 <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"

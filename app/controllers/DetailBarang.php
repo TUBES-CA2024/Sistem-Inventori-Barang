@@ -21,27 +21,13 @@ class DetailBarang extends Controller {
         $data['id_user'] = $_SESSION['id_user'];
         $data['profile'] = $this->model("User_model")->profile($data);
     
-        // Ambil filter dari GET atau POST
-        $lokasi_id = $_GET['id_lokasi'] ?? $_POST['lokasi'] ?? null;
-        $jenis_barang_id = $_GET['id_jenis_barang'] ?? $_POST['sub_barang'] ?? null;
-        $merek_barang_id = $_GET['id_merek_barang'] ?? $_POST['merek_barang'] ?? null;
+        // Ambil filter dari POST
+        $lokasi_id = $_POST['lokasi'] ?? '';
+        $jenis_barang_id = $_POST['sub_barang'] ?? '';
+        $merek_barang_id = $_POST['merek_barang'] ?? '';
     
-        // Jika merek_barang dipilih, ambil data berdasarkan merek_barang
-        if (!empty($merek_barang_id)) {
-            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangByMerek($merek_barang_id);
-        } 
-        // Jika sub_barang dipilih, ambil data berdasarkan sub_barang
-        else if (!empty($jenis_barang_id)) {
-            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangBySubBarang($jenis_barang_id);
-        } 
-        // Jika lokasi dipilih tetapi sub_barang tidak dipilih, filter berdasarkan lokasi
-        else if (!empty($lokasi_id)) {
-            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangByLokasi($lokasi_id);
-        } 
-        // Jika tidak ada filter, ambil semua barang
-        else {
-            $data['dataTampilBarang'] = $DetailBarangModel->getDataBarang();
-        }
+        // Gunakan filter gabungan untuk mengambil data barang
+        $data['dataTampilBarang'] = $DetailBarangModel->getDataBarangByFilters($merek_barang_id, $jenis_barang_id, $lokasi_id);
     
         // Load tampilan
         $this->view('templates/header', $data);
@@ -49,6 +35,8 @@ class DetailBarang extends Controller {
         $this->view('DetailBarang/index', $data);
         $this->view('templates/footer');
     }
+    
+    
     
     public function detail($id_barang) {
         $data['judul'] = 'Detail Barang';
