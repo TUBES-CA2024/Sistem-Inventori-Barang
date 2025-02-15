@@ -76,6 +76,9 @@ class Pengembalian_model
         $this->db->bind('detail_masalah', $data['detail_masalah']);
         $this->db->bind('id_pengembalian', $data['id_pengembalian']);
 
-        return $this->db->execute();
+        $this->db->execute();
+
+        // Mengecek apakah ada baris yang diubah
+        return $this->db->rowCount() > 0;
     }
 }
