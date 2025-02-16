@@ -95,13 +95,14 @@ if (!isset($_SESSION['login'])) {
                                 <td><?= $pengembalian['keterangan'] ?? '-' ?></td>
                                 <td><?= $pengembalian['detail_masalah'] ?? '-' ?></td>
                                 <td style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-
+                                <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '1' || $_SESSION['id_role'] == '2' || $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '4')): ?>
                                     <a href="<?= BASEURL; ?>/Pengembalian/ubahPengembalian/<?= $pengembalian['id_pengembalian']; ?>"
                                         class="btn d-flex align-items-center justify-content-center tampilModalPengembalian"
                                         data-toggle="modal" data-target="#modalEditPengembalian"
                                         data-id="<?= $pengembalian['id_pengembalian']; ?>">
                                         <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                                     </a>
+                                    <?php endif; ?>
                                     <a href="<?= BASEURL; ?>Pengembalian/detail/<?= $pengembalian['id_pengembalian']; ?>"
                                         data-toggle="modal"
                                         data-target="#modalPengembalian<?= $pengembalian['id_pengembalian']; ?>"

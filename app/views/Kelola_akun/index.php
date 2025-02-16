@@ -1,8 +1,9 @@
 <?php
-        if (!isset($_SESSION['login']) || ($_SESSION['id_role'] == '1') || ($_SESSION['id_role'] == '2')) {
-          header("Location:" . BASEURL . "Login");
-          exit;
-        }    
+        if (!isset($_SESSION['login']) || !in_array($_SESSION['id_role'], ['1', '2', '3', '4'])) {
+            header("Location:" . BASEURL . "Login");
+            exit;
+        }
+            
 ?>
 
 

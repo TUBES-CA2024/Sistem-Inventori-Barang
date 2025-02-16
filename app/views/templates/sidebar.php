@@ -48,7 +48,7 @@
     ?>
     <?php
         // Semua role login dapat mengakses jenis barang
-        if (isset($_SESSION['login'])) {
+        if (isset($_SESSION['login']) && in_array($_SESSION['id_role'], ['1', '2', '3', '4'])) {
             echo '<li class="tambah-jenis-barang">
                 <button onclick="location.href=\''.BASEURL.'JenisBarang\'">
                     <i class="fa-solid fa-box" style="color: #ffffff"></i>
@@ -59,7 +59,7 @@
     ?>
     <?php
         // Semua role login dapat mengakses merek barang
-        if (isset($_SESSION['login'])) {
+        if (isset($_SESSION['login']) && in_array($_SESSION['id_role'], ['1', '2', '3', '4'])) {
             echo '<li class="tambah-merek-barang">
                 <button onclick="location.href=\''.BASEURL.'merekBarang\'">
                     <i class="fa-solid fa-barcode" style="color: #ffffff;"></i>

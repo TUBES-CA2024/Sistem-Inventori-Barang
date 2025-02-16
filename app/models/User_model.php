@@ -35,7 +35,7 @@ class User_model
             $this->db->bind('password', $hashedPassword);
 
             // Menggunakan nilai default 1 jika $data['id_role'] tidak ada
-            $idRole = isset($data['id_role']) ? $data['id_role'] : 1;
+            $idRole = isset($data['id_role']) ? $data['id_role'] : 7;
             $this->db->bind('id_role', $idRole);
 
             $this->db->execute();

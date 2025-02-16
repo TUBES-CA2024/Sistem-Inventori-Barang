@@ -132,6 +132,8 @@ if (!isset($_SESSION['login'])) {
                             <td><?= $peminjaman['sub_barang']; ?></td>
                             <td><?= $peminjaman['status'] ?></td>
                             <td style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                            <?php if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '1' || $_SESSION['id_role'] == '2' || $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '4')): ?>
+
                                 <!-- Aksi: Edit dan Hapus -->
                                 <a href="<?= BASEURL; ?>/Peminjaman/ubahPeminjaman/<?= $peminjaman['id_peminjaman']; ?>"
                                     class="btn d-flex align-items-center justify-content-center tampilModalPeminjaman"
@@ -167,6 +169,7 @@ if (!isset($_SESSION['login'])) {
                                         </div>
                                     </div>
                                 </div>
+                                <?php endif; ?>
                                 <a href="<?= BASEURL; ?>Peminjaman/detail/<?= $peminjaman['id_peminjaman']; ?>"
                                     data-toggle="modal" data-target="#modalPeminjaman<?= $peminjaman['id_peminjaman']; ?>"
                                     class="btn d-flex align-items-center justify-content-center">
