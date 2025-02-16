@@ -114,14 +114,15 @@ class DetailBarang extends Controller {
 
     public function cetak() {
         if(isset($_POST) && !empty($_POST)){
+            $temp = $_POST['id_barang'];
+            $result = json_decode($temp,true) ;
             $data['judul'] = 'Detail Barang';
-    
-            $data['dataCetak'] = $this->model('Detail_barang_model')->cetak($_POST);
+            $data['dataCetak'] = $this->model('Detail_barang_model')->cetak($result);
             $this->view('templates/header', $data);
             $this->view('DetailBarang/print', $data);
             $this->view('templates/footer');
         } else {
-            Flasher::setFlash('Data barang', 'gagal', ' diCetak </br> Pilih data barang', 'danger');
+            Flasher::setFlash('Data barang', var_dump($_POST), ' diCetak </br> Pilih data barang', 'danger');
             header('Location: '. BASEURL . 'DetailBarang');
             exit;
         }

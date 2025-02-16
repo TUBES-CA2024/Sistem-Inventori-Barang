@@ -191,33 +191,52 @@ $(document).ready(function () {
         });
     });
   });
+  function submitForm() {
+    const checkboxes = document.querySelectorAll(".checkbox"); // Mengambil semua checkbox dengan kelas 'checkbox'
+    let idbarang = [];
 
-function tampilCetak() {
-  const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
-  let idbarang = [];
-
-  checkboxes.forEach(function (checkbox) {
-    if (checkbox.checked) {
-      // Menambahkan id_barang ke dalam array
-      idbarang.push(checkbox.value);
+    checkboxes.forEach(function (checkbox) {
+        if (checkbox.checked) {
+            idbarang.push(checkbox.value); // Menambahkan nilai ID barang yang tercentang
+        }
+    });
+    console.log(idbarang);
+    if (idbarang.length === 0) {
+        alert("Pilih setidaknya satu barang untuk diekspor!");
+        return;
     }
-  });
 
-  console.log(idbarang);
-  $.ajax({
-    url: "http://localhost/inventori/public/DetailBarang/cetak",
-    data: {
-      id_barang: idbarang,
-    },
-    type: "post",
-    dataType: "json",
-    success: function (data) {
-      // $("id_barang").val(data.id_barang);
-      $("#id_barang").val(data.id_barang);
+    // Mengisi nilai input hidden dengan ID barang yang dipilih
+    document.getElementById("idbarang").value = idbarang.join(","); // Gabungkan ID barang dengan koma
 
-    },
-  });
+    // Mengirim form setelah mengisi input hidden
+    document.getElementById("formCheckbox").submit();
 }
+
+//   function tampilCetak() {
+//     const checkboxes = document.querySelectorAll(".checkbox");
+//     let idbarang = [];
+
+//     checkboxes.forEach(function (checkbox) {
+//         if (checkbox.checked) {
+//             idbarang.push(checkbox.value);
+//         }
+//     });
+
+//     if (idbarang.length === 0) {
+//         alert("Pilih setidaknya satu barang untuk diekspor!");
+//         return;
+//     }
+
+//     console.log(idbarang);
+
+//     // Mengisi nilai idbarang ke input hidden
+//     document.getElementById("idbarang").value = idbarang.join(",");
+
+//     // Submit form
+//     document.getElementById("formCheckbox").submit();
+// }
+
 
 function checkbox() {
   let form = document.getElementById("formCheckbox");
@@ -305,6 +324,25 @@ $(function () {
 
 $(document).ready(function(){
   $('#myTable').DataTable();
+  
+  $("form#formCheckbox").submit(function(e) {
+    const checkboxes = document.querySelectorAll(".checkbox"); // Pilih semua checkbox
+    let idbarang = [];
+
+    checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+            idbarang.push(checkbox.value); // Tambahkan nilai checkbox yang dicentang ke dalam array
+        }
+    });
+
+    // Jika idbarang berisi data, konversi menjadi JSON dan set nilai pada input hidden
+    if (idbarang.length > 0) {
+        $("#idbarang").val(JSON.stringify(idbarang)); // Set nilai input tersembunyi menjadi JSON string
+    } else {
+        // Jika tidak ada data, kirimkan string kosong
+        $("#idbarang").val("");
+    }
+});
 });
 
 let myTable = $('#myTable').DataTable({

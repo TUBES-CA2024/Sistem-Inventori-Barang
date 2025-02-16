@@ -36,14 +36,15 @@ if (!isset($_SESSION['login'])) {
         </div>
         <div class="btn-fitur" style="display: flex; justify-content:space-between;">
             <div style="display: flex; justify-content: left; gap: 20px; ">
-                <button onclick="location.href='<?= BASEURL ?>DetailBarang/cetak'; checkbox();"
-                    style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-file-export"
-                        style="color: #ffffff;"></i>Ekspor</button>
-                <!-- <form id="formCheckbox" method="POST" action="<?= BASEURL ?>DetailBarang/cetak">
+                <form id="formCheckbox" method="POST" action="<?= BASEURL ?>DetailBarang/cetak">
+                    <input type="hidden" id="idbarang" name="id_barang" value="">
                     <button type="submit" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                         <i class="fa-solid fa-file-export" style="color: #ffffff;"></i> Ekspor
                     </button>
-                </form> -->
+                </form>
+
+
+
                 <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '1' || $_SESSION['id_role'] == '2' || $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '4')) {
                     echo '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
@@ -51,48 +52,48 @@ if (!isset($_SESSION['login'])) {
                                 </button>';
                 }
                 ?>
-                
+
                 <form method="POST" action="" style="display: flex; justify-content: left; gap: 20px; ">
-    <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+                    <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-        <option value="">Pilih Lokasi</option>
-        <?php foreach ($data['lokasiPenyimpanan'] ?? [] as $lokasi): ?>
-            <option value="<?= $lokasi['id_lokasi_penyimpanan'] ?>" <?= isset($_POST['lokasi']) && $_POST['lokasi'] == $lokasi['id_lokasi_penyimpanan'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($lokasi['nama_lokasi_penyimpanan']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+                        <option value="">Pilih Lokasi</option>
+                        <?php foreach ($data['lokasiPenyimpanan'] ?? [] as $lokasi): ?>
+                            <option value="<?= $lokasi['id_lokasi_penyimpanan'] ?>" <?= isset($_POST['lokasi']) && $_POST['lokasi'] == $lokasi['id_lokasi_penyimpanan'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($lokasi['nama_lokasi_penyimpanan']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
-    <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+                    <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-        <option value="">Pilih Sub Barang</option>
-        <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
-            <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_POST['sub_barang']) && $_POST['sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($sub['sub_barang']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+                        <option value="">Pilih Sub Barang</option>
+                        <?php foreach ($data['sub_barang'] ?? [] as $sub): ?>
+                            <option value="<?= $sub['id_jenis_barang'] ?>" <?= isset($_POST['sub_barang']) && $_POST['sub_barang'] == $sub['id_jenis_barang'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($sub['sub_barang']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
 
-    <select name="merek_barang" id="merek_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
+                    <select name="merek_barang" id="merek_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">
-        <option value="">Pilih Merek Barang</option>
-        <?php foreach ($data['nama_merek_barang'] ?? [] as $merek): ?>
-            <option value="<?= $merek['id_merek_barang'] ?>" <?= isset($_POST['merek_barang']) && $_POST['merek_barang'] == $merek['id_merek_barang'] ? 'selected' : '' ?>>
-                <?= htmlspecialchars($merek['nama_merek_barang']) ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</form>
+                        <option value="">Pilih Merek Barang</option>
+                        <?php foreach ($data['nama_merek_barang'] ?? [] as $merek): ?>
+                            <option value="<?= $merek['id_merek_barang'] ?>" <?= isset($_POST['merek_barang']) && $_POST['merek_barang'] == $merek['id_merek_barang'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($merek['nama_merek_barang']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </form>
 
             </div>
-            <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
+            <!-- <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
                 <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox"
                     style="width: 15px;">
                 <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
-            </div>
+            </div> -->
         </div>
         <div
             style="max-height: 400px; overflow-y:auto; box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px; padding: 15px ; padding-top:0;">
@@ -113,7 +114,7 @@ if (!isset($_SESSION['login'])) {
                         entries
                     </label>
                 </div>
-                
+
 
 
                 <!-- Div pencarian -->
