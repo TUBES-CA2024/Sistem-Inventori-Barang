@@ -35,15 +35,15 @@ if (!isset($_SESSION['login'])) {
             <?php Flasher::flash(); ?>
         </div>
         <div class="btn-fitur" style="display: flex; justify-content:space-between;">
-            <div style="display: flex; gap:20px;">
-                <!-- <button onclick="location.href='<?= BASEURL ?>DetailBarang/cetak'; checkbox();"
+            <div style="display: flex; justify-content: left; gap: 20px; ">
+                <button onclick="location.href='<?= BASEURL ?>DetailBarang/cetak'; checkbox();"
                     style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-file-export"
-                        style="color: #ffffff;"></i>Ekspor</button> -->
-                <form id="formCheckbox" method="POST" action="<?= BASEURL ?>DetailBarang/cetak">
+                        style="color: #ffffff;"></i>Ekspor</button>
+                <!-- <form id="formCheckbox" method="POST" action="<?= BASEURL ?>DetailBarang/cetak">
                     <button type="submit" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                         <i class="fa-solid fa-file-export" style="color: #ffffff;"></i> Ekspor
                     </button>
-                </form>
+                </form> -->
                 <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '1' || $_SESSION['id_role'] == '2' || $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '4')) {
                     echo '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
@@ -51,7 +51,8 @@ if (!isset($_SESSION['login'])) {
                                 </button>';
                 }
                 ?>
-                <form method="POST" action="">
+                
+                <form method="POST" action="" style="display: flex; justify-content: left; gap: 20px; ">
     <select name="lokasi" id="lokasi" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
        font-size: 16px; border-radius: 6px; cursor: pointer;
        box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">

@@ -34,13 +34,13 @@ if (!isset($_SESSION['login'])) {
         </div>
 
         <!-- Button trigger modal -->
-        <div class="btn-fitur" style="display: flex; justify-content:left;">
+        <div class="btn-fitur" style="display: flex; justify-content: left; gap: 20px; ">
             <button data-toggle="modal" class="btn btn-primary tombolTambahData" data-toggle="modal"
                 data-target="#exampleModal" style=" box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
                 <i cl ass="fa-solid fa-plus" style="color: #ffffff"></i> Tambah
             </button>
             <!-- Form diposisikan di samping "Show Entries" -->
-            <form method="POST" action="" style="margin-left: 20px;">
+            <form method="POST" action="" style="display: flex; justify-content: space-between; gap: 20px; ">
     <select name="sub_barang" id="sub_barang" onchange="this.form.submit()" style="background: #fff; color: #0d1a4a; border: none; padding: 10px;
                 font-size: 16px; border-radius: 6px; cursor: pointer;
                 box-shadow: 4px 4px 10px rgba(12, 23, 64, 0.5); outline: none;">

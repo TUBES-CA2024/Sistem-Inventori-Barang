@@ -282,10 +282,7 @@ if (!isset($_SESSION['login'])) {
                                         onmouseout="this.style.backgroundColor='#0c1740'">
                                         Simpan Perubahan
                                     </button>
-                                </div>
-
-                          
-                </form>
+                                </div></form>
             </div>
         </div>
     </div>
