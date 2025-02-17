@@ -28,51 +28,51 @@ function validasiInput(input) {
 
 // function cetak() {
 //   window.print();
-// $(function(){
+$(function(){
 
-//   $('.tombolTambahData').on('click', function(){
-//     $('#tambahPeminjaman').html('Tambah Data Peminjaman');
-//     $('.modal-footer button[type=submit]').html('Kirim');
+  $('.tombolTambahData').on('click', function(){
+    $('#tambahPeminjaman').html('Tambah Data Peminjaman');
+    $('.modal-footer button[type=submit]').html('Kirim');
 
-//   });
+  });
 
-//   $('.tampilModalPeminjaman').on('click', function(){
-//     $('#tambahPeminjaman').html('Ubah Data Peminjaman');
-//     $('.modal-footer button[type=submit]').html('Simpan Perubahan');
-//     $('.modal-body form').attr('action','http://localhost/inventori/public/Peminjaman/ubahPeminjaman');
+  $('.tampilModalPeminjaman').on('click', function(){
+    $('#tambahPeminjaman').html('Ubah Data Peminjaman');
+    $('.modal-footer button[type=submit]').html('Simpan Perubahan');
+    $('.modal-body form').attr('action','http://localhost/inventori/public/Peminjaman/ubahPeminjaman');
 
-//     const id_peminjaman = $(this).data('id');
-//     console.log(id_peminjaman);
-//     if (!id_peminjaman) {
-//         alert('ID peminjaman tidak ditemukan');
-//         return;
-//     }
+    const id_peminjaman = $(this).data('id');
+    console.log(id_peminjaman);
+    if (!id_peminjaman) {
+        alert('ID peminjaman tidak ditemukan');
+        return;
+    }
 
-//     $.ajax({
-//         url: "http://localhost/inventori/public/Peminjaman/getUbah",
-//         data: {id_peminjaman : id_peminjaman},
-//         method: 'post',
-//         dataType :'json',
-//         success :function(data){
-//             if (data.error) {
-//                 alert(data.error);
-//                 return;
-//             }
+    $.ajax({
+        url: "http://localhost/inventori/public/Peminjaman/getUbah",
+        data: {id_peminjaman : id_peminjaman},
+        method: 'post',
+        dataType :'json',
+        success :function(data){
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
 
-//             $('#judul_kegiatan').val(data.judul_kegiatan);
-//             $('#tanggal_peminjaman').val(data.tanggal_peminjaman);
-//             $('#tanggal_pengembalian').val(data.tanggal_pengembalian);
-//             $('#id_jenis_barang').val(data.id_jenis_barang);
-//             $('#jumlah_peminjaman').val(data.jumlah_peminjaman);
-//             $('#keterangan_peminjaman').val(data.keterangan_peminjaman);
-//             $('#id_peminjaman').val(data.id_peminjaman);
-//         },
-//         error: function() {
-//             alert('Terjadi kesalahan saat mengambil data');
-//         }
-//     });
-// });
-// });
+            $('#judul_kegiatan').val(data.judul_kegiatan);
+            $('#tanggal_peminjaman').val(data.tanggal_peminjaman);
+            $('#tanggal_pengembalian').val(data.tanggal_pengembalian);
+            $('#id_jenis_barang').val(data.id_jenis_barang);
+            $('#jumlah_peminjaman').val(data.jumlah_peminjaman);
+            $('#keterangan_peminjaman').val(data.keterangan_peminjaman);
+            $('#id_peminjaman').val(data.id_peminjaman);
+        },
+        error: function() {
+            alert('Terjadi kesalahan saat mengambil data');
+        }
+    });
+});
+});
 
 //Modal Edit Pengembalian
 
@@ -191,6 +191,8 @@ $(document).ready(function () {
         });
     });
   });
+
+
   function submitForm() {
     const checkboxes = document.querySelectorAll(".checkbox"); // Mengambil semua checkbox dengan kelas 'checkbox'
     let idbarang = [];

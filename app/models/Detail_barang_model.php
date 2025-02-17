@@ -137,7 +137,8 @@ class Detail_barang_model
             $this->db->bind('id_jenis_barang', $data['sub_barang']);
             $this->db->bind('id_merek_barang', $data['nama_merek_barang']);
             $this->db->bind('id_kondisi_barang', $data['kondisi_barang']);
-            $this->db->bind('jumlah_barang', $data['jumlah_barang']);
+            // $this->db->bind('jumlah_barang', $data['jumlah_barang']);
+            $this->db->bind('jumlah_barang', !empty($data['jumlah_barang']) ? $data['jumlah_barang'] : 1);
             $this->db->bind('id_satuan', $data['satuan']);
             $this->db->bind('deskripsi_barang', $data['deskripsi_barang']);
             $this->db->bind('tgl_pengadaan_barang', $data['tgl_pengadaan_barang']);
