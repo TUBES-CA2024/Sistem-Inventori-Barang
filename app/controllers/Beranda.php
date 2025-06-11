@@ -101,19 +101,17 @@ class Beranda extends Controller {
     }
 
 
-    public function cetak() {
-        if(isset($_POST)&& !empty($_POST)){
-            $data['judul'] = 'Beranda';
-    
-            $data['dataCetak'] = $this->model('Beranda_model')->cetak($_POST);
-            $this->view('templates/header', $data);
-            $this->view('Beranda/print', $data);
-            $this->view('templates/footer');
-
-        } else{
-            Flasher::setFlash('Data barang', 'gagal', ' diCetak </br> Pilih data barang', 'danger');
-            header('Location: '. BASEURL . 'Beranda');
-            exit;
+   public function cetak() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['checkbox'])) {
+                $idList = $_POST['checkbox'];
+                // Kirim data ke view hasil cetak
+                $this->view('Beranda/print', ['data' => $idList]);
+            } else {
+                echo "Tidak ada data dipilih.";
+            }
+        } else {
+            header('Location: ' . BASEURL . '/Beranda');
         }
     }
     

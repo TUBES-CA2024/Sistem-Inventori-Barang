@@ -73,4 +73,18 @@ public function ubah(){
     }
 }
 
+    public function cetak()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['checkbox'])) {
+                $idList = $_POST['checkbox']; // array of selected ids
+                // Lanjutkan ke cetak/export view
+                $this->view('peminjaman/printPeminjaman', ['data' => $idList]);
+            } else {
+                echo "Tidak ada data yang dipilih untuk dicetak.";
+            }
+        } else {
+            header('Location: ' . BASEURL . '/peminjaman');
+        }
+}
 }

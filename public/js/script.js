@@ -28,36 +28,7 @@ function validasiInput(input) {
 //   window.print();
 // }
 
-function tampilCetak() {
-  const checkboxes = document.querySelectorAll(".checkbox"); // Menggunakan .checkbox untuk memilih semua elemen dengan kelas "checkbox"
-  let idbarang = [];
 
-  checkboxes.forEach(function (checkbox) {
-    if (checkbox.checked) {
-      // Menambahkan id_barang ke dalam array
-      idbarang.push(checkbox.value);
-    }
-  });
-
-  console.log(idbarang);
-  $.ajax({
-    url: "http://localhost/inventori/public/Beranda/cetak",
-    data: {
-      id_barang: idbarang,
-    },
-    method: "post",
-    dataType: "json",
-    success: function (data) {
-      $("id_barang").val(data.id_barang);
-    },
-  });
-}
-
-function checkbox() {
-  let form = document.getElementById("formCheckbox");
-
-  form.submit();
-}
 
 //jenis barang
 $(function () {

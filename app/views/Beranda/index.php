@@ -147,8 +147,15 @@
 
             <div class="btn-fitur" style="display: flex; justify-content:space-between;">
                 <div style="display: flex; gap:10px;">
-                    <button onclick="location.href='<?=BASEURL?>Beranda/cetak'; checkbox();"
-                        style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);"><i class="fa-solid fa-file-export" style="color: #ffffff;"></i>Ekspor</button>
+
+                 <button id="tombolEkspor"
+    style="color: white; background-color: #0c1740; border: none; border-radius: 8px; margin: 40px 20px;
+    height: 35px; width: 180px; font-size: 15px; font-weight: 400; box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);">
+    <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
+</button>  
+
+                    
+                    
                     <?php
                 if (isset($_SESSION['login']) && $_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2') {
                     echo  '<button data-toggle="modal" class="btn-tambah-barang" data-target="#modalTambah" style="box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);">
@@ -176,7 +183,8 @@
                 </div>
             </div>
             <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
-            <table  id="myTable"class="table table-hover table-sm"
+                <form id="formCetakBeranda" action="<?= BASEURL ?>Beranda/cetak" method="post">
+            <table  id="example"class="table table-hover table-sm"
                 style=" width:100%;">
                 <thead class="table-info">
                     <tr>
@@ -191,7 +199,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="<?=BASEURL?>Beranda/cetak" method="post" id="formCheckbox">
+
                         <?php $i = 1; ?>
                         <?php foreach ($data['dataTampilBarang'] as $row): ?>
                         <tr style="font-size: 14px;">
@@ -226,8 +234,10 @@
                                     class="btn d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-circle-info fa-lg " style="color: #1250ba;"></i>
                                 </a>
-                                <input class="checkbox" onclick="tampilCetak()" type="checkbox" id="checkbox"
-                                    name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
+
+                                 <input class="checkbox" type="checkbox" name="checkbox[]" value="<?=$row['id_barang']?>" style="width:15px">
+
+
                                 <div class="modal fade" id="konfirmasiHapus<?=$row['id_barang']?>" tabindex="-1"
                                     role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -358,9 +368,23 @@
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                    </form>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </form>
+
+
+       <script>
+document.getElementById('tombolEkspor').onclick = function() {
+    const checkboxes = document.querySelectorAll('#formCetakBeranda .checkbox');
+    let isChecked = false;
+    checkboxes.forEach(cb => { if (cb.checked) isChecked = true; });
+    if (isChecked) {
+        document.getElementById('formCetakBeranda').submit();
+    } else {
+        alert("Pilih minimal satu data untuk dicetak.");
+    }
+};
+</script>
             </div>
             <div class="modal fade" id="modalTambah" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">

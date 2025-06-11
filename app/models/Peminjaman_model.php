@@ -87,34 +87,4 @@ public function ubahDataPeminjaman($data)
     $this->db->execute();
     return $this->db->rowCount();
 }
-
-
-
-// public function ubahDataPeminjaman($data)
-// {
-//     $queryUbahPeminjaman = "UPDATE trx_peminjaman SET 
-//                 id_jenis_barang = :jenis_barang, 
-//                 judul_kegiatan = :judul_kegiatan, 
-//                 tanggal_pengajuan = :tanggal_pengajuan, 
-//                 tanggal_peminjaman = :tanggal_mulai, 
-//                 tanggal_pengembalian = :tanggal_terakhir, 
-//                 jumlah = :jumlah_peminjaman, 
-//                 spesifikasi = :keterangan_peminjaman 
-//               WHERE id_peminjaman = :id";
-
-//     $this->db->query($queryUbahPeminjaman);
-//     $this->db->bind('jenis_barang', $data['jenis_barang']);
-//     $this->db->bind('judul_kegiatan', $data['judul_kegiatan']);
-//     $this->db->bind('tanggal_pengajuan', $data['tanggal_pengajuan']);
-//     $this->db->bind('tanggal_peminjaman', $data['tanggal_peminjaman']);
-//     $this->db->bind('tanggal_pengembalian', $data['tanggal_pengembalian']);
-//     $this->db->bind('jumlah', $data['jumlah']);
-//     $this->db->bind('keterangan', $data['keterangan']);
-//     $this->db->bind('id', $data['id_peminjaman']);
-
-//     $this->db->execute();
-//     return $this->db->rowCount();
-// }
-
-
 }

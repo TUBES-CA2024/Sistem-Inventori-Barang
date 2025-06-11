@@ -39,29 +39,29 @@ if (!isset($_SESSION['login'])) {
         <div class="menu">
             <ul>
                 <li class="beranda">
-                    <button onclick="location.href='<?=BASEURL;?>Beranda'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
-                    <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                    <button onclick="location.href='<?= BASEURL; ?>Beranda'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
                         </svg>
                         Beranda
                     </button>
                 </li>
                 <?php
-                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                        echo '<li class="tambah-jenis-barang">
-                            <button onclick="location.href=\''.BASEURL.'JenisBarang\'">
+                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                    echo '<li class="tambah-jenis-barang">
+                            <button onclick="location.href=\'' . BASEURL . 'JenisBarang\'">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box2-fill" viewBox="0 0 16 16">
                                 <path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM15 4.667V5H1v-.333L1.5 4h6V1h1v3h6z"/>
                                 </svg>
                                 Jenis barang
                             </button>
                         </li>';
-                    }
+                }
                 ?>
                 <?php
-                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                echo '<li class="tambah-merek-barang">
-                    <button onclick="location.href=\''.BASEURL.'merekBarang\'">
+                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                    echo '<li class="tambah-merek-barang">
+                    <button onclick="location.href=\'' . BASEURL . 'merekBarang\'">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-upc" viewBox="1 0 16 16">
                         <path d="M3 4.5a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0zm2 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 1 0v7a.5.5 0 0 1-1 0z"/>
                         </svg>
@@ -69,11 +69,11 @@ if (!isset($_SESSION['login'])) {
 
                     </button>
                 </li>';
-                    }
-                    ?>
+                }
+                ?>
                 <?php
-                    if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
-                echo '<li class="tambah-peminjaman-barang">
+                if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3' || $_SESSION['id_role'] == '2')) {
+                    echo '<li class="tambah-peminjaman-barang">
                     <button onclick="location.href=\'' . BASEURL . 'peminjaman\'">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-plus-fill" viewBox="-1 0 16 16">
                     <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0"/>
@@ -81,12 +81,12 @@ if (!isset($_SESSION['login'])) {
                         Peminjaman
                     </button>
                 </li>';
-                    }
-                    ?>
+                }
+                ?>
                 <?php
                 if (isset($_SESSION['login']) && ($_SESSION['id_role'] == '3')) {
-                echo '<li class="kelola-akun">
-                    <button onclick="location.href=\''.BASEURL.'KelolaAkun\'">
+                    echo '<li class="kelola-akun">
+                    <button onclick="location.href=\'' . BASEURL . 'KelolaAkun\'">
                         <i class="fa-solid fa-users-gear" style="color: #ffffff"></i>
                         Kelola akun
                     </button>
@@ -100,7 +100,7 @@ if (!isset($_SESSION['login'])) {
                             onmouseout="this.style.backgroundColor='transparent'">
                             <i class="fa-solid fa-gear" style="color: #ffffff;"></i>Pengaturan </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" onclick="location.href='<?=BASEURL?>Profil'" type="button"
+                            <button class="dropdown-item" onclick="location.href='<?= BASEURL ?>Profil'" type="button"
                                 style="margin-top: 10px; color:black;">
                                 <i class="fa-regular fa-user"></i>Profil</button>
                             <button class="dropdown-item" data-toggle="modal" data-target="#konfirmasiKeluar"
@@ -110,7 +110,6 @@ if (!isset($_SESSION['login'])) {
                             </button>
                         </div>
                     </div>
-
                 </li>
             </ul>
         </div>
@@ -118,8 +117,51 @@ if (!isset($_SESSION['login'])) {
 
     <div class="content">
         <div class="content-beranda" style="overflow: hidden;">
-            <h1 id="title" style="padding: 0px;margin: 40px 0px 40px 150px;">Peminjaman</h1>
+            <h1 id="title" style="padding: 0px;margin: 40px 0px 40px 50px;">Peminjaman</h1>
 
+            <!-- <button  onclick="location.href='<?=BASEURL?>Peminjaman/cetak';"
+                 style="
+                color: white;
+                background-color: #0c1740;
+                border: none;
+                border-radius: 8px;
+                margin: 40px 20px;
+                height: 35px;
+                width: 180px;
+                font-size: 15px;
+                font-weight: 400;
+                box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+                 ">
+                 <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
+            </button> -->
+            <button onclick="submitFormCetak()" 
+                    style="color: white; 
+                            background-color: #0c1740;
+                            border: none; 
+                            border-radius: 8px; 
+                            margin: 40px 20px;
+                            height: 35px; width: 180px; font-size: 15px; font-weight: 400;
+                            box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);"
+                            >
+                        <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
+            </button>
+
+            <script>
+                     function submitFormCetak() {
+        // Pastikan setidaknya satu checkbox dipilih
+        const checkboxes = document.querySelectorAll('.checkbox');
+        let isChecked = false;
+        checkboxes.forEach(cb => {
+            if (cb.checked) isChecked = true;
+        });
+
+        if (isChecked) {
+            document.getElementById('formCetak').submit();
+        } else {
+            alert("Pilih minimal satu data untuk dicetak.");
+        }
+    }
+</script>
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                 style="
@@ -127,7 +169,7 @@ if (!isset($_SESSION['login'])) {
             background-color: #0c1740;
             border: none;
             border-radius: 8px;
-            margin: 40px 40px;
+            margin: 40px 20px;
             height: 35px;
             width: 180px;
             font-size: 15px;
@@ -135,11 +177,11 @@ if (!isset($_SESSION['login'])) {
              box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
              ">
                 <i class="fa-solid fa-plus" style="color: #ffffff; "></i>
-                &ensp;Tambah
+                &ensp;tambah
             </button>
 
             <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
-                <table id="myTable" class="table table-hover table-sm"
+                <table id="peminjamanTable" class="table table-hover table-sm"
                     style=" width:100%;">
                     <thead class="table-info">
                         <tr>
@@ -154,6 +196,7 @@ if (!isset($_SESSION['login'])) {
                         </tr>
                     </thead>
                     <tbody>
+                        <form id="formCetak" action="<?= BASEURL ?>Peminjaman/cetak" method="post">
                         <?php $i = 1; ?>
                         <?php foreach ($data['peminjaman'] as $row): ?>
                             <tr style="font-size: 14px;">
@@ -167,29 +210,33 @@ if (!isset($_SESSION['login'])) {
                                 <td class="p-2" style="display: flex;">
                                     <!-- hapus -->
                                     <a href="<?= BASEURL; ?>/peminjaman/delete/<?= $row['id_peminjaman']; ?>" class="btn d-flex align-items-center justify-content-center" onclick="return confirm('Yakin ingin menghapus data ini?');">
-                                    <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
+                                        <i class="fa-solid fa-trash-can fa-lg" style="color: #cc3030;"></i>
                                     </a>
 
 
                                     <!-- ubah -->
-                                    <a href="<?= BASEURL; ?>/JenisBarang/ubah/<?=$row['id_jenis_barang'];?>" 
-                                    class="btn d-flex align-items-center justify-content-center tampilUbahPeminjaman"
+                                    <a href="<?= BASEURL; ?>/JenisBarang/ubah/<?= $row['id_jenis_barang']; ?>"
+                                        class="btn d-flex align-items-center justify-content-center tampilUbahPeminjaman"
                                         data-toggle="modal"
                                         data-target="#modalEdit"
                                         data-id="<?= $row['id_peminjaman']; ?>">
                                         <i class="fa-solid fa-pen-to-square fa-lg" style="color: #30cc30;"></i>
                                     </a>
+                                    <input class="checkbox" type="checkbox" name="checkbox[]" value="<?=$row['id_peminjaman']?>" style="width:15px">
+
                                     <script>
-                                     $(function() {
-                                        $('.tampilUbahPeminjaman').on('click', function() {
-                                            const id = $(this).data('id');
-            
-                                            $.ajax({
-                                                url: 'http://localhost/tubes_lab/Sistem-Inventori-Barang/public/peminjaman/ubahPeminjaman',
-                                                data: { id_peminjaman: id }, // Sesuaikan dengan PHP
-                                                method: 'POST',
-                                                dataType: 'json',
-                                                success: function(data) {
+                                        $(function() {
+                                            $('.tampilUbahPeminjaman').on('click', function() {
+                                                const id = $(this).data('id');
+
+                                                $.ajax({
+                                                    url: 'http://localhost/tubes_lab/Sistem-Inventori-Barang/public/peminjaman/ubahPeminjaman',
+                                                    data: {
+                                                        id_peminjaman: id
+                                                    }, // Sesuaikan dengan PHP
+                                                    method: 'POST',
+                                                    dataType: 'json',
+                                                    success: function(data) {
 
                                                         $("#id_peminjaman").val(data.id_peminjaman);
                                                         $("#judul_kegiatan").val(data.judul_kegiatan);
@@ -199,17 +246,17 @@ if (!isset($_SESSION['login'])) {
                                                         $("#jenis_barang").val(data.id_jenis_barang);
                                                         $("#jumlah").val(data.jumlah);
                                                         $("#spesifikasi").val(data.spesifikasi);
-                                                },
+                                                    },
+                                                });
                                             });
                                         });
-                                    });
                                     </script>
 
                                     <!-- Modal Edit -->
                                     <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEditLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content" style="border-radius: 15px;">
-                                                <form action="<?= BASEURL; ?>/peminjaman/update" method="POST">
+                                                <form action="<?= BASEURL; ?>/peminjaman/ubah" method="POST">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="modalEditLabel">Edit Data Peminjaman</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -278,7 +325,7 @@ if (!isset($_SESSION['login'])) {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-
+                        </form>
                     </tbody>
                 </table>
             </div>
@@ -301,7 +348,7 @@ if (!isset($_SESSION['login'])) {
                                 <div class="form_peminjaman">
                                     <div class="content-modal" style="display: flex; justify-content: space-around; gap: 20px;">
                                         <div class="sisi_kiri" style="margin: 0px 0px 0px 50px;">
-                                        <input type="hidden" id="id_peminjaman" name="id_peminjaman">
+                                            <input type="hidden" id="id_peminjaman" name="id_peminjaman">
                                             <div class="judul_kegiatan" style="margin-top: 30px;">
                                                 <label for="judul_kegiatan">Judul Kegiatan</label><br>
                                                 <input type="text" name="judul_kegiatan" id="judul_kegiatan" style="width: 250px; height: 35px; box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);">
@@ -369,8 +416,11 @@ if (!isset($_SESSION['login'])) {
                                             const jenisDiv = document.createElement('div');
                                             const jenisLabel = document.createElement('label');
                                             jenisLabel.innerText = 'Jenis Barang';
+                                            jenisLabel.setAttribute('for', 'jenis_barang');
                                             const breakLine1 = document.createElement('br');
                                             const jenisSelect = document.createElement('select');
+                                            jenisSelect.id = 'jenis_barang';
+                                            jenisSelect.name = 'jenis_barang';
                                             jenisSelect.classList.add('jenis_barang_select');
                                             jenisSelect.style.height = '35px';
                                             jenisSelect.style.width = '250px';
@@ -380,19 +430,27 @@ if (!isset($_SESSION['login'])) {
                                             jenisSelect.style.paddingLeft = '15px';
                                             jenisSelect.style.boxShadow = '0px 5px 5px 0px rgba(0, 0, 0, 0.2)';
                                             jenisSelect.innerHTML = `<?php foreach ($data["sub_barang"] as $option) { ?> 
-                                    <option value="<?php echo $option["id_jenis_barang"] ?>">
-                                        <?php echo $option["sub_barang"] ?>
-                                    </option> 
-                                 <?php } ?>`;
+        <option value="<?php echo $option["id_jenis_barang"] ?>">
+            <?php echo $option["sub_barang"] ?>
+        </option> 
+    <?php } ?>`;
                                             jenisDiv.append(jenisLabel, breakLine1, jenisSelect);
 
                                             // Jumlah
                                             const jumlahDiv = document.createElement('div');
+                                            jumlahDiv.classList.add('jumlah_peminjaman');
+                                            jumlahDiv.style.marginLeft = '15%';
+
                                             const jumlahLabel = document.createElement('label');
                                             jumlahLabel.innerText = 'Jumlah';
+                                            jumlahLabel.setAttribute('for', 'jumlah_peminjaman');
+
                                             const breakLine2 = document.createElement('br');
                                             const jumlahInput = document.createElement('input');
                                             jumlahInput.type = 'number';
+                                            jumlahInput.id = 'jumlah_peminjaman';
+                                            jumlahInput.name = 'jumlah_peminjaman';
+                                            jumlahInput.classList.add('jumlah_input');
                                             jumlahInput.style.width = '80px';
                                             jumlahInput.style.height = '35px';
                                             jumlahInput.style.borderRadius = '8px';
@@ -400,16 +458,22 @@ if (!isset($_SESSION['login'])) {
                                             jumlahInput.style.border = 'none';
                                             jumlahInput.style.paddingLeft = '10px';
                                             jumlahInput.style.boxShadow = '0px 5px 5px 0px rgba(0, 0, 0, 0.2)';
-                                            jumlahDiv.style.marginLeft = '14%';
                                             jumlahDiv.append(jumlahLabel, breakLine2, jumlahInput);
 
                                             // Keterangan
                                             const keteranganDiv = document.createElement('div');
+                                            keteranganDiv.classList.add('keterangan_peminjaman');
+
                                             const keteranganLabel = document.createElement('label');
                                             keteranganLabel.innerText = 'Keterangan';
+                                            keteranganLabel.setAttribute('for', 'keterangan_peminjaman');
+
                                             const breakLine3 = document.createElement('br');
                                             const keteranganInput = document.createElement('input');
                                             keteranganInput.type = 'text';
+                                            keteranganInput.id = 'keterangan_peminjaman';
+                                            keteranganInput.name = 'keterangan_peminjaman';
+                                            keteranganInput.classList.add('keterangan_input');
                                             keteranganInput.style.width = '250px';
                                             keteranganInput.style.height = '35px';
                                             keteranganInput.style.borderRadius = '8px';
@@ -435,11 +499,11 @@ if (!isset($_SESSION['login'])) {
 
                                             // Menambahkan ikon trash
                                             hapusButton.innerHTML = `
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                                </svg>
-                                            `;
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+        </svg>
+    `;
 
                                             // Event listener untuk menghapus baris
                                             hapusButton.addEventListener('click', () => {
@@ -453,6 +517,7 @@ if (!isset($_SESSION['login'])) {
                                             parentContainer.appendChild(newInputGroup);
                                         });
                                     </script>
+
 
                                 </div>
                         </div>
@@ -483,8 +548,3 @@ if (!isset($_SESSION['login'])) {
         <div id="errorMessage" class="alert alert-danger" style="display: none;"></div>
     </div>
 </div>
-
-<?php
-
-var_dump($_POST);
-
