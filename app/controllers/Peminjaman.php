@@ -13,6 +13,9 @@ class peminjaman extends Controller
         $this->view('templates/header', $data);
         $this->view('Peminjaman/index', $data);
         $this->view('templates/footer');
+
+        $data['peminjaman'] = $this->model('PeminjamanModel')->getDataTerpilih();
+        $this->view('Peminjaman/printPeminjaman', $data);
     }
 
     public function tambahPeminjaman(){
@@ -79,7 +82,9 @@ public function ubah(){
             if (isset($_POST['checkbox'])) {
                 $idList = $_POST['checkbox']; // array of selected ids
                 // Lanjutkan ke cetak/export view
-                $this->view('peminjaman/printPeminjaman', ['data' => $idList]);
+                $peminjamanTerpilih = $this->model('Peminjaman_model')->getPeminjamanByIds($idList);
+                $this->view('peminjaman/printPeminjaman', ['peminjaman' => $peminjamanTerpilih]);
+
             } else {
                 echo "Tidak ada data yang dipilih untuk dicetak.";
             }

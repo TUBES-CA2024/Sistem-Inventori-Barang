@@ -87,4 +87,14 @@ public function ubahDataPeminjaman($data)
     $this->db->execute();
     return $this->db->rowCount();
 }
+
+public function getPeminjamanByIds($idList)
+{
+    $ids = implode(',', array_map('intval', $idList)); // Lindungi dari SQL Injection
+    $query = "SELECT * FROM trx_peminjaman WHERE id_peminjaman IN ($ids)";
+    $this->db->query($query);
+    return $this->db->resultSet();
+}
+
+
 }

@@ -119,28 +119,14 @@ if (!isset($_SESSION['login'])) {
         <div class="content-beranda" style="overflow: hidden;">
             <h1 id="title" style="padding: 0px;margin: 40px 0px 40px 50px;">Peminjaman</h1>
 
-            <!-- <button  onclick="location.href='<?=BASEURL?>Peminjaman/cetak';"
-                 style="
-                color: white;
-                background-color: #0c1740;
-                border: none;
-                border-radius: 8px;
-                margin: 40px 20px;
-                height: 35px;
-                width: 180px;
-                font-size: 15px;
-                font-weight: 400;
-                box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
-                 ">
-                 <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
-            </button> -->
+           
             <button onclick="submitFormCetak()" 
                     style="color: white; 
                             background-color: #0c1740;
                             border: none; 
                             border-radius: 8px; 
                             margin: 40px 20px;
-                            height: 35px; width: 180px; font-size: 15px; font-weight: 400;
+                            height: 45px; width: 180px; font-size: 15px; font-weight: 400;
                             box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);"
                             >
                         <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
@@ -170,7 +156,7 @@ if (!isset($_SESSION['login'])) {
             border: none;
             border-radius: 8px;
             margin: 40px 20px;
-            height: 35px;
+            height: 45px;
             width: 180px;
             font-size: 15px;
             font-weight: 400;
@@ -181,6 +167,7 @@ if (!isset($_SESSION['login'])) {
             </button>
 
             <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
+                <form id="formCetak" action="<?= BASEURL ?>Peminjaman/cetak" method="post">
                 <table id="peminjamanTable" class="table table-hover table-sm"
                     style=" width:100%;">
                     <thead class="table-info">
@@ -196,7 +183,6 @@ if (!isset($_SESSION['login'])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <form id="formCetak" action="<?= BASEURL ?>Peminjaman/cetak" method="post">
                         <?php $i = 1; ?>
                         <?php foreach ($data['peminjaman'] as $row): ?>
                             <tr style="font-size: 14px;">
@@ -325,9 +311,9 @@ if (!isset($_SESSION['login'])) {
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                        </form>
                     </tbody>
                 </table>
+            </form>
             </div>
 
 

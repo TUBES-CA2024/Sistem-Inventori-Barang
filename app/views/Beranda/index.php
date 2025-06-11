@@ -149,8 +149,8 @@
                 <div style="display: flex; gap:10px;">
 
                  <button id="tombolEkspor"
-    style="color: white; background-color: #0c1740; border: none; border-radius: 8px; margin: 40px 20px;
-    height: 35px; width: 180px; font-size: 15px; font-weight: 400; box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);">
+    style="color: white; background-color: #0c1740; border: none; border-radius: 8px; 
+    height: 45px; width: 180px; font-size: 15px; font-weight: 400; box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);">
     <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
 </button>  
 
@@ -184,7 +184,7 @@
             </div>
             <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
                 <form id="formCetakBeranda" action="<?= BASEURL ?>Beranda/cetak" method="post">
-            <table  id="example"class="table table-hover table-sm"
+            <table  class="table table-hover table-sm"
                 style=" width:100%;">
                 <thead class="table-info">
                     <tr>
