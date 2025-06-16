@@ -165,7 +165,7 @@
             </div>
             <div style="max-height: 400px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
             <table id="" class="table table-hover table-sm">
-                <thead class="table-info">
+                <thead class="table-info" style="background-color: #0c1740; color: white; font-size: 14px;">
                     <tr>
                         <th scope="col" class="p-2">No.</th>
                         <th scope="col" class="p-2">Sub barang</th>

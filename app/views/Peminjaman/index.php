@@ -120,19 +120,57 @@ if (!isset($_SESSION['login'])) {
             <h1 id="title" style="padding: 0px;margin: 40px 0px 40px 50px;">Peminjaman</h1>
 
            
-            <button onclick="submitFormCetak()" 
-                    style="color: white; 
-                            background-color: #0c1740;
-                            border: none; 
-                            border-radius: 8px; 
-                            margin: 40px 20px;
-                            height: 45px; width: 180px; font-size: 15px; font-weight: 400;
-                            box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);"
-                            >
-                        <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
-            </button>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 40px 0 30px 50px;">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <button onclick="submitFormCetak()" 
+            style="color: white; 
+                    background-color: #0c1740;
+                    border: none; 
+                    border-radius: 8px; 
+                    height: 45px; width: 180px; font-size: 15px; font-weight: 400;
+                    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);"
+                    >
+            <i class="fa-solid fa-file-export" style="color: #ffffff;"></i>&ensp;Ekspor
+        </button>
 
-            <script>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            style="
+            color: white;
+            background-color: #0c1740;
+            border: none;
+            border-radius: 8px;
+            height: 45px;
+            width: 180px;
+            font-size: 15px;
+            font-weight: 400;
+            box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
+            ">
+            <i class="fa-solid fa-plus" style="color: #ffffff; "></i>
+            &ensp;tambah
+        </button>
+    </div>
+
+    <div class="search" style="width:350px; background-color:transparent; margin:0;">
+        <form action="<?= BASEURL; ?>peminjaman/cari" method="post">
+            <div class="input-group mb-3" style="box-shadow: 0px 4px 16px 0px rgba(12, 23, 64, 0.10); border-radius: 12px; overflow: hidden;">
+                <input type="text" class="form-control" placeholder="Cari..." name="keyword" id="keyword"
+                    style="height: 45px; border: none; background: #F5F7FA; color: #0c1740; font-size: 15px; font-weight: 400; border-radius: 0; box-shadow: none; outline: none;" autocomplete="off">
+                <div class="input-group-append">
+                    <button class="btn" type="submit" id="btn-cari"
+                        style="background: #0c1740; border-radius: 0 12px 12px 0; width: 60px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff; font-size: 18px;"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div style="display: flex; align-items: center; gap:10px; justify-content: end;">
+            <input type="checkbox" class="checkbox" id="selectAllCheckbox" name="selectAllCheckbox" style="width: 15px;">
+            <label class="checkbox" for="selectAllCheckbox" style="margin-top: 7px;">Pilih semua</label>
+        </div>
+    </div>
+</div>
+
+ <script>
                      function submitFormCetak() {
         // Pastikan setidaknya satu checkbox dipilih
         const checkboxes = document.querySelectorAll('.checkbox');
@@ -148,29 +186,11 @@ if (!isset($_SESSION['login'])) {
         }
     }
 </script>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                style="
-            color: white;
-            background-color: #0c1740;
-            border: none;
-            border-radius: 8px;
-            margin: 40px 20px;
-            height: 45px;
-            width: 180px;
-            font-size: 15px;
-            font-weight: 400;
-             box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
-             ">
-                <i class="fa-solid fa-plus" style="color: #ffffff; "></i>
-                &ensp;tambah
-            </button>
-
             <div style="max-height: 360px; overflow-y:auto;box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5); border-radius:5px;">
                 <form id="formCetak" action="<?= BASEURL ?>Peminjaman/cetak" method="post">
                 <table id="peminjamanTable" class="table table-hover table-sm"
                     style=" width:100%;">
-                    <thead class="table-info">
+                    <thead class="table-info" style="background-color: #0c1740; color: white; font-size: 14px;">
                         <tr>
                             <th scope="col" class="p-2">No.</th>
                             <th scope="col" class="p-2">Judul Kegiatan</th>
@@ -416,10 +436,10 @@ if (!isset($_SESSION['login'])) {
                                             jenisSelect.style.paddingLeft = '15px';
                                             jenisSelect.style.boxShadow = '0px 5px 5px 0px rgba(0, 0, 0, 0.2)';
                                             jenisSelect.innerHTML = `<?php foreach ($data["sub_barang"] as $option) { ?> 
-        <option value="<?php echo $option["id_jenis_barang"] ?>">
-            <?php echo $option["sub_barang"] ?>
-        </option> 
-    <?php } ?>`;
+                                                <option value="<?php echo $option["id_jenis_barang"] ?>">
+                                                    <?php echo $option["sub_barang"] ?>
+                                                </option> 
+                                            <?php } ?>`;
                                             jenisDiv.append(jenisLabel, breakLine1, jenisSelect);
 
                                             // Jumlah

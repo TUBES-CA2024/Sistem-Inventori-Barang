@@ -95,6 +95,17 @@ public function getPeminjamanByIds($idList)
     $this->db->query($query);
     return $this->db->resultSet();
 }
-
-
+ public function cariDataPeminjaman($keyword)
+{
+    $query = "SELECT * FROM trx_peminjaman
+        WHERE judul_kegiatan LIKE :keyword
+        OR tanggal_pengajuan LIKE :keyword
+        OR tanggal_peminjaman LIKE :keyword
+        OR tanggal_pengembalian LIKE :keyword
+        OR jumlah LIKE :keyword
+        OR spesifikasi LIKE :keyword";
+    $this->db->query($query);
+    $this->db->bind('keyword', "%$keyword%");
+    return $this->db->resultSet();
+}
 }
